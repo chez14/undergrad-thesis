@@ -1,0 +1,438 @@
+%% skripsi.tex
+%% Copyright 2011-2019 Lionov W.
+%%
+%% This file is part of the 'Template Skripsi/Tugas Akhir FTIS UNPAR'
+%%
+%% This work may be distributed under the conditions of 
+%% the LaTeX Project Public License, either version 1.3 of this license or
+%% any later version. The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is Lionov W (lionov@unpar.ac.id) 
+%_____________________________________________________________________________
+%=============================================================================
+% skripsi.tex v12 (27-01-2017) dibuat oleh Lionov - T. Informatika FTIS UNPAR 
+% 
+% Ini adalah file utama (skripsi.tex), berisi perintah-perintah yang khusus 
+% dibuat untuk template ini
+%
+% 			JANGAN MENGUBAH APAPUN DI DALAM FILE INI, 
+%			KECUALI ANDA TAHU APA YANG ANDA LAKUKAN !!! 
+% 
+% Perubahan pada versi 12:
+%	- Penulisan ulang sebagian besar isi file untuk konsistensi
+%	- Penghapusan pdf title dan pdf subject bahasa inggris
+% 	- Penggunaan package microtype untuk mencegah underfull
+%	- Penggunaan package emptypage untuk \cleardoublepage
+%	- Memperbaharui headrule untuk dua garis horizontal di header halaman
+%	- Daftar Gambar dan Daftar Tabel dimulai dari halaman ganjil
+%	- Perubahan cara include bab dan lampiran, harus diisi manual
+%	- Perbaikan textwidth di halaman pengesahan
+%	- Margin untuk buku sidang dan buku final disamakan
+%	- Penulisan default value menggunakan warna merah dan \small
+%	- Perubahan menjadi "kaprodiXXX" 
+%	- Penghapusan command-command dan package yang tidak dibutuhkan
+%	- Perubahan listing untuk kode program (font Bera Mono dan warna)
+%	- Perbaikan pada tata letak di lembar pernyataan
+%	- Deklarasi kaprodi dipindah dari dosen.tex
+%   - Perubahan file logo unpar
+%	- Perbaikan metadata pada file PDF
+%	- Referensi dan lampiran selalu onespacing 
+%_____________________________________________________________________________
+%=============================================================================
+
+\documentclass[11pt,a4paper,twoside,openright,notitlepage]{report}  
+\usepackage[bahasa]{babel}%bahasa indonesia
+\usepackage{lmodern}%font latin modern 
+\usepackage[T1]{fontenc}%encoding
+\usepackage[inner=2.5cm,outer=2cm,top=2.5cm,bottom=2.5cm]{geometry}%margin
+\usepackage{microtype}%mencegah underfull
+\usepackage{lipsum}%untuk dummy text
+\usepackage{abstract}%manipulasi abstract
+\usepackage{tocloft}%format daftar isi 
+\usepackage{tocbibind}% menambah kata pengantar, daftar isi, gambar, tabel ke daftasr isi
+\usepackage{fancyhdr}%mengubah tampilan header & footer
+\usepackage{titlesec}% mengubah tamnpilan judul bab
+\usepackage{float} %penempatan gambar di tempat yg seharusnya 
+\usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref}% untuk \autoref,\phantomsection & link 
+\usepackage{setspace}%line spacing
+\usepackage[pagewise]{lineno}%line numbering
+\usepackage{emptypage}%halaman kosong antar bab
+\usepackage{graphicx}%untuk graphicspath
+\usepackage{listings}%untuk penulisan source code
+\usepackage{etoolbox}%untuk programming dll
+\usepackage{xstring}%manipulasi string, strchar, ifstreq
+\usepackage[table]{xcolor}%untuk kode program
+\usepackage{pgffor}% untuk foreach
+ 
+\newcommand{\vtemplateauthor}{lionov}
+\newcommand{\dtext}[1]{{\color{lightgray} \lipsum[#1]}}%command untuk dummy text
+\newcommand{\rtext}[1]{{\color{red} \small #1}}%command untuk default text
+
+\newcommand{\vmode}{template}  % default mode
+\newtoggle{cekNPM}	 
+%\toggletrue{cekNPM} % aktifkan untuk cek NPM
+\newtoggle{develop}	
+%\toggletrue{develop} % aktifkan untuk mode develop
+
+\graphicspath{{./Gambar/}}% folder tempat gambar 
+
+%cek apakah text default
+\newcommand{\vtext}[3]{\IfStrEq{\vmode}{template}{\newcommand{#1}{\rtext{#2}#3}}{\newcommand{#1}{#2}}}
+\newcommand{\vtextup}[3]{\IfStrEq{\vmode}{template}{\newcommand{#1}{\uppercase{\rtext{#2}}#3}}{\newcommand{#1}{\uppercase{#2}}}}
+
+%default data prodi
+\newcommand{\vprodiINA}{\rtext{<<MATEMATIKA/FISIKA/TEKNIK INFORMATIKA>>}}
+\newcommand{\vprodiENG}{\rtext{<<MATHEMATICS/PHYSICS/INFORMATICS>>}}
+\newcommand{\vstaINA}{\rtext{<<SKRIPSI/TUGAS AKHIR>>}} 
+\newcommand{\vstaENG}{\rtext{<<FINAL PROJECT/UNDERGRADUATE THESIS>>}}
+\newcommand{\vkaprodi}{\rtext{<<Ketua Program Studi>>}}
+  
+%data kaprodi 
+\newcommand{\kaprodiMAT}{}
+\newcommand{\kaprodiFIS}{}
+\newcommand{\kaprodiTIF}{}
+
+\include{dosen}%dosen.tex
+
+%data mahasiswi/a dan prodi 
+\newcommand{\namanpm}[2]{%
+	\vtext{\vnama}{#1}{}
+	\vtext{\vnpm}{#2}{}
+	\newtoggle{okNPM}
+	\iftoggle{cekNPM}{%cek penulisan NPM
+		\newtoggle{myint} \newtoggle{mylen} \StrLen{\vnpm}[\mystrlen]
+		\IfInteger{\vnpm}{\toggletrue{myint}}{}
+		\IfStrEq{\mystrlen}{10}{\toggletrue{mylen}}{}
+		\ifboolexpr{togl{myint} and togl{mylen}}{\toggletrue{okNPM}}{} 
+	}{ 
+		\nottoggle{okNPM}{
+			\hypersetup{pdfauthor={#2 - #1}}
+			\StrChar{#2}{6}[\vprodiN] 
+			\IfStrEqCase{\vprodiN}{
+				{1}{\renewcommand{\vprodiINA}{MATEMATIKA} \renewcommand{\vprodiENG}{MATHEMATICS} 
+					\renewcommand{\vstaINA}{SKRIPSI} \renewcommand{\vstaENG}{FINAL PROJECT} \renewcommand{\vkaprodi}{\kaprodiMAT}}
+				{2}{\renewcommand{\vprodiINA}{FISIKA} \renewcommand{\vprodiENG}{PHYSICS} 
+					\renewcommand{\vstaINA}{TUGAS AKHIR} \renewcommand{\vstaENG}{FINAL PROJECT} \renewcommand{\vkaprodi}{\kaprodiFIS}}
+				{3}{\renewcommand{\vprodiINA}{TEKNIK INFORMATIKA}\renewcommand{\vprodiENG}{INFORMATICS} 
+					\renewcommand{\vstaINA}{SKRIPSI} \renewcommand{\vstaENG}{UNDERGRADUATE THESIS} \renewcommand{\vkaprodi}{\kaprodiTIF}}		
+			[]}
+			\hypersetup{pdfsubject={\vprodiINA}}
+		}{}
+	}
+}
+
+%data tanggal sidang
+\newcommand{\tanggal}[3]{
+	\newcommand{\vtanggal}{\rtext{#1}} \IfInteger{#1}{\renewcommand{\vtanggal}{#1}}{}
+	\newcommand{\vtahun}{\rtext{#3}} \IfInteger{#3}{\renewcommand{\vtahun}{#3}}{}
+	\newcommand{\vbulan}{\rtext{#2}}
+	\IfStrEqCase{#2}{%ubah angka bulan menjadi kata
+		{1}{\renewcommand{\vbulan}{Januari}}	{2}{\renewcommand{\vbulan}{Februari}}	
+		{3}{\renewcommand{\vbulan}{Maret}}		{4}{\renewcommand{\vbulan}{April}}	
+		{5}{\renewcommand{\vbulan}{Mei}}		{6}{\renewcommand{\vbulan}{Juni}}		
+		{7}{\renewcommand{\vbulan}{Juli}}		{8}{\renewcommand{\vbulan}{Agustus}}	
+		{9}{\renewcommand{\vbulan}{September}}	{10}{\renewcommand{\vbulan}{Oktober}}
+		{11}{\renewcommand{\vbulan}{November}}	{12}{\renewcommand{\vbulan}{Desember}}
+	[]}
+}
+
+% data primer skripsi	 
+\newcommand{\judulINA}[1]{\vtextup{\vjudulINA}{#1}{} \hypersetup{pdftitle={#1}}}	
+%\newcommand{\judulINA}[1]{\vtextup{\vjudulINA}{#1}{}}	
+\newcommand{\judulENG}[1]{\vtextup{\vjudulENG}{#1}{}}	
+\newcommand{\abstrakINA}[1]{\vtext{\vabstrakINA}{#1}{\\\dtext{2}}} 
+\newcommand{\abstrakENG}[1]{\vtext{\vabstrakENG}{#1}{\\\dtext{2}}} 
+\newcommand{\kunciINA}[1]{\vtext{\vkunciINA}{#1}{}\hypersetup{pdfkeywords={#1}}}
+%\newcommand{\kunciINA}[1]{\vtext{\vkunciINA}{#1}{}}  
+\newcommand{\kunciENG}[1]{\vtext{\vkunciENG}{#1}{}} 
+\newcommand{\untuk}[1]{\vtext{\vuntuk}{#1}{}}
+\newcommand{\prakata}[1]{\vtext{\vprakata}{#1}{\\\dtext{3-4}}}
+
+%data pembimbing dan penguji	
+\newcommand{\vnpemb}{2}
+\newcommand{\pembimbing}[2]{\vtext{\vpembu}{#1}{} \vtext{\vpembs}{#2}{}}
+\newcommand{\penguji}[2]{\vtext{\vpengi}{#1}{} \vtext{\vpengii}{#2}{}}
+
+%settings
+\newtoggle{vbimbingan}	 
+\newtoggle{vsidang}	 
+\newtoggle{vsidangakhir}	
+\newtoggle{vfinal}	
+\newcommand{\daftarIsiError}[1]{\newcommand{\vdierror}{\IfStrEq{#1}{0}{\hfil}{\hfill}}}  
+\newcommand{\mode}[1]{\renewcommand{\vmode}{#1} 
+	\IfStrEq{#1}{final}{\toggletrue{vfinal}}
+	{\IfStrEq{#1}{sidangakhir}{\toggletrue{vsidangakhir}}
+	{\IfStrEq{#1}{sidang}{\toggletrue{vsidang}}{\toggletrue{vbimbingan}}}}}
+\newcommand{\linenumber}[1]{\newcommand{\vlinenum}{#1}}
+\newcommand{\linespacing}[1]{\newcommand{\vspacing}{#1}} 
+\newcommand{\gambar}[1]{\newcommand{\vgambar}{#1}}
+\newcommand{\tabel}[1]{\newcommand{\vtabel}{#1}}
+\edef\vbab{1,2,3,4,5,6,7,8,9}
+\newcommand{\bab}[1]{\IfStrEq{#1}{all}{}{\IfStrEq{\vmode}{bimbingan}{\edef\vbab{#1}}{}}}
+\edef\vlamp{A,B,C,D,E,F,G,H,I}
+\newcommand{\lampiran}[1]{\IfStrEq{\vmode}{bimbingan}{\IfStrEq{#1}{all}{}
+		{\IfStrEq{#1}{none}{\edef\vlamp{}}{\edef\vlamp{#1}}}}{}}
+	 
+%spacing, mode buku selalu didahulukan
+\newcommand{\appspacing}{
+	\IfStrEqCase{\vmode}{{sidang}{\onehalfspacing}{sidangakhir}{\onehalfspacing}{final}{\singlespacing}
+		{bimbingan}{\IfStrEqCase{\vspacing}{{single}{\singlespacing}{onehalf}{\onehalfspacing}{double}{\doublespacing}}}}}	
+
+%line number
+\newcommand{\vlineyes}{\linenumbers \def\linenumberfont{\normalfont\tiny\sffamily}}
+\newcommand{\appline}{\IfStrEqCase{\vmode}{{sidang}{\vlineyes}{sidangakhir}{\vlineyes}{bimbingan}{\IfStrEq{\vlinenum}{yes}{\vlineyes}{}}[]}}
+ 
+%header
+\renewcommand\headrule{\hrule width \hsize height 0.25 pt \kern 2 pt \hrule width \hsize height 1.25pt}
+\setlength{\headheight}{17.25pt}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\small{\textsc{\nouppercase{\leftmark}}}}
+\fancyhead[LO]{\small{\textsc{\nouppercase{\rightmark}}}}
+\fancyfoot{}
+
+%untuk url dan link
+\hypersetup{unicode=true,colorlinks=true,linkcolor=blue,citecolor=green,filecolor=magenta, urlcolor=cyan}
+%untuk penulisan judul bab
+\titleformat{\chapter}[display] {\Large\bfseries\centering}{\MakeUppercase{\chaptertitlename} \thechapter}{10pt}{\Large\MakeUppercase}
+
+%tulisan abstrak uppercase
+\renewcommand{\abstractnamefont}{\bf \MakeUppercase}
+
+%font
+\normalfont %aktivasi default font untuk latin modern
+\DeclareFontShape{T1}{lmr}{bx}{sc}{<->ssub*cmr/bx/sc}{} %scschape comp modern untuk latin modern
+
+%setting daftar isi dan daftar lainnya
+\cftsetpnumwidth{25pt}	% perbaikan untuk halaman daftar isi romawi yg overfull
+\renewcommand{\cftchapfont}{\scshape \bfseries} 
+\renewcommand{\cfttoctitlefont}{\vdierror\Large\bfseries\MakeUppercase} 
+\renewcommand{\cftaftertoctitle}{\hfill}
+\renewcommand{\cftloftitlefont}{\hfill\Large\bfseries\MakeUppercase} 
+\renewcommand{\cftafterloftitle}{\hfill}
+\renewcommand{\cftlottitlefont}{\hfill\Large\bfseries\MakeUppercase}
+\renewcommand{\cftafterlottitle}{\hfill}
+
+%apakah dalam develop mode ?
+\iftoggle{develop}{ 
+	\usepackage{booktabs,pgfplots}\usepackage[table]{xcolor}
+	\daftarIsiError{0} 
+	\mode{final} 
+	\linenumber{yes}\linespacing{double} 
+	\gambar{yes}\tabel{no} 
+	\bab{1,2}\lampiran{A} 
+	\namanpm{Lionov}{1997730020}\tanggal{1}{8}{2002}
+	\pembimbing{\BSB}{}\penguji{\TAB}{\LNV}
+	\judulINA{Judul Bahasa Indonesia}
+	\judulENG{Judul Bahasa Inggris}
+	\abstrakINA{Tuliskan abstrak anda di sini, dalam bahasa Indonesia }
+	\abstrakENG{Tuliskan abstrak anda di sini, dalam bahasa Inggris } 
+	\kunciINA{Tuliskan di sini kata-kata kunci yang anda gunakan, dalam bahasa Indonesia}
+	\kunciENG{Tuliskan di sini kata-kata kunci yang anda gunakan, dalam bahasa Inggris}
+	\untuk{kepada siapa anda mempersembahkan skripsi ini\ldots?}
+	\prakata{Tuliskan kata pengantar dari anda di sini \ldots}
+	\pgfplotsset{compat=newest}
+}{\include{data}} 
+
+%isi dokumen
+\begin{document}
+	
+\raggedbottom
+ 
+\pagestyle{empty}%tidak ada nomor halaman
+
+\nottoggle{vbimbingan}{
+
+	\pagenumbering{roman}
+ 
+	%cover INA 
+	\begin{center}
+		{\Large \textbf{%
+		\vstaINA\\\vspace{1.5cm}
+		\vjudulINA\\\vspace{2.5cm}
+		\includegraphics{Logo-UNPAR}\\\vspace{1cm}
+		\uppercase{\vnama}\\\vspace{0.5cm}
+		NPM: \vnpm\\
+		\vfill
+		PROGRAM STUDI \vprodiINA\\
+		FAKULTAS TEKNOLOGI INFORMASI DAN SAINS\\
+		UNIVERSITAS KATOLIK PARAHYANGAN\\
+		\vtahun 
+		}}
+	\end{center}
+	\cleardoublepage
+
+\nottoggle{vsidang}{
+	
+	%cover ENG
+	\begin{center}
+		{\Large \textbf{%
+		\vstaENG\\\vspace{1.5cm}
+		\vjudulENG\\\vspace{2.5cm}
+		\includegraphics{Logo-UNPAR}\\\vspace{1cm}
+		\uppercase{\vnama}\\\vspace{0.5cm}
+		NPM: \vnpm \\
+		\vfill
+		DEPARTMENT OF \vprodiENG \\
+		%mencegah overfull dan memaksa nama fakultas dalam satu baris
+		\newcommand{\oridim}{\fontdimen2\font}
+		\fontdimen2\font=3.28pt
+		FACULTY OF INFORMATION TECHNOLOGY AND SCIENCES\\
+		\fontdimen2\font=\oridim
+		PARAHYANGAN CATHOLIC UNIVERSITY\\
+		\vtahun 
+		}}
+	\end{center}
+	\cleardoublepage
+
+\nottoggle{vsidangakhir}{	
+
+	% Lembar pengesahan
+	\begin{center}
+		{\Large \textbf{
+		LEMBAR PENGESAHAN \\\vspace{1.5cm}
+		\vfill
+		\vjudulINA \\\vspace{1cm}
+		\vfill
+		\uppercase{\vnama} \\\vspace{0.5cm}
+		NPM: \vnpm \\\vspace{0.5cm}
+		}}	
+		{\large \textbf{
+		\begin{center} 
+			Bandung, \vtanggal\ \vbulan\ \vtahun \\ \vspace{0.5cm} 
+			Menyetujui,\\ \vspace{0.25cm}
+			\ifdefempty{\vpembs}
+			{\begin{center} Pembimbing\\ \vspace{2.25cm} \vpembu\end{center}}
+			{\begin{minipage}[b]{0.475\textwidth}
+				 \begin{center}Pembimbing Utama \\ \vspace{2.5cm} \vpembu\end{center}
+			 \end{minipage} \hspace{0.5cm}
+			 \begin{minipage}[b]{0.475\textwidth}
+				 \begin{center} Pembimbing Pendamping \\	\vspace{2.5cm} \vpembs\end{center}
+			 \end{minipage}	
+			}
+		\end{center}  
+		\vspace{0.75cm} 
+		\begin{center}	
+			\begin{minipage}[b]{0.475\textwidth}
+				\begin{center}Ketua Tim Penguji \\ \vspace{2.5cm} \vpengi\end{center}
+			\end{minipage} \hspace{0.5cm}
+			\begin{minipage}[b]{0.475\textwidth}
+				\begin{center}Anggota Tim Penguji \\ \vspace{2.5cm} \vpengii\end{center} 
+			\end{minipage} 
+		\end{center}
+		\vspace{0.75cm}
+		\begin{center} 
+		Mengetahui,\\ \vspace{0.5cm}	
+		Ketua Program Studi \\ \vspace{2.5cm} \vkaprodi
+		\end{center}
+		}}			 
+	\end{center}
+	\cleardoublepage 
+	
+	% Lembar Pernyataan
+	\vspace*{4cm}
+	\begin{center} 
+		{\Large \textbf{PERNYATAAN}\\} \vspace{1cm}
+	\end{center}
+	{\noindent Dengan ini saya yang bertandatangan di bawah ini menyatakan bahwa \MakeLowercase{\vstaINA} dengan judul:  \vspace{0.5cm}
+	\begin{center} {\large \textbf{\vjudulINA}}\end{center}
+	\vspace{0.5cm}
+	adalah benar-benar karya saya sendiri, dan saya tidak melakukan penjiplakan atau pengutipan dengan cara-cara yang tidak sesuai dengan etika keilmuan yang berlaku dalam masyarakat keilmuan.}
+	\vspace{0pt}\\
+	{\noindent			
+	Atas pernyataan ini, saya siap menanggung segala risiko dan sanksi yang dijatuhkan kepada saya, apabila di kemudian hari ditemukan adanya pelanggaran terhadap etika keilmuan dalam karya saya, atau jika ada tuntutan formal atau non-formal dari pihak lain berkaitan dengan keaslian karya saya ini.\\}
+	\vspace{0.25cm}
+	
+	\begin{flushright}	
+		Dinyatakan di Bandung,\\
+		Tanggal \vtanggal\ \vbulan\ \vtahun \\ \vspace{0.5cm}
+		\begin{tabular}{|p{1.75cm}|}
+			\hline\\ Meterai \\ Rp. 6000 \\  \hline
+		\end{tabular}\\
+		\vspace{0.5cm}   
+		\vnama \\
+		NPM: \vnpm
+	\end{flushright}
+	 \cleardoublepage 
+
+}{} %vsidangakhir	
+
+	% Abstrak & Abstract
+	\renewcommand{\abstractname}{Abstrak} 
+	\vspace*{4cm} 
+	\begin{abstract} 
+		{\noindent \vabstrakINA} \vskip 1cm
+		{\noindent \textbf{Kata-kata kunci:} \vkunciINA}
+	\end{abstract}
+	\cleardoublepage 
+	\renewcommand{\abstractname}{Abstract}
+	\vspace*{4cm}
+	\begin{abstract}
+		{\noindent \vabstrakENG} \vskip 1cm		
+		{\noindent \textbf{Keywords:} \vkunciENG} 
+	\end{abstract}			
+	\cleardoublepage
+
+\nottoggle{vsidangakhir}{	
+
+	% Lembar persembahan
+	\vspace*{5cm} \begin{quote} \raggedleft {\em \Large{\vuntuk}} \end{quote}
+	\cleardoublepage
+	
+	\pagestyle{plain} %nomor halaman (romawi) dan tidak ada header	  
+	% Kata pengantar
+	\chapter*{Kata Pengantar}
+	\label{ch:prakata}
+	\addcontentsline{toc}{chapter}{Kata Pengantar}
+	\vprakata \vspace{0.25cm}
+	\begin{flushright} Bandung,\ \vbulan\ \vtahun \\ \vspace{1cm} Penulis \end{flushright}
+	\cleardoublepage		
+}{}%vsidangakhir
+
+}{} %vsidang 
+
+\tableofcontents \cleardoublepage 							% Daftar isi
+\IfStrEq{\vgambar}{yes}{\listoffigures \cleardoublepage}{} 	% Daftar gambar
+\IfStrEq{\vtabel}{yes}{\listoftables \cleardoublepage}{} 	% Daftar tabel  
+}{} %vbimbingan
+
+\pagenumbering{arabic} %nomor halaman 
+
+\appspacing%apply spacing
+\appline%apply line number
+
+\setpagewiselinenumbers  %supaya reset ke 1 di setiap halaman
+ 
+\pagestyle{fancy}%header 
+
+%include bab 
+\foreach \i in \vbab { \edef\vfile{Bab/bab\i} \IfFileExists{\vfile}{\include{\vfile}}} 
+
+%update nama daftar referensi
+\renewcommand{\bibname}{Daftar Referensi}
+
+\singlespacing%selalu single spacing untuk lampiran dan daftar referensi
+
+\nolinenumbers%tidak ada line number untuk lampiran dan daftar referensi
+
+\bibliographystyle{compj} %gunakan compj 
+\bibliography{referensi}
+
+%listing khusus untuk penulisan kode program, menggunakan font Bera Mono
+\lstset{numbers=left,stepnumber=1, numbersep=5pt, frame=leftline,
+	tabsize=4, breaklines=true, basicstyle=\fontfamily{fvm}\selectfont\tiny, 
+	commentstyle=\itshape\color{gray}, keywordstyle=\bfseries\color{blue}, 
+	identifierstyle=\color{black}, stringstyle=\color{orange},
+	literate={-}{-}1{-\,-}{--}1
+} 
+
+\appendix%Penomoran lampiran dengan huruf  
+
+%include lampiran
+\foreach \i in \vlamp { \edef\vfile{Lampiran/lamp\i} \IfFileExists{\vfile}{\include{\vfile}}} 
+
+\end{document}

@@ -1,0 +1,288 @@
+%_____________________________________________________________________________
+%=============================================================================
+% data.tex v10 (22-01-2017) dibuat oleh Lionov - Informatika FTIS UNPAR
+%
+% Perubahan pada versi 10 (22-01-2017)
+%	- Penambahan overfullrule untuk memeriksa warning
+%  	- perubahan mode buku menjadi 4: bimbingan, sidang(1), sidang akhir dan 
+%     buku final
+%	- perbaikan perintah pada beberapa bagian
+%  	- perubahan pengisian tulisan "daftar isi" yang error
+%  	- penghilangan lipsum dari file ini
+%_____________________________________________________________________________
+%=============================================================================
+
+%=============================================================================
+% 								PETUNJUK
+%=============================================================================
+% Ini adalah file data (data.tex)
+% Masukkan ke dalam file ini, data-data yang diperlukan oleh template ini
+% Cara memasukkan data dijelaskan di setiap bagian
+% Data yang WAJIB dan HARUS diisi dengan baik dan benar adalah SELURUHNYA !!
+% Hilangkan tanda << dan >> jika anda menemukannya
+%=============================================================================
+
+%_____________________________________________________________________________
+%=============================================================================
+% 								BAGIAN 0
+%=============================================================================
+% Entri untuk memperbaiki posisi "DAFTAR ISI" jika tidak berada di bagian 
+% tengah halaman. Sayangnya setiap sistem menghasilkan posisi yang berbeda.
+% Isilah dengan 0 atau 1 (e.g. \daftarIsiError{1}). 
+% Pemilihan 0 atau 1 silahkan disesuaikan dengan hasil PDF yang dihasilkan.
+%=============================================================================
+\daftarIsiError{0}   
+%\daftarIsiError{1}   
+%=============================================================================
+
+%_____________________________________________________________________________
+%=============================================================================
+% 								BAGIAN I
+%=============================================================================
+% Tambahkan package2 lain yang anda butuhkan di sini
+%=============================================================================
+\usepackage{booktabs} 
+\usepackage{longtable}
+\usepackage{amssymb}
+\usepackage{todo}
+\usepackage{verbatim} 		%multiline comment
+\usepackage{pgfplots}
+%\overfullrule=3mm % memperlihatkan overfull 
+%=============================================================================
+
+%_____________________________________________________________________________
+%=============================================================================
+% 								BAGIAN II
+%=============================================================================
+% Mode dokumen: menetukan halaman depan dari dokumen, apakah harus mengandung 
+% prakata/pernyataan/abstrak dll (termasuk daftar gambar/tabel/isi) ?
+% - final 		: hanya untuk buku skripsi, dicetak lengkap: judul ina/eng, 
+%   			  pengesahan, pernyataan, abstrak ina/eng, untuk, kata 
+%				  pengantar, daftar isi (daftar tabel dan gambar tetap 
+%				  opsional dan dapat diatur), seluruh bab dan lampiran.
+%				  Otomatis tidak ada nomor baris dan singlespacing
+% - sidangakhir	: buku sidang akhir = buku final - (pengesahan + pernyataan +
+%   			  untuk + kata pengantar)
+%				  Otomatis ada nomor baris dan onehalfspacing 
+% - sidang 		: untuk sidang 1, buku sidang = buku sidang akhir - (judul 
+%				  eng + abstrak ina/eng)
+%				  Otomatis ada nomor baris dan onehalfspacing
+% - bimbingan	: untuk keperluan bimbingan, hanya terdapat bab dan lampiran
+%   			  saja, bab dan lampiran yang hendak dicetak dapat ditentukan 
+%				  sendiri (nomor baris dan spacing dapat diatur sendiri)
+% Mode default adalah 'template' yang menghasilkan isian berwarna merah, 
+% aktifkan salah satu mode di bawah ini :
+%=============================================================================
+%\mode{bimbingan} 		% untuk keperluan bimbingan
+%\mode{sidang} 			% untuk sidang 1
+\mode{sidangakhir} 	% untuk sidang 2 / sidang pada Skripsi 2(IF)
+%\mode{final} 			% untuk mencetak buku skripsi 
+%=============================================================================
+
+%_____________________________________________________________________________
+%=============================================================================
+% 								BAGIAN III
+%=============================================================================
+% Line numbering: penomoran setiap baris, nomor baris otomatis di-reset ke 1
+% setiap berganti halaman.
+% Sudah dikonfigurasi otomatis untuk mode final (tidak ada), mode sidang (ada)
+% dan mode SIDANGAKHIR (ada).
+% Untuk mode bimbingan, defaultnya ada (\linenumber{yes}), jika ingin 
+% dihilangkan, isi dengan "no" (i.e.: \linenumber{no})
+% Catatan:
+% - jika nomor baris tidak kembali ke 1 di halaman berikutnya, compile kembali
+%   dokumen latex anda
+% - bagian ini hanya bisa diatur di mode bimbingan
+%=============================================================================
+%\linenumber{no} 
+\linenumber{yes}
+%=============================================================================
+
+%_____________________________________________________________________________
+%=============================================================================
+% 								BAGIAN IV
+%=============================================================================
+% Linespacing: jarak antara baris 
+% - single	: otomatis jika ingin mencetak buku skripsi, opsi yang 
+%			     disediakan untuk bimbingan, jika pembimbing tidak keberatan 
+%			     (untuk menghemat kertas)
+% - onehalf	: otomatis jika ingin mencetak dokumen untuk sidang
+% - double 	: jarak yang lebih lebar lagi, jika pembimbing berniat memberi 
+%             catatan yg banyak di antara baris (dianjurkan untuk bimbingan)
+% Catatan: bagian ini hanya bisa diatur di mode bimbingan
+%=============================================================================
+\linespacing{single}
+%\linespacing{onehalf}
+%\linespacing{double}
+%=============================================================================
+
+%_____________________________________________________________________________
+%=============================================================================
+% 								BAGIAN V
+%=============================================================================
+% Tidak semua skripsi memuat gambar dan/atau tabel. Untuk skripsi yang tidak 
+% memiliki gambar dan/atau tabel, maka tidak diperlukan Daftar Gambar dan/atau 
+% Daftar Tabel. Sayangnya hal tsb sulit dilakukan secara manual karena 
+% membutuhkan kedisiplinan pengguna template.  
+% Jika tidak ingin menampilkan Daftar Gambar dan/atau Daftar Tabel, karena 
+% tidak ada gambar atau tabel atau karena dokumen dicetak hanya untuk 
+% bimbingan, isi dengan "no" (e.g. \gambar{no})
+%=============================================================================
+\gambar{yes}
+%\gambar{no}
+\tabel{yes}
+%\tabel{no}  
+%=============================================================================
+
+%_____________________________________________________________________________
+%=============================================================================
+% 								BAGIAN VI
+%=============================================================================
+% Pada mode final, sidang da sidangkahir, seluruh bab yang ada di folder "Bab"
+% dengan nama file bab1.tex, bab2.tex s.d. bab9.tex akan dicetak terurut, 
+% apapun isi dari perintah \bab.
+% Pada mode bimbingan, jika ingin:
+% - mencetak seluruh bab, isi dengan 'all' (i.e. \bab{all})
+% - mencetak beberapa bab saja, isi dengan angka, pisahkan dengan ',' 
+%   dan bab akan dicetak terurut sesuai urutan penulisan (e.g. \bab{1,3,2}). 
+% Catatan: Jika ingin menambahkan bab ke-3 s.d. ke-9, tambahkan file 
+% bab3.tex, bab4.tex, dst di folder "Bab". Untuk bab ke-10 dan 
+% seterusnya, harus dilakukan secara manual dengan mengubah file skripsi.tex
+% Catatan: bagian ini hanya bisa diatur di mode bimbingan
+%=============================================================================
+\bab{all}
+%=============================================================================
+
+%_____________________________________________________________________________
+%=============================================================================
+% 								BAGIAN VII
+%=============================================================================
+% Pada mode final, sidang dan sidangkhir, seluruh lampiran yang ada di folder 
+% "Lampiran" dengan nama file lampA.tex, lampB.tex s.d. lampJ.tex akan dicetak 
+% terurut, apapun isi dari perintah \lampiran.
+% Pada mode bimbingan, jika ingin:
+% - mencetak seluruh lampiran, isi dengan 'all' (i.e. \lampiran{all})
+% - mencetak beberapa lampiran saja, isi dengan huruf, pisahkan dengan ',' 
+%   dan lampiran akan dicetak terurut sesuai urutan (e.g. \lampiran{A,E,C}). 
+% - tidak mencetak lampiran apapun, isi dengan "none" (i.e. \lampiran{none})
+% Catatan: Jika ingin menambahkan lampiran ke-C s.d. ke-I, tambahkan file 
+% lampC.tex, lampD.tex, dst di folder Lampiran. Untuk lampiran ke-J dan 
+% seterusnya, harus dilakukan secara manual dengan mengubah file skripsi.tex
+% Catatan: bagian ini hanya bisa diatur di mode bimbingan
+%=============================================================================
+\lampiran{all}
+%=============================================================================
+
+%_____________________________________________________________________________
+%=============================================================================
+% 								BAGIAN VIII
+%=============================================================================
+% Data diri dan skripsi/tugas akhir
+% - namanpm		: Nama dan NPM anda, penggunaan huruf besar untuk nama harus 
+%				  benar dan gunakan 10 digit npm UNPAR, PASTIKAN BAHWA 
+%				  BENAR !!! (e.g. \namanpm{Jane Doe}{1992710001}
+% - judul 		: Dalam bahasa Indonesia, perhatikan penggunaan huruf besar, 
+%				  judul tidak menggunakan huruf besar seluruhnya !!! 
+% - tanggal 	: isi dengan {tangga}{bulan}{tahun} dalam angka numerik, 
+%				  jangan menuliskan kata (e.g. AGUSTUS) dalam isian bulan.
+%			  	  Tanggal ini adalah tanggal dimana anda akan melaksanakan 
+%				  sidang ujian akhir skripsi/tugas akhir
+% - pembimbing	: pembimbing anda, lihat daftar dosen di file dosen.tex
+%				  jika pembimbing hanya 1, kosongkan parameter kedua 
+%				  (e.g. \pembimbing{\JND}{} ), \JND adalah kode dosen
+% - penguji 	: para penguji anda, lihat daftar dosen di file dosen.tex
+%				  (e.g. \penguji{\JHD}{\JCD} )
+% !!Lihat singkatan pembimbing dan penguji anda di file dosen.tex!!
+% Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda
+%=============================================================================
+\namanpm{Gunawan Christianto}{2016730011}
+\tanggal{<<tanggal>>}{<<bulan>>}{<<tahun>>}         %isi bulan dengan angka
+\pembimbing{\RCP}{<<pembimbing pendamping/2>>}    
+\penguji{<<penguji 1>>}{<<penguji 2>>} 
+%=============================================================================
+
+%_____________________________________________________________________________
+%=============================================================================
+% 								BAGIAN IX
+%=============================================================================
+% Judul dan title : judul bhs indonesia dan inggris
+% - judulINA: judul dalam bahasa indonesia
+% - judulENG: title in english
+% Petunjuk: 
+% - hilangkan tanda << & >>, dan isi sesuai dengan data anda
+% - langsung mulai setelah '{' awal, jangan mulai menulis di baris bawahnya
+% - gunakan \texorpdfstring{\\}{} untuk pindah ke baris baru
+% - judul TIDAK ditulis dengan menggunakan huruf besar seluruhnya !!
+%=============================================================================
+\judulINA{Aplikasi Manajemen Ujian di Lab Komputasi}
+\judulENG{Examination Management Application in Computational Lab}
+%_____________________________________________________________________________
+%=============================================================================
+% 								BAGIAN X
+%=============================================================================
+% Abstrak dan abstract : abstrak bhs indonesia dan inggris
+% - abstrakINA: abstrak bahasa indonesia
+% - abstrakENG: abstract in english 
+% Petunjuk: 
+% - hilangkan tanda << & >>, dan isi sesuai dengan data anda
+% - langsung mulai setelah '{' awal, jangan mulai menulis di baris bawahnya
+%=============================================================================
+\abstrakINA{<<Tuliskan abstrak anda di sini, dalam bahasa Indonesia>>}
+\abstrakENG{<<Tuliskan abstrak anda di sini, dalam bahasa Inggris>>} 
+%=============================================================================
+
+%_____________________________________________________________________________
+%=============================================================================
+% 								BAGIAN XI
+%=============================================================================
+% Kata-kata kunci dan keywords : diletakkan di bawah abstrak (ina dan eng)
+% - kunciINA: kata-kata kunci dalam bahasa indonesia
+% - kunciENG: keywords in english
+% Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda.
+%=============================================================================
+\kunciINA{<<Tuliskan di sini kata-kata kunci yang anda gunakan, dalam bahasa Indonesia>>}
+\kunciENG{<<Tuliskan di sini kata-kata kunci yang anda gunakan, dalam bahasa Inggris>>}
+%=============================================================================
+
+%_____________________________________________________________________________
+%=============================================================================
+% 								BAGIAN XII
+%=============================================================================
+% Persembahan : kepada siapa anda mempersembahkan skripsi ini ...
+% Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda.
+%=============================================================================
+\untuk{<<kepada siapa anda mempersembahkan skripsi ini\ldots?>>}
+%=============================================================================
+
+%_____________________________________________________________________________
+%=============================================================================
+% 								BAGIAN XIII
+%=============================================================================
+% Kata Pengantar: tempat anda menuliskan kata pengantar dan ucapan terima 
+% kasih kepada yang telah membantu anda bla bla bla ....  
+% Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda.
+%=============================================================================
+\prakata{<<Tuliskan kata pengantar dari anda di sini \ldots>>} 
+%=============================================================================
+
+%_____________________________________________________________________________
+%=============================================================================
+% 								BAGIAN XIV
+%=============================================================================
+% Tambahkan hyphen (pemenggalan kata) yang anda butuhkan di sini 
+%=============================================================================
+\hyphenation{ma-te-ma-ti-ka}
+\hyphenation{fi-si-ka}
+\hyphenation{tek-nik}
+\hyphenation{in-for-ma-ti-ka}
+%=============================================================================
+
+%_____________________________________________________________________________
+%=============================================================================
+% 								BAGIAN XV
+%=============================================================================
+% Tambahkan perintah yang anda buat sendiri di sini 
+%=============================================================================
+\renewcommand{\vtemplateauthor}{lionov}
+\pgfplotsset{compat=newest}
+%=============================================================================
