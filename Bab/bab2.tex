@@ -3,29 +3,48 @@
 \label{chap:teori}
 
 \section{Back-end dan Front-end}
-    Pada dasarnya, pengembangan aplikasi web saat ini dilakukan dengan
-    berbagai macam cara, salah satunya dengan memecah peran pada sisi klien
-    dan sisi server. Pembagian ini mempengaruhi cara bagaimana sisi klien
-    dan sisi server berkomunikasi, memproses data dan (satu lagi peran
-    mereka).
+    Seperti pengembangan aplikasi pada \textit{platform} lainnya, terdapat
+    banyak cara untuk mengaplikasikan solusi yang dirancang berdasarkan
+    kebutuhan dan batasan yang ada. Pada pengembanagan aplikasi web, karena 
+    aplikasi tidak hanya berjalan pada \textit{server} atau peladen saja, 
+    maka secara umum pengembang memecah sistem menjadi dua subsistem besar.
+    
+    Dua subsistem ini mengikuti pola pemrograman \textit{Server-client},
+    dengan aplikasi klien biasanya ditangani oleh \textit{browser} atau peramban. 
+    Namun dengan berkembangnya teknologi, sistem pada peramban juga mulai berevolusi.
+    Oleh karena itu sistem-sistem yang ada harus dirancang dengan baik
+    sesuai dengan disiplin sistemnya sendiri.
+    
+    Secara umum, front-end akan membantu sistem menampilkan data dengan baik 
+    dengan memanipulasi peramban pengguna. Sedangkan back-end akan membantu mengolah
+    data yang sistem front-end berikan.
 
 \subsection{Back-end}
     Back-end atau Backend adalah sebuah subsistem yang melayani program
     namun tidak diakses secara langsung oleh penggunanya, melainkan dengan
-    melalui Front-end\cite{oxford:definition-backend}. Biasanya Back-end
+    melalui Front-end\cite{oxford:definition-backend}. Pada umumnya Back-end
     memiliki tugas untuk menyimpan data, memproses data, dan memvalidasi
     data.
+    
+    Sesuai dengan namanya, sistem back-end hanya akan berjalan pada server dan sumber
+    kode yang terdapat pada sistem ini tidak akan ditampilkan pada pengguna.
 
 \subsection{Front-end}
     \textit{Front-end} atau \textit{Frontend} adalah sebuah subsistem yang
     melayani pengguna secara langsung\cite{oxford:definition-frontend}.Front-end
     ini memiliki tugas untuk menyajikan data pada pengguna, serta melakukan
     pemanggilan perintah ke \textit{back-end}.
-
+    
+    Sesuai dengan namanya, subsistem front-end akan berjalan pada sisi klien dari
+    sistem, oleh karena itu kode subsistem ini harus dapat ditransmisikan 
+    ke peramban pengguna agar sistem dapat berjalan sesuai ekspektasi. Karena kode
+    pada subsistem ini dapat dilihat oleh pengguna, maka sistem back-end penting untuk
+    melakukan sanitasi data untuk memastikan data yang diberikan tidak mengancam
+    kestabilan siklus hidup sistem keseluruhan.
 
 \section{Library dan Framework}
     \textit{Library} adalah kumpulan fungsi yang dikompilasi bersama dan
-    biasanya dibagikan untuk aplikasi gunakan dengan pemanggilan tertentu.
+    biasanya dibagikan untuk aplikasi gunakan dengan cara pemanggilan tertentu.
     \textit{Library} biasanya digunakan oleh pengembang atau \emph{developer}
     untuk mempermudah manajemen dan melakukan pemanggilan fungsi tertentu pada
     sistem. Pada pengembangan sistem web, \textit{Library} biasanya mengacu pada
@@ -50,8 +69,8 @@
     \textit{package-package} dibuat terhubung sedemikian rupa sehingga
     \textit{framework} terbentuk dan dapat digunakan oleh para-pengembang.
     
-    Kode yang di-\textit{extend} dari \textit{framework} atau lib memiliki sifat
-    yang universal, dapat digunakan-ulang, yang menyediakan
+    Kode yang di-\textit{extend} dari \textit{framework} atau \textit{library} 
+    memiliki sifat yang universal, dapat digunakan-ulang, yang menyediakan
     fungsionalitas-fungsionalitas kecil yang dapat digunakan untuk membuat
     \textit{platform} aplikasi yang lebih besar. Penggunaan-ulang ini membuat
     pengembangan program menjadi lebih terstruktur dan konsisten. Perubahan
@@ -65,12 +84,13 @@
     \textit{bug} yang lebih sedikit.
     
     \textit{Delivery} adalah penerbitan fitur/fungsi ke kode program di wilayah
-    server yang digunakan oleh pengguna asli (\textit{production server}). Untuk
-    mencapai \textit{delivery} yang cepat, pengembang aplikasi normalnya akan
-    menggunakan kode yang sudah terbukti di dunia nyata sehingga pada saat
-    pengembangan nanti para pengembang dapat lebih fokus untuk mengimplementasi
+    peladen yang digunakan oleh pengguna asli (\textit{production server} / 
+    peladen produksi). Untuk mencapai \textit{delivery} yang cepat, 
+    pengembang aplikasi normalnya akan
+    menggunakan kode yang sudah terbukti di \textit{medan perang} sehingga pada 
+    saat tahap pengembangan para pengembang dapat lebih fokus untuk mengimplementasi
     fitur program, dibandingkan dengan pengembang harus menyelesaikan
-    \textit{bug-bug} yang seharusnya tidak perlu diatasi.
+    \textit{bug-bug} yang seharusnya tidak perlu ada.
     
     \textit{Behaviour} adalah sifat yang fitur/fungsi miliki pada saat melakukan
     algoritma tertentu. Secara kontras, pengembang yang tidak menggunakan
@@ -107,7 +127,7 @@
     untuk mempelajari dokumentasi dari \textit{framework} ini relatif lebih cepat.
     
     Composer\footnote{Lihat https://getcomposer.org/.} adalah salah satu
-    aplikasi untuk mengelola \textit{package} untuk aplikasi pada pemrograman
+    peralatan untuk mengelola \textit{package} untuk aplikasi pada pemrograman
     bahasa PHP. Dengan Composer yang terintegrasi dengan F3, \textit{framework}
     ini dapat dengan mudah diintegrasikan dan di perbaharui di berbagai macam
     proyek PHP. Composer ini nantinya akan secara otomatis me-\textit{resolve}
@@ -221,7 +241,7 @@
     Pengembang dapat menggunakan React, bahkan pada bahasa berbasis Js apapun.
     Normalnya pengembang menggunakan ES6, atau Ecmascript 6 untuk
     \textit{library} ini namun mereka dapat menggunakan bahasa lain seperti
-    Typescript.
+    Typescript\cite{typescript:react-ts}.
         
     Kode pada Reactjs ini bersifat \textit{open-source} atau sumber-terbuka,
     sehingga banyak kontributor yang ikut membantu pengembangan
@@ -258,7 +278,7 @@
     \end{lstlisting}
     
     Contoh potongan kode pada listing \ref{lst:jsx-0} menampilkan sebuah elemen
-    \textit{Heading 1} dengan kalimat \texttt{Hello, Shinji}. Element tersebut
+    \textit{Heading 1} dengan kalimat \texttt{Hello, Shinji}. \textit{Element} tersebut
     akan di\textit{render} pada elemen HTML dengan id elemen \texttt{root}.
     
     Penambahan atribut untuk memberikan konteks data lebih lanjut juga dapat
@@ -442,12 +462,13 @@
     \end{lstlisting}
     
     Penanganan \textit{event} dari HTML pada React tidak jauh berbeda dengan
-    javascript. Pada potongan kode listing \ref{lst:react-event-1}, terlihat
+    JavaScript. Pada potongan kode listing \ref{lst:react-event-1}, terlihat
     implementasi penanganan \textit{event} dilakukan dengan memasukkan nama
     fungsi pada atribut \texttt{onclick}. Pada potongan kode listing
-    \ref{lst:react-event-2} terlihat hal yang mirip, dengan \texttt{c} pada
-    \texttt{onClick} menjadi huruf kapital, dan dibanding menggunakan kutip dua,
-    komponen react tersebut menggunakan kurung kurawal untuk memberikan fungsi.
+    \ref{lst:react-event-2} terlihat hal yang mirip, dengan huruf \texttt{c} pada
+    penulisan \textit{event} \texttt{onClick} menjadi huruf kapital dan dibanding menggunakan
+    kutip dua, komponen React tersebut menggunakan kurung kurawal untuk memberikan
+    fungsi.
     
     Dengan implementasi seperti itu, secara tidak langsung tiap komponen dapat
     bertanggung jawab untuk dirinya sendiri. Maka dari itu komponen yang dibuat
@@ -613,10 +634,12 @@
     mendeteksi berkas tersebut dan melakukan eksekusi.
     
     \begin{figure}
-        \centering
-        \includegraphics[width=0.7\paperwidth]{Gambar/gitlab-ci-job-view.png}
-        \caption{Eksekusi \textit{job} pada GitLab CI/CD}
-        \label{fig:gitlab-ci:jobrun}
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[width=0.7\paperwidth]{Gambar/gitlab-ci-job-view.png}
+            \caption{Eksekusi \textit{job} yang gagal pada GitLab CI/CD. Repositori dari Pho - FTIS OpenData App\footnote{Lihat https://gitlab.com/chez14/ftis-opendata-app}}
+            \label{fig:gitlab-ci:jobrun}
+        \end{minipage}
     \end{figure}
     
     
@@ -651,10 +674,12 @@
     
     
     \begin{figure}
-        \centering
-        \includegraphics[width=0.7\paperwidth]{Gambar/gitlab-ci-pipeline.png}
-        \caption{Contoh \textit{Pipeline} pada GitLab CI/CD}
-        \label{fig:gitlab-ci:pipeline}
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[width=0.7\paperwidth]{Gambar/gitlab-ci-pipeline.png}
+            \caption{Contoh \textit{Pipeline} pada GitLab CI/CD. Repositori dari GitLab\footnote{Lihat https://gitlab.com/gitlab-org/gitlab}.}
+            \label{fig:gitlab-ci:pipeline}
+        \end{minipage}
     \end{figure}
     
     Dengan melakukan konfigurasi tertentu, pemilik proyek dapat membuat rencana
