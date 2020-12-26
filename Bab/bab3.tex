@@ -582,7 +582,7 @@
         dijalankan dari klien ke \textit{server}, server akan langsung mengecek
         IP tersebut dengan yang ada di database melakukan apapun.
 
-\section{Analisis Pemilihan Framework}
+\section{Analisis Pemilihan Framework & Library}
 %- Pake framework biar daapt di extend oleh penerus
 Penggunaan \textit{framework} diharapkan dapat membuat aplikasi dikembangkan
 lebih lanjut oleh penerus Tim Admin berikutnya. Sifat \textit{framework} yang
@@ -633,6 +633,26 @@ FatFree Framework atau F3 akan digunakan untuk penelitan ini.
     Selain itu menurut survey tersebut, Reactjs adalah salah satu framework yang
     paling disukai oleh pengembang. Dengan dua alasan tersebut penelitian ini
     menggunakan Reactjs sebagai \textit{framework} Frontend.
+
+\section{Kebutuhan Tambahan}
+    Kebutuhan tambahan datang dari lingkungan pengembangan yang nantinya akan
+    dibuat untuk mengimplementasi solusi.
+    
+    Kebutuhan tambahan yang pertama datang dari penggunaan subsistem front-end
+    yang harus di-\textit{build} terlebih dahulu sebelum peramban dapat menjalankan
+    kode pada subsistem tersebut. Dengan begitu, perlu diadakannya sebuah sistem
+    \textit{delivery} yang otomatis dan terkontrol untuk melakukan proses \textit{build}
+    tersebut.
+    
+    Proses tersebut akan ditangani oleh sistem CI/CD dari repositori tempat aplikasi
+    disimpan: GitLab. Karena repositori aplikasi disimpan pada GitLab, maka fitur
+    CI/CD dapat digunakan. Sistem ini nantinya akan dirancang untuk melakukan
+    \textit{build} untuk sistem front-end.
+    
+    Kebutuhan tambahan kedua adalah dengan otomasi test. Karena konsekuensi aplikasi
+    yang dibuat cukup besar, oleh karena itu test yang otomatis harus ditambahkan untuk
+    mencegah kesalahan yang cukup fatal sebelum aplikasi dapat dikirimkan ke wilayah
+    produksi.
 
 \section{Analisis Pengguna}
 
