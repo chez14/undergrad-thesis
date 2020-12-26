@@ -89,32 +89,31 @@
     kesuksesan aplikasi.
 
 \subsection{Fat-free Framework}
-    Fat-free Framework\footnote{\texttt{bcosca}. (2019)
-    https://github.com/bcosca/fatfree. 20 November 2019} (translasi literal:
-    Framework bebas lemak) atau yang sering disebut juga F3 adalah
-    \textit{Framework} PHP yang dikembangkan oleh \texttt{bcosca}. Kode dasar
-    \textit{framework} ini memiliki ukuran yang relatif kecil dan memiliki
-    performa yang cukup baik berdasarkan \textit{benchmark} yang dilakukan oleh
-    \texttt{kenjis} pada tahun 2017\cite{kenjis:framework-benchmark}. Dengan
-    kecilnya kode dasar tersebut, maka F3 ini memungkinkan penggunanya untuk
-    mengeksekusi aplikasi dengan lebih efisien dan lebih cepat.
+    Fat-free Framework\footnote{Lihat
+    https://github.com/bcosca/fatfree.} (translasi literal:
+    Framework bebas lemak) atau F3 adalah \textit{Framework} PHP yang
+    dikembangkan oleh \texttt{bcosca}. Kode dasar \textit{framework} ini
+    memiliki ukuran yang relatif kecil dan memiliki performa yang cukup baik
+    berdasarkan \textit{benchmark} yang dilakukan oleh \texttt{kenjis} pada
+    tahun 2017\cite{kenjis:framework-benchmark}. Dengan kecilnya kode dasar
+    tersebut, maka F3 ini memungkinkan penggunanya untuk mengeksekusi aplikasi
+    dengan lebih efisien dan lebih cepat.
     
-    F3 memiliki struktur framework yang relatif fleksibel sehingga dapat
+    F3 memiliki struktur \textit{framework} yang relatif fleksibel sehingga dapat
     ubah-sesuaikan menurut kebutuhan pengembang dan bisnis. Salah satu masalah
     yang biasanya terdapat pada \textit{framework} adalah bentuk kelas dan objek
     yang kompleks. Namun F3 memiliki kelas yang relatif
-    simpel\footnote{\texttt{sn0opy}, \texttt{ikkez}. (2017)
-    https://fatfreeframework.com/3.6/api-reference. 20 November 2019}. Dengan
-    begitu, dokumentasi yang harus dibaca juga lebih sedikit dan tepat.
+    sederhana\cite{fatfree:docs-api}. Oleh karena itu waktu yang dibutuhkan
+    untuk mempelajari dokumentasi dari \textit{framework} ini relatif lebih cepat.
     
     Composer\footnote{Lihat https://getcomposer.org/.} adalah salah satu
-    aplikasi untuk mengatur \textit{package} untuk aplikasi dengan bahasa PHP.
-    Dengan Composer yang terintegrasi dengan F3, \textit{framework} ini dapat
-    dengan mudah diintegrasikan dan di perbaharui di berbagai macam proyek PHP.
-    Composer ini nantinya akan secara otomatis me-\textit{resolve}
+    aplikasi untuk mengelola \textit{package} untuk aplikasi pada pemrograman
+    bahasa PHP. Dengan Composer yang terintegrasi dengan F3, \textit{framework}
+    ini dapat dengan mudah diintegrasikan dan di perbaharui di berbagai macam
+    proyek PHP. Composer ini nantinya akan secara otomatis me-\textit{resolve}
     \textit{package} yang akan diperlukan oleh sebuah proyek, mengunduh paket
     tersebut lalu melakukan generasi \textit{autoloader} untuk \textit{package}
-    tersebut agar dapat digunakan pada lingkungan proyek tersebut.
+    tersebut agar dapat digunakan pada lingkungan pengembangan aplikasi tersebut.
 
     % TODO: Struktur F3?
     \subsubsection{Memulai dengan FatFree}
@@ -153,7 +152,7 @@
     ]
     class ReplicaBot {
         function greetings() {
-            echo "Nice to meet you. My name is Replica, I am Yuuma's guardian.";
+            echo "Nice to meet you. My name is Replica, I am Yuma's guardian.";
         }
     }
     
@@ -203,17 +202,17 @@
     GET /contact=App->contact, 600
     ; named route
     GET @about: /about=Page->about
-     \end{lstlisting}
-     Konfigurasi \textit{routing} pada F3 dapat dilakukan dengan membuat berkas
-     \texttt{ini} dengan format yang telah didokumentasikan pada web F3 itu
-     sendiri. Sebagai contoh pada potongan kode listing \ref{lst:f3-start-04},
-     routing didefinisikan dengan format \textit{HTTP Method}, \textit{path}
-     URL, dan \textit{handler}nya. Berkas konfigurasi tersebut dapat
-     di\textit{load} dengan memanggil \texttt{\$f3->config('routing.ini');}.
+    \end{lstlisting}
+    Konfigurasi \textit{routing} pada F3 dapat dilakukan dengan membuat berkas
+    \texttt{ini} dengan format yang telah didokumentasikan pada web F3 itu
+    sendiri. Sebagai contoh pada potongan kode listing \ref{lst:f3-start-04},
+    routing didefinisikan dengan format \textit{HTTP Method}, \textit{path}
+    URL, dan \textit{handler}nya. Berkas konfigurasi tersebut dapat
+    di\textit{load} dengan memanggil \texttt{\$f3->config('routing.ini');}.
      
 \subsection{React.js}
-    React.js atau Reactjs adalah salah satu \textit{library} front-end yang
-    digunakan untuk membuat \textit{user
+    React.js\footnote{Lihat https://reactjs.org/} atau Reactjs adalah salah satu
+    \textit{library} front-end yang digunakan untuk membuat \textit{user
     interfaces}\cite{facebook:react-homepage}. Reactjs memiliki keunggulan
     seperti bahasa yang deklaratif, berbasis komponen, dan "Pelajari sekali,
     tulis dimanapun" (\textit{Learn Once, Write Anywhere},
@@ -221,12 +220,12 @@
     pengembang aplikasi web karena keunggulannya, tertutama dengan alasan LOWA.
     Pengembang dapat menggunakan React, bahkan pada bahasa berbasis Js apapun.
     Normalnya pengembang menggunakan ES6, atau Ecmascript 6 untuk
-    \textit{framework} ini namun mereka dapat menggunakan bahasa lain seperti
+    \textit{library} ini namun mereka dapat menggunakan bahasa lain seperti
     Typescript.
         
     Kode pada Reactjs ini bersifat \textit{open-source} atau sumber-terbuka,
-    sehingga banyak sekali kontributor yang ikut membantu pengembangan
-    \textit{framework} ini. Dengan banyaknya kontribusi yang diberikan maka
+    sehingga banyak kontributor yang ikut membantu pengembangan
+    \textit{library} ini. Dengan banyaknya kontribusi yang diberikan maka
     hasil kode yang diberikan akan lebih cepat \textit{mature} dan memiliki
     \textit{bug} yang lebih sedikit.
 
@@ -345,10 +344,12 @@
         function App() {
           return (
             <div>
-              <Welcome name="Yuuma" />
-              <Welcome name="Osamu" />
-              <Welcome name="Chika" />
-              <Welcome name="Hyuse" />
+              <Welcome name="Raymond" />
+              <Welcome name="Chris" />
+              <Welcome name="Yehezkiel" />
+              <Welcome name="Cahyadi" />
+              <Welcome name="Patrick" />
+              <Welcome name="Michael" />
             </div>
           );
         }
@@ -408,7 +409,7 @@
     dengan nama \texttt{date} (baris 4). \textit{State} tersebut akan
     diperbaharui oleh fungsi \texttt{tick} (baris 18-22). Fungsi \texttt{tick}
     itu sendiri akan dipanggil oleh \textit{routine interval} dari baris 8.
-    Siklus hidup pada komponen react, \texttt{componentDidMount} dieksekusi
+    Siklus hidup pada komponen React, \texttt{componentDidMount} dieksekusi
     setelah komponen berhasil dimasukkan pada elemen dokumen. Sedangkan fungsi
     \texttt{componenWillUnmount} akan dieksekusi sesaat sebelum komponen dihapus
     dari element dokumen.
@@ -425,8 +426,8 @@
         label={lst:react-event-1}, 
         language=html
     ]
-    <button onclick="launchNirvash()">
-      Launch Nirvash
+    <button onclick="diveToAbyss()">
+      Start the Journey
     </button>
     \end{lstlisting}
     
@@ -435,8 +436,8 @@
         label={lst:react-event-2}, 
         language=Javascript
     ]
-    <button onClick={launchNirvash}>
-      Launch Nirvash
+    <button onClick={diveToAbyss}>
+      Start the Journey
     </button>
     \end{lstlisting}
     
@@ -449,7 +450,7 @@
     komponen react tersebut menggunakan kurung kurawal untuk memberikan fungsi.
     
     Dengan implementasi seperti itu, secara tidak langsung tiap komponen dapat
-    bertanggung jawab untuk dirinya sendiri. Ini berati komponen yang dibuat
+    bertanggung jawab untuk dirinya sendiri. Maka dari itu komponen yang dibuat
     akan menjadi lebih modular dan kode penanganan yang dibuat akan berada dekat
     pada komponen tersebut.
     
@@ -457,7 +458,7 @@
     %% Thinking in react
     \subsubsection{Berpikir Dalam Konsep React}
     Filosofi yang dimiliki pada React membuat pendekatan pada pembuatan aplikasi
-    berbasis \textit{framework} tersebut berbeda. Pendekatan tersebut dapat
+    berbasis \textit{library} tersebut berbeda. Pendekatan tersebut dapat
     ditempuh dengan langkah-langkah yang diberikan oleh Facebook sebagai pembuat
     React\cite{facebook:react-thinking-in-react} seperti berikut:
     
