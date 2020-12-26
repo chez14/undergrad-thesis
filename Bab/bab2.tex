@@ -17,44 +17,104 @@
     data.
 
 \subsection{Front-end}
-    \textit{Front-end} atau \textit{Frontend} adalah sebuah subsistem yang melayani pengguna secara langsung\cite{oxford:definition-frontend}.Front-end ini memiliki tugas untuk menyajikan data pada pengguna, serta melakukan pemanggilan perintah ke \textit{back-end}.
+    \textit{Front-end} atau \textit{Frontend} adalah sebuah subsistem yang
+    melayani pengguna secara langsung\cite{oxford:definition-frontend}.Front-end
+    ini memiliki tugas untuk menyajikan data pada pengguna, serta melakukan
+    pemanggilan perintah ke \textit{back-end}.
 
 
 \section{Library dan Framework}
-    \textit{Library} adalah kumpulan fungsi yang dikompilasi bersama dan biasanya dibagikan untuk aplikasi gunakan dengan pemanggilan tertentu. \textit{Library} biasanya digunakan oleh pengembang atau \emph{developer} untuk mempermudah manajemen dan melakukan pemanggilan fungsi tertentu pada sistem. Pada pengembangan sistem web, \textit{Library} biasanya mengacu pada kumpulan fungsi atau modul-modul yang membungkus sekuens tertentu dan fungsi khusus yang disediakan oleh peramban (\textit{browser}) untuk pengembang. Maka dari itu istilah \textit{Library} sering juga disebut \textit{Package} atau \textit{Module} tergantung dari konteks letak dan peranan fungsi tersebut\cite{npm-docs:packages-n-modules}\cite{node-docs:CommonJS-modules}.
+    \textit{Library} adalah kumpulan fungsi yang dikompilasi bersama dan
+    biasanya dibagikan untuk aplikasi gunakan dengan pemanggilan tertentu.
+    \textit{Library} biasanya digunakan oleh pengembang atau \emph{developer}
+    untuk mempermudah manajemen dan melakukan pemanggilan fungsi tertentu pada
+    sistem. Pada pengembangan sistem web, \textit{Library} biasanya mengacu pada
+    kumpulan fungsi atau modul-modul yang membungkus sekuens tertentu dan fungsi
+    khusus yang disediakan oleh peramban (\textit{browser}) untuk pengembang.
+    Maka dari itu istilah \textit{Library} sering juga disebut \textit{Package}
+    atau \textit{Module} tergantung dari konteks letak dan peranan fungsi
+    tersebut\cite{npm-docs:packages-n-modules}\cite{node-docs:CommonJS-modules}.
     
     \textit{Framework} adalah salah satu bentuk abstraksi yang dibuat untuk
-    menyediakan layanan yang generik pada pengembang. Selain itu \textit{framework} membantu pengembangan dan penerbitan aplikasi menjadi lebih mudah dan cepat. 
-    Karena bentuk abstraksi tersebut, struktur kode yang dibuat menjadi berpola. Dengan adanya bantuan dokumentasi, pengembang aplikasi dapat dengan mudah mencari dan memanfaatkan kode \textit{framework} tersebut.
+    menyediakan layanan yang generik pada pengembang. Selain itu
+    \textit{framework} membantu pengembangan dan penerbitan aplikasi menjadi
+    lebih mudah dan cepat. Karena bentuk abstraksi tersebut, struktur kode yang
+    dibuat menjadi berpola. Dengan adanya bantuan dokumentasi, pengembang
+    aplikasi dapat dengan mudah mencari dan memanfaatkan kode \textit{framework}
+    tersebut.
     
-    Pada pengembangan sistem web, sebuah \textit{framework} biasanya memiliki beberapa \textit{package} yang terdiri dari beberapa \textit{library} atau bahkan dibuat \textit{library} baru yang telah dibuat generik berdasarkan RFC yang disepakati oleh tim pengembang tersebut\cite{reactjs:rfc}. Lalu \textit{package-package} dibuat terhubung sedemikian rupa sehingga \textit{framework} terbentuk dan dapat digunakan oleh para-pengembang.
+    Pada pengembangan sistem web, sebuah \textit{framework} biasanya memiliki
+    beberapa \textit{package} yang terdiri dari beberapa \textit{library} atau
+    bahkan dibuat \textit{library} baru yang telah dibuat generik berdasarkan
+    RFC yang disepakati oleh tim pengembang tersebut\cite{reactjs:rfc}. Lalu
+    \textit{package-package} dibuat terhubung sedemikian rupa sehingga
+    \textit{framework} terbentuk dan dapat digunakan oleh para-pengembang.
     
-    Kode yang di-\textit{extend} dari \textit{framework} atau lib memiliki sifat yang universal, dapat digunakan-ulang, yang menyediakan fungsionalitas-fungsionalitas kecil yang dapat digunakan untuk membuat \textit{platform} aplikasi yang lebih besar. 
-    Penggunaan-ulang ini membuat pengembangan program menjadi lebih terstruktur dan konsisten. Perubahan algoritma pada beberapa bagian program akan dapat langsung memperbaharui penggunaan algoritma yang sama di berbagai tempat.
+    Kode yang di-\textit{extend} dari \textit{framework} atau lib memiliki sifat
+    yang universal, dapat digunakan-ulang, yang menyediakan
+    fungsionalitas-fungsionalitas kecil yang dapat digunakan untuk membuat
+    \textit{platform} aplikasi yang lebih besar. Penggunaan-ulang ini membuat
+    pengembangan program menjadi lebih terstruktur dan konsisten. Perubahan
+    algoritma pada beberapa bagian program akan dapat langsung memperbaharui
+    penggunaan algoritma yang sama di berbagai tempat.
     
-    Kode program yang sudah melalui beberapa iterasi dan dianggap sudah "tepat" oleh pengembang disebut sebagai \textit{mature} atau matang. \textit{Framework} yang digunakan pada umumnya sudah dianggap matang (\textit{mature}) oleh pengembang sehingga membuat program memiliki \textit{bug} yang lebih sedikit.
+    Kode program yang sudah melalui beberapa iterasi dan dianggap sudah "tepat"
+    oleh pengembang disebut sebagai \textit{mature} atau matang.
+    \textit{Framework} yang digunakan pada umumnya sudah dianggap matang
+    (\textit{mature}) oleh pengembang sehingga membuat program memiliki
+    \textit{bug} yang lebih sedikit.
     
-    \textit{Delivery} adalah penerbitan fitur/fungsi ke kode program di wilayah server yang digunakan oleh pengguna asli (\textit{production server}).
-    Untuk mencapai \textit{delivery} yang cepat, pengembang aplikasi normalnya akan menggunakan kode yang sudah terbukti di dunia nyata sehingga pada saat pengembangan nanti para pengembang dapat lebih fokus untuk mengimplementasi fitur program, dibandingkan dengan pengembang harus menyelesaikan \textit{bug-bug} yang seharusnya tidak perlu diatasi.
+    \textit{Delivery} adalah penerbitan fitur/fungsi ke kode program di wilayah
+    server yang digunakan oleh pengguna asli (\textit{production server}). Untuk
+    mencapai \textit{delivery} yang cepat, pengembang aplikasi normalnya akan
+    menggunakan kode yang sudah terbukti di dunia nyata sehingga pada saat
+    pengembangan nanti para pengembang dapat lebih fokus untuk mengimplementasi
+    fitur program, dibandingkan dengan pengembang harus menyelesaikan
+    \textit{bug-bug} yang seharusnya tidak perlu diatasi.
     
-    \textit{Behaviour} adalah sifat yang fitur/fungsi miliki pada saat melakukan algoritma tertentu.
-    Secara kontras, pengembang yang tidak menggunakan \textit{framework} harus membuat program dari dasar. 
-    Masalah yang timbul dari cara ini adalah banyak fitur dari program memiliki \textit{behaviour} yang tidak konsisten, sehingga menyebabkan banyak \textit{bug} yang seharusnya tidak perlu muncul jika fitur-fitur sistem tersebut dapat diimplementasi dengan menggunakan kode yang dapat digunakan-ulang.
+    \textit{Behaviour} adalah sifat yang fitur/fungsi miliki pada saat melakukan
+    algoritma tertentu. Secara kontras, pengembang yang tidak menggunakan
+    \textit{framework} harus membuat program dari dasar. Masalah yang timbul
+    dari cara ini adalah banyak fitur dari program memiliki \textit{behaviour}
+    yang tidak konsisten, sehingga menyebabkan banyak \textit{bug} yang
+    seharusnya tidak perlu muncul jika fitur-fitur sistem tersebut dapat
+    diimplementasi dengan menggunakan kode yang dapat digunakan-ulang.
     
-    Kode yang dapat digunakan-ulang menyebabkan implementasi fitur yang dibuat konsisten dengan satu sama yang lain.
-    Dengan stabilnya fitur sistem ini, maka para pengembang dapat dengan langsung menggunakan fitur yang terdapat pada sistem, meng-\textit{extend} kode tersebut untuk menyesuaikan dengan fitur aplikasi, dan melakukan \textit{delivery} dengan lebih cepat.
-    Pada dunia bisnis, \textit{delivery} yang cepat dapat menjadi faktor pendukung kesuksesan aplikasi.
+    Kode yang dapat digunakan-ulang menyebabkan implementasi fitur yang dibuat
+    konsisten dengan satu sama yang lain. Dengan stabilnya fitur sistem ini,
+    maka para pengembang dapat dengan langsung menggunakan fitur yang terdapat
+    pada sistem, meng-\textit{extend} kode tersebut untuk menyesuaikan dengan
+    fitur aplikasi, dan melakukan \textit{delivery} dengan lebih cepat. Pada
+    dunia bisnis, \textit{delivery} yang cepat dapat menjadi faktor pendukung
+    kesuksesan aplikasi.
 
 \subsection{Fat-free Framework}
-    Fat-free Framework\footnote{\texttt{bcosca}. (2019) https://github.com/bcosca/fatfree. 20 November 2019} (translasi literal: Framework bebas lemak) atau yang sering disebut juga F3 adalah \textit{Framework} PHP yang dikembangkan oleh \texttt{bcosca}. Kode dasar \textit{framework} ini memiliki ukuran yang relatif kecil dan memiliki performa yang cukup baik berdasarkan \textit{benchmark} yang dilakukan oleh \texttt{kenjis} pada tahun 2017\cite{kenjis:framework-benchmark}. Dengan kecilnya kode dasar tersebut, maka F3 ini memungkinkan penggunanya untuk mengeksekusi aplikasi dengan lebih efisien dan lebih cepat.
+    Fat-free Framework\footnote{\texttt{bcosca}. (2019)
+    https://github.com/bcosca/fatfree. 20 November 2019} (translasi literal:
+    Framework bebas lemak) atau yang sering disebut juga F3 adalah
+    \textit{Framework} PHP yang dikembangkan oleh \texttt{bcosca}. Kode dasar
+    \textit{framework} ini memiliki ukuran yang relatif kecil dan memiliki
+    performa yang cukup baik berdasarkan \textit{benchmark} yang dilakukan oleh
+    \texttt{kenjis} pada tahun 2017\cite{kenjis:framework-benchmark}. Dengan
+    kecilnya kode dasar tersebut, maka F3 ini memungkinkan penggunanya untuk
+    mengeksekusi aplikasi dengan lebih efisien dan lebih cepat.
     
-    F3 memiliki struktur framework yang relatif fleksibel sehingga dapat ubah-sesuaikan menurut kebutuhan pengembang dan bisnis.
-    Salah satu masalah yang biasanya terdapat pada \textit{framework} adalah bentuk kelas dan objek yang kompleks.
-    Namun F3 memiliki kelas yang relatif simpel\footnote{\texttt{sn0opy}, \texttt{ikkez}. (2017) https://fatfreeframework.com/3.6/api-reference. 20 November 2019}.
-    Dengan begitu, dokumentasi yang harus dibaca juga lebih sedikit dan tepat.
+    F3 memiliki struktur framework yang relatif fleksibel sehingga dapat
+    ubah-sesuaikan menurut kebutuhan pengembang dan bisnis. Salah satu masalah
+    yang biasanya terdapat pada \textit{framework} adalah bentuk kelas dan objek
+    yang kompleks. Namun F3 memiliki kelas yang relatif
+    simpel\footnote{\texttt{sn0opy}, \texttt{ikkez}. (2017)
+    https://fatfreeframework.com/3.6/api-reference. 20 November 2019}. Dengan
+    begitu, dokumentasi yang harus dibaca juga lebih sedikit dan tepat.
     
-    Composer\footnote{Lihat https://getcomposer.org/.} adalah salah satu aplikasi untuk mengatur \textit{package} untuk aplikasi dengan bahasa PHP.
-    Dengan Composer yang terintegrasi dengan F3, \textit{framework} ini dapat dengan mudah diintegrasikan dan di perbaharui di berbagai macam proyek PHP.  Composer ini nantinya akan secara otomatis me-\textit{resolve} \textit{package} yang akan diperlukan oleh sebuah proyek, mengunduh paket tersebut lalu melakukan generasi \textit{autoloader} untuk \textit{package} tersebut agar dapat digunakan pada lingkungan proyek tersebut.
+    Composer\footnote{Lihat https://getcomposer.org/.} adalah salah satu
+    aplikasi untuk mengatur \textit{package} untuk aplikasi dengan bahasa PHP.
+    Dengan Composer yang terintegrasi dengan F3, \textit{framework} ini dapat
+    dengan mudah diintegrasikan dan di perbaharui di berbagai macam proyek PHP.
+    Composer ini nantinya akan secara otomatis me-\textit{resolve}
+    \textit{package} yang akan diperlukan oleh sebuah proyek, mengunduh paket
+    tersebut lalu melakukan generasi \textit{autoloader} untuk \textit{package}
+    tersebut agar dapat digunakan pada lingkungan proyek tersebut.
 
     % TODO: Struktur F3?
     \subsubsection{Memulai dengan FatFree}
@@ -75,9 +135,16 @@
     $f3->run();
     \end{lstlisting}
     
-    Pada potongan kode listing \ref{lst:f3-start-01} memperlihatkan implementasi minimal dengan menggunakan FatFree Framework dengan \textit{package manager} Composer. Composer akan membuatkan sebuah berkas khusus yang harus di\textit{include} untuk \textit{library-library} milik FratFree dapat digunakan dalam sistem.
-    Sistem \textit{routing} pada FatFree Framework diimplementasi seperti pada baris 4 hingga 8. FatFree akan meminta pengembang untuk memberikan informasi pola \textit{routing} dan fungsi penanganannya.
-    Pada baris 9, sistem FatFree akan dipanggil untuk memberitahukan bahwa inisialisasi sesi selesai, dan mulai proses \textit{request}.
+    Pada potongan kode listing \ref{lst:f3-start-01} memperlihatkan implementasi
+    minimal dengan menggunakan FatFree Framework dengan \textit{package manager}
+    Composer. Composer akan membuatkan sebuah berkas khusus yang harus
+    di\textit{include} untuk \textit{library-library} milik FratFree dapat
+    digunakan dalam sistem. Sistem \textit{routing} pada FatFree Framework
+    diimplementasi seperti pada baris 4 hingga 8. FatFree akan meminta
+    pengembang untuk memberikan informasi pola \textit{routing} dan fungsi
+    penanganannya. Pada baris 9, sistem FatFree akan dipanggil untuk
+    memberitahukan bahwa inisialisasi sesi selesai, dan mulai proses
+    \textit{request}.
     
     \begin{lstlisting}[
         caption={Implementasi F3 dengan \textit{routing} via \textit{Class Path}},
@@ -92,7 +159,11 @@
     
     $f3->route('GET /about','ReplicaBot->greetings');
     \end{lstlisting}
-    Berdasarkan APInya, sistem routing dapat dilakukan juga dengan hanya memberikan \textit{Class Path} menuju fungsi \textit{handler}nya (Listing \ref{lst:f3-start-02}). Dengan begitu, kita dapat mengimplementasi penanganannya pada kelas dan berkas yang berbeda.
+
+    Berdasarkan APInya, sistem routing dapat dilakukan juga dengan hanya
+    memberikan \textit{Class Path} menuju fungsi \textit{handler}nya (Listing
+    \ref{lst:f3-start-02}). Dengan begitu, kita dapat mengimplementasi
+    penanganannya pada kelas dan berkas yang berbeda.
     
     \begin{lstlisting}[
         caption={\textit{Routing} dengan parameter pada F3},
@@ -107,9 +178,18 @@
     
     $f3->route('GET /replica/@method','ReplicaBot->@method');
     \end{lstlisting}
-    Penggunaan parameter pada sistem \textit{routing} pada FatFree framework dapat diimplementasi dengan memberikan pola variabel pada definisi \textit{routing} tersebut. Pada listing \ref{lst:f3-start-03} baris 1, variabel diimplementasi dengan \texttt{@count}. Variabel tersebut akan dapat diakses via \texttt{Base::get} seperti pada baris 3.
+    Penggunaan parameter pada sistem \textit{routing} pada FatFree framework
+    dapat diimplementasi dengan memberikan pola variabel pada definisi
+    \textit{routing} tersebut. Pada listing \ref{lst:f3-start-03} baris 1,
+    variabel diimplementasi dengan
+    \texttt{@count}. Variabel tersebut akan dapat diakses via \texttt{Base::get}
+    seperti pada baris 3.
     
-    Selain itu, penggunaan variabel juga dapat diimplementasikan pada pendefinisian fungsi \textit{handler} \textit{request} tersebut. Pada listing \ref{lst:f3-start-03} baris 7, kita dapat memberikan kebebasan pengguna untuk mengakses \textit{method} apapun yang bersifat publik pada kelas \texttt{ReplicaBot}.
+    Selain itu, penggunaan variabel juga dapat diimplementasikan pada
+    pendefinisian fungsi \textit{handler} \textit{request} tersebut. Pada
+    listing \ref{lst:f3-start-03} baris 7, kita dapat memberikan kebebasan
+    pengguna untuk mengakses \textit{method} apapun yang bersifat publik pada
+    kelas \texttt{ReplicaBot}.
     \begin{lstlisting}[
         caption={Berkas konfigurasi untuk F3},
         label={lst:f3-start-04},
@@ -124,23 +204,46 @@
     ; named route
     GET @about: /about=Page->about
      \end{lstlisting}
-     Konfigurasi \textit{routing} pada F3 dapat dilakukan dengan membuat berkas \texttt{ini} dengan format yang telah didokumentasikan pada web F3 itu sendiri. Sebagai contoh pada potongan kode listing \ref{lst:f3-start-04}, routing didefinisikan dengan format \textit{HTTP Method}, \textit{path} URL, dan \textit{handler}nya.
-     Berkas konfigurasi tersebut dapat di\textit{load} dengan memanggil \texttt{\$f3->config('routing.ini');}.
+     Konfigurasi \textit{routing} pada F3 dapat dilakukan dengan membuat berkas
+     \texttt{ini} dengan format yang telah didokumentasikan pada web F3 itu
+     sendiri. Sebagai contoh pada potongan kode listing \ref{lst:f3-start-04},
+     routing didefinisikan dengan format \textit{HTTP Method}, \textit{path}
+     URL, dan \textit{handler}nya. Berkas konfigurasi tersebut dapat
+     di\textit{load} dengan memanggil \texttt{\$f3->config('routing.ini');}.
      
 \subsection{React.js}
-    React.js atau Reactjs adalah salah satu \textit{library} front-end yang digunakan untuk membuat \textit{user interfaces}\cite{facebook:react-homepage}. Reactjs memiliki keunggulan seperti bahasa yang deklaratif, berbasis komponen, dan "Pelajari sekali, tulis dimanapun" (\textit{Learn Once, Write Anywhere}, LOWA)\cite{facebook:react-homepage}.
-    Reactjs ini digunakan oleh banyak pengembang aplikasi web karena keunggulannya, tertutama dengan alasan LOWA. 
-    Pengembang dapat menggunakan React, bahkan pada bahasa berbasis Js apapun. Normalnya pengembang menggunakan ES6, atau Ecmascript 6 untuk \textit{framework} ini namun mereka dapat menggunakan bahasa lain seperti Typescript.
+    React.js atau Reactjs adalah salah satu \textit{library} front-end yang
+    digunakan untuk membuat \textit{user
+    interfaces}\cite{facebook:react-homepage}. Reactjs memiliki keunggulan
+    seperti bahasa yang deklaratif, berbasis komponen, dan "Pelajari sekali,
+    tulis dimanapun" (\textit{Learn Once, Write Anywhere},
+    LOWA)\cite{facebook:react-homepage}. Reactjs ini digunakan oleh banyak
+    pengembang aplikasi web karena keunggulannya, tertutama dengan alasan LOWA.
+    Pengembang dapat menggunakan React, bahkan pada bahasa berbasis Js apapun.
+    Normalnya pengembang menggunakan ES6, atau Ecmascript 6 untuk
+    \textit{framework} ini namun mereka dapat menggunakan bahasa lain seperti
+    Typescript.
         
-    Kode pada Reactjs ini bersifat \textit{open-source} atau sumber-terbuka, sehingga banyak sekali kontributor yang ikut membantu pengembangan \textit{framework} ini. Dengan banyaknya kontribusi yang diberikan maka hasil kode yang diberikan akan lebih cepat \textit{mature} dan memiliki \textit{bug} yang lebih sedikit.
+    Kode pada Reactjs ini bersifat \textit{open-source} atau sumber-terbuka,
+    sehingga banyak sekali kontributor yang ikut membantu pengembangan
+    \textit{framework} ini. Dengan banyaknya kontribusi yang diberikan maka
+    hasil kode yang diberikan akan lebih cepat \textit{mature} dan memiliki
+    \textit{bug} yang lebih sedikit.
 
     % TODO: Jelasin cara kerja react secara singkat
-    \textit{Virtual DOM} adalah salah satu konsep pemrograman yang simulasikan DOM secara ideal pada memory\cite{facebook:react-faq}. Reactjs akan menyimpan representasi \textit{state} dari komponen-komponen yang telah dibuat pada memori dan membandingkannya dengan
-    DOM asli yang berada pada dokumen. Setiap perubahan \textit{state} yang terjadi, Reactjs akan membandingkan DOM Virtual tersebut pada memori dan melakukan perubahan jika diperlukan.
+    \textit{Virtual DOM} adalah salah satu konsep pemrograman yang simulasikan
+    DOM secara ideal pada memory\cite{facebook:react-faq}. Reactjs akan
+    menyimpan representasi \textit{state} dari komponen-komponen yang telah
+    dibuat pada memori dan membandingkannya dengan DOM asli yang berada pada
+    dokumen. Setiap perubahan \textit{state} yang terjadi, Reactjs akan
+    membandingkan DOM Virtual tersebut pada memori dan melakukan perubahan jika
+    diperlukan.
     
     %% Sintax React: JSX
     \subsubsection{JSX}
-    Reactjs menggunakan sintaks JSX. Sintaks tersebut memiliki bentuk format mirip seperti HTML. Sintaks tersebut akan mendeklarasikan sebuah \textbf{komponen} Reactjs.
+    Reactjs menggunakan sintaks JSX. Sintaks tersebut memiliki bentuk format
+    mirip seperti HTML. Sintaks tersebut akan mendeklarasikan sebuah
+    \textbf{komponen} Reactjs.
     \begin{lstlisting}[
         caption={Sintaks JSX}, 
         label={lst:jsx-0}, 
@@ -155,9 +258,14 @@
         );
     \end{lstlisting}
     
-    Contoh potongan kode pada listing \ref{lst:jsx-0} menampilkan sebuah elemen \textit{Heading 1} dengan kalimat \texttt{Hello, Shinji}. Element tersebut akan di\textit{render} pada elemen HTML dengan id elemen \texttt{root}.
+    Contoh potongan kode pada listing \ref{lst:jsx-0} menampilkan sebuah elemen
+    \textit{Heading 1} dengan kalimat \texttt{Hello, Shinji}. Element tersebut
+    akan di\textit{render} pada elemen HTML dengan id elemen \texttt{root}.
     
-    Penambahan atribut untuk memberikan konteks data lebih lanjut juga dapat dilakukan melalui JSX. Sebagai contoh, potongan kode pada listing \ref{lst:jsx-1} menambahkan atribut \texttt{src} pada komponen \texttt{img} atau HTML \textit{Image}.
+    Penambahan atribut untuk memberikan konteks data lebih lanjut juga dapat
+    dilakukan melalui JSX. Sebagai contoh, potongan kode pada listing
+    \ref{lst:jsx-1} menambahkan atribut \texttt{src} pada komponen \texttt{img}
+    atau HTML \textit{Image}.
     
     \begin{lstlisting}[
         caption={Sintaks JSX dengan atribut}, 
@@ -168,7 +276,9 @@
     \end{lstlisting}
     
         
-    Selain atribut, JSX juga dapat memiliki anak element. Sebagai contoh, potongan kode \ref{lst:jsx-2} menambahkan beberapa anak pada sebuah elemen \texttt{div}.
+    Selain atribut, JSX juga dapat memiliki anak element. Sebagai contoh,
+    potongan kode \ref{lst:jsx-2} menambahkan beberapa anak pada sebuah elemen
+    \texttt{div}.
     \begin{lstlisting}[
         caption={JSX dengan beberapa anak di dalamnya}, 
         label={lst:jsx-2}, 
@@ -185,11 +295,15 @@
         );
     \end{lstlisting}
     
-    Berdasarkan implementasinya, penggunaan JSX akan mencegah celah kemanan \textit{code injection}. Sintaks pada JSX akan disanitasi terlebih dahulu oleh React sebelum disisipkan pada element HTML pada dokumen.
+    Berdasarkan implementasinya, penggunaan JSX akan mencegah celah kemanan
+    \textit{code injection}. Sintaks pada JSX akan disanitasi terlebih dahulu
+    oleh React sebelum disisipkan pada element HTML pada dokumen.
     
     %% Components
     \subsubsection{Komponen pada React}
-    Komponen pada Reactjs dapat diimplementasi dengan dua cara. Dengan melakukan ekstensiasi kelas \texttt{React.Component} atau yang paling mudah dengan membuat fungsi (Listing \ref{lst:component-1}).
+    Komponen pada Reactjs dapat diimplementasi dengan dua cara. Dengan melakukan
+    ekstensiasi kelas \texttt{React.Component} atau yang paling mudah dengan
+    membuat fungsi (Listing \ref{lst:component-1}).
     
     \begin{lstlisting}[
         caption={JSX dengan beberapa anak di dalamnya}, 
@@ -209,8 +323,15 @@
         }
     \end{lstlisting}
     
-    Komponen-komponen tersebut dapat digabungkan dengan komponen lain (Listing \ref{lst:component-2}). komponen-komponen tersebut dapat memanfaatkan properti yang diberikan sebagai parameter pada fungsi, ataupun sebagai atribut \texttt{props} pada kelas ekstensiasi \texttt{Component}. Pada potongan kode Listing \ref{lst:component-2}, komponen \texttt{Welcome} digunakan sebanyak empat kali dengan atribut yang berbeda-beda.
-    Atribut yang diberikan memiliki sifat hanya-baca (\textit{Read-only}), sehingga mutasi yang dilakukan pada atribut oleh komponen tidak akan mengubah \textit{value} atribut.
+    Komponen-komponen tersebut dapat digabungkan dengan komponen lain (Listing
+    \ref{lst:component-2}). komponen-komponen tersebut dapat memanfaatkan
+    properti yang diberikan sebagai parameter pada fungsi, ataupun sebagai
+    atribut \texttt{props} pada kelas ekstensiasi \texttt{Component}. Pada
+    potongan kode Listing \ref{lst:component-2}, komponen \texttt{Welcome}
+    digunakan sebanyak empat kali dengan atribut yang berbeda-beda. Atribut yang
+    diberikan memiliki sifat hanya-baca (\textit{Read-only}), sehingga mutasi
+    yang dilakukan pada atribut oleh komponen tidak akan mengubah \textit{value}
+    atribut.
     
     \begin{lstlisting}[
         caption={JSX dengan beberapa anak di dalamnya}, 
@@ -236,8 +357,13 @@
     
     % Konsep State pada react
     \subsubsection{\textit{State} pada React}
-    Berdasarkan implementasinya, React tidak akan selalu melakukan pembaharuan pada elemen HTML. Selain itu, perubahan variabel juga tidak akan diperhatikan oleh React, oleh karena itu \textit{State} menjadi salah satu cara untuk React mengetahui perubahan pada suatu variabel.
-    Perubahan \textit{state} pada React akan memanggil ulang fungsi \textit{render} pada komponen, dan melakukan pembaharuan HTML pada saat perubahan dideteksi dengan memanfaatkan \textit{Virtual DOM}.
+    Berdasarkan implementasinya, React tidak akan selalu melakukan pembaharuan
+    pada elemen HTML. Selain itu, perubahan variabel juga tidak akan
+    diperhatikan oleh React, oleh karena itu \textit{State} menjadi salah satu
+    cara untuk React mengetahui perubahan pada suatu variabel. Perubahan
+    \textit{state} pada React akan memanggil ulang fungsi \textit{render} pada
+    komponen, dan melakukan pembaharuan HTML pada saat perubahan dideteksi
+    dengan memanfaatkan \textit{Virtual DOM}.
     
     \begin{lstlisting}[
         caption={Komponen dengan \textit{state}}, 
@@ -278,10 +404,19 @@
     }
     \end{lstlisting}
     
-    Komponen pada listing \ref{lst:react-state} memiliki sebuah \textit{state} dengan nama \texttt{date} (baris 4). \textit{State} tersebut akan diperbaharui oleh fungsi \texttt{tick} (baris 18-22). Fungsi \texttt{tick} itu sendiri akan dipanggil oleh \textit{routine interval} dari baris 8. Siklus hidup pada komponen react, \texttt{componentDidMount} dieksekusi setelah komponen berhasil dimasukkan pada elemen dokumen. Sedangkan fungsi \texttt{componenWillUnmount} akan dieksekusi sesaat sebelum komponen dihapus dari element dokumen.
+    Komponen pada listing \ref{lst:react-state} memiliki sebuah \textit{state}
+    dengan nama \texttt{date} (baris 4). \textit{State} tersebut akan
+    diperbaharui oleh fungsi \texttt{tick} (baris 18-22). Fungsi \texttt{tick}
+    itu sendiri akan dipanggil oleh \textit{routine interval} dari baris 8.
+    Siklus hidup pada komponen react, \texttt{componentDidMount} dieksekusi
+    setelah komponen berhasil dimasukkan pada elemen dokumen. Sedangkan fungsi
+    \texttt{componenWillUnmount} akan dieksekusi sesaat sebelum komponen dihapus
+    dari element dokumen.
     
-    Setiap \textit{routine interval} dijalankan, fungsi \texttt{tick} akan melakukan pembaharuan \textit{state} \texttt{date} dengan nilai tanggal hari ini.
-    Perubahan \textit{state} ini akan memaksa React melakukan pemanggilan fungsi \texttt{render} dan memperbaharui elemen HTML yang ada.
+    Setiap \textit{routine interval} dijalankan, fungsi \texttt{tick} akan
+    melakukan pembaharuan \textit{state} \texttt{date} dengan nilai tanggal hari
+    ini. Perubahan \textit{state} ini akan memaksa React melakukan pemanggilan
+    fungsi \texttt{render} dan memperbaharui elemen HTML yang ada.
     
     %% Event Handling
     \subsubsection{Menangani \textit{Event}}
@@ -305,14 +440,26 @@
     </button>
     \end{lstlisting}
     
-    Penanganan \textit{event} dari HTML pada React tidak jauh berbeda dengan javascript. Pada potongan kode listing \ref{lst:react-event-1}, terlihat implementasi penanganan \textit{event} dilakukan dengan memasukkan nama fungsi pada atribut \texttt{onclick}. Pada potongan kode listing \ref{lst:react-event-2} terlihat hal yang mirip, dengan \texttt{c} pada \texttt{onClick} menjadi huruf kapital, dan dibanding menggunakan kutip dua, komponen react tersebut menggunakan kurung kurawal untuk memberikan fungsi.
+    Penanganan \textit{event} dari HTML pada React tidak jauh berbeda dengan
+    javascript. Pada potongan kode listing \ref{lst:react-event-1}, terlihat
+    implementasi penanganan \textit{event} dilakukan dengan memasukkan nama
+    fungsi pada atribut \texttt{onclick}. Pada potongan kode listing
+    \ref{lst:react-event-2} terlihat hal yang mirip, dengan \texttt{c} pada
+    \texttt{onClick} menjadi huruf kapital, dan dibanding menggunakan kutip dua,
+    komponen react tersebut menggunakan kurung kurawal untuk memberikan fungsi.
     
-    Dengan implementasi seperti itu, secara tidak langsung tiap komponen dapat bertanggung jawab untuk dirinya sendiri. Ini berati komponen yang dibuat akan menjadi lebih modular dan kode penanganan yang dibuat akan berada dekat pada komponen tersebut.
+    Dengan implementasi seperti itu, secara tidak langsung tiap komponen dapat
+    bertanggung jawab untuk dirinya sendiri. Ini berati komponen yang dibuat
+    akan menjadi lebih modular dan kode penanganan yang dibuat akan berada dekat
+    pada komponen tersebut.
     
     
     %% Thinking in react
     \subsubsection{Berpikir Dalam Konsep React}
-    Filosofi yang dimiliki pada React membuat pendekatan pada pembuatan aplikasi berbasis \textit{framework} tersebut berbeda. Pendekatan tersebut dapat ditempuh dengan langkah-langkah yang diberikan oleh Facebook sebagai pembuat React\cite{facebook:react-thinking-in-react} seperti berikut:
+    Filosofi yang dimiliki pada React membuat pendekatan pada pembuatan aplikasi
+    berbasis \textit{framework} tersebut berbeda. Pendekatan tersebut dapat
+    ditempuh dengan langkah-langkah yang diberikan oleh Facebook sebagai pembuat
+    React\cite{facebook:react-thinking-in-react} seperti berikut:
     
     \begin{itemize}
         \item Pecah bagian \textit{UI} menjadi beberapa bagian hirarki komponen.
@@ -328,63 +475,141 @@
     
     
 \section{API}
-    API atau \textit{Application Programming Interface} adalah sebuah antarmuka atau protokol komunikasi antara klien dan server dengan intensi untuk menyederhanakan pembuatan aplikasi klien-server. 
-    API seringkali dianggap sebagai "kesepakatan" antara klien dan server. Format-format tertentu akan disepakati untuk komunikasi antar klien-server\cite{health-informatics}.
+    API atau \textit{Application Programming Interface} adalah sebuah antarmuka
+    atau protokol komunikasi antara klien dan server dengan intensi untuk
+    menyederhanakan pembuatan aplikasi klien-server. API seringkali dianggap
+    sebagai "kesepakatan" antara klien dan server. Format-format tertentu akan
+    disepakati untuk komunikasi antar klien-server\cite{health-informatics}.
     
     \subsection{REST API}
-    REST atau \textit{Representational State Transfer} adalah salah satu jenis protokol komunikasi API untuk layanan berbasis web yang representatif\cite{rest:roy-fielding}. REST akan memanfaatkan HTTP Method sebagai informasi intensi permintaan klien untuk server. Komunikasi yang dilakukan pada aplikasi berbasis web normalnya menggunakan protokol HTTP. Pada protokol tersebut, pesan HTTP memiliki dua buah bagian: HTTP Header; dan HTTP Body\cite{RFC7231}. Protokol ini bekerja dengan membetuk pesan permintaan pada HTTP Header, dan informasi tentang form pada badan HTTP Request tersebut (jika ada). Pada HTTP Header terdapat kolom \texttt{Method} yang menandakan keinginan klien untuk server lakukan, seperti \texttt{GET}, \texttt{HEAD}, \texttt{POST}, \texttt{PUT}, \texttt{PATCH}, \texttt{DELETE}, \texttt{CONNECT}, \texttt{OPTIONS}, dan \texttt{TRACE}\cite[P.~21]{RFC7231}. 
+    REST atau \textit{Representational State Transfer} adalah salah satu jenis
+    protokol komunikasi API untuk layanan berbasis web yang
+    representatif\cite{rest:roy-fielding}. REST akan memanfaatkan HTTP Method
+    sebagai informasi intensi permintaan klien untuk server. Komunikasi yang
+    dilakukan pada aplikasi berbasis web normalnya menggunakan protokol HTTP.
+    Pada protokol tersebut, pesan HTTP memiliki dua buah bagian: HTTP Header;
+    dan HTTP Body\cite{RFC7231}. Protokol ini bekerja dengan membetuk pesan
+    permintaan pada HTTP Header, dan informasi tentang form pada badan HTTP
+    Request tersebut (jika ada). Pada HTTP Header terdapat kolom \texttt{Method}
+    yang menandakan keinginan klien untuk server lakukan, seperti \texttt{GET},
+    \texttt{HEAD}, \texttt{POST}, \texttt{PUT}, \texttt{PATCH}, \texttt{DELETE},
+    \texttt{CONNECT}, \texttt{OPTIONS}, dan \texttt{TRACE}\cite[P.~21]{RFC7231}.
+    
 
     % \subsubsection{Sistem RESTful}
-    Sistem RESTful didefinisikan sebagai sistem yang mengikuti beberapa aturan penting tentang REST\cite{rest:restful-web-service}. Aturan-aturan tersebut membatasi dan mengatur cara server memproses dan memberikan respon pada klien.
+    Sistem RESTful didefinisikan sebagai sistem yang mengikuti beberapa aturan
+    penting tentang REST\cite{rest:restful-web-service}. Aturan-aturan tersebut
+    membatasi dan mengatur cara server memproses dan memberikan respon pada
+    klien.
     \begin{enumerate}
         \item \textit{Starting with the Null Style}\\
-            Setiap request dimulai dari \textit{state} yang kosong, bersih. Solusi yang dibutuhkan dibangun sesuai dengan kebutuhan aplikasi tersebut secara perlahan. Selain itu pengembang ingin membuat aplikasinya secara penuh, tanpa halangan dan aturan yang kemudian secara perlahan mengimplementasikan aturan-aturan dan identitas pada setiap elemen.
-            \textit{Null style} ini kemudian dikenal sebagai titik awalnya REST.
+            Setiap request dimulai dari \textit{state} yang kosong, bersih.
+            Solusi yang dibutuhkan dibangun sesuai dengan kebutuhan aplikasi
+            tersebut secara perlahan. Selain itu pengembang ingin membuat
+            aplikasinya secara penuh, tanpa halangan dan aturan yang kemudian
+            secara perlahan mengimplementasikan aturan-aturan dan identitas pada
+            setiap elemen. \textit{Null style} ini kemudian dikenal sebagai
+            titik awalnya REST.
             
         \item \textit{Client-server architecture}\\
-            Arsitektur klien-server memiliki pemahaman dasar tentang pemisahan antara pengolah data dan tempat penyimpanan data. Proses pemisahan ini akan menyebabkan antarmuka (\textit{interface}) program yang lebih sederhana sehingga meningkatkan portabilitas komponen server.
+            Arsitektur klien-server memiliki pemahaman dasar tentang pemisahan
+            antara pengolah data dan tempat penyimpanan data. Proses pemisahan
+            ini akan menyebabkan antarmuka (\textit{interface}) program yang
+            lebih sederhana sehingga meningkatkan portabilitas komponen server.
             
-            Pada kasus penelitian ini, pemisahan antara klien dan server ini menambahkan fungsionalitas seperti tersedianya API. API ini nantinya akan menyediakan kesempatan untuk aplikasi dapat dikembangkan dan diintegrasikan dengan aplikasi lain.
+            Pada kasus penelitian ini, pemisahan antara klien dan server ini
+            menambahkan fungsionalitas seperti tersedianya API. API ini nantinya
+            akan menyediakan kesempatan untuk aplikasi dapat dikembangkan dan
+            diintegrasikan dengan aplikasi lain.
             
         \item \textit{Statelessness}\\
-            Aturan \textit{Stateless} memiliki pemahaman bahwa setiap permintaan yang dilakukan ke server memiliki informasi yang cukup untuk server menyelesaikan tugasnya. Perintah permintaan tidak boleh bergantung dari informasi yang server set sebelumnya. Seluruh konteks dan informasi yang dibutuhkan harus diberikan seluruhnya oleh klien.
+            Aturan \textit{Stateless} memiliki pemahaman bahwa setiap permintaan
+            yang dilakukan ke server memiliki informasi yang cukup untuk server
+            menyelesaikan tugasnya. Perintah permintaan tidak boleh bergantung
+            dari informasi yang server set sebelumnya. Seluruh konteks dan
+            informasi yang dibutuhkan harus diberikan seluruhnya oleh klien.
             
             
-            Pada pemrograman web, implementasi untuk aturan ini pada umumnya adalah dengan tidak mengimplementasikan \textit{session}. Session menyimpan informasi pada server, sehingga permintaan yang diberikan oleh klien akan bergantung pada informasi yang diatur oleh server.
+            Pada pemrograman web, implementasi untuk aturan ini pada umumnya
+            adalah dengan tidak mengimplementasikan \textit{session}. Session
+            menyimpan informasi pada server, sehingga permintaan yang diberikan
+            oleh klien akan bergantung pada informasi yang diatur oleh server.
         
         \item \textit{Cacheability}\\
-            \textit{Cacheability} adalah kemampuan untuk menentukan sebuah respon dapat di-\textit{cache} atau tidak. Menentukan sebuah repson dari server dapat di-\textit{cache} dapat memberikan informasi untuk klien menyimpannya pada memori atau tidak perlu. Dengan ditaatinya aturan ini, klien dapat mencegah menampilkan data yang sudah usang dari server.
+            \textit{Cacheability} adalah kemampuan untuk menentukan sebuah
+            respon dapat di-\textit{cache} atau tidak. Menentukan sebuah repson
+            dari server dapat di-\textit{cache} dapat memberikan informasi untuk
+            klien menyimpannya pada memori atau tidak perlu. Dengan ditaatinya
+            aturan ini, klien dapat mencegah menampilkan data yang sudah usang
+            dari server.
             
-            Peramban web pada umumnya akan mengimplementasi manajemen respon dari server secara otomatis. Permintaan yang pernah dikirim ke server dapat dengan mudah dicek oleh peramban. Jika informasi pada server tidak berubah, maka server tidak perlu mengirim respon yang sama kembali. Oleh karena itu penggunaan \textit{cache} dapat memperkecil jumlah interaksi yang dibutuhkan, menyebabkan komunikasi antar komponen lebih efisien.
+            Peramban web pada umumnya akan mengimplementasi manajemen respon
+            dari server secara otomatis. Permintaan yang pernah dikirim ke
+            server dapat dengan mudah dicek oleh peramban. Jika informasi pada
+            server tidak berubah, maka server tidak perlu mengirim respon yang
+            sama kembali. Oleh karena itu penggunaan \textit{cache} dapat
+            memperkecil jumlah interaksi yang dibutuhkan, menyebabkan komunikasi
+            antar komponen lebih efisien.
             
         \item \textit{Layered system}\\
-            \textit{Load balancer} adalah aplikasi yang bertugas untuk membagi pekerjaan (load) pada instansi aplikasi yang berjalan pada server.
-            Penambahan lapisan untuk sistem seperti \textit{load balancer} dapat meningkatkan skalabilitas sebuah sistem. Lapisan ini tidak akan mempengaruhi komunikasi antara server dan klien, dan aplikasi pada klien tidak perlu berubah.
+            \textit{Load balancer} adalah aplikasi yang bertugas untuk membagi
+            pekerjaan (load) pada instansi aplikasi yang berjalan pada server.
+            Penambahan lapisan untuk sistem seperti \textit{load balancer} dapat
+            meningkatkan skalabilitas sebuah sistem. Lapisan ini tidak akan
+            mempengaruhi komunikasi antara server dan klien, dan aplikasi pada
+            klien tidak perlu berubah.
         
         \item \textit{Code on demand} (opsional)\\
-            Server dapat dengan sementara menambah atau menyesuaikan fungsionalitas aplikasi klien dengan memberikan kode yang dapat dieksekusi oleh klien.
+            Server dapat dengan sementara menambah atau menyesuaikan
+            fungsionalitas aplikasi klien dengan memberikan kode yang dapat
+            dieksekusi oleh klien.
         
         \item \textit{Uniform interface}\\
-            Antarmuka yang seragam sangat penting dalam sistem RESTful. Dengan mengaplikasikan generalisasi antar komponen, kita dapat menyederhanakan antarmuka antar komponen. Dengan generalisasi tersebut, terdapat standar yang sama pada setiap komponen, membuat aplikasi klien dapat melakukan permintaan pada server lain tanpa harus membuat \textit{preproccesor} terlebih dahulu.
+            Antarmuka yang seragam sangat penting dalam sistem RESTful. Dengan
+            mengaplikasikan generalisasi antar komponen, kita dapat
+            menyederhanakan antarmuka antar komponen. Dengan generalisasi
+            tersebut, terdapat standar yang sama pada setiap komponen, membuat
+            aplikasi klien dapat melakukan permintaan pada server lain tanpa
+            harus membuat \textit{preproccesor} terlebih dahulu.
             
-            Karena implementasi dapat dipisahkan, maka antar komponen server dapat berkembang secara mandiri memenuhi kebutuhan dari aplikasi tersebut.
+            Karena implementasi dapat dipisahkan, maka antar komponen server
+            dapat berkembang secara mandiri memenuhi kebutuhan dari aplikasi
+            tersebut.
             
     \end{enumerate}
 
 \section{GitLab CI/CD}
 
-    \textit{Continious Integration/Continious Delivery/Deployment} adalah salah satu metodologi pada pengembangan perangkat lunak dengan metodologi berkelanjutan. Metodologi tersebut dilakukan dengan mengotomatisasi pengujian, kompilasi dan validasi terhadap kode yang diberikan oleh developer\cite{gitlab-cicd:methodologies}.
+    \textit{Continious Integration/Continious Delivery/Deployment} adalah salah
+    satu metodologi pada pengembangan perangkat lunak dengan metodologi
+    berkelanjutan. Metodologi tersebut dilakukan dengan mengotomatisasi
+    pengujian, kompilasi dan validasi terhadap kode yang diberikan oleh
+    developer\cite{gitlab-cicd:methodologies}.
     
-    Metodologi CI/CD ini memiliki tiga bagian utama\cite{gitlab-cicd:methodologies}.
+    Metodologi CI/CD ini memiliki tiga bagian
+    utama\cite{gitlab-cicd:methodologies}.
     \begin{itemize}
-        \item \textit{Continious Integration}, dilakukan dengan melakukan \textit{testing} terhadap setiap kode yang di \textit{push} oleh developer ke server Git.
+        \item \textit{Continious Integration}, dilakukan dengan melakukan
+        \textit{testing} terhadap setiap kode yang di \textit{push} oleh
+        developer ke server Git.
         
-        \item \textit{Continious Delivery}, dengan melakukan \textit{deployment} secara berkelanjutan setelah \textit{Continious Integration} berhasil dilakukan. Metode ini dilakukan secara manual.
+        \item \textit{Continious Delivery}, dengan melakukan \textit{deployment}
+        secara berkelanjutan setelah \textit{Continious Integration} berhasil
+        dilakukan. Metode ini dilakukan secara manual.
         
-        \item \textit{Continious Deployment}, memiliki memiripan dengan \textit{Continious Delivery}, namun metode tersebut dilakukan secara otomatis.
+        \item \textit{Continious Deployment}, memiliki memiripan dengan
+        \textit{Continious Delivery}, namun metode tersebut dilakukan secara
+        otomatis.
     \end{itemize}
     
-    Penggunaan metodologi ini diimplementasi oleh GitLab sejak versi 9\cite{gitlab-cicd:introduction}.  Penggunaan fitur CI/CD ini dapat dimulai dengan membuat berkas konfigurasi \texttt{.gitlab-ci.yml} pada \textit{root} dokumen proyek. Berkas tersebut akan berisi sejumlah kumpulan perintah yang dapat dieksekusi berdasarkan konidisi tertentu. Pemilik proyek dapat menambahkan perintah-perintah tersebut dalam bentuk langkah-langkah bertahap. Setelah berkas tersebut berhasil ditambahkan, GitLab akan mendeteksi berkas tersebut dan melakukan eksekusi.
+    Penggunaan metodologi ini diimplementasi oleh GitLab sejak versi
+    9\cite{gitlab-cicd:introduction}.  Penggunaan fitur CI/CD ini dapat dimulai
+    dengan membuat berkas konfigurasi \texttt{.gitlab-ci.yml} pada \textit{root}
+    dokumen proyek. Berkas tersebut akan berisi sejumlah kumpulan perintah yang
+    dapat dieksekusi berdasarkan konidisi tertentu. Pemilik proyek dapat
+    menambahkan perintah-perintah tersebut dalam bentuk langkah-langkah
+    bertahap. Setelah berkas tersebut berhasil ditambahkan, GitLab akan
+    mendeteksi berkas tersebut dan melakukan eksekusi.
     
     \begin{figure}
         \centering
@@ -394,9 +619,11 @@
     \end{figure}
     
     
-    \textit{Script} yang ada akan dikelompokkan sebagai \textit{jobs}. Sekumpulan \textit{job} akan membentuk \textit{pipeline}.
+    \textit{Script} yang ada akan dikelompokkan sebagai \textit{jobs}.
+    Sekumpulan \textit{job} akan membentuk \textit{pipeline}.
     
-    Sebagai contoh, berkas \texttt{.gitlab-ci.yml} memiliki format minimal sebagai berikut:
+    Sebagai contoh, berkas \texttt{.gitlab-ci.yml} memiliki format minimal
+    sebagai berikut:
     
     \begin{verbatim}
     before_script:
@@ -407,10 +634,19 @@
         - ruby --version
     \end{verbatim}
     
-    Pada berkas contoh, format \texttt{.gitlab-ci.yml} memiliki format YAML. Oleh karena itu indentasi denga spasi dan tabulasi akan sangat berpengaruh. Bagian pertama pada berkas tersebut adalah bagian \texttt{before\_script}. Pada bagian ini, perintah yang dilakukan adalah melakukan instalasi penjalan \textit{script} ruby, dan lingkungan pengembangannya.
+    Pada berkas contoh, format \texttt{.gitlab-ci.yml} memiliki format YAML.
+    Oleh karena itu indentasi denga spasi dan tabulasi akan sangat berpengaruh.
+    Bagian pertama pada berkas tersebut adalah bagian \texttt{before\_script}.
+    Pada bagian ini, perintah yang dilakukan adalah melakukan instalasi penjalan
+    \textit{script} ruby, dan lingkungan pengembangannya.
     
-    Berikutnya, sebuah \textit{job} dengan nama \texttt{run-test} akan ditambahkan pada sebuah \textit{pipeline} pada dasbor CI/CD pada GitLab. Lingkungan pada \texttt{before\_script} akan digunakan pada \textit{job} ini untuk melakukan eksekusi pada \textit{script} yang diberikan. Seperti pada contoh Gambar \ref{fig:gitlab-ci:jobrun}. 
-    Jika perintah tersebut gagal dieksekusi, maka \textit{job} pada tahap berikutnya tidak akan dieksekusi, dan pemilik kode akan diberitahu bahwa kompilasi gagal.
+    Berikutnya, sebuah \textit{job} dengan nama \texttt{run-test} akan
+    ditambahkan pada sebuah \textit{pipeline} pada dasbor CI/CD pada GitLab.
+    Lingkungan pada \texttt{before\_script} akan digunakan pada \textit{job} ini
+    untuk melakukan eksekusi pada \textit{script} yang diberikan. Seperti pada
+    contoh Gambar \ref{fig:gitlab-ci:jobrun}. Jika perintah tersebut gagal
+    dieksekusi, maka \textit{job} pada tahap berikutnya tidak akan dieksekusi,
+    dan pemilik kode akan diberitahu bahwa kompilasi gagal.
     
     
     \begin{figure}
@@ -420,13 +656,28 @@
         \label{fig:gitlab-ci:pipeline}
     \end{figure}
     
-    Dengan melakukan konfigurasi tertentu, pemilik proyek dapat membuat rencana CI/CD yang lebih kompleks dan bertahap. \textit{Pipeline} yang sudah dibuat akan ditampilkan pada dasbor secara diagram (Gambar \ref{fig:gitlab-ci:pipeline}).
+    Dengan melakukan konfigurasi tertentu, pemilik proyek dapat membuat rencana
+    CI/CD yang lebih kompleks dan bertahap. \textit{Pipeline} yang sudah dibuat
+    akan ditampilkan pada dasbor secara diagram (Gambar
+    \ref{fig:gitlab-ci:pipeline}).
 
 \section{Docker}
-    \textit{Containerization} adalah salah satu bentuk abstraksi pada level aplikasi yang membungkus kode dan kebutuhan \textit{dependenciy}-nya. Sehingga aplikasi berjalan secara konsisten pada berbagai sistem operasi\cite{docker:what-is-container}. Kontainer ini akan menjalankan \textit{image} yang memiliki kernel yang sama ataupun berbeda antar satu dan yang lain. Selain itu Kontainer juga mungkin dapat berbagi kernel antara satu \textit{image} dengan yang lain.
+    \textit{Containerization} adalah salah satu bentuk abstraksi pada level
+    aplikasi yang membungkus kode dan kebutuhan \textit{dependenciy}-nya.
+    Sehingga aplikasi berjalan secara konsisten pada berbagai sistem
+    operasi\cite{docker:what-is-container}. Kontainer ini akan menjalankan
+    \textit{image} yang memiliki kernel yang sama ataupun berbeda antar satu dan
+    yang lain. Selain itu Kontainer juga mungkin dapat berbagi kernel antara
+    satu \textit{image} dengan yang lain.
     
-    Lingkungan produksi adalah lingkungan yang digunakan oleh server yang melayani permintaan kustomer. Karena lingkungan tersebut tempat aplikasi dijalankan, maka lingkungan pengembangan sebaik mungkin dibuat semirip mungkin dengan lingkungan produksi. Jika lingkungan produksi dapat dikontainerisasi, maka kita dapat menyalin kontainer tersebut dan membuatnya menjadi lingkungan pengembangan.
-    Jika lingkungan pengembangan membutuhkan lingkungan produksi untuk diperbaharui, maka kontainer tersebut hanya perlu disalin ulang dan dijalankan kembali.
+    Lingkungan produksi adalah lingkungan yang digunakan oleh server yang
+    melayani permintaan kustomer. Karena lingkungan tersebut tempat aplikasi
+    dijalankan, maka lingkungan pengembangan sebaik mungkin dibuat semirip
+    mungkin dengan lingkungan produksi. Jika lingkungan produksi dapat
+    dikontainerisasi, maka kita dapat menyalin kontainer tersebut dan membuatnya
+    menjadi lingkungan pengembangan. Jika lingkungan pengembangan membutuhkan
+    lingkungan produksi untuk diperbaharui, maka kontainer tersebut hanya perlu
+    disalin ulang dan dijalankan kembali.
     
     \begin{figure}[H]
         \centering
@@ -435,21 +686,41 @@
         \label{fig:illust-docker}
     \end{figure}
     
-    Kontainer akan menjalankan \textit{image} diatas \textit{platform} mereka setelah infrastruktur operating sistem itu sendiri (Gambar \ref{fig:illust-docker} kiri). Berbeda dengan \textit{Virtual Machine} (atau VM), aplikasi pada kontainer tidak berjalan di atas sistem operasi yang dijalankan oleh VM (Gambar \ref{fig:illust-docker} kanan).
-    \textit{Image} pada kontainer itu sendiri biasnaya berukuran cukup kecil (puluhan hingga ratusan MB), sehingga menjalankan kontainer jauh lebih ringan dibanding menjalankan VM.
+    Kontainer akan menjalankan \textit{image} diatas \textit{platform} mereka
+    setelah infrastruktur operating sistem itu sendiri (Gambar
+    \ref{fig:illust-docker} kiri). Berbeda dengan \textit{Virtual Machine} (atau
+    VM), aplikasi pada kontainer tidak berjalan di atas sistem operasi yang
+    dijalankan oleh VM (Gambar \ref{fig:illust-docker} kanan). \textit{Image}
+    pada kontainer itu sendiri biasnaya berukuran cukup kecil (puluhan hingga
+    ratusan MB), sehingga menjalankan kontainer jauh lebih ringan dibanding
+    menjalankan VM.
     
-    \textit{Hypervisor} adalah salah satu aplikasi yang memungkinkan menjalankan VM diatas sistem operasi. (Gambar \ref{fig:illust-docker} kanan).
-    \textit{Virtual Machine} yang dibuat biasanya akan menjalankan kernel sistem operasi dan \textit{dependencies}-nya, sehingga memori yang dibutuhkan sangat banyak.
+    \textit{Hypervisor} adalah salah satu aplikasi yang memungkinkan menjalankan
+    VM diatas sistem operasi. (Gambar \ref{fig:illust-docker} kanan).
+    \textit{Virtual Machine} yang dibuat biasanya akan menjalankan kernel sistem
+    operasi dan \textit{dependencies}-nya, sehingga memori yang dibutuhkan
+    sangat banyak.
     
-    Dengan karakteristik seperti itu, aplikasi yang dijalankan pada Docker memiliki beberapa keunggulan.
+    Dengan karakteristik seperti itu, aplikasi yang dijalankan pada Docker
+    memiliki beberapa keunggulan.
     \begin{itemize}
         \item Cepat dan \textit{Portable} \\
-            Docker dapat dikofigurasi dengan membuatkan berkas konfigurasi khusus. Berkas konfigurasi tersebut akan memberikan informasi \textit{image} yang akan digunakan. Sehingga waktu yang diperlukan untuk melakukan konfigurasi pada server baru relatif cepat. Waktu konfigurasi secara mayoritas akan habis pada saat pendefinisian berkas konfigurasi Docker tersebut.
+            Docker dapat dikofigurasi dengan membuatkan berkas konfigurasi
+            khusus. Berkas konfigurasi tersebut akan memberikan informasi
+            \textit{image} yang akan digunakan. Sehingga waktu yang diperlukan
+            untuk melakukan konfigurasi pada server baru relatif cepat. Waktu
+            konfigurasi secara mayoritas akan habis pada saat pendefinisian
+            berkas konfigurasi Docker tersebut.
             
         \item Konsisten \\
-            Dengan memanfaatkan \textit{image} dan \textit{engine} Docker, aplikasi akan berjalan pada \textit{platform} yang sama. Dengan karakteristik seperti itu, aplikasi yang didirikan secara teori akan dapat berjalan dengan konsisten pada berbagai sistem operasi.
+            Dengan memanfaatkan \textit{image} dan \textit{engine} Docker,
+            aplikasi akan berjalan pada \textit{platform} yang sama. Dengan
+            karakteristik seperti itu, aplikasi yang didirikan secara teori akan
+            dapat berjalan dengan konsisten pada berbagai sistem operasi.
             
         \item Aman \\
-            Karakteristik Docker yang berjalan secara terisolasi dapat meningkatkan keamanan hingga standar industri\cite{docker:what-is-container} secara \textit{default}.
+            Karakteristik Docker yang berjalan secara terisolasi dapat
+            meningkatkan keamanan hingga standar
+            industri\cite{docker:what-is-container} secara \textit{default}.
     \end{itemize}
     
