@@ -78,10 +78,10 @@ Peracangan antarmuka dilakukan dengan langsung menggunakan HTML untuk mempercepa
         \begin{tabular}{|l|l|l|}
         \hline
         Label & Deskripsi & Nilai Biner \\ \hline
-        C     & Buat      & \texttt{0001}        \\ \hline
-        R     & Baca      & \texttt{0010}        \\ \hline
-        U     & Perbarui  & \texttt{0100}        \\ \hline
-        D     & Hapus     & \texttt{1000}        \\ \hline
+        C     & Buat      & \texttt{0b0001}        \\ \hline
+        R     & Baca      & \texttt{0b0010}        \\ \hline
+        U     & Perbarui  & \texttt{0b0100}        \\ \hline
+        D     & Hapus     & \texttt{0b1000}        \\ \hline
         \end{tabular}
         \caption{Tabel representasi nilai biner pada kolom \texttt{permission} di entitas \texttt{ACLItem}}
         \label{tab:aclitem_level}
@@ -94,12 +94,23 @@ Peracangan antarmuka dilakukan dengan langsung menggunakan HTML untuk mempercepa
     Label tersebut kemudian diberikan tempat khusus pada bitstring sebelum akhirnya dikonversi
     sebagai angka. Nilai-nilai tersebut dapat dilihat pada tabel \ref{tab:aclitem_level}.
     
-    % TODO: ganti jadi rumus math yang bener.
+    
     Sebagai contoh, seorang pengguna dapat \textbf{membuat}, \textbf{membaca}, \textbf{memperbarui}
     namun tidak dapat menghapus sebuah entri. Nilai dari tabel \ref{tab:aclitem_level} digabungkan
     dengan operator \texttt{OR} untuk setiap izin yang diberikan.
-    Dengan begitu, nilai \texttt{permission} yang diberikan adalah
-    $0001 \vee 0010 \vee 0100 \vee 0000 = 0111$ dengan \texttt{0111} disimpan sebagai 7 pada database.
+    Dengan begitu, nilai \texttt{permission} yang diberikan adalah sebagai berikut:
+    
+    \begin{subequations}
+        \begin{align}
+            C \vee R \vee U \vee 0b0000 &= K\\
+            0b0001 \vee 0b0010 \vee 0b0100 \vee 0b0000 &= K \\
+            K &= 0b0111 \\
+            K &= 7
+        \end{align}
+    \end{subequations}
+    
+    Hasil kalkulasi kode izin tersebut akan disimpan sebagai 7 pada database sebagai representasi
+    kode izin \texttt{0b000}. 
     
     Pengecekan izin \texttt{permission} dilakukan dengan memanfaatkan operator \texttt{AND} antara 
     nilai pada kolom \texttt{permission} dengan nilai \texttt{permission} yang diekspektasikan, lalu
@@ -107,12 +118,44 @@ Peracangan antarmuka dilakukan dengan langsung menggunakan HTML untuk mempercepa
     Sebagai contoh, sistem perlu mengecek apakah pengguna dapat membuat sebuah entri. 
     Sistem dapat melakukan pengecekkan dengan melakukan operasi \texttt{AND} pada nilai 
     \texttt{permission} yang ada saat ini (\texttt{0111}) dengan nilai \texttt{permission} yang
-    diekspektasi (\texttt{0010}): $0111 \wedge 0010 = 0010$ dengan hasil sama seperti ekspentasi.
-    Dengan begitu sistem dapat menilai bahwa pengguna tersebut memiliki izin untuk melakukan hal
-    tersebut.
+    diekspektasi (\texttt{0010}), dan hasilnya dibandingkan dengan hasil ekspektasi. Kalkulasi
+    yang dilakukan dapat dilihat pada simulasi ekuasi berikut:
+    
+    \begin{subequations}
+        \begin{align}
+            K \wedge C &= C \\
+            0b0111 \wedge C &= C \\
+            0b0111 \wedge 0b0001 &= 0b0001 \\
+            0b0001 &= 0b0001 \\
+            \text{True}
+        \end{align}
+    \end{subequations}
+    
+    Sedangkan jika pengecekan apakah seorang pengguna dapat melakukan penghapusan terhadap sebuah entri,
+    perhitungan perizinannya menjadi:
+    
+    \begin{subequations}
+        \begin{align}
+            K \wedge D &= D \\
+            0b0111 \wedge D &= D \\
+            0b0111 \wedge 0b1000 &= 0b1000 \\
+            0b0000 &= 0b1000 \\
+            \text{False}
+        \end{align}
+    \end{subequations}
+    
+    Hasil dari ekuasi tersebut kemudian dapat digunakan untuk menentukan apakah seorang pengguna dapat
+    melakukan aksi yang diminta atau tidak.
+    
+    Operasi ini terinspirasi dari \texttt{chmod} dari Linux\footnote{Lihat https://linux.die.net/man/1/chmod}.
+    \texttt{chmod} menerima input berupa tiga angka yang merepresentasikan level akses pada \textit{resource}
+    tertentu pada sistem. Tiga angka tersebut kemudian diubah menjadi biner untuk dilihat apakah
+    seorang pengguna dapat melakukan aksi tertentu. Pendekatan ini kemudian diadaptasi pada sistem ini
+    dengan menggunakan level akses yang berbeda (CRUD, dibanding RWX). Dengan begitu pengaturan dan
+    pengelolaan resources pada entitas dapat lebih terkontrol dengan lebih fleksibel.
     
 \subsubsection{IPLogin}
-    \begin{figure}[H]
+    \begin{figure}
         \centering
         \includegraphics{Gambar/erd-details/ERD--New - IPLogin.pdf}
         \caption{Potongan diagram entitas untuk \texttt{IPLogin}.}
@@ -216,6 +259,60 @@ Peracangan antarmuka dilakukan dengan langsung menggunakan HTML untuk mempercepa
     1, sehingga kode untuk tahun ajar yang disimpan pada kolom \textit{period\_code} 
     adalah \texttt{20161}.
     
+\subsubsection{Participant}
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/erd-details/ERD--New - Participant.pdf}
+        \caption{Potongan diagram entitas untuk \texttt{Participant}}
+        \label{fig:erd_participant}
+    \end{figure}
+    
+    Entitas \texttt{Participant} digunakan untuk menyimpan informasi tentang peserta
+    ujian di lab. Seperti pada potongan diagram relasi entitas pada gambar \ref{fig:erd_participant},
+    entitas ini hanya memiliki dua kolom utama yang digunakan untuk merepresentasikan
+    seorang peserta. Kolom \texttt{username} untuk menyimpan informasi username pada sistem
+    dan \texttt{npm} untuk menyimpan informasi NPM dari peserta.
+    
+    Kolom \texttt{npm} digunakan untuk menyimpan string \textit{literal} dari nomor pokok mahasiswa
+    (NPM). Karena NPM mahasiswa yang aktif pada saat penelitian ini dibuat terdapat dua standar, maka
+    untuk memperingan kinerna basis data, string \textit{literal} NPM ikut disimpan.
+    
+    Sedangkan kolom \texttt{username} digunakan untuk menyimpan username yang biasa digunakan
+    di lab untuk login. Kolom ini akan berguna untuk membantu sistem mebuat \textit{script batch}
+    pada tahap pemberian akses ke berkas bantuan ujian dan \textit{workspace} peserta ujian. 
+    Pemberian akses dengan script membutuhkan nama pengguna yang digunakan untuk login.
+    
+\subsubsection{AnswerSlot}
+    Entitas \texttt{AnswerSlot} digunakan untuk menyimpan informasi tentang slot jawaban 
+    pada ujian tertentu. Entitas ini digunakan sebagai panduan untuk sistem memberikan
+    informasi tentang format penamaan file, disimpan pada kolom \texttt{format}. 
+    Seperti yang terlihat pada
+    diagram entitas pada \ref{fig:erd_overview}, entitas ini akan terhubung secara 
+    \textit{many-to-one} terhadap entitas \texttt{exam} dan \textit{one to many} pada entitas
+    \texttt{Submission}.
+    
+    Jawaban yang dikirimkan oleh peserta nantinya akan disimpan pada entitas \texttt{Submission}
+    dengan bantuan referensi format dari \texttt{AnswerSlot}. Setiap jawaban yang dikumpulkan akan dicek
+    formatnya berdasarkan format yang diberikan pada entitas \textit{AnswerSlot}.
+
+\subsubsection{ExamReport}
+    Entitas \texttt{ExamReport} digunakan untuk membantu sistem menjadwalkan pengiriman laporan
+    ujian. Laporan ini nantinya direncanakan untuk dikirimkan via email untuk mengatisipasi email
+    diblokir oleh penyedia layanan email karena kode Java dan berkas \texttt{.class}nya dianggap 
+    sebagai virus.
+    
+    Seperti yang ditunjukkan pada diagram entitas pada gambar \ref{fig:erd_overview}, entitas 
+    \texttt{ExamReport} menyimpan beberapa kolom yang digunakan untuk membantu penjadwalan.
+    Kolom pertama adalah \texttt{sent\_on} yang digunakan untuk menandakan apakah ujian ini
+    telah dikirimkan pada email (\texttt{to(s)}) ini. Kolom \texttt{valid\_until} digunakan
+    untuk menyimpan informasi kapan \texttt{token} akan kadaluarsa (\textit{expired}).
+    
+    Penggunaan token pada kasus ini dengan harapan alamat link yang dikirim oleh sistem
+    ke dosen dapat dengan aman di akses. Kode token akan terdiri dari 16 byte acak yang
+    dikonversi menjadi 32 digit heksadesimal string. Token ini diharapkan 
+    dibangkitkan dengan standar pengacakan untuk kriptografi.  Pengacakan dengan standar 
+    tersebut diharapkan dapat memperkecil faktor kemungkinan serangan prediksi 
+    kode token (\textit{guessing attack}).
 
 \subsubsection{Exam}
     \begin{figure}
@@ -251,12 +348,88 @@ Peracangan antarmuka dilakukan dengan langsung menggunakan HTML untuk mempercepa
     \texttt{time\_ended} tidak diberikan. Selain itu, dengan mengisi dua kolom tersebut secara
     simultan, diharapkan dapat mengurangi potensi masalah ujian lupa ditutup.
     
-\subsubsection{}
+\subsubsection{Submission}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics{Gambar/erd-details/ERD--New - Submission.pdf}
+        \caption{Potongan diagram relasi entitas untuk \texttt{Submission}}
+        \label{fig:erd_submission}
+    \end{figure}
+
+    Entitas \texttt{Submission}, seperti yang dapat dilihat pada potongan diagram relasi entitas 
+    \ref{fig:erd_submission}, menampung informasi tentang submisi yang dilakukan oleh
+    peserta ujian. Submisi yang dikirimkan direncanakan untuk disimpan dengan nama berkas
+    yang acak. Nama berkas tersebut kemudian disimpan pada database sebagai referensi untuk nantinya
+    pelaporan yang dibantu oleh entitas \texttt{ExamReport}.
+    
+    Submisi yang dikirimkan oleh peserta akan dicek formatnya dengan bantuan dari entitas 
+    \texttt{AnswerSlot}. Jika nama berkas sudah sesuai dengan format, maka data akan dimasukan
+    pada entitas ini.
+    
+\subsubsection{Notification}
+    Entitas \texttt{Notification} menyimpan informasi tentang notifikasi yang diberikan
+    pada peserta. Karena beragam notifikasi dapat diberikan pada peserta, seperti informasi tentang
+    kredensial untuk masuk ke sistem judge atau basis data; atau informasi tentang ralat soal.
+    Oleh karena itu hubungan yang dimiliki entitas ini dengan entitas peserta adalah
+    \textit{many-to-many}.
+    
+    Seperti pada diagram relasi entitas pada gambar \ref{fig:erd_overview}, entitas 
+    \texttt{Notification} memiliki beberapa kolom untuk menyimpan isi notifikasi 
+    (\texttt{description}) dan judul (\texttt{title}). Kolom lainnya, seperti \texttt{type} digunakan
+    untuk memasukan notifikasi terhadap grup tertentu. Kolom yang terakhir adalah 
+    kolom \texttt{extras}. Semua informasi yang tidak dapat direpresentasikan pada kolom akan
+    disimpan dalam bentuk JSON pada kolom ini. Kolom ini disediakan karna kebutuhan fleksibilitas
+    notifikasi yang mungkin akan muncul di masa yang akan datang.
 
 \subsection{Rancangan REST API}
+    REST API dirancang dengan pola yang seragam pada beberapa \textit{endpoint} besar, sehingga
+    penggunaan API dapat lebih optimal diaplikasikan dengan metode abstraksi API class pada sistem
+    frontend.
+    
+    Perancangan REST API dimulai dengan merencanakan metode otentikasi yang akan digunakan untuk
+    setiap permintaan. Lalu pembahsan dilanjutkan dengan desain URL yang digunakan dan tujuannya.
+    
     % sistem otentikasi
+\subsubsection{Otentikasi API}
+    Sesuai dengan kebutuhan, Otentikasi API terbagi menjadi dua bagian besar berdasarkan penggunaannya.
+    Otentikasi API yang pertama dilakukan dengan menggunakan IP, sedangkan yang kedua, otentikasi
+    dilakukan dengan menggunakan token.
+    %TODO: MORE
+    
+    Otentikasi dengan IP diperuntukkan untuk API yang berhubungan dengan ujian pada lokasi yang telah
+    didefinisikan sebelumnya. IP digunakan karena sistem sebelumnya menggunakan cara ini dan telah
+    terbukti di "medan perang" bahwa cara ini sudah sangat efektif. Pengguna tidak perlu melakukan
+    otentikasi secara manual dengan memasukkan kredensial khusus untuk sistem. Otentikasi dengan IP
+    juga tidak memaksa klien untuk melakukan refresh secara terus menerus untuk memperbarui 
+    \textit{session} mereka, seperti pada aplikasi sebelumnya.
+    
+    Otentikasi dengan token dilakukan dengan melakukan otentikasi manual hingga sistem memberikan
+    sebuah string khusus yang digunakan sebagai token untuk setiap permintaan. Otentikasi
+    manual tersebut dapat berupa memasukan kredensial login, atau dengan token khusus yang sebelumnya
+    diberikan pada email. Token ini nantinya dapat digunakan untuk mengakses berbagai 
+    \textit{resources} yang backend sediakan. Seperti tombol unduh pada halaman laporan, atau
+    melakukan CRUD pada entitas tertentu.
+    Token yang digunakan pada sistem normalnya akan menggunakan JSON Web Token atau JWT, dengan bantuan 
+    \textit{library} dari backend. Rencananya JWT ini akan menggunakan algoritma kunci asimetrik,
+    sebagai standar keamanan.
     
     % desail url berdasarkan rest API
+\subsubsection{Desain \textit{Endpoint}}
+    Dengan beragam kebutuhan yang muncul, design URL untuk REST API juga harus mengikuti. REST API
+    yang ada akan 
+    
+    % Bagian Otentiksi
+\subsubsection{Desain \textit{Endpoint} Otentikasi}
+
+    % Bagian Exam
+\subsubsection{Desain \textit{Endpoint} Ujian}
+    
+    % Bagian Admin
+\subsubsection{Desain \textit{Endpoint} Admin}
+    
+    % Bagian Dosen
+\subsubsection{Desain \textit{Endpoint} Lainnya}
     
 \subsection{Desain Kelas}
     % diagram kelas
@@ -266,6 +439,9 @@ Peracangan antarmuka dilakukan dengan langsung menggunakan HTML untuk mempercepa
     
     % Jelasin komponennya satu satu
 \section{Perancangan Sistem CI/CD dan Unit Testing}
+    
     % melakukan build pada saat commit
+    
+    
     % melakukan unit testing pada saat commit
     % unit testing yang dilakukan cuma buat 
