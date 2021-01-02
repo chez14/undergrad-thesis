@@ -2,18 +2,194 @@
 \label{chap:perancangan}
 
 \section{Rancangan Antarmuka}
-Peracangan antarmuka dilakukan dengan langsung menggunakan HTML untuk mempercepat pengembangan aplikasi. Bootstrap\footnote{https://getbootstrap.com/} digunakan untuk mempercepat \textit{styling} pada HTML. Perancangan antarmuka tersebut dibagi menjadi tiga bagian besar berdasarkan analisa pengguna yang telah dilakukan pada bab sebelumnya.
+    Peracangan antarmuka dilakukan dengan membuat \textit{mockup} aplikasi. Desain \textit{mockup} dibagi 
+    menjadi tiga bagian besar berdasrkan peranan penggunanya. Pembahasan akan dimulai dengan rancangan 
+    antarmuka untuk Perserta, lalu perancangan antarmuka untuk Admin, Dosen Pengawas, dan kemudian rancangan 
+    antarmuka tambahan.
 
 \subsection{Rancangan Antarmuka untuk Peserta}
+    Rancangan antarmuka untuk peserta didasari dari kasus penggunaan dari aplikasi. Berdasarkan hasil analisis
+    pada survei, peserta sudah merasa nyaman dengan antarmuka pada sistem yang lama. Sehingga penulis
+    mengadopsi antarmuka yang lama dan diperbarui dengan kebutuhan yang baru. Beberapa kebutuhan yang baru
+    seperti penutupan dan pembukaan lembar jawaban, informasi ujian dan waktu, serta fitur notifikasi untuk
+    kredensial login dan pengumuman lainnya.
+    
+     % Screen ujian kosong
+     % TODO: FOTO
+     Tampilan antarmuka pertama yang akan dibahas adalah tampilan untuk menunjukkan informasi bahwa
+     tidak ada ujian yang sedang ditautkan ke komputer tersebut pada waktu tertentu. Hal ini diperuntukan
+     untuk membantu tim admin melakukan pengecekan lebih cepat karena tampilan layar yang beda secara
+     signifikan. Selain itu, tampilan pesan yang cukup ramah untuk pengguna menampilkan informasi bahwa mungkin
+     peserta salah mengambil tempat duduk.
+     
+     
 
+    % Screen ujian AKAN mulai
+    
+    % Screen ujian buka lembar jawab
+    % Screen ujian notifikasi
 
 \subsection{Rancangan Antarmuka untuk Admin}
+    
+    % Screen admin login
+\subsubsection{Otentikasi}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/mockups/Mockup--Admin - Login.pdf}
+        \caption{Tampilan rancangan antarmuka untuk halaman otentikasi untuk Admin}
+        \label{fig:mockup_admin_login}
+    \end{figure}
+    Untuk dapat mengakses halaman admin panel, pengguna diharuskan untuk melakukan otentikasi
+    terlebih dahulu. Otentikasi untuk admin panel ...
+    
+\subsubsection{Manajemen Ujian}
+    % Screen admin exam listing
+    
+    % Screen admin exam create (3-4 screens)
+    
+    % Screen admin exam details (mayan banyak)
+    % Timer
+    % Absensi (pintu dan tanda tangan)
+    % Pindah
+    % Notifikasi
+    % Slot jawaban
+    % Autoreport
+    
+    % Tampilan mobile (minipanel)
+    
+    % Screen admin entity edit
 
 
 \subsection{Rancangan Antarmuka untuk Dosen Pengawas}
-
     % Jelasin kalo ini buat di proyektor
-
+    Antarmuka untuk dosen pengawas akan bertanggung jawab untuk membuka dan menutup lembar jawab,
+    serta menampilkan informasi ujian di proyektor tiap ruangan. Tampilan ini mungkin akan 
+    berbeda-beda pada tiap ruangan, tergantung dari ujian yang akan dilaksanakan pada ruangan
+    tersebut. Karena kendala teknis, rencananya alur untuk menuju tampilan layar akan melalui otentikasi
+    terlebih dahulu. 
+    
+\subsubsection{Otentikasi}
+    % Screen login by IP
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/mockups/Mockup--DosenPengawas - Login.pdf}
+        \caption{Rancangan antarmuka untuk otentikasi, dengan menekankan bagian tertentu.}
+        \label{fig:mockup_dosen_login}
+    \end{figure}
+    Tahap pertama untuk dapat mengakses layar timer, pengguna harus melakukan login terlebih dahulu.
+    Serupa dengan halaman Login yang digunakan untuk otentikasi Admin pada Gambar
+    \ref{fig:mockup_admin_login}, otentikasi untuk pengguna jenis ini dipertegas dengan penggunaan
+    tombol IP Login yang ditunjukan pada poin 1 di Gambar \ref{fig:mockup_dosen_login}.
+    
+    Tombol IP Login pada Gambar \ref{fig:mockup_dosen_login} direncanakan akan langsung mengarahkan 
+    pengguna ke halaman peta ruangan ujian dan timer ujian jika berhasil. IP dari komputer yang
+    digunakan untuk mengakses halaman ini harus diregistrasikan ke sistem untuk proses otentikasi
+    dapat berhasil. Jika otentikasi gagal, halaman ini harus menampilkan pesan kesalahan yang
+    mendeskripsikan bahwa IP komputer tidak teregistrasi.
+    
+    % Screen Seatmap
+\subsubsection{Peta Ruangan}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/mockups/Mockup--DosenPengawas - Seatmap.pdf}
+        \caption{Tampilan rancangan antarmuka untuk halaman Peta Ruangan Ujian}
+        \label{fig:mockup_dosen_seatmap}
+    \end{figure}
+    Setelah otentikasi berhasil, dosen pengawas akan diarahkan menuju halaman peta ruangan
+    ujian. Rancangan halaman informasi peta ruangan dapat dilihat pada Gambar 
+    \ref{fig:mockup_dosen_seatmap}. Pada halaman ini, informasi tentang nomor ruangan dan peta
+    tempat duduk ruangan tersebut akan ditampilkan secara diagram.
+    
+    Bagian yang ditunjukan oleh poin 1 dan poin 2 pada Gambar \ref{fig:mockup_dosen_seatmap}
+    adalah nagivasi untuk menuju halaman timer dan peta ruangan. Navigasi ditambahkan untuk 
+    memudahkan dosen untuk melihat ujian yang akan berjalan dan peta ruangan yang ada saat ini.
+    Saat pengguna pindah ke \textit{tab} lain, halaman tidak akan disegarkan atau mengalami pemuatan
+    ulang. 
+    % TODO: Expand
+    
+    Informasi tentang ruangan dan petanya ditunjukan pada poin 3 dan 4 dari Gambar 
+    \ref{fig:mockup_dosen_seatmap}. Poin 3 akan menunjukan nama ruangan yang ada dan poin
+    4 menunjukkan peta ruangan ujian. Peta ini dirancang untuk membantu peserta untuk mencari
+    tempat duduk mereka. Sistem akan menampilkan tempat duduk tempat komputer yang terdaftar
+    pada sistem. Informasi tentang posisi komputer rencananya disimpan pada database.
+    
+    % Screen Timer
+\subsubsection{Timer Ujian}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/mockups/Mockup--DosenPengawas - Timer.pdf}
+        \caption{Tampilan rancangan antarmuka untuk halaman Timer.}
+        \label{fig:mockup_dosen_timer}
+    \end{figure}
+    Rancangan halaman timer ujian dapat diperhatikan pada Gambar \ref{fig:mockup_dosen_timer}.
+    Secara keseluruhan, halaman timer akan menampilkan informasi ujian singkat, waktu tersisa
+    dan tombol-tombol alat untuk memanipulasi waktu ujian.
+    
+    Mengikuti rancangan antarmuka Peta Ruangan, halaman timer memiliki bagian navigasi seperti
+    yang ditunjukan pada poin 1 dan 2 pada Gambar \ref{fig:mockup_dosen_timer}. Karena saat ini
+    pengguna sedang membuka \textit{tab} Timer, maka kepala \textit{tab} yang aktif menunjukan
+    kepala \textit{tab} timer. Dosen pengawas dapat melakukan 
+    
+    %TODO: poin 3
+    
+    %TODO: poin 4
+    
+    %TODO: poin 5
+    
+    %TODO: poin 6
+    
+    %TODO: poin 7
+    
+    %TODO: poin 8
+    
+    
+    % Screen Overtime
+    
+    
+\subsection{Rancangan Antarmuka Tambahan}
+    Rancangan antarmuka tambahan ini muncul dari kebutuhan untuk sistem mengirimkan laporan
+    ujian dengan tambahan halaman pengunduhan. Oleh karena itu, pada bagian ini akan dibahas rancangan 
+    antarmuka untuk email dan halaman pengunduhannya.
+    
+    % Email
+\subsubsection{Email Laporan}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/mockups/Mockup--Tambahan.pdf}
+        \caption{Tampilan rancangan antarmuka untuk email laporan ujian}
+        \label{fig:mockup_addition_email}
+    \end{figure}
+    Email yang akan dikirimkan sebagai laporan akan dibuat dengan teknologi HTML, seperti pada umumnya.
+    Email akan berisi sebuah tautan menuju halaman untuk mengunduh berkas jawaban ujian. Email juga
+    rencananya akan berisi beberapa informasi krusial tentang masa hidup tautan tersebut sehingga
+    penerima laporan tidak merasa kebingungan jika tautan tidak dapat diakses.
+    
+    Rancangan untuk tampilan email dapat dilihat pada Gambar \ref{fig:mockup_addition_email}. Seperti yang
+    ditunjukkan pada gambar, email akan memiliki sejumlah instruksi untuk mengunduh berkas jawaban, informasi
+    mata kuliah ujian (Poin 1 dari Gambar \ref{fig:mockup_addition_email}), tautan untuk mengunduh berkas
+    jawaban tersebut (Poin 2 dari Gambar \ref{fig:mockup_addition_email}), dan informasi kapan tautan
+    tersebut akan kadaluarsa (Poin 3 dari Gambar \ref{fig:mockup_addition_email}).
+    
+    % Autonomus download
+\subsubsection{Halaman Pengunduhan Berkas Jawaban Ujian}
+    Tautan yang dikirim lewat email akan mengarah pada halaman ini. Informasi singkat tentang ujian
+    akan ditampilkan pada halaman ini sebelum akhirnya penerima laporan dapat melakukan pengunduhan hasil
+    jawaban tersebut. Halaman ini direncanakan untuk disediakan oleh sistem Oxam yang dapat diakses
+    via internet.
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/mockups/Mockup--Tambahan - Exam-extractor.pdf}
+        \caption{Tampilan rancangan antarmuka untuk halaman pengunduhan berkas jawaban ujian.}
+        \label{fig:mockup_addition_downloader}
+    \end{figure}
+    Rancangan halaman pengunduhan dapat dilihat pada Gambar \ref{fig:mockup_addition_downloader}.
+    Bagian yang ditunjukkan oleh Poin 1 pada Gambar \ref{fig:mockup_addition_downloader} adalah 
+    informasi ujian yang disajikan dalam bentuk tabel. Tabel ini nantinya akan berisi semua
+    informasi dari entitas ujian, dengan penyesuaian tertentu. Lalu bagian yang ditunjukkan pada
+    poin 2 adalah tombol unduh jawaban ujian. Tombol ini akan memaksa peramban untuk melakukan
+    pengunduhan berkas jawaban ke komputer penerima laporan.
+    
 \section{Perancangan Sistem Backend}
     Sesuai dengan perannya, sistem backend akan bertanggung jawab menangani bagian-bagian yang hanya 
     ditangani pada sisi peladen. Tanggung jawab tersebut mulai dari melakukan pengolahan data,
@@ -416,12 +592,34 @@ Peracangan antarmuka dilakukan dengan langsung menggunakan HTML untuk mempercepa
     
     % desail url berdasarkan rest API
 \subsubsection{Desain \textit{Endpoint}}
-    Dengan beragam kebutuhan yang muncul, design URL untuk REST API juga harus mengikuti. REST API
-    yang ada akan 
+    REST API dibagi menjadi empat bagian besar berdasarkan kebutuhannya. Bagian-bagian tersebut
+    memiliki teknik otentikasi yang berbeda-beda. Sebagai contoh untuk endpoint otentikasi
+    tidak akan memiliki otentikasi sama sekali, atau, otentikasi Ujian dilakukan secara tidak
+    langsung dengan menggunakan IP. 
+    
+    Seluruh endpoint akan diprefix dengan \texttt{/api/v1/} untuk memberikan fleksibilitas di masa
+    yang akan datang pada saat API akan diaplikasikan teknik \textit{versioning}. Selain itu,
+    dengan desain url seperti ini, pengembang dapat mengetahui versi yang mereka gunakan pada
+    API tersebut.
+    
+    Pembahasan akan dimulai dengan endpoint untuk otentikasi
+    terlebih dahulu, lalu dilanjutkan dengan API ujian, API admin, dan API lainnya.
     
     % Bagian Otentiksi
 \subsubsection{Desain \textit{Endpoint} Otentikasi}
-
+    Endpoint untuk otentikasi dapat di akses pada \texttt{system}. Endpoint ini akan bertugas untuk
+    menangani segala hal yang berhubungan dengan otentikasi. Mulai dari melakukan pengecekan
+    login (\texttt{system/auth/login}), mengambil informasi pengguna yang sedang masuk 
+    (\texttt{system/user/me}), hingga membantu untuk menangani 
+    \textit{IPLogin} (\texttt{system/auth/iplogin}). 
+    Endpoint ini seharusnya bertanggung jawab untuk menerbitkan token JWT
+    berdasarkan informasi pengguna terkait yang terekan pada basisdata.
+    
+    Terdapat satu buah pengecualian untuk otentikasi ujian. Otentikasi ujian dilakukan secara tidak
+    langsung dengan melakukan perbadingan langsung di level endpoint mereka. Endpoint otentikasi
+    tidak akan menerbitkan token untuk peserta ujian, karena peserta ujian dapat langsung
+    mengakses endpoint \texttt{exam}
+    
     % Bagian Exam
 \subsubsection{Desain \textit{Endpoint} Ujian}
     
@@ -439,9 +637,49 @@ Peracangan antarmuka dilakukan dengan langsung menggunakan HTML untuk mempercepa
     
     % Jelasin komponennya satu satu
 \section{Perancangan Sistem CI/CD dan Unit Testing}
-    
     % melakukan build pada saat commit
+    Berdasarkan hasil analisis pada bab sebelumnya, penelitian membutuhkan sebuah sistem yang dapat
+    melakukan \textit{build} secara otomatis sebelum dapat di-\textit{deploy} ke peladen produksi.
+    Sistem \textit{build} tersebut akan direncanakan untuk diimplementasi pada sistem CI/CD yang
+    terintegrasi dengan tempat penyimpanan repositori kode sumber. Kode sumber tersebut nantinya akan
+    dilacak oleh sistem repository sehingga pada saat kode mengalami perubahan, sistem CI/CD akan
+    secara otomatis berjalan. Sistem ini direncakan untuk melakukan hal berikut secara sekuensial:
     
+    \begin{itemize}
+        \item Melakukan penyegaran dependensi.
+        \item Melakukan \textit{build} dengan level produksi.
+        \item Menyimpan hasil \textit{build} pada repositori.
+        \item Unggah perubahan pada repositori kembali ke layanan penyimpanan.
+        \item Picu sistem \textit{deploy} untuk melakukan \textit{deployment}.
+    \end{itemize}
+    
+    Hal tersebut dilakukan untuk memastikan hasil \textit{build} dapat dikirimkan pada peladen untuk disediakan
+    ke pengguna. Sistem \textit{deployment} yang digunakan diimplementasi dengan bantuan script yang dijalankan
+    via SSH. \textit{Script} tersebut direncanakan akan melakukan pengunduhan perubahan kode, lalu melakukan
+    penyegaran dependensi versi server, dan mengabari kembali sistem CI/CD bahwa \textit{deployment} telah
+    berhasil dilakukan.
+    
+    % Unit testing part
+    Selain melakukan \textit{build}, penelitian juga akan menambahkan sistem tes unit otomatis. Sistem tes ini
+    direncakan untuk melakukan pengecekan terhadap komponen-komponen krusial pada aplikasi. Karena konsekuensi
+    yang ditanggung aplikasi cukup besar, maka sistem tes ditambahkan untuk mencegah kesalahan yang sangat
+    fatal. Sistem testing ini direncanakan akan melakukan pengujian pada:
+    
+    \begin{itemize}
+        \item Sistem Otentikasi \\
+            Sistem otentikasi diharapkan dapat melakukan penolakan akses tidak berizin pada beberapa sumber daya
+            yang dinaungi oleh sistem ini. Salah satu yang menjadi krusial untuk dipastikan adalah
+            hanya pengguna dengan peran Admin yang dapat melakukan aksi tulis pada REST API untuk
+            Admin.
+        \item Penjadwalan Ujian \\
+            Fungsi penjadwalan ujian adalah salah satu fungsi yang cukup krusial. Fungsi ini akan bertanggung
+            jawab untuk mencegah ujian lain tampil pada ujian lainnya. Jika ujian lain tampil, maka lembar jawab
+            untuk ujian tersebut juga akan terbuka, sehingga peserta bisa saja mengunduh jawaban ujian
+            dari \textit{shift} sebelumnya. Pada dasarnya, tujuan diadakannya tes unit untuk fungsi ini
+            adalah untuk memastikan bahwa fungsi yang memiliki konsekuensi besar dapat berjalan dengan
+            semestinya.
+    \end{itemize}
     
     % melakukan unit testing pada saat commit
-    % unit testing yang dilakukan cuma buat 
+    Sistem tes unit ini direncakan berjalan bersama sistem \textit{build}. Sehingga kode akan di tes setiap kali
+    kode baru diunggah ke tempat penyimpanan.
