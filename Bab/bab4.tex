@@ -15,20 +15,77 @@
     kredensial login dan pengumuman lainnya.
     
      % Screen ujian kosong
-     % TODO: FOTO
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/mockups/Mockup--Peserta - Blankstate.pdf}
+        \caption{Tampilan rancangan antarmuka untuk peserta, saat ujian sedang tidak berjalan.}
+        \label{fig:mockup_peserta_blankstate}
+    \end{figure}
      Tampilan antarmuka pertama yang akan dibahas adalah tampilan untuk menunjukkan informasi bahwa
-     tidak ada ujian yang sedang ditautkan ke komputer tersebut pada waktu tertentu. Hal ini diperuntukan
+     tidak ada ujian yang sedang berjalan, dapat dilihat pada Gambar \ref{fig:mockup_peserta_blankstate}. 
+     Hal ini diperuntukkan
      untuk membantu tim admin melakukan pengecekan lebih cepat karena tampilan layar yang beda secara
-     signifikan. Selain itu, tampilan pesan yang cukup ramah untuk pengguna menampilkan informasi bahwa mungkin
-     peserta salah mengambil tempat duduk.
-     
-     
+     signifikan. Selain itu, tampilan pesan yang cukup ramah untuk pengguna menampilkan 
+     informasi bahwa mungkin peserta mengambil tempat duduk yang salah.
 
     % Screen ujian AKAN mulai
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/mockups/Mockup--Peserta - Prestartstate.pdf}
+        \caption{Tampilan rancangan antarmuka untuk peserta, saat ujian akan berjalan.}
+        \label{fig:mockup_peserta_prestartstate}
+    \end{figure}
+    Rancangan berikutnya adalah tampilan antarmuka untuk memulai ujian, dapat dilihat pada 
+    \ref{fig:mockup_peserta_prestartstate}. Tampilan ini akan ditampilkan
+    pada saat ujian akan dimulai di ruangan. Tampilan ini rencananya akan dibuat untuk menahan
+    perserta untuk langsung mengakses lembar jawaban ujian. Pada bagian ini terdapat beberapa informasi
+    tentang peserta (poin 1), fitur notifikasi untuk mengecek kredensial login lainnya (poin 2),
+    dan informasi lengkap ujian dalam bentuk tabel (poin 3).
+    Selain itu terdapat deskripsi kecil untuk membantu peserta mengerti konteks dari tampilan
+    layar ini. 
     
     % Screen ujian buka lembar jawab
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/mockups/Mockup--Peserta - Startstate.pdf}
+        \caption{Tampilan rancangan antarmuka untuk peserta, saat ujian sedang berjalan.}
+        \label{fig:mockup_peserta_activestate}
+    \end{figure}
+    Antarmuka berikutnya adalah antarmuka saat ujian sedang berjalan, dapat dilihat pada Gambar 
+    \ref{fig:mockup_peserta_activestate}. Tampilan rancangan antarmuka ini memiliki beberapa bagian
+    yang mirip dengan tampilan sebelumnya seperti bagian kepala (poin 3), namun dilengkapi dengan
+    informasi singkat tentang ujian (poin 1) dan timer ujian serta lokasi tempat duduk (poin 2).
+    Selain itu, untuk mempercepat admin melihat status pada layar, bagian kepala diwarnai berbeda
+    dengan tampilan sebelumnya (dari kuning menjadi biru).
+    
+    Bagian yang ditunjukkan oleh poin 4 adalah bagian pengunggahan. Bagian ini memiliki informasi
+    tentang nama berkas yang harus dikumpulkan dan tombol unggah dan unduh. Tombol unduh akan dapat
+    diklik pada saat peserta berhasil mengunggah. Tombol unduh ditambahkan untuk alasan pengecekkan.
+    Berdasarkan survei lapangan, peserta biasanya akan diarahkan untuk melakukan pengecekkan ulang.
+    Pengencekan tersebut melibatkan peserta untuk mengunduh berkas ujian untuk kemudian dipastikan
+    apakah berkas jawaban tersebut sudah sesuai dengan apa yang mereka kirimkan.
+    
     % Screen ujian notifikasi
-
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/mockups/Mockup--Peserta - Notif.pdf}
+        \caption{Tampilan rancangan antarmuka keseluruhan untuk notifikasi peserta. \\
+            (A) Daftar notifikasi; (B) Notifikasi terbuka.}
+        \label{fig:mockup_peserta_notif}
+    \end{figure}
+    Rancangan berikutnya adalah fitur notifikasi. Fitur ini akan dimuncuklkan sejak tahap ujian sedang akan
+    dimulai. Pada Gambar \ref{fig:mockup_peserta_prestartstate} dan \ref{fig:mockup_peserta_activestate}
+    dapat dilihat bahwa terdapat tombol dengan lambang 'N' dekat dengan informasi singkat peserta.
+    tombol tersebut adalah tombol notifikasi. Jika tombol tersebut diklik, maka akan tampil sebuah
+    daftar notifikasi dalam bentuk \textit{dropdown} (Perhatikan Gambar \ref{fig:mockup_peserta_notif},
+    bagian A). Pada rancangan tampilan, peserta dapat melihat beberapa notifikasi yang telah
+    diberikan untuk peserta tersebut (perhatikan Poin 1). Jika Poin 1 diklik, maka notifikasi akan
+    ditampilkan secara modal (Perhatikan Gambar \ref{fig:mockup_peserta_notif}, bagian B).
+    Tampilan interaktif dengan modal dipilih untuk menunjukan bahwa peserta dapat menutup
+    modal tersebut tanpa kehilangan formulir lembar pengumpulan jawaban ujian.
+    Selain itu dengan menggunakan modal, tataletak yang sudah ada tidak berubah, dan memperkecil
+    \textit{learning curve} untuk peserta membiasakan diri dengan aplikasi ini.
+    
 \subsection{Rancangan Antarmuka untuk Admin}
     
     % Screen admin login
@@ -40,7 +97,19 @@
         \label{fig:mockup_admin_login}
     \end{figure}
     Untuk dapat mengakses halaman admin panel, pengguna diharuskan untuk melakukan otentikasi
-    terlebih dahulu. Otentikasi untuk admin panel ...
+    terlebih dahulu. Rancangan tampilan admin panel tersebut dapat dilihat pada Gambar 
+    \ref{fig:mockup_admin_login}. Pada rancangan tampilan, terdapat beberapa bagian yang dapat
+    pengguna isi untuk login. Bagian yang ditunjukan oleh poin 1 adalah bidang username dari
+    admin. Bidang ini direncanakan untuk dapat menerima namapengguna dan email. Lalu bagian
+    berikutnya adalah bidang yang ditunjukkan oleh poin 2. Bidang tersebut adalah bidang kata sandi.
+    Lalu pada bagian yang ditunjukan oleh poin 3 dan 4 adalah tombol aksi untuk melakukan login.
+    Tombol yang ditunjukkan oleh poin 3 tidak memanfaatkan bidang namapengguna dan kata sandi,
+    namun akan langsung melakukan pemanggilan API ke backend untuk melakukan otentikasi
+    secara nir-kata sandi dengan bantuan IP. Proses ini akan dijelaskan lebih lanjut pada bagian
+    rancangan antarmuka untuk dosen pengawas. Bagian yang ditunjukkan pada poin 4 adalah tombol
+    login sesungguhnya. Pengguna yang telah dipastikan sebagai admin akan dapat melakukan login
+    dan diarahkan menuju daftar ujian. Namun jika pengguna memasukkan kredensial login yang salah
+    sebuah pesan kesalahan akan dimunculkan dalam bentuk \textit{Alert}.
     
 \subsubsection{Manajemen Ujian}
     % Screen admin exam listing
@@ -58,7 +127,7 @@
     % Tampilan mobile (minipanel)
     
     % Screen admin entity edit
-
+\subsubsection{Pengelola Entitas}
 
 \subsection{Rancangan Antarmuka untuk Dosen Pengawas}
     % Jelasin kalo ini buat di proyektor
@@ -127,23 +196,49 @@
     
     Mengikuti rancangan antarmuka Peta Ruangan, halaman timer memiliki bagian navigasi seperti
     yang ditunjukan pada poin 1 dan 2 pada Gambar \ref{fig:mockup_dosen_timer}. Karena saat ini
-    pengguna sedang membuka \textit{tab} Timer, maka kepala \textit{tab} yang aktif menunjukan
-    kepala \textit{tab} timer. Dosen pengawas dapat melakukan 
+    pengguna sedang membuka \textit{tab} Timer, maka kepala \textit{tab} yang aktif menunjukkan
+    kepala \textit{tab} timer. Dosen pengawas dapat melihat kedua informasi tersebut dengan mudah.
     
-    %TODO: poin 3
+    % poin 3
+    Bagian yang ditunjukkan pada poin 3 adalah informasi ujian secara singkat. Informasi yang ditunjukkan
+    berupa kode mata kuliah dan \textit{shift}nya. Informasi ini nantinya dapat digunakan untuk membedakan
+    ujian satu dengan yang lainnya pada tampilan multiujian.
     
-    %TODO: poin 4
+    % poin 4
+    Bagian yang ditunjukkan pada poin 4 adalah jumlah durasi waktu yang diberikan untuk ujian ini. Durasi
+    lamanya ujian ini akan diambil dari basis data dan tidak akan berkurang mengikuti tampilan timer.
     
-    %TODO: poin 5
+    % poin 5
+    Bagian yang ditunjukan oleh poin 5 adalah tampilan timer. Timer ini akan memiliki nilai dasar total
+    durasi dari ujian. Timer akan mulai berjalan saat kontrol yang ditunjukan pada poin 6 mulai digunakkan.
+    Pada saat timer mencapai nilai nol, maka tampilan tersebut rencananya akan di tahan beberapa menit
+    untuk memastikan dosen pengawas dapat menambahkan waktu lebih sebelum lembar jawab tidak dapat diubah
+    kembali.
     
-    %TODO: poin 6
+    % poin 6
+    Poin 6 menunjukkan bagian kontrol dari timer ujian. Kontrol rencananya terdiri dari tombol aksi mulai
+    berhenti, dan setel ulang. Tombol-tombol ini rencananya akan langusng melakukan panggilan API
+    ke sistem back-end.
     
-    %TODO: poin 7
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/mockups/Mockup--DosenPengawas - Timer + Overtime.pdf}
+        \caption{Tampilan rancangan antarmuka untuk \textit{Overtime} Ujian}
+        \label{fig:mockup_dosen_overtime}
+    \end{figure}
     
-    %TODO: poin 8
+    % poin 7
+    Poin 7 menunjukkan tombol tambahan \textit{overtime}. Tombol ini digunakan untuk menambahkan waktu
+    ujian jika sewaktu-waktu dibutuhkan. Tombol akan menampilkan sebuah \textit{modal} yang menyediakan
+    sebuah formulir sederhana, menanyakan berapa banyak waktu yang ingin ditambahkan. Modal tersebut
+    dapat dilihat pada Gambar \ref{fig:mockup_dosen_overtime}. Modal akan menampilan informasi
+    singkat ujian (poin 9), banyak waktu yang diinginkan (poin 10), tombol cepat untuk menambahkan waktu
+    (poin 11), dan tombol \textit{submit} dan batalkan (poin 12).
     
-    
-    % Screen Overtime
+    % poin 8
+    Poin 8 adalah contoh timer lain yang ditunjukkan jika terdapat ujian lain yang akan diadakan pada
+    ruangan yang sama. Tampilan akan memiliki bentuk tataletak yang sama, sehingga yang menjadi pembeda
+    hanyalah bagian kepala (ditunjukkan pada poin 3).
     
     
 \subsection{Rancangan Antarmuka Tambahan}
@@ -622,6 +717,9 @@
     
     % Bagian Exam
 \subsubsection{Desain \textit{Endpoint} Ujian}
+    Endpoint untuk ujian memiliki prefiks \texttt{exam}. Endpoint ini akan menggunakan otentikasi
+    IP dan tidak membutuhkan penggunanya untuk mengirimkan informasi header \textit{Authorization}
+    apapun. Endpoint ini akan melayani segala kebutuhan peserta untuk ujian.
     
     % Bagian Admin
 \subsubsection{Desain \textit{Endpoint} Admin}
@@ -634,6 +732,8 @@
     
 \section{Perancangan Sistem Frontend}
     % diagram kelas dan file
+    
+    % Polling pada api exam.
     
     % Jelasin komponennya satu satu
 \section{Perancangan Sistem CI/CD dan Unit Testing}
