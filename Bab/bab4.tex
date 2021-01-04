@@ -408,12 +408,13 @@
 \subsubsection{Detil Ujian: Pindah Peserta}
     \begin{figure}
         \centering
-        \includegraphics{Gambar/mockups/Mockup--Admin - Pindah Peserta.pdf}
-        \caption{Rancangan tampilan untuk pindahindahan peserta. \\
-            (A) Daftar pemindahan; (B) Pencari peserta target; (C) Pencari Komputer Target; (D) Konfirmasi dan
-            pengunduhan script pemindahan.}
+        \includegraphics[height=0.7\paperheight]{Gambar/mockups/Mockup--Admin - Pindah Peserta.pdf}
+        \caption{Rancangan tampilan untuk pemindahan peserta. \\
+            (A) Daftar pemindahan; (B) Pencari peserta target; (C) Pencari komputer target; (D) Konfirmasi dan
+            pengunduhan \textit{script} pemindahan.}
         \label{fig:mockup_admin_exam_det_migrator}
     \end{figure}
+    
     Fitur pada kotak alat berikutnya adalah fitur untuk memindahkan peserta. Rancangan tampilan pada fitur ini
     dapat dilihat pada Gambar \ref{fig:mockup_admin_exam_det_migrator}. Fitur pemindahan ini akan melalui tahapan
     seperti memilih peserta yang akan dipindahkan (Bagian B), memilih komputer tujuan (Bagian C), lalu
@@ -422,15 +423,127 @@
     \begin{itemize}
         \item Modal Migrator (Bagian A)
             \begin{itemize}
-                \item Label A
+                \item Poin 1 adalah tombol tambah yang akan membuka Modal yang terdapat pada bagian B.
+                
+                \item Poin 2 menunjukkan daftar peserta yang akan dipindahkan beserta komputer tujuannya.
+                
+                \item Poin 3 adalah tombol eksekusi pemindahan pada level basis data dan bangkitkan sebuah
+                    \textit{script} untuk melakukan pemindahan lembar kerja peserta.
             \end{itemize}
+        
+        \item Modal Tambah Peserta (Bagian B)
+            \begin{itemize}
+                \item Poin 4 adalah bidang pencarian cepat untuk membantu tim admin mencari peserta yang 
+                    ingin dipindah.
+                    
+                \item Poin 5 menunjukkan daftar peserta yang terdapat pada ujian ini, dengan sebuah tombol
+                    pilih pada tiap entri untuk memilih peserta bersangkutan untuk melakukan pemindahan.
+            \end{itemize}
+            
+        \item Modal Pilih Komputer (Bagian C)
+            \item Poin 6 menunjukkan informasi peserta mana yang akan dipindah. Bagian ini ditambahkan
+                untuk menyakinkan admin bahwa admin telah memilih peserta yang benar.
+                
+            \item Poin 7 adalah peta tempat duduk ujian pada ruangan tertentu. Komputer pada peta tersebut dapat
+                diklik untuk dipilih. Saat tempat duduk selesai dipilih, maka modal akan kembali ke Bagian A,
+                hingga seluruh peserta yang ingin dipindah telah didaftarkan seluruhnya.
     \end{itemize}
     
     % Tampilan mobile (minipanel)
+\subsubsection{Detil Ujian: Minipanel}
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/mockups/Mockup--Admin - Minipanel.pdf}
+        \caption{Rancangan antarmuka untuk Minipanel}
+        \label{fig:mockup_admin_minipanel}
+    \end{figure}
+    Tampilan minipanel adalah tampilan untuk perangkat bergerak yang dapat digunakan oleh tim admin
+    untuk memicu mulainya timer ujian. Pemicu tersebut akan terhubung langsung dengan sistem back-end
+    dan membuka lembar jawab untuk peserta. Rancangan tampilan dapat dilihat pada Gambar
+    \ref{fig:mockup_admin_minipanel}. Secara garis besar, rangcangan tampilan memiliki informasi
+    singkat ujian pada atas halaman, satu set timer dengan kontrolnya, serta tabel detil ujian
+    pada bagian bawah halaman.
+    
+    Bagian-bagian yang ditunjukan oleh poin dideskripsikan sebagai berikut:
+    \begin{itemize}
+        \item Poin 1 mengandung informasi singkat tentang kode mata kuliah yang dipilih.
+        
+        \item Poin 2 adalah bagian satu set timer dengan kontrolnya. Tombol dibuat lebih besar
+            agar lebih mudah untuk ditekan. Selain itu kontrol juga akan tersedia pada bagian bawah
+            halaman untuk mempermudah pemicu pada perangkat bergerak.
+            
+        \item Poin 3 adalah informasi detil ujian dalam bentuk tabel.
+    \end{itemize}
     
     % Screen admin entity edit
-\subsubsection{Pengelola Entitas}
-
+\subsubsection{Pengelola Entitas: Daftar Entri}
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/mockups/Mockup--Admin - Entity Lister.pdf}
+        \caption{Rancangan antarmuka untuk daftar entri entitas}
+        \label{fig:mockup_admin_entity_lister}
+    \end{figure}
+    Selain ujian, tim admin dapat mengelola entri dari entitas. Rancangan antarmuka pertama untuk 
+    pengelola entri adalah daftar entri. Setiap entitas yang ada akan memiliki sebuah daftar yang 
+    disajikan dengan tabel terdefinisi. Rancagan antarmuka tersebut dapat dilihat pada Gambar
+    \ref{fig:mockup_admin_entity_lister}.
+    
+    Seperti rancangan antarmuka lainnya, bagian yang ditunjukkan oleh poin-poin dideskripsikan sebagai berikut:
+    \begin{itemize}
+        \item Poin 1 adalah tombol untuk membuat entri baru. Tombol ini akan mengarahkan admin
+            ke halaman \textit{editor} dengan bidang yang tidak terisi.
+            
+        \item Poin 2 adalah daftar entri yang terdapat pada entitas tersebut. Setiap entri akan
+            memiliki tombol ubah dan hapus. Tombol ubah kan mengarahkan admin ke halaman \textit{editor}
+            dengan bidang yang terisi dari entri terpilih. Tombol hapus akan memunculkan modal konfirmasi
+            penghapusan entri.
+            
+            Daftar entri disajikan dalam bentuk tabel yang telah didefinisikan konfigurasinya. Tiap entri
+            yang dapat dikelola akan memiliki sebuah daftar definisi yang ditentukan oleh pengembang. Berkas
+            definisi tersebut akan dapat menentukan aturan kolom-kolom tertentu yang ingin ditampilkan.
+    \end{itemize}
+    
+\subsubsection{Pengelola Entitas: Buat dan Ubah Entri Baru}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\paperwidth]{Gambar/mockups/Mockup--Admin - Entity Editor.pdf}
+        \caption{Rancangan antarmuka untuk \textit{editor} entri.\\ (A) Buat baru; (B) Ubah yang sudah ada.}
+        \label{fig:mockup_admin_entity_editor}
+    \end{figure}
+    Entri dari entitas dapat diubah dengan bantuan \textit{editor}. Rancangan tampilan \textit{editor} tersebut
+    dapat dilihat pada Gambar \ref{fig:mockup_admin_entity_editor}. Secara garis besar, tampilan ini akan
+    memiliki tanggung jawab untuk membuat dan mengubah data entri baru maupun yang sudah ada. Bagian-bagian yang
+    ditunjukan dengan poin dideskripsikan sebagai berikut
+    \begin{itemize}
+        \item Poin 1a judul menunjukkan informasi status bahwa \textit{editor} akan melakukan perubahan
+            pada entitas dengan id 14. Jika status editor adalah untuk membuat entri baru, maka judul akan
+            tampil mirip seperti poin 1b.
+        
+        \item Poin 2 adalah daftar atribut yang dapat diubah atau isi nilainya, berdasarkan berkas definisi tabel.
+        
+        \item Poin 3 adalah tombol aksi untuk melakukan penyimpanan atau penghapusan pada entri yang saat ini dibuka.
+            Tombol simpan akan mengarahkan kembali admin ke halaman daftar entri setelah perubahan disimpan atau
+            entri dibuat. Tombol Hapus akan memunculkan modal konfirmasi hapus entri.
+    \end{itemize}
+    
+    
+\subsubsection{Pengelola Entitas: Hapus Entri}
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/mockups/Mockup--Admin - Entity Delete.pdf}
+        \caption{Rancangan antarmuka untuk menghapus entri.}
+        \label{fig:mockup_admin_entity_delete}
+    \end{figure}
+    Pada saat tombol hapus pada halaman daftar entri dan \textit{editor} entri diklik, sebuah modal konfirmasi
+    penghapusan akan dimunculkan oleh sistem. Rancangan modal tersebut dapat dilihat pada
+    \ref{fig:mockup_admin_entity_delete}. Secara garis besar, informasi yang dimunculkan pada modal
+    (poin 1) adalah kolom yang ditampilkan pada halaman \textit{editor}. Informasi tersebut ditampilkan 
+    untuk menyakinkan admin bahwa admin akan menghapus entri yang tepat.
+    
+    Jika modal muncul pada halaman \textit{editor}, maka setelah aksi penghapusan berhasil dilakukan,
+    admin akan diarahkan menuju halaman daftar entri. Namun jika modal muncul pada halaman entri,
+    admin tidak akan diarahkan kemanapun.
+    
 \subsection{Rancangan Antarmuka untuk Dosen Pengawas}
     % Jelasin kalo ini buat di proyektor
     Antarmuka untuk dosen pengawas akan bertanggung jawab untuk membuka dan menutup lembar jawab,
@@ -488,10 +601,18 @@
 \subsubsection{Timer Ujian}
     \begin{figure}
         \centering
-        \includegraphics[width=0.7\paperwidth]{Gambar/mockups/Mockup--DosenPengawas - Timer.pdf}
+        \includegraphics[width=0.75\paperwidth]{Gambar/mockups/Mockup--DosenPengawas - Timer.pdf}
         \caption{Tampilan rancangan antarmuka untuk halaman Timer.}
         \label{fig:mockup_dosen_timer}
     \end{figure}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\paperwidth]{Gambar/mockups/Mockup--DosenPengawas - Timer + Overtime.pdf}
+        \caption{Tampilan rancangan antarmuka untuk \textit{Overtime} Ujian}
+        \label{fig:mockup_dosen_overtime}
+    \end{figure}
+    
     Rancangan halaman timer ujian dapat diperhatikan pada Gambar \ref{fig:mockup_dosen_timer}.
     Secara keseluruhan, halaman timer akan menampilkan informasi ujian singkat, waktu tersisa
     dan tombol-tombol alat untuk memanipulasi waktu ujian.
@@ -500,47 +621,43 @@
     yang ditunjukan pada poin 1 dan 2 pada Gambar \ref{fig:mockup_dosen_timer}. Karena saat ini
     pengguna sedang membuka \textit{tab} Timer, maka kepala \textit{tab} yang aktif menunjukkan
     kepala \textit{tab} timer. Dosen pengawas dapat melihat kedua informasi tersebut dengan mudah.
+    Bagian pada rancangan tampilan tersebut dideskripsikan sebagai berikut:
     
-    % poin 3
-    Bagian yang ditunjukkan pada poin 3 adalah informasi ujian secara singkat. Informasi yang ditunjukkan
-    berupa kode mata kuliah dan \textit{shift}nya. Informasi ini nantinya dapat digunakan untuk membedakan
-    ujian satu dengan yang lainnya pada tampilan multiujian.
-    
-    % poin 4
-    Bagian yang ditunjukkan pada poin 4 adalah jumlah durasi waktu yang diberikan untuk ujian ini. Durasi
-    lamanya ujian ini akan diambil dari basis data dan tidak akan berkurang mengikuti tampilan timer.
-    
-    % poin 5
-    Bagian yang ditunjukan oleh poin 5 adalah tampilan timer. Timer ini akan memiliki nilai dasar total
-    durasi dari ujian. Timer akan mulai berjalan saat kontrol yang ditunjukan pada poin 6 mulai digunakkan.
-    Pada saat timer mencapai nilai nol, maka tampilan tersebut rencananya akan di tahan beberapa menit
-    untuk memastikan dosen pengawas dapat menambahkan waktu lebih sebelum lembar jawab tidak dapat diubah
-    kembali.
-    
-    % poin 6
-    Poin 6 menunjukkan bagian kontrol dari timer ujian. Kontrol rencananya terdiri dari tombol aksi mulai
-    berhenti, dan setel ulang. Tombol-tombol ini rencananya akan langusng melakukan panggilan API
-    ke sistem back-end.
-    
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.7\paperwidth]{Gambar/mockups/Mockup--DosenPengawas - Timer + Overtime.pdf}
-        \caption{Tampilan rancangan antarmuka untuk \textit{Overtime} Ujian}
-        \label{fig:mockup_dosen_overtime}
-    \end{figure}
-    
-    % poin 7
-    Poin 7 menunjukkan tombol tambahan \textit{overtime}. Tombol ini digunakan untuk menambahkan waktu
-    ujian jika sewaktu-waktu dibutuhkan. Tombol akan menampilkan sebuah \textit{modal} yang menyediakan
-    sebuah formulir sederhana, menanyakan berapa banyak waktu yang ingin ditambahkan. Modal tersebut
-    dapat dilihat pada Gambar \ref{fig:mockup_dosen_overtime}. Modal akan menampilan informasi
-    singkat ujian (poin 9), banyak waktu yang diinginkan (poin 10), tombol cepat untuk menambahkan waktu
-    (poin 11), dan tombol \textit{submit} dan batalkan (poin 12).
-    
-    % poin 8
-    Poin 8 adalah contoh timer lain yang ditunjukkan jika terdapat ujian lain yang akan diadakan pada
-    ruangan yang sama. Tampilan akan memiliki bentuk tataletak yang sama, sehingga yang menjadi pembeda
-    hanyalah bagian kepala (ditunjukkan pada poin 3).
+    \begin{itemize}
+       % poin 3
+        \item Bagian yang ditunjukkan pada poin 3 adalah informasi ujian secara singkat. Informasi yang ditunjukkan
+            berupa kode mata kuliah dan \textit{shift}nya. Informasi ini nantinya dapat digunakan untuk membedakan
+            ujian satu dengan yang lainnya pada tampilan multiujian.
+            
+        % poin 4
+        \item Bagian yang ditunjukkan pada poin 4 adalah jumlah durasi waktu yang diberikan untuk ujian ini. Durasi
+            lamanya ujian ini akan diambil dari basis data dan tidak akan berkurang mengikuti tampilan timer.
+        
+        % poin 5
+        \item Bagian yang ditunjukan oleh poin 5 adalah tampilan timer. Timer ini akan memiliki nilai dasar total
+            durasi dari ujian. Timer akan mulai berjalan saat kontrol yang ditunjukan pada poin 6 mulai digunakkan.
+            Pada saat timer mencapai nilai nol, maka tampilan tersebut rencananya akan di tahan beberapa menit
+            untuk memastikan dosen pengawas dapat menambahkan waktu lebih sebelum lembar jawab tidak dapat diubah
+            kembali.
+        
+        % poin 6
+        \item Poin 6 menunjukkan bagian kontrol dari timer ujian. Kontrol rencananya terdiri dari tombol aksi mulai
+            berhenti, dan setel ulang. Tombol-tombol ini rencananya akan langusng melakukan panggilan API
+            ke sistem back-end.
+        
+        % poin 7
+        \item Poin 7 menunjukkan tombol tambahan \textit{overtime}. Tombol ini digunakan untuk menambahkan waktu
+            ujian jika sewaktu-waktu dibutuhkan. Tombol akan menampilkan sebuah \textit{modal} yang menyediakan
+            sebuah formulir sederhana, menanyakan berapa banyak waktu yang ingin ditambahkan. Modal tersebut
+            dapat dilihat pada Gambar \ref{fig:mockup_dosen_overtime}. Modal akan menampilan informasi
+            singkat ujian (poin 9), banyak waktu yang diinginkan (poin 10), tombol cepat untuk menambahkan waktu
+            (poin 11), dan tombol \textit{submit} dan batalkan (poin 12).
+        
+        % poin 8
+        \item Poin 8 adalah contoh timer lain yang ditunjukkan jika terdapat ujian lain yang akan diadakan pada
+            ruangan yang sama. Tampilan akan memiliki bentuk tataletak yang sama, sehingga yang menjadi pembeda
+            hanyalah bagian kepala (ditunjukkan pada poin 3).
+    \end{itemize}
     
     
 \subsection{Rancangan Antarmuka Tambahan}
