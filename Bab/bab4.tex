@@ -3,7 +3,9 @@
 
 \section{Rancangan Antarmuka}
     Peracangan antarmuka dilakukan dengan membuat \textit{mockup} aplikasi. Desain \textit{mockup} dibagi 
-    menjadi tiga bagian besar berdasrkan peranan penggunanya. Pembahasan akan dimulai dengan rancangan 
+    menjadi tiga bagian besar berdasarkan peranan penggunanya.
+    Kemudian tampilan antarmuka diimplementasi dengan bantuan Bootstrap dan \texttt{reactstrap} untuk
+    membantu pengembangan aplikasi. Pembahasan akan dimulai dengan rancangan 
     antarmuka untuk Perserta, lalu perancangan antarmuka untuk Admin, Dosen Pengawas, dan kemudian rancangan 
     antarmuka tambahan.
 
@@ -23,8 +25,8 @@
     \end{figure}
      Tampilan antarmuka pertama yang akan dibahas adalah tampilan untuk menunjukkan informasi bahwa
      tidak ada ujian yang sedang berjalan, dapat dilihat pada Gambar \ref{fig:mockup_peserta_blankstate}. 
-     Hal ini diperuntukkan
-     untuk membantu tim admin melakukan pengecekan lebih cepat karena tampilan layar yang beda secara
+     Hal ini diperuntukkan untuk membantu tim admin melakukan pengecekan lebih cepat karena 
+     tampilan layar yang beda secara
      signifikan. Selain itu, tampilan pesan yang cukup ramah untuk pengguna menampilkan 
      informasi bahwa mungkin peserta mengambil tempat duduk yang salah.
 
@@ -111,18 +113,318 @@
     dan diarahkan menuju daftar ujian. Namun jika pengguna memasukkan kredensial login yang salah
     sebuah pesan kesalahan akan dimunculkan dalam bentuk \textit{Alert}.
     
-\subsubsection{Manajemen Ujian}
+\subsubsection{Daftar Ujian}
     % Screen admin exam listing
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/mockups/Mockup--Admin - Exam Listing.pdf}
+        \caption{Rancangan antarmuka untuk daftar ujian pada halaman Admin Panel.}
+        \label{fig:mockup_admin_exam_listing}
+    \end{figure}
+    Rancangan antarmuka untuk manajemen ujian dimulai dengan halaman daftar ujian, dapat dilihat pada Gambar
+    \ref{fig:mockup_admin_exam_listing}. Pada rancangan tersebut secara garis besar menampilkan informasi tentang
+    ujian-ujian yang sudah terdaftar pada sistem berserta informasi singkatnya. Bagian-bagian yang ditunjukkan
+    dengan poin dijelaskan sebagai berikut:
+    \begin{itemize}
+        \item Bagian yang ditunjukkan pada Poin 1 adalah daftar ujian yang sudah teregistrasi pada sistem.
+            Daftar tersebut disajikan dalam bentuk tabel (poin 1) yang kemudian dapat diklik untuk menuju halaman detil ujian.
+            Tabel akan menunjukan setidaknya informasi mata kuliah, periode ujian, UTS atau UAS, \textit{shift},
+            serta tanggal dan jam mulai serta berakhirnya ujian jika ujian sudah dimulai.
+        
+        \item Bagian yang ditunjukkan pada Poin 2 adalah tombol aksi untuk membuat ujian yang baru.
+    \end{itemize}
     
+\subsubsection{Pembuatan Ujian Baru}
     % Screen admin exam create (3-4 screens)
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/mockups/Mockup--Admin - NewExam-Step 1.pdf}
+        \caption{Rancangan antarmuka untuk membuat ujian baru, langkah pertama dari empat.}
+        \label{fig:mockup_admin_exam_create-1}
+    \end{figure}
+    Untuk mendaftarkan ujian Admin harus mengisi formulir yang disediakan oleh sistem. Formulir akan
+    dipisah menjadi beberapa langkah untuk mempermudah pengecekan. Fomulir pada langkah pertama dapat
+    dilihat pada Gambar \ref{fig:mockup_admin_exam_create-1}. Halaman ini dapat diakses pada saat Admin
+    menekan tombol yang ditujukkan oleh poin 2 pada gambar \ref{fig:mockup_admin_exam_listing}.
+    Poin-poin yang terdapat pada gambar dijelaskan sebagai berikut:
+    \begin{itemize}
+        \item Poin 1 adalah tampilan \textit{stepper}. \textit{Stepper} menunjukan langkah yang harus ditempuh oleh
+            tim admin untuk membuat mengisi formulir ini. Untuk saat ini terdapat empat langkah besar yang terdiri
+            dari:
+                \begin{enumerate}
+                    \item Pengisian detil ujian (Exam Details).
+                    \item Pangalokasian tempat duduk ujian (Seat Plotting).
+                    \item Konfirmasi (Confirmation).
+                    \item Penyelesaian (Finish).
+                \end{enumerate}
+            Seperti yang telah dideskripsikan, halaman formulir ini berada pada tahap pengisian detil ujian.
+            
+        \item Poin 2 menunjukkan bagian detil ujian seperti tipe ujian yang dapat diisi sebagai UTS ataupun UAS,
+            mata kuliah dati ujian ini, shift, mulai pada tanggaal jam berapa, hingga durasi waktu ujian.
+            Informasi yang ditampilkan pada bagian ini berhubungan langusng dengan entitas \texttt{Exam}. Sesuai dengan
+            jenis bidangnya, jika sebuah bidang memiliki pilihan spesifik, maka bidang tersebut akan diimplementasi
+            dengan \textit{dropdown}. Sebagai contoh bidang tipe ujian hanya akan memiliki pilihan UTS ataupun UAS,
+            maka bidang diimplementasi dengan \textit{dropdown} dengan nilai pilihan yang sudah disebutkan.
+            Untuk bidang tanggal dan jam, implementasi akan dilakukan dengan bantuan dari \textit{date picker}.
+            
+        \item Poin 3 menunjukkan daftar peserta yang akan mengikuti ujian ini. Daftar peserta berisi daftar NPM
+            yang mengikuti ujian, dipisah dengan sebuah enter.
+            
+        \item Poin 4 adalah sebuah tombol unggah yang akan diproses langsung pada browser untuk memasukkan daftar
+            peserta. Tombol ini ditambahkan dengan alasan kompabilitas UX dengan sistem yang lama.
+            
+        \item Poin 5 adalah sebuah tombol aksi untuk menuju langkah berikutnya, pengalokasian tempat duduk ujian.
+        
+    \end{itemize}
+    
+    
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/mockups/Mockup--Admin - NewExam-Step 2.pdf}
+        \caption{Rancangan antarmuka untuk membuat ujian baru, langkah kedua dari empat.}
+        \label{fig:mockup_admin_exam_create-2}
+    \end{figure}
+    
+    Setelah tim admin selesai mengisi informasi detil ujian, maka langkah selanjutnya yang akan dilakukan adalah 
+    mengalokasi tempat duduk ujian. Alokasi ini dilakukan dengan bantuan peta ruangan yang telah didefinisikan
+    sebelumnya oleh sistem. Rancangan antarmuka tersebut dapat dilihat pada Gambar \ref{fig:mockup_admin_exam_create-2}.
+    Secara garis besar tampilan memiliki tataletak yang mirip dengan langkah sebelumnya: Judul langkah diatas, diikuti
+    dengan \textit{stepper} di bawahnya. Namun bagian yang ditunjukkan pada poin 1 akan berisi peta tempat duduk
+    ruangan. Peta tempat duduk ini nantinya akan memiki tampilan yang sama dengan yang ditampilkan pada proyektor.
+    
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/mockups/Mockup--Admin - NewExam-Step 3.pdf}
+        \caption{Rancangan antarmuka untuk membuat ujian baru, langkah ketiga dari empat.}
+        \label{fig:mockup_admin_exam_create-3}
+    \end{figure}
+    Setelah tempat duduk dialokasi, langkah berikutnya adalah konfirmasi. Tim admin diharapkan untuk
+    mengkonfirmasi detil ujian yang akan dibuat sebelum akhirnya difinialisasi oleh sistem. Rancangan tampilan
+    layar tersebut dapat diperhatikan pada \ref{fig:mockup_admin_exam_create-3}. Pada rancangan tampilan
+    tersebut terdapat informasi singkat dari ujian yang akan dibuat. Bagian yang ditunjukkan dengan poin-poin
+    pada gambar akan dijelaskan sebagai berikut:
+    
+    \begin{itemize}
+        \item Poin 1 menunjukkan informasi tentang nama matakuliah, banyak peserta, informasi shift serta informasi
+            jadwal ujian tersebut.
+            
+        \item Poin 2 adalah tombol aksi untuk melakukan pembuatan ujian. Tombol ini akan melakukan beberapa pemanggilan
+            ke sistem backend sekaligus sebelum akhirnya memindahkan tim admin ke tahap berikutnya.
+    \end{itemize}
+    
+    
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/mockups/Mockup--Admin - NewExam-Step 4.pdf}
+        \caption{Rancangan antarmuka untuk membuat ujian baru, langkah keempat dari empat.}
+        \label{fig:mockup_admin_exam_create-4}
+    \end{figure}
+    Antarmuka terkahir untuk tahap pembuatan ujian adalah tahap penyelesaian. Tampilan antarmuka ini dapat dilihat
+    pada gambar \ref{fig:mockup_admin_exam_create-4}. Tampilan ini berfungsi untuk menampilkan respon dari sistem
+    bahwa ujian telah berhasil dibuat dengan informasi yang telah diberikan. Antarmuka pada tahap ini hanya akan
+    berisi pesan respon singkat disertai dengan tombol "Lihat Ujian" tombol ini akan mengarahkan tim admin ke
+    halaman ujian.
     
     % Screen admin exam details (mayan banyak)
-    % Timer
+\subsubsection{Detil Ujian}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\paperwidth]{Gambar/mockups/Mockup--Admin - Exam Details.pdf}
+        \caption{Rancangan antarmuka untuk tampilan detil ujian.}
+        \label{fig:mockup_admin_exam_details}
+    \end{figure}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\paperwidth]{Gambar/mockups/Mockup--Admin - Slot Jawaban.pdf}
+        \caption{Rancangan antarmuka untuk modal slot jawaban baru.}
+        \label{fig:mockup_admin_exam_det_answer_slot}
+    \end{figure}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\paperwidth]{Gambar/mockups/Mockup--Admin - Tambah Autoreport.pdf}
+        \caption{Rancangan antarmuka untuk modal pelaporan otomatis baru.}
+        \label{fig:mockup_admin_exam_det_autoreport}
+    \end{figure}
+    
+    Halaman detil ujian akan memuat seluruh informasi ujian yang ditampung pada entitas \texttt{Exam} dan
+    beberapa entitas lainnya yang terhubung dengan entitas ini. Rancangan tampilan detil ujian dapat
+    dilihat pada gambar \ref{fig:mockup_admin_exam_details}. Secara garis besar, tampilan memiki beberapa
+    bagian yang spesifik dengan perannya. Hal ini dibuat demikian untuk mempermudah tim admin memindai
+    informasi pada saat membuka beberapa \textit{tab} pada peramban. Bagian-bagian yang ditunjukan dengan
+    poin bewarna kuning akan dijelaskan sebagai berikut:
+    \begin{itemize}
+        \item Poin 1 adalah bagian informasi singkat tentang ujian. Informasi akan berisi minimal
+            kode mata kuliah, shift (jika ada), dan nama matakuliah.
+            
+        \item Poin 2 akan berisi status dari ujian tersebut, serta sisa waktu yang ada jika ujian tersebut 
+            sedang berjalan.
+            
+        \item Poin 3 adalah kotak alat untuk ujian ini. Kotak alat tersebut berisi:
+            \begin{itemize}
+                \item Tombol print daftar hadir.
+                \item Tombol layar proyektor.
+                \item Tombol unduh script untuk membuat folder dan berkas ujian.
+                \item Tombol pemindahan peserta.
+            \end{itemize}
+            Kotak alat diimplementasikan untuk memenuhi kebutuhan yang muncul dari admin sebelumnya.
+            
+        \item Poin 4 menunjukkan informasi ujian dengan lebih detil, disajikan dalam bentuk tabel.
+        
+        \item Poin 5 adalah bagian pengelolaan Slot Jawaban. Bagian ini terdiri dari beberapa tombol.
+            \begin{itemize}
+                \item Pada bagian atas, terdapat tombol Zip yang digunakan untuk melakukan pengumpulan berkas
+                    jawaban menjadi sebuah \textit{archive} zip. Peramban akan kemudian mengunduh berkas tersebut
+                    dan tim admin dapat mengirimkan berkas jawaban tersebut secara manual ke dosen.
+                    
+                \item Pada sebelah kanan tombol Zip, terdapat tombol tambah yang akan membuka sebuah
+                    modal yang akan menanyakan format slot jawaban yang ada. Modal tersebut dapat dilihat
+                    pada Gambar \ref{fig:mockup_admin_exam_det_answer_slot}. Pada poin 1 dari Gambar
+                    \ref{fig:mockup_admin_exam_det_answer_slot}, format yang diterima dapat berupa
+                    format \textit{xxyyy} seperti pada sistem sebelummnya.
+                    
+                \item Untuk setiap slot jawaban yang ada, akan terdapat tombol ubah untuk mengubah lembar
+                    jawab, dan tombol hapus yang dapat digunakan untuk menghapus entri tersebut.
+            \end{itemize}
+            
+        \item Poin 6 menunjukan bagian fitur notifikasi yang akan ditampilkan pada peserta ujian.
+            Pada tampilan ini, terdapat beberapa tombol yang dapat digunakan untuk memanipulasi ujian
+            tersebut. Tombol tombol tersebut adalah
+                \begin{itemize}
+                    \item Tombol Tambah untuk membuat notifikasi baru. Pada saat diklik, sistem akan
+                        menampilkan sebuah modal yang menanyakan informasi jenis notifikasi. 
+                        Karena alur yang cukup panjang, alur kerja untuk pembuatan notifikasi akan 
+                        dibahas setelah bagian ini.
+                        
+                    \item Untuk setiap entri notifikasi akan memiliki dua buah tombol yang dapat digunakan untuk
+                        mengubah dan menghapus entri tersebut.
+                \end{itemize}
+            
+        \item Poin 7 menunjukan bagian fitur pelaporan otomatis. Fitur pelaporan otomatis ini memiliki beberapa 
+            tombol aksi seperti:
+           \begin{itemize}
+               \item Tombol Tambah yang dapat digunakan untuk menambahkan autoreport baru. Jika tombol ini
+                    diklik, sistem akan memunculkan modal yang menanyakan pada siapa report ini akan dikirimkan.
+                    rancangan modal tersebut dapat dilihat pada Gambar \ref{fig:mockup_admin_exam_det_autoreport}.
+                    Bagian yang ditunjukan pada poin 1 dari rancangan tersebut dapat diisi dengan daftar email
+                    yang dipisah dengan tanda koma.
+                    
+                \item Untuk setiap entri pada bagian ini memiliki dua tombol yang dapat digunakan untuk
+                    mengirimkan email, dan penghapusan entri.
+           \end{itemize}
+    \end{itemize}
+    
+\subsubsection{Detil Ujian: Fitur notifikasi}
+    \begin{sidewaysfigure}
+        \centering
+        \includegraphics{Gambar/mockups/Mockup--Admin - Notif.pdf}
+        \caption{Rancangan antarmuka untuk beberapa tampilan modal jenis notifikasi. \\
+            (A) Modal jenis notifikasi; (B) Notifikasi Kata Sandi; (C) Notifikasi Lainnya.}
+        \label{fig:mockup_admin_exam_det_notif}
+    \end{sidewaysfigure}
+    
+    Pada bagian notifikasi, rancangan tampilan antarmuka memiliki beberapa bagian tergantung dari
+    jenis notifikasi yang ingin disebarkan ke setiap peserta. Seperti yang dapat dilihat pada
+    \ref{fig:mockup_admin_exam_det_notif}, rancangan tampilan antarmuka terdapat tiga bagian.
+    
+    Bagian yang ditunjukan dengan label A adalah modal pertama yang muncul pada saat tim admin
+    menekan tombol tambah. Modal akan memiliki dua buah tombol yang merepresentasikan jenis
+    yang didukung oleh fitur ini: Kata sandi (poin 1) dan lainnya (poin 2). Jika tombol untuk jenis kata sandi
+    dipilih, maka tim admin akan disajikan modal dengan label B. Sebaliknya, jika tombol untuk jenis lainnya
+    dipilih, maka sistem akan menyajikan modal dengan label C.
+    
+    Modal yang ditunjukkan dengan label B adalah modal untuk mengisi informasi layanan dan daftar kata sandi
+    yang akan disebarkan. Bagian-bagian yang terdapat pada modal ini adalah sebagai berikut
+    \begin{itemize}
+        \item Poin 3 menunjukan informasi tentang layanan dari kata sandi yang akan disebar.
+        
+        \item Poin 4 adalah daftar kata sandi dalam bentuk teks yang berisi informasi namapengguna
+            dan kata sandi, serta npm yang dipisah dengan karakter enter untuk setiap entrinya.
+            
+        \item Poin 5 adalah tabel daftar peserta yang akan menerima kredensial nama pengguna dan kata sandi
+            dari tim admin. Tabel ini ditambahkan untuk tim admin melakukan pengecekan sebelum notifikasi
+            disebar.
+    \end{itemize}
+    
+    Kemudian, modal yang ditunjukkan dengan label C adalah modal untuk jenis notifikasi lainnya. Notifikasi ini
+    nantinya akan dapat ditargetkan untuk peserta-peserta tertentu. Bagian-bagian yang terdapat pada modal
+    ini dijelaskan sebagai berikut
+    \begin{itemize}
+        \item Poin 6 menunjukan bidang judul yang akan disampaikan ke peserta ujian.
+        
+        \item Poin 7 menunjukan bidang yang digunakan untuk mespesifikasikan penerima notifikasi ujian.
+        
+        \item Poin 8 adalah isi dari notifikasi tersebut.
+    \end{itemize}
+    
     % Absensi (pintu dan tanda tangan)
+\subsubsection{Detil Ujian: Daftar Hadir}
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/mockups/Mockup--Admin - Daftar Hadir.pdf}
+        \caption{Rancangan tampilan untuk daftar hadir peserta ujian.}
+        \label{fig:admin_mockup_exam_det_daftar-hadir}
+    \end{figure}
+    
+    Salah satu bagian dari kotak alat yang disediakan untuk tim admin adalah daftar hadir. Rancangan tampilan
+    daftar harid dapat dilihat pada Gambar \ref{fig:admin_mockup_exam_det_daftar-hadir}. Daftar hadir tersebut
+    harus dapat dicetak dengan pencentak. Daftar hadir ini akan terdiri dari sebuah halaman yang berisi beberapa
+    bagian penting, seperti
+    \begin{itemize}
+        \item Poin 1, informasi singkat ujian seperti informasi UTS/UAS, kode mata kuliah, nama mata kuliah,
+            shift (jika ada), tanggal mulai, dan ruangan.
+        
+        \item Poin 2, daftar peserta dengan pengurutan kolom tertentu. Jika daftar hadir ditempelkan
+            pada pintu, maka daftar hadir harus diurutkan berdasarkan NPMnya. Jika daftar
+            hadir digunakan untuk absensi, maka daftar tersebut harus diurutkan berdasarkan nomor komputernya.
+            
+        \item Poin 3, daftar hadir pada ruangan lain yang setiap daftar hadirnya terdiri dari poin 1 dan 2.
+            Daftar hadir ini harus dapat terpisah menjadi halaman baru pada saat dicetak.
+    \end{itemize}
+    
+    Tampilan daftar hadir ini harus dapat dicetak oleh pencetak atau \textit{printer}. Sehingga setiap halaman
+    harus memiliki logo UNPAR dan informasi fakultas.
+    
+    % Timer
+\subsubsection{Detil Ujian: Layar Proyektor}
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/mockups/Mockup--Admin - Layar Proyektor.pdf}
+        \caption{Rancangan antarmuka untuk tampilan pada layar proyektor.}
+        \label{fig:mockup_admin_det_projector}
+    \end{figure}
+    
+    % TODO: Ganti wording.
+    Fitur berikutnya adalah tampilan timer untuk proyektor. Rancangan tampilan dapat dilihat pada
+    Gambar \ref{fig:mockup_admin_det_projector}. Karena akun admin tidak memiliki relasi dengan 
+    lokasi ruangan, maka tampilan ini ditambahkan sebagai cadangan dan digunakan hanya pada saat darurat.
+    Tampilan ini akan memiliki informasi singkat tentang ujian yang akan diadakan dan durasinya (poin 1),
+    sisa waktu (poin 2) dan tombol kontrol timer (poin 3).
+    Tombol kontrol timer ini akan terhubung dengan sistem untuk membuka dan menutup lembar jawab.
+    
+
     % Pindah
-    % Notifikasi
-    % Slot jawaban
-    % Autoreport
+\subsubsection{Detil Ujian: Pindah Peserta}
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/mockups/Mockup--Admin - Pindah Peserta.pdf}
+        \caption{Rancangan tampilan untuk pindahindahan peserta. \\
+            (A) Daftar pemindahan; (B) Pencari peserta target; (C) Pencari Komputer Target; (D) Konfirmasi dan
+            pengunduhan script pemindahan.}
+        \label{fig:mockup_admin_exam_det_migrator}
+    \end{figure}
+    Fitur pada kotak alat berikutnya adalah fitur untuk memindahkan peserta. Rancangan tampilan pada fitur ini
+    dapat dilihat pada Gambar \ref{fig:mockup_admin_exam_det_migrator}. Fitur pemindahan ini akan melalui tahapan
+    seperti memilih peserta yang akan dipindahkan (Bagian B), memilih komputer tujuan (Bagian C), lalu
+    eksekusi script yang diberikan oleh sistem (Bagian D).
+    Poin-poin yang ditujukkan pada sistem akan dijelaskan sebagai berikut:
+    \begin{itemize}
+        \item Modal Migrator (Bagian A)
+            \begin{itemize}
+                \item Label A
+            \end{itemize}
+    \end{itemize}
     
     % Tampilan mobile (minipanel)
     
@@ -711,9 +1013,10 @@
     berdasarkan informasi pengguna terkait yang terekan pada basisdata.
     
     Terdapat satu buah pengecualian untuk otentikasi ujian. Otentikasi ujian dilakukan secara tidak
-    langsung dengan melakukan perbadingan langsung di level endpoint mereka. Endpoint otentikasi
+    langsung dengan melakukan pengecekan IP langsung di level endpoint mereka. Endpoint otentikasi
     tidak akan menerbitkan token untuk peserta ujian, karena peserta ujian dapat langsung
-    mengakses endpoint \texttt{exam}
+    mengakses endpoint \texttt{exam} dengan catatan. IP komputer harus sudah teregistrasi di
+    sistem.
     
     % Bagian Exam
 \subsubsection{Desain \textit{Endpoint} Ujian}
@@ -729,6 +1032,7 @@
     
 \subsection{Desain Kelas}
     % diagram kelas
+    Desain kelas dari aplikasi
     
 \section{Perancangan Sistem Frontend}
     % diagram kelas dan file
