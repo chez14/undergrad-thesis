@@ -1087,7 +1087,6 @@
     Sesuai dengan kebutuhan, Otentikasi API terbagi menjadi dua bagian besar berdasarkan penggunaannya.
     Otentikasi API yang pertama dilakukan dengan menggunakan IP, sedangkan yang kedua, otentikasi
     dilakukan dengan menggunakan token.
-    %TODO: MORE
     
     Otentikasi dengan IP diperuntukkan untuk API yang berhubungan dengan ujian pada lokasi yang telah
     didefinisikan sebelumnya. IP digunakan karena sistem sebelumnya menggunakan cara ini dan telah
@@ -1113,7 +1112,7 @@
     tidak akan memiliki otentikasi sama sekali, atau, otentikasi Ujian dilakukan secara tidak
     langsung dengan menggunakan IP. 
     
-    Seluruh endpoint akan diprefix dengan \texttt{/api/v1/} untuk memberikan fleksibilitas di masa
+    Seluruh endpoint akan memiliki prefiks \texttt{/api/v1/} untuk memberikan fleksibilitas di masa
     yang akan datang pada saat API akan diaplikasikan teknik \textit{versioning}. Selain itu,
     dengan desain url seperti ini, pengembang dapat mengetahui versi yang mereka gunakan pada
     API tersebut.
@@ -1125,9 +1124,7 @@
 \subsubsection{Desain \textit{Endpoint} Otentikasi}
     Endpoint untuk otentikasi dapat di akses pada \texttt{system}. Endpoint ini akan bertugas untuk
     menangani segala hal yang berhubungan dengan otentikasi. Mulai dari melakukan pengecekan
-    login (\texttt{system/auth/login}), mengambil informasi pengguna yang sedang masuk 
-    (\texttt{system/user/me}), hingga membantu untuk menangani 
-    \textit{IPLogin} (\texttt{system/auth/iplogin}). 
+    login, mengambil informasi pengguna yang sedang masuk, hingga membantu untuk menangani \texttt{IPLogin}. 
     Endpoint ini seharusnya bertanggung jawab untuk menerbitkan token JWT
     berdasarkan informasi pengguna terkait yang terekan pada basisdata.
     
@@ -1137,17 +1134,128 @@
     mengakses endpoint \texttt{exam} dengan catatan. IP komputer harus sudah teregistrasi di
     sistem.
     
+    Endpoint yang digunakan untuk otentikasi terdiri dari:
+    \begin{itemize}
+        \item \texttt{POST auth/login} \\
+            Bertanggung jawab untuk melakukan login, membangkitkan token, serta memberi informasi
+            singkat tentang pengguna yang masuk.
+        
+        \item \texttt{POST auth/iplogin} \\
+            Bertanggung jawab untuk melakukan login dengan IP, membangkitkan token, serta memberi
+            informasi singkat tengang pengguna yang tertau dengan IP tersebut.
+            
+        \item \texttt{GET user/me} \\
+            Bertanggung jawab untuk memberikan informasi tentang user yang terautentikasi.
+            
+        \item \texttt{POST user/me} \\
+            Bertanggung jawab untuk memperbarui informasi tentang user yang terautentikasi.
+    \end{itemize}
+    
     % Bagian Exam
 \subsubsection{Desain \textit{Endpoint} Ujian}
     Endpoint untuk ujian memiliki prefiks \texttt{exam}. Endpoint ini akan menggunakan otentikasi
     IP dan tidak membutuhkan penggunanya untuk mengirimkan informasi header \textit{Authorization}
     apapun. Endpoint ini akan melayani segala kebutuhan peserta untuk ujian.
     
+    Endpoint yang melayani API untuk ujian terdiri dari:
+    \begin{itemize}
+        \item \texttt{GET info} \\
+            Bertanggung jawab untuk mengembalikan informasi ujian yang sedang dan akan dimulai.
+        \item \texttt{GET notification} \\
+            Bertanggung jawab untuk mengembalikan daftar notifikasi.
+        \item \texttt{GET submission} \\
+            Bertanggung jawab untuk mengembalikan status submisi pada slot jawaban tertentu.
+        \item \texttt{POST submission} \\
+            Bertanggung jawab untuk mengirimkan berkas jawaban (selanjutnya disebut submisi) pada slot
+            jawaban tertentu.
+    \end{itemize}
+    
     % Bagian Admin
 \subsubsection{Desain \textit{Endpoint} Admin}
+    Slot endpoint yang digunakan untuk admin mengatur berbagai fitur yang tersedia pada admin panel.
+    Endpoint ini membutuhan otentikasi pengguna level admin. Setiap entitas memiliki tabel izinnya
+    masing-masing yang dapat diperoleh dari entitas \texttt{AclItem}. Namun pada dasarnya, setiap
+    admin berhak untuk melakukan \texttt{CRUD} pada entitas tersebut, kecuali disebutkan sebaliknya.
+    
+    Enpoin pada admin ini memiliki prefiks \texttt{manage}. Karena enpoint ini berhubungan langsung
+    dengan entitas, maka pada dasarnya seluruh entitas memiliki endpoint khusus dengan pola REST API
+    sebagai berikut
+    \begin{itemize}
+        \item \texttt{GET :entity} \\
+            Bertanggung jawab untuk mengembalikan daftar entri dari \texttt{:entity} yang disebutkan.
+            
+        \item \texttt{POST :entity} \\
+            Bertanggung jawab untuk membuat entri baru dari \texttt{:entity} yang disebutkan.
+            
+        \item \texttt{GET :entity/:id} \\
+            Bertanggung jawab untuk mengembalikan info detil entri dari \texttt{:entity} dengan id 
+            \texttt{:id}.
+            
+        \item \texttt{PUT :entity/:id} \\
+            Bertanggung jawab untuk mengubah atau memperbarui entri dengan id \texttt{:id} pada entitas
+            \texttt{entity}.
+        
+        \item \texttt{DELETE :entity/:id} \\
+            Bertanggung jawab untuk menghapus entri \texttt{:id} pada \texttt{entity}.
+    \end{itemize}
+    
+    Selain dari pola tersebut, terdapat beberapa endpoint khusus untuk memfasilitasi aksi yang dapat
+    dilakukan pada entitas tersebut. Endpoint tersebut adalah
+    \begin{itemize}
+        \item \texttt{DELETE exam/:id/start} \\
+            Bertanggung jawab untuk melakukan reset timer ujian pada id tertentu.
+            
+        \item \texttt{GET exam/:id/answers} \\
+            Bertanggung jawab untuk melakukan pengumpulan jawaban dan pengunduhan dalam bentuk zip.
+            
+        \item \texttt{GET exam/:id/notifications} \\
+            Bertanggung jawab untuk mengembalikan daftar notifikasi yang tertaut pada peserta di ujian
+            yang disebutkan.
+            
+        \item \texttt{GET exam/:id/participants} \\
+            Bertanggung jawab untuk mengembalikan daftar peserta yang terdapat pada ujian ini.
+            
+        \item \texttt{GET exam/:id/script} \\
+            Bertanggung jawab untuk membuat \textit{script} yang digunakan untuk membuat lembar kerja
+            peserta ujian.
+            
+        \item \texttt{POST exam/:id/close} \\
+            Bertanggung jawab untuk menghentikan timer ujian dan menutup lembar jawab peserta
+            secara manual.
+            
+        \item \texttt{POST exam/:id/move} \\
+            Bertanggung jawab untuk memindahkan peserta ke tempat duduk lain dan membuat \textit{script}
+            untuk lembar kerja mahasiswa yang baru.
+            
+        \item \texttt{POST exam/:id/populate} \\
+            Bertanggung jawab untuk melakukan populasi tempat duduk yang sudah dipilih dengan daftar peserta
+            yang ada.
+            
+        \item \texttt{POST exam/:id/start} \\
+            Bertanggung jawab untuk memulai timer pada ujian.
+            
+        \item \texttt{POST examreport/:id/forcesend} \\
+            Bertanggung jawab untuk melakukan pengiriman laporan ujian secara paksa ke email
+            yang terdapat pada entri \texttt{:id}.
+            
+        \item \texttt{POST notification/mass\_gen} \\
+            Bertanggung jawab untuk melakukan penyebaran notifikasi kata sandi pada daftar yang
+            diberikan pada ujian tertentu.
+    \end{itemize}
     
     % Bagian Dosen
 \subsubsection{Desain \textit{Endpoint} Lainnya}
+    Endpoint lainnya terdiri dari endpoint yang dapat digunakan dengan otentikasi khusus. Otentikasi tersebut
+    dapat dengan menukarkan token \textit{payload} tertentu menjadi token bentuk lain. Endpoint tersebut
+    terdiri dari
+    \begin{itemize}
+        \item \texttt{POST autonomus/examdownload} \\
+            Endpoint ini bertanggung jawab untuk mengembalikan informasi tentang token yang terhubung
+            dengan ujian tertentu, serta memberikan link otorisasi pengunduhan berkas jawaban.
+            
+        \item \texttt{GET autonomus/examdownload/download} \\
+            Endpoint ini bertanggung jawab untuk menyediakan berkas jawaban dalam bentuk zip.
+    \end{itemize}
     
 \subsection{Desain Kelas}
     % diagram kelas
