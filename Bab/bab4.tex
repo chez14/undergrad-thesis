@@ -1257,23 +1257,1484 @@
             Endpoint ini bertanggung jawab untuk menyediakan berkas jawaban dalam bentuk zip.
     \end{itemize}
     
-\subsection{Desain Kelas}
     % diagram kelas
-    Desain kelas dari sistem \textit{back-end} akan mengikuti pola yang telah diberikan dari \textit{library}
-    ORM yang telah 
+\subsection{Desain Kelas}
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/classmap-be/Classmap - Overview.pdf}
+        \caption{Gambaran besar dari perancangan kelas untuk sistem \textit{back-end}.}
+        \label{fig:classmap_overview}
+    \end{figure}
+    Perancangan desain kelas dilakukan dengan mempertimbangkan pola yang telah diberikan
+    oleh beberapa \textit{library}. Karena \textit{framework} yang digunakan cukup 
+    fleksibel, maka dibuat beberapa \textit{namespace} sesuai dengan 
+    konteks penggunaan kelasnya masing-masing.
+    Secara garis besar, \textit{namespace} yang ada aplikasi dapat dilihat pada Gambar 
+    \ref{fig:classmap_overview}.
     
-\section{Perancangan Sistem Frontend}
-    % diagram kelas dan file
+    Kemudian setiap \textit{namespace} akan dijelaskan secara terperinci beserta dengan
+    kelas yang terdapat pada \textit{namespace} tersebut.
+
+\subsubsection{\textit{Namespace} \texttt{app/controller}}
     
-    % Polling pada api exam.
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/classmap-be/Classmap - app-controller.pdf}
+        \caption{Diagram kelas untuk \textit{namespace} \texttt{app/controller}}
+        \label{fig:classmap_app-controller}
+    \end{figure}
+
+    \textit{Namespace} ini akan berisi kelas-kelas yang bertanggung jawab untuk
+    menangani permintaan. Permintaan tersebut terdiri dari permintaan dari API dan permintaan
+    non-API. Diagram kelas untuk \textit{namespace} ini dapat diperhatikan pada Gambar
+    \ref{fig:classmap_app-controller}
     
-    % Jelasin komponennya satu satu
+    \textit{Namespace} ini terdiri dari kelas-kelas berikut:
+    \begin{itemize}
+        \item \texttt{App} \\
+            Kelas ini bertanggung jawab untuk menyajikan aplikasi React. Oleh karena itu
+            sesuai dengan desain rutenya, kelas ini akan menangani permintaan pada \textit{url}:
+            \begin{itemize}
+                \item \texttt{GET /admin}
+                \item \texttt{GET /admin/*}
+                \item \texttt{GET /exam}
+                \item \texttt{GET /exam/*}
+                \item \texttt{GET /autonomus}
+                \item \texttt{GET /autonomus/*}
+            \end{itemize}
+            Definisi rute lengkap URL dapat dilihat pada lampiran (TODO: lampiran routings.ini).
+            
+            Pada kelas ini terdapat fungsi:
+            \begin{itemize}
+                \item \texttt{get\_serve(\$f3)} \\
+                    Fungsi ini yang bertanggung jawab untuk menyajikan aplikasi React.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework. \\
+                    \textbf{Output:} -
+            \end{itemize}
+        
+        \item  \texttt{CRUDBase} \\
+            Kelas ini akan menjadi kelas yang menangani abstraksi dari REST API.
+            Atribut yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{\$publicPermission}\\
+                    Mendefinisikan permisi yang dimiliki oleh
+                    pengkonsumsi API tanpa otentikasi.
+                \item \texttt{\$permissionPrefix}\\
+                    Mendefinisikan nama permisi yang tertaut pada
+                    pengkonsumsi API yang terotentikasi.
+                \item \texttt{\$model}\\
+                    Mendefinisikan nama kelas model yang akan digunakan. Nama
+                    kelas yang diharapkan adalah \textit{fully qualified name}\footnote{Lihat
+                    https://www.php.net/manual/en/language.namespaces.rules.php}.
+            \end{itemize}
+            Fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{globalFilterTrigger(\$model):void} \\
+                    Menangani filter global untuk model yang ditautkan untuk kelas ini. \\
+                    \textbf{Input:} instansi model\\
+                    \textbf{Output:} -\\
+                
+                \item \texttt{beforeroute(\$f3)}\\
+                    Menangani \textit{event} sebelum \textit{framework} melakukan pemanggilan
+                    fungsi utama.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                    
+                \item \texttt{permission\_check(\$what, \$mode)} \\
+                    Melakukan pengecekan permisi/izin pada otentikasi pengkonsumsi API.
+                    Mungkin akan melempar eksepsi jika pengkonsumsi tidak memiliki izin.\\
+                    \textbf{Input:} Nama permisi, dan mode yang seharusnya diperbolehkan
+                        (buat, baca, ubah, hapus)\\
+                    \textbf{Output:} -\\
+                
+                \item \texttt{get\_index(\$f3)} \\
+                    Menangani permintaan API untuk melakukan \textit{listinig} entri dari model \\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                
+                \item \texttt{getMentionedItem(\$f3)} \\
+                    Ambil entri yang disebutkan pada \textit{url}. \\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} Instansi model yang tertaut dengan sebuah entri.\\
+                
+                \item \texttt{get\_item(\$f3)} \\
+                    Menangani permintaan API untuk menampilan infomasi lengkap entri. \\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                
+                \item \texttt{post\_index(\$f3)} \\
+                    Menangani permintaan API untuk membuat entri baru. \\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                
+                \item \texttt{put\_item(\$f3)} \\
+                    Menangani permintaan API untuk memperbarui/mengubah informasi pada entri. \\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                
+                \item \texttt{delete\_item(\$f3)} \\
+                    Menagnagi permintaa API untuk menghapus entri. \\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+            \end{itemize}
+    \end{itemize}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\paperwidth]{Gambar/classmap-be/Classmap - app-controller-api.pdf}
+        \caption{Potongan diagram kelas untuk \textit{namespace} \texttt{app/controller/api}}
+        \label{fig:classmap_app-controller-api}
+    \end{figure}
+    
+    Selain dari kelas-kelas tersebut, \textit{namespace} ini memiliki anak \textit{namespace}
+    \texttt{api}. \textit{Namespace} tersebut secara gais besar akan menangani berbagai macam
+    permintaan API yang akan disediakan oleh sistem \textit{back-end}. Diagram kelas untuk
+    \textit{namespace} ini dapat dilihat pada Gambar \ref{fig:classmap_app-controller-api}.
+    
+    \textit{Namespace} \texttt{api} terdiri dari:
+    \begin{itemize}
+        \item \texttt{Base} \\
+            Kelas ini bertanggung jawab untuk menangani abstraksi API dasar yang diperlukan.
+            Kelas ini memiliki fungsi:
+            \begin{itemize}
+                \item \texttt{beforeroute(\$f3)} \\
+                    Menangani \textit{event} sebelum \textit{framework} melakukan pemanggilan
+                    fungsi utama. Melakukan parsing dan pengecekan tertentu pada permintaan 
+                    API.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+            \end{itemize}
+    
+        \item \texttt{Autonomus/ExamDownload} \\
+            Kelas ini bertanggung jawab untuk melayani API untuk pengunduhan jawaban
+            via tautan yang dikirimkan ke email. Kelas ini memiliki fungsi:
+            \begin{itemize}
+                \item \texttt{beforeroute(\$f3)} \\
+                    Menangani \textit{event} sebelum \textit{framework} melakukan pemanggilan
+                    fungsi utama.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                
+                \item \texttt{post\_index(\$f3)} \\
+                    Menangani penukaran token dengan informasi ujian dan menerbitkan tautan
+                    untuk melakukan pengunduhan.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                
+                \item \texttt{get\_download(\$f3)} \\
+                    Menyediakan layanan pengunduhan berkas berupa Zip.
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+            \end{itemize}
+            
+        \item \texttt{exam/info} \\
+            Bertanggung jawab untuk memberikan informasi tentang ujian yang tertaut
+            pada IP pengkonsumsi API pada waktu tertentu.
+            Kelas ini memiliki fungsi:
+            \begin{itemize}
+                \item \texttt{get\_index(\$f3)} \\
+                    Memberikan informasi tentang ujian yang sedang aktif.
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+            \end{itemize}
+            
+        \item \texttt{exam/notification} \\
+            Bertanggung jawab untuk memberikan notifikasi yang tertaut dengan
+            peserta yang sedang aktif.
+            Kelas ini memiliki fungsi:
+            \begin{itemize}
+                \item \texttt{get\_index(\$f3)} \\
+                    Memberikan daftar entri notifikasi.
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+            \end{itemize}
+            
+        \item \texttt{exam/submission} \\
+            Bertanggung jawab untuk menangi berbagai hal seputar submisi peserta.
+            Kelas ini memiliki fungsi:
+            \begin{itemize}
+                \item \texttt{get\_index(\$f3)} \\
+                    Memberikan informasi tentang submisi pada slot jawaban tertentu.
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                    
+                \item \texttt{get\_index(\$f3)} \\
+                    Menangani submisi yang dikirimkan peserta pada slot jawaban tertentu.
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+            \end{itemize}
+            
+        \item \texttt{system/auth} \\
+            Bertanggung jawab untuk menangi berbagai hal seputar otentikasi dengan kata
+            sandi dan nama pengguna.
+            \begin{itemize}
+                \item \texttt{post\_iplogin(\$f3)}\\
+                    Menangani permintaan untuk login dengan menggunakan IP.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                
+                \item \texttt{post\_login(\$f3)}\\
+                    Menangani permitnaan untuk login dengan mengguankan kombinasi
+                    nama pengguna atau email, dan kata sandi.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+            \end{itemize}
+    \end{itemize}
+    
+    \begin{sidewaysfigure}
+        \centering
+        \includegraphics{Gambar/classmap-be/Classmap - app-controller-api-manage.pdf}
+        \caption{Potongan diagram kelas untuk \textit{namespace}
+        \texttt{app/controller/api/manage}}
+        \label{fig:classmap_app-controller-api-manage}
+    \end{sidewaysfigure}
+    Kemudian terdapat kelas-kelas dari \textit{namespace} \texttt{app/controller/api/manage}
+    yang memiliki banyak kelas turunan dari \texttt{CRUDBase}. Diagram kelas tersebut dapat
+    dilihat pada Gambar \ref{fig:classmap_app-controller-api-manage}. \textit{Namespace}
+    tersebut memiliki kelas-kelas berikut:
+    \begin{itemize}
+        \item \texttt{Acl}\\
+            Bertanggung jawab untuk menangani permintaan REST API untuk entitas \texttt{Acl}. 
+            Kelas ini memiliki atribut:
+            \begin{itemize}
+                \item \texttt{\$permissionPrefix}: Turunan dari kelas \texttt{CRUDBase}.
+                \item \texttt{\$model}: Turunan dari kelas \texttt{CRUDBase}.
+            \end{itemize}
+        
+        \item \texttt{AclItem}\\
+            Bertanggung jawab untuk menangani permintaan REST API untuk entitas \texttt{AclItem}. 
+            Kelas ini memiliki atribut:
+            \begin{itemize}
+                \item \texttt{\$permissionPrefix}: Turunan dari kelas \texttt{CRUDBase}.
+                \item \texttt{\$model}: Turunan dari kelas \texttt{CRUDBase}.
+            \end{itemize}
+        
+        \item \texttt{AnswerSlot}\\
+            Bertanggung jawab untuk menangani permintaan REST API untuk entitas 
+            \texttt{AnswerSlot}. 
+            Kelas ini memiliki atribut:
+            \begin{itemize}
+                \item \texttt{\$permissionPrefix}: Turunan dari kelas \texttt{CRUDBase}.
+                \item \texttt{\$model}: Turunan dari kelas \texttt{CRUDBase}.
+            \end{itemize}
+        
+        \item \texttt{Computer}\\
+            Bertanggung jawab untuk menangani permintaan REST API untuk entitas \texttt{Computer}. 
+            Kelas ini memiliki atribut:
+            \begin{itemize}
+                \item \texttt{\$permissionPrefix}: Turunan dari kelas \texttt{CRUDBase}.
+                \item \texttt{\$model}: Turunan dari kelas \texttt{CRUDBase}.
+            \end{itemize}
+        
+        \item \texttt{IPLogin}\\
+            Bertanggung jawab untuk menangani permintaan REST API untuk entitas \texttt{IPLogin}. 
+            Kelas ini memiliki atribut:
+            \begin{itemize}
+                \item \texttt{\$permissionPrefix}: Turunan dari kelas \texttt{CRUDBase}.
+                \item \texttt{\$model}: Turunan dari kelas \texttt{CRUDBase}.
+            \end{itemize}
+        
+        \item \texttt{Participant}\\
+            Bertanggung jawab untuk menangani permintaan REST API untuk entitas 
+            \texttt{Participant}. 
+            Kelas ini memiliki atribut:
+            \begin{itemize}
+                \item \texttt{\$permissionPrefix}: Turunan dari kelas \texttt{CRUDBase}.
+                \item \texttt{\$model}: Turunan dari kelas \texttt{CRUDBase}.
+            \end{itemize}
+        
+        \item \texttt{Lecture}\\
+            Bertanggung jawab untuk menangani permintaan REST API untuk entitas \texttt{Lecture}. 
+            Kelas ini memiliki atribut:
+            \begin{itemize}
+                \item \texttt{\$permissionPrefix}: Turunan dari kelas \texttt{CRUDBase}.
+                \item \texttt{\$model}: Turunan dari kelas \texttt{CRUDBase}.
+            \end{itemize}
+        
+        \item \texttt{LecturePeriod}\\
+            Bertanggung jawab untuk menangani permintaan REST API untuk entitas 
+            \texttt{LecturePeriod}. 
+            Kelas ini memiliki atribut:
+            \begin{itemize}
+                \item \texttt{\$permissionPrefix}: Turunan dari kelas \texttt{CRUDBase}.
+                \item \texttt{\$model}: Turunan dari kelas \texttt{CRUDBase}.
+            \end{itemize}
+        
+        \item \texttt{Location}\\
+            Bertanggung jawab untuk menangani permintaan REST API untuk entitas \texttt{Location}. 
+            Kelas ini memiliki atribut:
+            \begin{itemize}
+                \item \texttt{\$permissionPrefix}: Turunan dari kelas \texttt{CRUDBase}.
+                \item \texttt{\$model}: Turunan dari kelas \texttt{CRUDBase}.
+            \end{itemize}
+        
+        \item \texttt{User}\\
+            Bertanggung jawab untuk menangani permintaan REST API untuk entitas \texttt{User}. 
+            Kelas ini memiliki atribut:
+            \begin{itemize}
+                \item \texttt{\$permissionPrefix}: Turunan dari kelas \texttt{CRUDBase}.
+                \item \texttt{\$model}: Turunan dari kelas \texttt{CRUDBase}.
+            \end{itemize}
+        
+        \item \texttt{Submission}\\
+            Bertanggung jawab untuk menangani permintaan REST API untuk entitas 
+            \texttt{Submission}. 
+            Kelas ini memiliki atribut:
+            \begin{itemize}
+                \item \texttt{\$permissionPrefix}: Turunan dari kelas \texttt{CRUDBase}.
+                \item \texttt{\$model}: Turunan dari kelas \texttt{CRUDBase}.
+            \end{itemize}
+        
+        \item \texttt{ExamReport}\\
+            Bertanggung jawab untuk menangani permintaan REST API untuk entitas \texttt{ExamReport}. 
+            Kelas ini memiliki atribut:
+            \begin{itemize}
+                \item \texttt{\$permissionPrefix}: Turunan dari kelas \texttt{CRUDBase}.
+                \item \texttt{\$model}: Turunan dari kelas \texttt{CRUDBase}.
+            \end{itemize}
+            Selain itu, kelas ini memiliki fungsi:
+            \begin{itemize}
+                \item \texttt{post\_item\_forcesend(\$f3)} \\
+                    Bertanggung jawab untuk mengirimkan laporan ke email yang terdapat pada entri
+                    secara manual.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{POST manage/examreport/:id/forcesend}
+            \end{itemize}
+        
+        \item \texttt{Exam}\\
+            Bertanggung jawab untuk menangani permintaan REST API untuk entitas \texttt{Exam}. 
+            Kelas ini memiliki atribut:
+            \begin{itemize}
+                \item \texttt{\$permissionPrefix}: Turunan dari kelas \texttt{CRUDBase}.
+                \item \texttt{\$model}: Turunan dari kelas \texttt{CRUDBase}.
+            \end{itemize}
+            Selain itu, kelas ini memiliki fungsi:
+            \begin{itemize}
+                \item \texttt{globalFilterTrigger(\$model)} \\
+                    Diturunkan dari kelas \textit{CRUDBase}. Digunakan untuk melimitasi
+                    daftar entri yang dikembalikan khusus untuk pengkonsumsi API yang
+                    terotentikasi via IPLogin. \\
+                    \textbf{Input:} Instansi dari model yang ditautkan ke kelas ini.\\
+                    \textbf{Output:} -
+                
+                \item \texttt{get\_index(\$f3)} \\
+                    Meng\textit{override} fungsi dari kelas \textit{CRUDBase}. Digunakan
+                    untuk menampilkan subset dengan kueri khusus untuk pengkonsumsi API
+                    yang terotentikasi via IPLogin.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{GET manage/exam/:id}
+                
+                \item \texttt{get\_item\_notifications(\$f3)} \\
+                    Menangani permintaan untuk mengembalikan daftar notifikasi yang terhubung
+                    dengan peserta yang mengikuti ujian ini.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{GET manage/exam/:id/notifications}
+                
+                \item \texttt{get\_item\_participants(\$f3)} \\
+                    Menangani permintaan untuk mengembalikan daftar peserta yang terhubung
+                    dengan ujian ini.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{GET manage/exam/:id/participants}
+                
+                \item \texttt{post\_item\_populate(\$f3)} \\
+                    Melakukan populasi tempat duduk dengan daftar peserta ujian.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{POST manage/exam/:id/populate}
+                
+                \item \texttt{post\_item\_start(\$f3)} \\
+                    Bertanggung jawab untuk memulai timer.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{POST manage/exam/:id/start}
+                
+                \item \texttt{post\_item\_close(\$f3)} \\
+                    Bertanggung jawab utnuk menutup timer.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{POST manage/exam/:id/close}
+                
+                \item \texttt{delete\_item\_start(\$f3)} \\
+                    Bertanggung jawab untuk menyetel ulang timer.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{DELETE manage/exam/:id/start}
+                
+                \item \texttt{get\_item\_script(\$f3)} \\
+                    Menangani pembuatan \textit{script} untuk membuat lembar kerja ujian
+                    peserta dan menyalin berkas pendukung ujian ke komputer peserta.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{GET manage/exam/:id/script}
+                    
+                \item \texttt{get\_item\_answers(\$f3)} \\
+                    Bertanggung jawab untuk mengumpulkan jawaban, lalu menggabungkannya
+                    dalam sebuah \textit{archive} zip.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{GET manage/exam/:id/answers}
+                
+                \item \texttt{post\_item\_move(\$f3)} \\
+                    Menangani pemindahan peserta pada komputer tertentu.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{POST manage/exam/:id/move}
+            \end{itemize}
+        
+        \item \texttt{Notification}\\
+            Bertanggung jawab untuk menangani permintaan REST API untuk entitas 
+            \texttt{Notification}. 
+            Kelas ini memiliki atribut:
+            \begin{itemize}
+                \item \texttt{\$permissionPrefix}: Turunan dari kelas \texttt{CRUDBase}.
+                \item \texttt{\$model}: Turunan dari kelas \texttt{CRUDBase}.
+            \end{itemize}
+            Kelas ini memiliki fungsi:
+            \begin{itemize}
+                \item \texttt{post\_mass\_gen(\$f3)} \\
+                    Bertanggung jawab untuk membuat notifikasi tentang kredensial akun
+                    untuk tiap peserta ujian pada ujian tertentu. \\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{POST manage/notification/mass\_gen}
+                
+                \item \texttt{delete\_item(\$f3)} \\
+                    Digunakan untuk menghapus item notifikasi secara paksa (mematikan fitur 
+                    \textit{soft-delete}) pada model. \\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{DELETE manage/notification/:id}
+                
+                \item \texttt{get\_index(\$f3)} \\
+                    Digunakan untuk mengembalikan daftar notifikasi yang tidak ter-\textit{soft-delete}.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{GET manage/notification}
+
+            \end{itemize}
+    \end{itemize}
+
+\subsubsection{\textit{Namespace} \texttt{app/model}}
+    \begin{sidewaysfigure}
+        \centering
+        \includegraphics[width=0.8\paperheight]{Gambar/classmap-be/Classmap - app-model.pdf}
+        \caption{Potongan diagram kelas untuk \textit{namespace} \texttt{app/model}.}
+        \label{fig:classmap_app-model}
+    \end{sidewaysfigure}
+    \textit{Namespace} ini akan berisi kelas-kelas yang bertanggung jawab merepresentasikan
+    entitas dalam bentuk kelas dengan memanfaatkan teknologi ORM. Diagram kelas tersebut dapat dilihat pada 
+    Gambar \ref{fig:classmap_app-model}.
+    
+    Kelas-kelas yang terdapat pada \textit{namespace} ini terdiri dari
+    \begin{itemize}
+        \item \texttt{ModelBase} \\
+            Kelas ini bertanggung jawab untuk menyediakan abstraksi untuk setiap model yang digunakan
+            pada aplikasi.
+            Atribut yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{\$validators}: Digunakan untuk menyimpan daftar validator dalam bentuk
+                    pasangan key-value, tergantung dari jenis kolom yang didefinisikan
+                    pada kelas representasi entitasnya.
+            \end{itemize}
+            Selain itu, fungsi yang dimiliki oleh kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{copyfromwithfilter(\$data, \$strict = false))}\\
+                    Bertanggung jawab untuk melakukan penyalinan data dengan syarat yang terdapat
+                    pada definisi kelas representasi entitas.\\
+                    \textbf{Input:} Data yang ada, apakah harus berada dalam mode ketat.\\
+                    \textbf{Output:} -
+                    
+                \item \texttt{\_validate(\$data))}\\
+                    Bertanggung jawab untuk melakukan validasi data yang diberikan dengan
+                    tabel definisi validasi yang diberikan pada atribut \$validator.\\
+                    \textbf{Input:} data yang akan divalidasi\\
+                    \textbf{Output:} \texttt{true} jika data valid, \textit{Exception} jika terdapat
+                        pelangaran validasi.
+            \end{itemize}
+            
+        \item \texttt{Error} \\
+            Bertanggung jawab untuk memodelkan pesan kesalahan yang dapat diserialisasi menjadi respon
+            yang dapat dipresentasikan untuk pengkonsumsi API. Kelas ini bukan bagian dari entitas
+            ataupun ORM, kelas ini bagian dari sistem dan siklus hidupnya. Kelas ini memiliki
+            atribut:
+            \begin{itemize}
+                \item \texttt{\$reason}: Menyimpan informasi alasan singkat kenapa pesan kesalahan 
+                    ini diterbitkan.
+                \item \texttt{\$error\_code}: Menyimpan informasi kode kesalahan untuk internal sistem.
+                \item \texttt{\$title}: Menyimpan informasi judul dari pesan kesalahan ini.
+                \item \texttt{\$description}: Menyimpan informasi detil dari kesalahan yang muncul.
+                \item \texttt{\$exception}: Objek eksepsi sebagai pendukung informasi pesan kesalahan.
+                \item \texttt{\$prevErrorModel}: Objek kesalahan sebelumnya sebagai pendukung informasi
+                    pesan kesalahan.
+                \item \texttt{\$http\_code}: Kode HTTP yang dapat merepresentasikan pesan kesalahan
+                    ini. (Contohnya 400 untuk permintaan yang tidak valid, 500 untuk galat yang
+                    tidak terduga, dan seterusnya).
+            \end{itemize}
+            Selain itu, kelas ini memiliki fungsi:
+            \begin{itemize}
+                \item \texttt{get\_http\_status()} \\
+                    \textit{Getter} untuk kode respon HTTP pada pesan kesalahan ini. \\
+                    \textbf{Input:} - \\
+                    \textbf{Output:} kode respon HTTP dalam representasi angka maupun 
+                        \textit{string}.
+                    
+                \item \texttt{serve\_exception()} \\
+                    Bertanggung jawab untuk memformat pesan kesalahan sebelum disajikan pada
+                    pengkonsumsi API. \\
+                    \textbf{Input:} - \\
+                    \textbf{Output:} representasi pesan kesalahan dalam bentuk pasangan 
+                        \textit{hashmap key-value}.
+            \end{itemize}
+                
+        \item \texttt{system/User} \\
+            Kelas ini merepresentasikan entitas User, bagian dari ORM, bertanggung jawab
+            untuk menerbitkan token untuk otentikasi, juga mendeteksi pengguna yang terotentikasi
+            berdasarkan informasi header.
+            Kelas ini memiliki atribut yang diturunkan dari kelas utama ORM, F3-Cortex.
+            Atribut-atribut tersebut terdiri dari
+            \begin{itemize}
+                \item \texttt{\$fieldConf}\\
+                    Digunakan untuk mendefinisikan kolom-kolom yang terdapat pada tabel \textit{User}.
+                \item \texttt{\$db} dengan nilai awal \texttt{"DB"}. \\
+                    Menentukan database yang akan digunakan pada model ini.
+                \item \texttt{\$table} dengan nilai awal \texttt{"system\_user"}. \\
+                    Nama tabel yang akan digunakan pada sistem basis data. 
+            \end{itemize}
+            Sedangkan fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{set\_created\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{created\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{set\_updated\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{updated\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{save()} \\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk mengisi
+                    kolom \textit{created\_on} dan \textit{updated\_on}.\\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+                
+                \item \texttt{getFromSession(\$statusOnly)} \\
+                    Bertanggung jawab untuk menlakukan pengecekan pengguna terotentikasi melalui 
+                    \textit{session}. \\
+                    \textbf{Input:} Apakah bentuk kembalian yang diinginkan hanyalah statusnya saja atau objek 
+                        penuh\\
+                    \textbf{Output:} \texttt{null} pada saat kosong, \texttt{"user"} atau objek
+                        dari kelas ini jika otentikasi ditemukan.
+                
+                \item \texttt{getFromHTTPHeader()} \\
+                    Cek otentikasi dari kepala permintaan HTTP. \\
+                    \textbf{Input:} - \\
+                    \textbf{Output:} Objek dari kelas ini jika terdapat otentikasi, \texttt{false} jika
+                        tidak ada.
+                
+                \item \texttt{getIPLoginHTTPHeader()} \\
+                    Cek IPLogin dari kepala permintaan HTTP pada otentikasi yang terhubung. \\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} Objek dari kelas \texttt{IPLogin} jika terdapat otentikasi, 
+                        \texttt{null} jika tidak ada.
+                
+                \item \texttt{generateToken(\$as="basic", \$iploginId=null)} \\
+                    Bangkitkan token JWT untuk pengguna ini. \\
+                    \textbf{Input:} Peran token ini, IPLogin tertaut.\\
+                    \textbf{Output:} \textit{string} token.
+                
+                \item \texttt{login(\$username, \$password, \$set\_session=false)} \\
+                    Lakukan pengecekkan kredensial login berdasarkan nama pengguna dan password. \\
+                    \textbf{Input:} nama pengguna, kata sandi, apakah ingin sekaligus disimpan ke
+                        \textit{session}\\
+                    \textbf{Output:} Objek dari user dimaksud, atau \textit{Exception} jika terdapat
+                        kesalahan.
+                
+                \item \texttt{auth(\$password)} \\
+                    Lakukan verifikasi kata sandi yang dimiliki pengguna ini. \\
+                    \textbf{Input:} Kata sandi dari pengguna.\\
+                    \textbf{Output:} \textit{boolean} apakah password benar atau tidak.
+                
+                \item \texttt{cast(\$obj=null, \$rel\_depths=1, \$save\_cast=true)} \\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk merepresentasikan
+                    kelas dalam bentuk \textit{hashmap} secara aman atau tidak. \\
+                    \textbf{Input:} Instansi yang akan di-\textit{cast}, konfigurasi relasi, dan
+                        lakukan \textit{casting} yang aman atau tidak.\\
+                    \textbf{Output:} \textit{array}.
+
+            \end{itemize}
+            
+        \item \texttt{Acl} \\
+            Kelas ini merepresentasikan entitas \textit{Access Control List} atau ACL. Kelas ini bagian
+            dari ORM. Atribut yang terdapat pada kelas ini terdiri dari:
+            \begin{itemize}
+                \item \texttt{\$fieldConf} \\
+                    Digunakan untuk mendefinisikan kolom-kolom yang terdapat pada tabel \textit{ACL}.
+                \item \texttt{\$db} dengan nilai awal \texttt{"DB"}. \\
+                    Menentukan database yang akan digunakan pada model ini.
+                \item \texttt{\$table} dengan nilai awal \texttt{"system\_acl"}. \\
+                    Nama tabel yang akan digunakan pada sistem basis data. 
+            \end{itemize}
+            Sedangkan fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{set\_deleted\_on(\$date)}\\
+                    Mengkonversi bentuk tanggal kolom \texttt{deleted\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{set\_created\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{created\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{set\_updated\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{updated\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{save()}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk mengisi
+                    kolom \textit{created\_on} dan \textit{updated\_on}.\\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+                
+                \item \texttt{cast(\$obj=null, \$rel\_depths=1, \$save\_cast=true)}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk merepresentasikan
+                    kelas dalam bentuk \textit{hashmap} secara aman atau tidak. \\
+                    \textbf{Input:} Instansi yang akan di-\textit{cast}, konfigurasi relasi, dan
+                        lakukan \textit{casting} yang aman atau tidak.\\
+                    \textbf{Output:} \textit{array}.
+            \end{itemize}
+            
+        \item \texttt{AclItem} \\
+            Kelas ini adalah kelas terkait ORM yang merepresentasikan entitas AclItem. Kelas ini
+            memiliki daftar atribut:
+            \begin{itemize}
+                \item \texttt{\$fieldConf} \\
+                    Digunakan untuk mendefinisikan kolom-kolom yang terdapat pada tabel \textit{ACLItem}.
+                \item \texttt{\$db} dengan nilai awal \texttt{"DB"}. \\
+                    Menentukan database yang akan digunakan pada model ini.
+                \item \texttt{\$table} dengan nilai awal \texttt{"system\_aclitem"}. \\
+                    Nama tabel yang akan digunakan pada sistem basis data. 
+                \item \texttt{NONE}: Nilai konstanta tidak memiliki izin apapun.
+                \item \texttt{CREATE}: Nilai konstanta untuk izin membuat.
+                \item \texttt{READ}: Nilai konstanta untuk izin membaca/melihat.
+                \item \texttt{UPDATE}: Nilai konstanta untuk izin mengubah/memperbarui.
+                \item \texttt{DELETE}: Nilai konstanta untuk izin menghapus.
+                \item \texttt{ALL}: Nilai konstanta untuk semua izin diperbolehkan.
+            \end{itemize}
+            
+        \item \texttt{IPLogin} \\
+            Kelas ini adalah kelas terkait ORM yang merepresentasikan entitas IPlogin. Atribut yang terdapat pada kelas ini terdiri dari:
+            \begin{itemize}
+                \item \texttt{\$fieldConf} \\
+                    Digunakan untuk mendefinisikan kolom-kolom yang terdapat pada tabel \textit{ACL}.
+                \item \texttt{\$db} dengan nilai awal \texttt{"DB"}. \\
+                    Menentukan database yang akan digunakan pada model ini.
+                \item \texttt{\$table} dengan nilai awal \texttt{"system\_iplogin"}. \\
+                    Nama tabel yang akan digunakan pada sistem basis data. 
+            \end{itemize}
+            Sedangkan fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{set\_created\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{created\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{set\_updated\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{updated\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{save()}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk mengisi
+                    kolom \textit{created\_on} dan \textit{updated\_on}.\\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+            \end{itemize}
+    \end{itemize}
+    
+    
+    \begin{sidewaysfigure}
+        \centering
+        \includegraphics[width=0.8\paperheight]{Gambar/classmap-be/Classmap - app-model-ujian.pdf}
+        \caption{Potongan diagram kelas untuk \textit{namespace} \texttt{app/model/ujian}}
+        \label{fig:classmap_app-model-ujian}
+    \end{sidewaysfigure}
+    \textit{Namespace} \texttt{app/model/ujian} memiliki beberapa kelas ORM yang berhubungan langsung
+    dengan ujian. Diagram kelas untuk \textit{namespace} tersebut dapat dilihat pada Gambar
+    \ref{fig:classmap_app-model-ujian}. Kelas-kelas pada \textit{namespace} ini terdiri dari
+    \begin{itemize}
+        \item \texttt{Computer} \\
+            Kelas ini adalah kelas terkait ORM yang merepresentasikan entitas Computer. Atribut yang 
+            terdapat pada kelas ini terdiri dari:
+            \begin{itemize}
+                \item \texttt{\$fieldConf} \\
+                    Digunakan untuk mendefinisikan kolom-kolom yang terdapat pada tabel \textit{Computer}.
+                \item \texttt{\$db} dengan nilai awal \texttt{"DB"}. \\
+                    Menentukan database yang akan digunakan pada model ini.
+                \item \texttt{\$table} dengan nilai awal \texttt{"ujian\_computer"}. \\
+                    Nama tabel yang akan digunakan pada sistem basis data. 
+            \end{itemize}
+            Sedangkan fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{set\_created\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{created\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{set\_updated\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{updated\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{save()}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk mengisi
+                    kolom \textit{created\_on} dan \textit{updated\_on}.\\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+            \end{itemize}
+            
+        \item \texttt{Location} \\
+            Kelas ini adalah kelas terkait ORM yang merepresentasikan entitas Location. Atribut yang 
+            terdapat pada kelas ini terdiri dari:
+            \begin{itemize}
+                \item \texttt{\$fieldConf} \\
+                    Digunakan untuk mendefinisikan kolom-kolom yang terdapat pada tabel \textit{Location}.
+                \item \texttt{\$db} dengan nilai awal \texttt{"DB"}. \\
+                    Menentukan database yang akan digunakan pada model ini.
+                \item \texttt{\$table} dengan nilai awal \texttt{"ujian-computer"}. \\
+                    Nama tabel yang akan digunakan pada sistem basis data. 
+            \end{itemize}
+            Sedangkan fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{set\_created\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{created\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{set\_updated\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{updated\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{set\_deleted\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{deleted\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{save()}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk mengisi
+                    kolom \textit{created\_on}, \textit{updated\_on} dan \textit{deleted\_on}.\\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+            \end{itemize}
+            
+        \item \texttt{AnswerSlot} \\
+            Kelas ini adalah kelas terkait ORM yang merepresentasikan entitas AnswerSlot. Atribut yang 
+            terdapat pada kelas ini terdiri dari:
+            \begin{itemize}
+                \item \texttt{\$fieldConf} \\
+                    Digunakan untuk mendefinisikan kolom-kolom yang terdapat pada tabel \textit{AnswerSlot}.
+                \item \texttt{\$db} dengan nilai awal \texttt{"DB"}. \\
+                    Menentukan database yang akan digunakan pada model ini.
+                \item \texttt{\$table} dengan nilai awal \texttt{"ujian-computer"}. \\
+                    Nama tabel yang akan digunakan pada sistem basis data. 
+            \end{itemize}
+            Sedangkan fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{set\_created\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{created\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{set\_updated\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{updated\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{set\_deleted\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{deleted\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{save()}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk mengisi
+                    kolom \textit{created\_on}, \textit{updated\_on} dan \textit{deleted\_on}.\\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+                
+                \item \texttt{cast(\$obj=null, \$rel\_depths=1, \$save\_cast=true)}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk merepresentasikan
+                    kelas dalam bentuk \textit{hashmap} secara aman atau tidak. \\
+                    \textbf{Input:} Instansi yang akan di-\textit{cast}, konfigurasi relasi, dan
+                        lakukan \textit{casting} yang aman atau tidak.\\
+                    \textbf{Output:} \textit{array}.
+                    
+                \item \texttt{simulateFormat(\$as\_participant)} \\
+                    Bertanggung jawab untuk membangkitkan nama berkas yang ditunjukkan untuk
+                    slot jawaban ini pada peserta tertentu. \\
+                    \textbf{Input:} Detil peserta dalam kelas \texttt{Participant}.\\
+                    \textbf{Output:} \textit{string} nama berkas jawaban.
+                    
+                \item \texttt{getSubmission(\$participant)} \\
+                    Bertanggung jawab untuk mengembalikan instansi \texttt{Submission} untuk peserta
+                    tertentu. \\
+                    \textbf{Input:} Instansi objek peserta.\\
+                    \textbf{Output:} objek \texttt{Submission}
+                    
+                \item \texttt{submit(\$filepath, \$as\_participant)} \\
+                    Melakukan submisi untuk slot jawaban ini dengan informasi lokasi berkas
+                    dan informasi peserta. \\
+                    \textbf{Input:} Lokasi berkas, objek \texttt{Participant}.\\
+                    \textbf{Output:} objek \texttt{Submission}
+                    
+            \end{itemize}
+            
+        \item \texttt{Exam} \\
+            Kelas ini adalah kelas terkait ORM yang merepresentasikan entitas Exam. Atribut yang 
+            terdapat pada kelas ini terdiri dari:
+            \begin{itemize}
+                \item \texttt{\$fieldConf} \\
+                    Digunakan untuk mendefinisikan kolom-kolom yang terdapat pada tabel \textit{Exam}.
+                \item \texttt{\$db} dengan nilai awal \texttt{"DB"}. \\
+                    Menentukan database yang akan digunakan pada model ini.
+                \item \texttt{\$table} dengan nilai awal \texttt{"ujian-exam"}. \\
+                    Nama tabel yang akan digunakan pada sistem basis data. 
+            \end{itemize}
+            Sedangkan fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{set\_created\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{created\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{set\_updated\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{updated\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{set\_deleted\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{deleted\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{save()}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk mengisi
+                    kolom \textit{created\_on}, \textit{updated\_on} dan \textit{deleted\_on}.\\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+                
+                \item \texttt{cast(\$obj=null, \$rel\_depths=1, \$save\_cast=true)}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk merepresentasikan
+                    kelas dalam bentuk \textit{hashmap} secara aman atau tidak. \\
+                    \textbf{Input:} Instansi yang akan di-\textit{cast}, konfigurasi relasi, dan
+                        lakukan \textit{casting} yang aman atau tidak.\\
+                    \textbf{Output:} \textit{array}.
+                    
+                \item \texttt{set\_time\_opened(\$date)} \\
+                     Mengkonversi bentuk tanggal kolom \texttt{time\_opened} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{set\_time\_ended(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{time\_ended} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{set\_time\_start(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{time\_start} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{getFullPath()} \\
+                    Bertanggung jawab untuk mengembalikan alamat lengkap dari ujian ini. \\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} \textit{string} alamat lengkap menuju folder ujian ini.
+                
+                \item \texttt{getLoggerInstance(\$loggerName = "general")} \\
+                    Bertanggung jawab untuk mengembalikan objek \texttt{Logger} yang dapat
+                    digunakan untuk melakukan logging\\
+                    \textbf{Input:} Nama label untuk log yang ingin dibuat\\
+                    \textbf{Output:} Objek \texttt{Logger}
+            \end{itemize}
+            
+        \item \texttt{LecturePeriod} \\
+            Kelas ini adalah kelas terkait ORM yang merepresentasikan entitas LecturePeriod. Atribut yang 
+            terdapat pada kelas ini terdiri dari:
+            \begin{itemize}
+                \item \texttt{\$fieldConf} \\
+                    Digunakan untuk mendefinisikan kolom-kolom yang terdapat pada tabel \textit{LecturePeriod}.
+                \item \texttt{\$db} dengan nilai awal \texttt{"DB"}. \\
+                    Menentukan database yang akan digunakan pada model ini.
+                \item \texttt{\$table} dengan nilai awal \texttt{"ujian\_computer"}. \\
+                    Nama tabel yang akan digunakan pada sistem basis data. 
+            \end{itemize}
+            Sedangkan fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{set\_created\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{created\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{set\_updated\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{updated\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{set\_deleted\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{deleted\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{save()}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk mengisi
+                    kolom \textit{created\_on}, \textit{updated\_on} dan \textit{deleted\_on}.\\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+                    
+                \item \texttt{getLatestPeriod()}\\
+                    Bertanggung jawab untuk mengambil periode terbaru pada tahun aktif. Jika tidak
+                    tersedia pada basis data, maka fungsi ini akan membuat periode yang baru.\\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} Objek \textit{LecturePeriod} berisi baris tertentu.
+            \end{itemize}
+            
+        \item \texttt{Participant} \\
+            Kelas ini adalah kelas terkait ORM yang merepresentasikan entitas Participant. Atribut yang 
+            terdapat pada kelas ini terdiri dari:
+            \begin{itemize}
+                \item \texttt{\$fieldConf} \\
+                    Digunakan untuk mendefinisikan kolom-kolom yang terdapat pada tabel \textit{Participant}.
+                \item \texttt{\$db} dengan nilai awal \texttt{"DB"}. \\
+                    Menentukan database yang akan digunakan pada model ini.
+                \item \texttt{\$table} dengan nilai awal \texttt{"ujian\_participant"}. \\
+                    Nama tabel yang akan digunakan pada sistem basis data. 
+            \end{itemize}
+            Sedangkan fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{set\_created\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{created\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{set\_updated\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{updated\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{set\_deleted\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{deleted\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{save()}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk mengisi
+                    kolom \textit{created\_on}, \textit{updated\_on} dan \textit{deleted\_on}.\\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+            \end{itemize}
+            
+        \item \texttt{Lecture} \\
+            Kelas ini adalah kelas terkait ORM yang merepresentasikan entitas Lecture. Atribut yang 
+            terdapat pada kelas ini terdiri dari:
+            \begin{itemize}
+                \item \texttt{\$fieldConf} \\
+                    Digunakan untuk mendefinisikan kolom-kolom yang terdapat pada tabel \textit{Lecture}.
+                \item \texttt{\$db} dengan nilai awal \texttt{"DB"}. \\
+                    Menentukan database yang akan digunakan pada model ini.
+                \item \texttt{\$table} dengan nilai awal \texttt{"ujian\_lecture"}. \\
+                    Nama tabel yang akan digunakan pada sistem basis data. 
+            \end{itemize}
+            Sedangkan fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{set\_created\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{created\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{set\_updated\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{updated\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{set\_deleted\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{deleted\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{save()}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk mengisi
+                    kolom \textit{created\_on}, \textit{updated\_on} dan \textit{deleted\_on}.\\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+            \end{itemize}
+            
+        \item \texttt{Submission} \\
+            Kelas ini adalah kelas terkait ORM yang merepresentasikan entitas Submission. Atribut yang 
+            terdapat pada kelas ini terdiri dari:
+            \begin{itemize}
+                \item \texttt{\$fieldConf} \\
+                    Digunakan untuk mendefinisikan kolom-kolom yang terdapat pada tabel \textit{Submission}.
+                \item \texttt{\$db} dengan nilai awal \texttt{"DB"}. \\
+                    Menentukan database yang akan digunakan pada model ini.
+                \item \texttt{\$table} dengan nilai awal \texttt{"ujian\_submission"}. \\
+                    Nama tabel yang akan digunakan pada sistem basis data. 
+            \end{itemize}
+            Sedangkan fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{set\_created\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{created\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{set\_updated\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{updated\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{set\_deleted\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{deleted\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{save()}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk mengisi
+                    kolom \textit{created\_on}, \textit{updated\_on} dan \textit{deleted\_on}.\\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+                
+                \item \texttt{cast(\$obj=null, \$rel\_depths=1, \$save\_cast=true)}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk merepresentasikan
+                    kelas dalam bentuk \textit{hashmap} secara aman atau tidak. \\
+                    \textbf{Input:} Instansi yang akan di-\textit{cast}, konfigurasi relasi, dan
+                        lakukan \textit{casting} yang aman atau tidak.\\
+                    \textbf{Output:} \textit{array}.
+                
+                \item \texttt{getFullPath()} \\
+                    Bertanggung jawab untuk mengembalikan alamat lengkap menuju berkas submisi ini. \\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} \textit{string} alamat lengkap menuju berkas submisi
+            \end{itemize}
+            
+        \item \texttt{Notification} \\
+            Kelas ini adalah kelas terkait ORM yang merepresentasikan entitas Notification. Atribut yang 
+            terdapat pada kelas ini terdiri dari:
+            \begin{itemize}
+                \item \texttt{\$fieldConf} \\
+                    Digunakan untuk mendefinisikan kolom-kolom yang terdapat pada tabel \textit{Notification}.
+                \item \texttt{\$db} dengan nilai awal \texttt{"DB"}. \\
+                    Menentukan database yang akan digunakan pada model ini.
+                \item \texttt{\$table} dengan nilai awal \texttt{"ujian\_notification"}. \\
+                    Nama tabel yang akan digunakan pada sistem basis data. 
+            \end{itemize}
+            Sedangkan fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{set\_created\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{created\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{set\_updated\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{updated\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{set\_deleted\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{deleted\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{save()}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk mengisi
+                    kolom \textit{created\_on}, \textit{updated\_on} dan \textit{deleted\_on}.\\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+                
+                \item \texttt{cast(\$obj=null, \$rel\_depths=1, \$save\_cast=true)}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk merepresentasikan
+                    kelas dalam bentuk \textit{hashmap} secara aman atau tidak. \\
+                    \textbf{Input:} Instansi yang akan di-\textit{cast}, konfigurasi relasi, dan
+                        lakukan \textit{casting} yang aman atau tidak.\\
+                    \textbf{Output:} \textit{array}.
+            \end{itemize}
+            
+        \item \texttt{ExamReport} \\
+            Kelas ini adalah kelas terkait ORM yang merepresentasikan entitas ExamReport. Atribut yang 
+            terdapat pada kelas ini terdiri dari:
+            \begin{itemize}
+                \item \texttt{\$fieldConf} \\
+                    Digunakan untuk mendefinisikan kolom-kolom yang terdapat pada tabel \textit{ExamReport}.
+                \item \texttt{\$db} dengan nilai awal \texttt{"DB"}. \\
+                    Menentukan database yang akan digunakan pada model ini.
+                \item \texttt{\$table} dengan nilai awal \texttt{"ujian\_examreport"}. \\
+                    Nama tabel yang akan digunakan pada sistem basis data. 
+            \end{itemize}
+            Sedangkan fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{set\_sent\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{sent\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{set\_valid\_untill(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{valid\_untill} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                \item \texttt{set\_created\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{created\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                
+                \item \texttt{set\_updated\_on(\$date)} \\
+                    Mengkonversi bentuk tanggal kolom \texttt{updated\_on} \textit{native} ke 
+                    format basis data. \\
+                    \textbf{Input:} Tanggal dalam bentuk \textit{Unix time}\\
+                    \textbf{Output:} \textit{string} tanggal terformat.
+                    
+                    
+                \item \texttt{save()}\\
+                    Meng-\textit{override} kelas dari ORM. Bertanggung jawab untuk mengisi
+                    kolom \textit{created\_on}, \textit{updated\_on} dan \textit{deleted\_on}.\\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+                
+                \item \texttt{pushValidity(\$addSeconds, \$autoSave)} \\
+                    Menambahkan waktu validitas dari token yang terdapat pada entri ini. \\
+                    \textbf{Input:} Jumlah waktu dalam detik, jalankan simpan otomatis.\\
+                    \textbf{Output:} -
+            \end{itemize}
+    \end{itemize}
+
+\subsubsection{\textit{Namespace} \texttt{app/helper}}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\paperwidth]{Gambar/classmap-be/Classmap - app-helper.pdf}
+        \caption{Diagram kelas untuk \textit{namespace} \texttt{app/helper}}
+        \label{fig:classmap_app-helper}
+    \end{figure}
+    Kelas-kelas yang terdapat pada \textit{namespace} ini akan menampung berbagai fungsi pembantu
+    yang dapat digunakan tanpa harus diinstansiasi atau kelas tambahan untuk perkakas validasi.
+    Diagram kelas untuk \textit{namespace} ini dapat diperhatikan pada Gambar 
+    \ref{fig:classmap_app-helper}.
+    
+    Kelas-kelas yang terdapat pada \textit{namespace} ini tediri dari
+    \begin{itemize}
+        \item \texttt{AnswerZipper}
+            Kelas ini bertanggung jawab untuk membuat \textit{archive} zip dari ujian tertentu.\\
+            Fungsi pada kelas ini terdiri dari:
+            \begin{itemize}
+                \item \texttt{zipExam(\$exam)} \\
+                    Buat \textit{archive} untuk ujian tertentu. \\
+                    \textbf{Input:} Objek dari \texttt{Exam}.\\
+                    \textbf{Output:} nama berkas zip.
+                    
+                \item \texttt{getProperFilename(\$exam, \$withDate=true)} \\
+                    Bangkitkan nama berkas yang tepat untuk ujian tertentu.\\
+                    \textbf{Input:} objek \texttt{exam}, opsi untuk menambahkan tanggal.\\
+                    \textbf{Output:} \textit{string} nama berkas.
+            \end{itemize}
+        
+        \item \texttt{Emailer}
+            Kelas ini digunakan untuk membuat dan mengkonfigurasi objek \textit{PHPMailer}.
+            Fungsi pada kelas ini terdiri dari:
+            \begin{itemize}
+                \item \texttt{getEmailInstance()} \\
+                    Buat objek \texttt{PHPMailer} dan knfigurasi objek tersebut berdasarkan
+                    konfigurasi sistem.\\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} Objek dari \texttt{PHPMailer}.
+            \end{itemize}
+            
+        \item \texttt{Ijin}
+            Kelas ini membantu pengecekan perizinan dengan entitas ACL dan ACLItem.
+            \begin{itemize}
+                \item \texttt{isUserPresent()} \\
+                    Melakukan pengecekan apakah kode otentikasi tersedia dan valid. \\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} \textit{boolean} kehadiran otentikasi yang valid.
+                    
+                \item \texttt{userMustPresent()} \\
+                    Memastikan bahwa token otentikasi ada. \\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -, namun dapat melempar eksepsi jika token tidak tersedia.
+                    
+                \item \texttt{checkIfUserHave(\$acl\_codename, \$level)} \\
+                    Melakukan pengecekan apakah token otentikasi memiliki izin untuk melakukan suatu
+                    aksi pada \textit{codename} tertentu.\\
+                    \textbf{Input:} nama kode izin, perizinan yang seharusnya dimiliki\\
+                    \textbf{Output:} \textit{boolean} apakah token memiliki permisi tersebut.
+                    
+                \item \texttt{mustHave(\$acl\_codename, \$level)} \\
+                    Memastikan bahwa token memiliki izin untuk melakukan sesuatu \\
+                    \textbf{Input:} nama kode izin, perizinan yang seharusnya dimiliki\\
+                    \textbf{Output:} -, namun dapat melempar eksepsi jika token tidak memiliki izin.
+            \end{itemize}
+            
+        \item \texttt{PreAPI}
+            \textit{Macro} untuk API.
+            \begin{itemize}
+                \item \texttt{doTheThing()} \\
+                    Melakukan transformasi badan permintaan API menjadi JSON. Dilakukan hanya
+                    pada \textit{HTTP method} \texttt{POST} dan \texttt{PUT}.\\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+            \end{itemize}
+        
+        \item \texttt{Ruler}
+            \textit{Macro} untuk \textit{library} validasi menjadi eksepsi kelas \texttt{Model/Error}.
+            \begin{itemize}
+                \item \texttt{transformToError(\$e)} \\
+                    Melakukan transformasi eksepsi dari \textit{library} validasi, menjadi 
+                    \texttt{Model/Error} \\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+            \end{itemize}
+            
+        \item \texttt{Ruler/MustExists}
+            Kelas peraturan untuk validasi tambahan. Memastikan apakah suatu entri terdapat
+            pada sebuah tabel. Kelas ini memiliki atribut sebagai berikut:
+            \begin{itemize}
+                \item \texttt{\$modelName}: Nama model
+                \item \texttt{\$fieldName}: Nama kolom kunci primer dari model
+                \item \texttt{\$deleted\_on\_field}: Nama kolom \textit{soft delete} dari model
+            \end{itemize}
+            Serta fungsi sebagai berikut:
+            \begin{itemize}
+                \item \texttt{validate(\$input)} \\
+                    Melakukan validasi bahwa data yang diberikan terdapat pada tabel.\\
+                    \textbf{Input:} input data\\
+                    \textbf{Output:} \textit{boolean} kebenaran dari validasi tersebut.
+            \end{itemize}
+            
+        \item \texttt{Exceptions/MustExistsException}
+            Eksepsi oleh aturan \textit{MustExists}.
+            \begin{itemize}
+                \item \texttt{\$defaultTemplates}: Pesan kesalahan pada saat validasi gagal.
+            \end{itemize}
+            Serta fungsi sebagai berikut:
+            \begin{itemize}
+                \item \texttt{validate(\$input)} \\
+                    Melakukan validasi bahwa data yang diberikan terdapat pada tabel.\\
+                    \textbf{Input:} input data\\
+                    \textbf{Output:} \textit{boolean} kebenaran dari validasi tersebut.
+            \end{itemize}
+    \end{itemize}
+
+\subsubsection{\textit{Namespace} \texttt{app/output}}
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/classmap-be/Classmap - app-output.pdf}
+        \caption{Diagram kelas untuk \textit{namespace} \texttt{app/output}}
+        \label{fig:classmap_app-output}
+    \end{figure}
+    \textit{Namespace} \texttt{output} menyimpan kelas yang membantu untuk formatisasi
+    API. Format yang didukung saat ini berbentuk JSON, XML, dan teks biasa. Rancangan diagram
+    kelas ini dapat dilihat pada Gambar \ref{fig:classmap_app-output}.
+    
+    Kelas-kelas yang terdapat pada \textit{namespace} ini terdiri dari
+    \begin{itemize}
+        \item \texttt{Formatter} \\
+            Kelas ini bertanggung jawab untuk melakukan formating utama untuk jenis respon sukses
+            dan gagal.
+            Kelas ini memiliki fungsi:
+            \begin{itemize}
+                \item \texttt{format\_success(\$data)} \\
+                    Melakukan format untuk jenis respon sukses.\\
+                    \textbf{Input:} input data\\
+                    \textbf{Output:} \textit{array}.
+                    
+                \item \texttt{format\_error(\$data)} \\
+                    Melakukan format untuk jenis respon gagal.\\
+                    \textbf{Input:} objek dari \texttt{model/Error}\\
+                    \textbf{Output:} \textit{array}.
+            \end{itemize}
+            
+        \item \texttt{JSON} \\
+            Kelas ini bertanggung jawab untuk melakukan performatan data ke bentuk JSON.
+            Kelas ini memiliki fungsi:
+            \begin{itemize}
+                \item \texttt{serve(\$data)} \\
+                    Merepresentasikan data dalam bentuk JSON.\\
+                    \textbf{Input:} input data\\
+                    \textbf{Output:} \textit{string}.
+            \end{itemize}
+            
+        \item \texttt{Plain} \\
+            Kelas ini bertanggung jawab untuk melakukan performatan data ke bentuk teks biasa.
+            Kelas ini memiliki fungsi:
+            \begin{itemize}
+                \item \texttt{serve(\$data)} \\
+                    Merepresentasikan data dalam bentuk teks.\\
+                    \textbf{Input:} input data\\
+                    \textbf{Output:} \textit{string}.
+            \end{itemize}
+            
+        \item \texttt{XML} \\
+            Kelas ini bertanggung jawab untuk melakukan performatan data ke bentuk JSON.
+            Kelas ini memiliki atribut:
+            \begin{itemize}
+                \item \texttt{\$xmlns}: \textit{Namespace} yang digunakan untuk mendefinisikan XML.
+                \item \texttt{\$rootElementName}: Nama elemen pangkal yang akan digunakan.
+            \end{itemize}
+            Kelas ini memiliki fungsi:
+            \begin{itemize}
+                \item \texttt{serve(\$data)} \\
+                    Merepresentasikan data dalam bentuk XML.\\
+                    \textbf{Input:} input data\\
+                    \textbf{Output:} \textit{string}.
+            \end{itemize}
+    \end{itemize}
+    
+\subsection{\textit{Namespace} \texttt{app/service}, \texttt{app/cronjob} dan \texttt{app/view}}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\paperwidth]{Gambar/classmap-be/Classmap - app-service,cronjob,view.pdf}
+        \caption{Diagram kelas untuk \textit{namespace} \texttt{app/service}, \texttt{app/cronjob} 
+            dan \texttt{app/view}}
+        \label{fig:classmap_app-service,cronjob,view}
+    \end{figure}
+    Diagram kelas untuk beberapa \textit{Namespace} ini dapat dilihat pada Gambar 
+    \ref{fig:classmap_app-service,cronjob,view}. Kelas-kelas pada \textit{namespace} ini terdiri
+    dari:
+    \begin{itemize}
+        \item \texttt{service/BatGenerator} \\
+            Kelas ini bertanggung jawab untuk membuat \textit{script} bat untuk
+            ujian dan migrasi.
+            Atribut yang terdapat pada kelas ini:
+            \begin{itemize}
+                \item \texttt{\$zipname}: Nama berkas zip sebelumnya
+            \end{itemize}
+            Fungsi yang terdapat pada kelas ini:
+            \begin{itemize}
+                \item \texttt{generate(\$ujian)} \\
+                    Bertanggung jawab untuk melakukan pembuatan \textit{script} bat untuk ujian. \\
+                    \textbf{Input:} Objek \texttt{Exam}.\\
+                    \textbf{Output:} \textit{string} nama berkas zip.
+                
+                \item \texttt{generateMigration(\$migrationLists, \$exam)} \\
+                    Bertanggung jawab untuk melakukan pembuatan \textit{script} bat untuk perpindahan
+                    peserta.\\
+                    \textbf{Input:} Daftar migrasi, dan objek \texttt{Exam}\\
+                    \textbf{Output:} \textit{string} nama berkas zip.
+                
+                \item \texttt{clean\_zip()} \\
+                    Menghapus berkas zip \\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+                
+                \item \texttt{tempFileGenerator(\$prefix=".tmp", \$length=10, \$chars=...)} \\
+                    Membangkitkan nama sementara untuk zip. \\
+                    \textbf{Input:} prefixks untuk nama berkas sementara, panjang teks acak, dan
+                        daftar karakter yang ingin digunakan.\\
+                    \textbf{Output:} \textit{string} nama berkas sementara.
+            \end{itemize}
+        
+        \item \texttt{cronjob/AutoReport} \\
+            Kelas ini bertanggung jawab untuk melakukan tugas \textit{cron} untuk mengirimkan
+            laporan.
+            Fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{exam(\$f3)} \\
+                    Bertanggun jawab untuk mengkompilasi ujian yang telah selesai, dan mengirimkan
+                    email ke daftar yang disebutkan pada entri.
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.\\
+                    \textbf{Output:} -
+            \end{itemize}
+            
+        \item \texttt{view/Api} \\
+            Kelas ini didedikasikan untuk menyediakan API dengan format tertentu yang didukung oleh
+            kelas yang terdapat pada namespace \texttt{Output}.
+            Fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{error(\$data, \$http\_code=400, \$desc=null)} \\
+                    Bertanggung jawab untuk melakukan peformatan \textit{error}. \\
+                    \textbf{Input:} objek \texttt{Error}, kode respon HTTP, dan deskripsinya.\\
+                    \textbf{Output:} \textit{string}.
+                    
+                \item \texttt{success(\$data)} \\
+                    Bertanggung jawab untuk melakukan peformatan data untuk respon sukses. \\
+                    \textbf{Input:} \textit{array} data.\\
+                    \textbf{Output:} \textit{string}.
+                
+                \item \texttt{serve(\$data)} \\
+                    Menyajikan data ke pengkonsumsi API, sesuai dengan format yang diminta oleh
+                    pengkonsumsi API, seperti JSON, XML, ataupun teks biasa.\\
+                    \textbf{Input:} \textit{string} data.\\
+                    \textbf{Output:} \textit{string}.
+            \end{itemize}
+            
+        \item \texttt{view/Bat} \\
+            Melakukan pembuatan \textit{script} bat berdasarkan \textit{template} yang telah diberikan,
+            dengan memanfaatkan \textit{templating engine} yang disediakan oleh \textit{framework}.
+            Fungsi yang terdapat pada kelas ini adalah:
+            \begin{itemize}
+                \item \texttt{render(\$ba\_name, \$log\_file="batlog.log")} \\
+                    \textit{Render template} yang diberikan, dan kembalikan sebagai \textit{string}. \\
+                    \textbf{Input:} Nama \textit{template}, nama log yang akan digenerasi.\\
+                    \textbf{Output:} \textit{string}.
+            \end{itemize}
+        
+        \item \texttt{view/ReactApp} \\
+            Bertanggung jawab untuk menyajikan aplikasi React untuk tampilan publik.
+            \begin{itemize}
+                \item \texttt{render()} \\
+                    Sajikan hasil \textit{build} dari React. \\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+            \end{itemize}
+    \end{itemize}
+
 \section{Perancangan Sistem CI/CD dan Unit Testing}
     % melakukan build pada saat commit
     Berdasarkan hasil analisis pada bab sebelumnya, penelitian membutuhkan sebuah sistem yang dapat
     melakukan \textit{build} secara otomatis sebelum dapat di-\textit{deploy} ke peladen produksi.
     Sistem \textit{build} tersebut akan direncanakan untuk diimplementasi pada sistem CI/CD yang
-    terintegrasi dengan tempat penyimpanan repositori kode sumber. Kode sumber tersebut nantinya akan
+    terintegrasi dengan tempat penyimpanan repositori kode sumber. 
+    Kode sumber tersebut nantinya akan
     dilacak oleh sistem repository sehingga pada saat kode mengalami perubahan, sistem CI/CD akan
     secara otomatis berjalan. Sistem ini direncakan untuk melakukan hal berikut secara sekuensial:
     
