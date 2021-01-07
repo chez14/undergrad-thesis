@@ -4,7 +4,8 @@
 \section{Rancangan Antarmuka}
     Peracangan antarmuka dilakukan dengan membuat \textit{mockup} aplikasi. Desain \textit{mockup} dibagi 
     menjadi tiga bagian besar berdasarkan peranan penggunanya.
-    Kemudian tampilan antarmuka diimplementasi dengan bantuan Bootstrap dan \texttt{reactstrap} untuk
+    Kemudian tampilan antarmuka diimplementasi dengan bantuan Bootstrap dan \texttt{reactstrap}
+    \footnote{Lihat https://reactstrap.github.io/} untuk
     membantu pengembangan aplikasi. Pembahasan akan dimulai dengan rancangan 
     antarmuka untuk Perserta, lalu perancangan antarmuka untuk Admin, Dosen Pengawas, dan kemudian rancangan 
     antarmuka tambahan.
@@ -2727,6 +2728,164 @@
                     \textbf{Output:} -
             \end{itemize}
     \end{itemize}
+    
+\subsubsection{\textit{Namespace} \texttt{test/system-wide}}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/classmap-be/Classmap - test-systemwide.pdf}
+        \caption{Diagram kelas untuk \textit{namespace} \texttt{test/system-wide}.}
+        \label{fig:classmap_test-systemwide}
+    \end{figure}
+    \textit{Namespace} ini berisi kelas-kelas yang digunakan untuk \textit{Unit Testing}. Kelas
+    ini tidak menjadi bagian langsung pada sistem karena kelas ini hanya akan di eksekusi oleh
+    CI/CD dengan bantuan PHP Unit. Diagram kelas untuk \textit{namespace} ini dapat dilihat pada 
+    Gambar \ref{fig:classmap_test-systemwide}.
+    
+    \begin{table}[]
+        \centering
+        \begin{tabular}{|l|l|l|l|}
+        \hline
+        \multirow{2}{*}{Kasus No.} & \multicolumn{2}{l|}{Keadaan Ujian pada Shift \#} & \multirow{2}{*}{Ekpektasi entri ujian yang didapatkan} \\ \cline{2-3}
+                             & \multicolumn{1}{c|}{1}  & \multicolumn{1}{c|}{2} &                                                        \\ \hline
+        0                    & Akan                    & Akan                   & Shift 1                                                \\ \hline
+        1                    & Sedang                  & Akan                   & Shift 1                                                \\ \hline
+        2                    & Selesai                 & Akan                   & Shift 2                                                \\ \hline
+        3                    & Selesai                 & Sedang                 & Shift 2                                                \\ \hline
+        4                    & Selesai                 & Selesai                & -                                                      \\ \hline
+        \end{tabular}
+        \caption{Tabel detil kasus untuk tes unit pengujian dengan \textit{shift}. }
+        \label{tab:exam-shift-tc}
+    \end{table}
+    
+    Kelas yang terdapat pada sistem ini adalah
+    \begin{itemize}
+        \item \texttt{AuthenticationTest} \\
+            Kelas ini bertanggung jawab untuk melakukan test untuk otentikasi dasar.
+            Atribut pada kelas ini adalah
+            \begin{itemize}
+                \item \texttt{\$user}: \textit{User} yang akan digunakan selama testing.
+            \end{itemize}
+            Fungsi yang terdapat pada kelas ini akan dianggap sebagai kasus testing. Kasus
+            tersebut terdiri dari
+            \begin{itemize}
+                \item \texttt{setUp()} \\
+                    Melakukan persiapan untuk pra-tes \\
+                    \textbf{Input:} -\\
+                    \textbf{Output:} -
+                
+                \item \texttt{tearDown()} \\
+                    Melakukan pembenahan untuk pasca-tes \\
+                    \textbf{Input:} - \\
+                    \textbf{Output:} -
+                
+                \item \texttt{testLoginShouldFailOnWrongPassword()} \\
+                    Memastikan bahwa proses login gagal pada saat kata sandi yang diberikan
+                    salah. \\
+                    \textbf{Input:} - \\
+                    \textbf{Output:} -
+                
+                \item \texttt{testLoginShouldFailOnWrongUsername()} \\
+                    Memastikan bahwa proses login gagal pada saat nama pengguna yang diberikan
+                    salah. \\
+                    \textbf{Input:} - \\
+                    \textbf{Output:} -
+                
+                \item \texttt{testLoginShouldBeOkOnCorrectCredential()} \\
+                    Memastikan bahwa proses login berhasil pada saat nama pengguna dan kata
+                    sandi yang diberikan benar dan cocok.\\
+                    \textbf{Input:} - \\
+                    \textbf{Output:} -
+            \end{itemize}
+            
+            \item \texttt{ExaminationTest} \\
+                Kasus tes untuk ujian.
+                Atribut terdiri dari
+                \begin{itemize}
+                    \item \texttt{\$lecturePeriode}:  yang digunakan selama tes.
+                    \item \texttt{\$lecture}: Objek \texttt{Lecture} yang digunakan selama tes.
+                    \item \texttt{\$location}: Objek \texttt{Location} yang digunakan selama tes.
+                    \item \texttt{\$computer}: Objek \texttt{Computer} yang digunakan selama tes.
+                \end{itemize}
+                Fugsi terdiri dari
+                \begin{itemize}
+                    \item \texttt{setUp()} \\
+                        Melakukan persiapan untuk pra-tes \\
+                        \textbf{Input:} -\\
+                        \textbf{Output:} -
+                    
+                    \item \texttt{tearDown()} \\
+                        Melakukan pembenahan untuk pasca-tes \\
+                        \textbf{Input:} - \\
+                        \textbf{Output:} -
+                        
+                    \item \texttt{ActiveExamfunction()} \\
+                        Memastikan ujian yang sedang aktif dapat diterima. \\
+                        \textbf{Input:} - \\
+                        \textbf{Output:} -
+                        
+                    \item \texttt{UpcomingExamfunction()} \\
+                        Memastukan ujian yang akan aktif dapat diterima dengan konfigurasi khusus. \\
+                        \textbf{Input:} - \\
+                        \textbf{Output:} -
+                        
+                    \item \texttt{PostExamfunction()} \\
+                        Memastikan tidak ada ujian yang diterima jika ujian tersebut telah berakhir. \\
+                        \textbf{Input:} - \\
+                        \textbf{Output:} -
+                \end{itemize}
+                
+            \item \texttt{ExaminationWithShiftTest} \\
+                Kasus tes untuk ujian dengan shift.
+                Atribut terdiri dari
+                \begin{itemize}
+                    \item \texttt{\$lecturePeriode}:  yang digunakan selama tes.
+                    \item \texttt{\$lecture}: Objek \texttt{Lecture} yang digunakan selama tes.
+                    \item \texttt{\$location}: Objek \texttt{Location} yang digunakan selama tes.
+                    \item \texttt{\$computer}: Objek \texttt{Computer} yang digunakan selama tes.
+                \end{itemize}
+                Fugsi terdiri dari
+                \begin{itemize}
+                    \item \texttt{setUpBeforeClass()} \\
+                        Melakukan persiapan untuk pra-tes \\
+                        \textbf{Input:} -\\
+                        \textbf{Output:} -
+                    
+                    \item \texttt{tearDownAfterClass()} \\
+                        Melakukan pembenahan untuk pasca-tes \\
+                        \textbf{Input:} -\\
+                        \textbf{Output:} -
+                    
+                    \item \texttt{generateBareExam(\$baseDate="-10 minute")} \\
+                        Membuat objek \texttt{Exam} dengan konfigurasi paling minimum. \\
+                        \textbf{Input:} waktu ujian direncanakan untuk mulai\\
+                        \textbf{Output:} -
+                    
+                    \item \texttt{cleanGeneratedExam(\$exam)} \\
+                        Hapus entri \texttt{Exam} tertentu beserta pesertanya.\\
+                        \textbf{Input:} \\
+                        \textbf{Output:} -
+                    
+                    \item \texttt{cleanAllExam()} \\
+                        Hapus seluruh entri \texttt{Exam} untuk tes beserta pesertanya\\
+                        \textbf{Input:} -\\
+                        \textbf{Output:} -
+                    
+                    \item \texttt{examProvider()} \\
+                        Membangkitkan kasus tes untuk pengujian ini. Detil kasus yang akan diuji
+                        dapat dilihat pada Tabel \ref{tab:exam-shift-tc}. Kasus akan dikembalikan dalam
+                        bentuk array.\footnote{Lihat 
+                        https://phpunit.readthedocs.io/en/9.3/writing-tests-for-phpunit.html\#data-providers}\\
+                        \textbf{Input:} -\\
+                        \textbf{Output:} \textit{array}
+                        
+                    
+                    \item \texttt{SuperExamTestfunction(\$dataCallback)} \\
+                        Pengujian untuk melakukan pengecekan kecocokan keadaan dengan ekspektasi
+                        sesuai dengan Tabel \ref{tab:exam-shift-tc}.\\
+                        \textbf{Input:} data kasus dalam bentuk array.\\
+                        \textbf{Output:} -
+                \end{itemize}
+    \end{itemize}
 
 \section{Perancangan Sistem CI/CD dan Unit Testing}
     % melakukan build pada saat commit
@@ -2735,8 +2894,8 @@
     Sistem \textit{build} tersebut akan direncanakan untuk diimplementasi pada sistem CI/CD yang
     terintegrasi dengan tempat penyimpanan repositori kode sumber. 
     Kode sumber tersebut nantinya akan
-    dilacak oleh sistem repository sehingga pada saat kode mengalami perubahan, sistem CI/CD akan
-    secara otomatis berjalan. Sistem ini direncakan untuk melakukan hal berikut secara sekuensial:
+    dilacak oleh sistem repositori sehingga pada saat kode mengalami perubahan, sistem CI/CD akan
+    secara otomatis berjalan. Sistem ini direncanakan untuk melakukan hal berikut secara sekuensial:
     
     \begin{itemize}
         \item Melakukan penyegaran dependensi.
@@ -2756,23 +2915,5 @@
     Selain melakukan \textit{build}, penelitian juga akan menambahkan sistem tes unit otomatis. Sistem tes ini
     direncakan untuk melakukan pengecekan terhadap komponen-komponen krusial pada aplikasi. Karena konsekuensi
     yang ditanggung aplikasi cukup besar, maka sistem tes ditambahkan untuk mencegah kesalahan yang sangat
-    fatal. Sistem testing ini direncanakan akan melakukan pengujian pada:
-    
-    \begin{itemize}
-        \item Sistem Otentikasi \\
-            Sistem otentikasi diharapkan dapat melakukan penolakan akses tidak berizin pada beberapa sumber daya
-            yang dinaungi oleh sistem ini. Salah satu yang menjadi krusial untuk dipastikan adalah
-            hanya pengguna dengan peran Admin yang dapat melakukan aksi tulis pada REST API untuk
-            Admin.
-        \item Penjadwalan Ujian \\
-            Fungsi penjadwalan ujian adalah salah satu fungsi yang cukup krusial. Fungsi ini akan bertanggung
-            jawab untuk mencegah ujian lain tampil pada ujian lainnya. Jika ujian lain tampil, maka lembar jawab
-            untuk ujian tersebut juga akan terbuka, sehingga peserta bisa saja mengunduh jawaban ujian
-            dari \textit{shift} sebelumnya. Pada dasarnya, tujuan diadakannya tes unit untuk fungsi ini
-            adalah untuk memastikan bahwa fungsi yang memiliki konsekuensi besar dapat berjalan dengan
-            semestinya.
-    \end{itemize}
-    
-    % melakukan unit testing pada saat commit
-    Sistem tes unit ini direncakan berjalan bersama sistem \textit{build}. Sehingga kode akan di tes setiap kali
-    kode baru diunggah ke tempat penyimpanan.
+    fatal. Sistem tes unit ini direncakan berjalan bersama sistem \textit{build}. 
+    Sehingga kode akan di tes setiap kali kode baru diunggah ke tempat penyimpanan.
