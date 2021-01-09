@@ -1477,12 +1477,12 @@
     Kemudian setiap \textit{namespace} akan dijelaskan secara terperinci beserta
     dengan kelas yang terdapat pada \textit{namespace} tersebut.
 
-\subsubsection{\textit{Namespace} \texttt{app/controller}}
+\subsubsection{\textit{Namespace} \texttt{Controller}}
     
     \begin{figure}
         \centering
         \includegraphics{Gambar/classmap-be/Classmap - app-controller.pdf}
-        \caption{Diagram kelas untuk \textit{namespace} \texttt{app/controller}}
+        \caption{Diagram kelas untuk \textit{namespace} \texttt{Controller}}
         \label{fig:classmap_app-controller}
     \end{figure}
 
@@ -1604,17 +1604,17 @@
         \centering
         \includegraphics[width=0.75\paperwidth]{Gambar/classmap-be/Classmap - app-controller-api.pdf}
         \caption{Potongan diagram kelas untuk \textit{namespace}
-        \texttt{app/controller/api}}
+        \texttt{Controller/Api}}
         \label{fig:classmap_app-controller-api}
     \end{figure}
     
     Selain dari kelas-kelas tersebut, \textit{namespace} ini memiliki anak
-    \textit{namespace} \texttt{api}. \textit{Namespace} tersebut secara gais
+    \textit{namespace} \texttt{Api}. \textit{Namespace} tersebut secara gais
     besar akan menangani berbagai macam permintaan API yang akan disediakan oleh
     sistem \textit{back-end}. Diagram kelas untuk \textit{namespace} ini dapat
     dilihat pada Gambar \ref{fig:classmap_app-controller-api}.
     
-    \textit{Namespace} \texttt{api} terdiri dari:
+    \textit{Namespace} \texttt{Api} terdiri dari:
     \begin{itemize}
         \item \texttt{Base} \\
             Kelas ini bertanggung jawab untuk menangani abstraksi API dasar yang
@@ -1628,7 +1628,7 @@
                     framework.\\
             \end{itemize}
     
-        \item \texttt{Autonomus/ExamDownload} \\
+        \item \texttt{Autonomus\textbackslash ExamDownload} \\
             Kelas ini bertanggung jawab untuk melayani API untuk pengunduhan
             jawaban via tautan yang dikirimkan ke email. Kelas ini memiliki
             fungsi:
@@ -1654,7 +1654,7 @@
                     \textbf{Output:} -\\
             \end{itemize}
             
-        \item \texttt{exam/info} \\
+        \item \texttt{Exam\textbackslash Info} \\
             Bertanggung jawab untuk memberikan informasi tentang ujian yang
             tertaut pada IP pengkonsumsi API pada waktu tertentu. Kelas ini
             memiliki fungsi:
@@ -1666,7 +1666,7 @@
                     \textbf{Output:} -\\
             \end{itemize}
             
-        \item \texttt{exam/notification} \\
+        \item \texttt{Exam\textbackslash Notification} \\
             Bertanggung jawab untuk memberikan notifikasi yang tertaut dengan
             peserta yang sedang aktif. Kelas ini memiliki fungsi:
             \begin{itemize}
@@ -1676,7 +1676,7 @@
                     \textbf{Output:} -\\
             \end{itemize}
             
-        \item \texttt{exam/submission} \\
+        \item \texttt{Exam\textbackslash Submission} \\
             Bertanggung jawab untuk menangi berbagai hal seputar submisi
             peserta. Kelas ini memiliki fungsi:
             \begin{itemize}
@@ -1693,7 +1693,7 @@
                     \textbf{Output:} -\\
             \end{itemize}
             
-        \item \texttt{system/auth} \\
+        \item \texttt{System\textbackslash Auth} \\
             Bertanggung jawab untuk menangi berbagai hal seputar otentikasi
             dengan kata sandi dan nama pengguna.
             \begin{itemize}
@@ -1710,17 +1710,35 @@
                     framework.\\
                     \textbf{Output:} -\\
             \end{itemize}
+
+        \item \texttt{System\textbackslash User} \\
+            Bertanggung jawab untuk menangi berbagai hal seputar otentikasi
+            dengan kata sandi dan nama pengguna.
+            \begin{itemize}
+                \item \texttt{get\_me(\$f3)}\\
+                    Menangani permintaan informasi tentang user itu sendiri.\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari
+                    framework.\\
+                    \textbf{Output:} -\\
+                
+                \item \texttt{post\_me(\$f3)}\\
+                    Menangani permintaan untuk mengubah informasi tentang user
+                    itu sendiri .\\
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari
+                    framework.\\
+                    \textbf{Output:} -\\
+            \end{itemize}
     \end{itemize}
     
     \begin{sidewaysfigure}
         \centering
         \includegraphics{Gambar/classmap-be/Classmap - app-controller-api-manage.pdf}
         \caption{Potongan diagram kelas untuk \textit{namespace}
-        \texttt{app/controller/api/manage}}
+        \texttt{Controller/Api/Manage}}
         \label{fig:classmap_app-controller-api-manage}
     \end{sidewaysfigure}
     Kemudian terdapat kelas-kelas dari \textit{namespace}
-    \texttt{app/controller/api/manage} yang memiliki banyak kelas turunan dari
+    \texttt{Controller/Api/Manage} yang memiliki banyak kelas turunan dari
     \texttt{CRUDBase}. Diagram kelas tersebut dapat dilihat pada Gambar
     \ref{fig:classmap_app-controller-api-manage}. \textit{Namespace} tersebut
     memiliki kelas-kelas berikut:
