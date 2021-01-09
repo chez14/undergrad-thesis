@@ -1278,12 +1278,12 @@
     
     Otentikasi dengan IP diperuntukkan untuk API yang berhubungan dengan ujian
     pada lokasi yang telah didefinisikan sebelumnya. IP digunakan karena sistem
-    sebelumnya menggunakan cara ini dan telah terbukti di "medan perang" bahwa
-    cara ini sudah sangat efektif. Pengguna tidak perlu melakukan otentikasi
-    secara manual dengan memasukkan kredensial khusus untuk sistem. Otentikasi
-    dengan IP juga tidak memaksa klien untuk melakukan refresh secara terus
-    menerus untuk memperbarui \textit{session} mereka, seperti pada aplikasi
-    sebelumnya.
+    sebelumnya menggunakan cara ini dan telah terbukti pada survei lapangan
+    bahwa cara ini sudah sangat efektif. Pengguna tidak perlu melakukan
+    otentikasi secara manual dengan memasukkan kredensial khusus untuk sistem.
+    Otentikasi dengan IP juga tidak memaksa klien untuk melakukan refresh secara
+    terus menerus untuk memperbarui \textit{session} mereka, seperti pada
+    aplikasi sebelumnya.
     
     Otentikasi dengan token dilakukan dengan melakukan otentikasi manual hingga
     sistem memberikan sebuah string khusus yang digunakan sebagai token untuk
@@ -1331,20 +1331,51 @@
     \begin{itemize}
         \item \texttt{POST auth/login} \\
             Bertanggung jawab untuk melakukan login, membangkitkan token, serta
-            memberi informasi singkat tentang pengguna yang masuk.
+            memberi informasi singkat tentang pengguna yang masuk.\\
+            \textbf{Input:}
+            \begin{itemize}
+                \item \texttt{username}: \textit{string}, Nama pengguna atau
+                    email.
+                \item \texttt{password}: \textit{string}, Kata sandi pengguna.
+            \end{itemize}
+            \textbf{Output:}
+            \begin{itemize}
+                \item \texttt{id\_token}: \textit{string}, Token otentikasi.
+                \item \texttt{profile}: \textit{object}, objek dari entitas
+                    \texttt{User}.
+            \end{itemize}
         
         \item \texttt{POST auth/iplogin} \\
             Bertanggung jawab untuk melakukan login dengan IP, membangkitkan
             token, serta memberi informasi singkat tengang pengguna yang tertau
-            dengan IP tersebut.
+            dengan IP tersebut. \\
+            \textbf{Input:} -\\
+            \textbf{Output:}
+            \begin{itemize}
+                \item \texttt{id\_token}: \textit{string}, Token otentikasi.
+                \item \texttt{profile}: \textit{object}, objek dari entitas
+                    \texttt{User}.
+            \end{itemize}
             
         \item \texttt{GET user/me} \\
             Bertanggung jawab untuk memberikan informasi tentang user yang
             terautentikasi.
+            \textbf{Input:} -\\
+            \textbf{Output:}
+            \begin{itemize}
+                \item \texttt{profile}: \textit{object}, objek dari entitas
+                    \texttt{User}.
+            \end{itemize}
             
         \item \texttt{POST user/me} \\
             Bertanggung jawab untuk memperbarui informasi tentang user yang
             terautentikasi.
+            \textbf{Input:} Objek dari entitas \texttt{User}.\\
+            \textbf{Output:}
+            \begin{itemize}
+                \item \texttt{profile}: \textit{object}, objek dari entitas
+                    \texttt{User}.
+            \end{itemize}
     \end{itemize}
     
     % Bagian Exam
@@ -1358,15 +1389,31 @@
     \begin{itemize}
         \item \texttt{GET info} \\
             Bertanggung jawab untuk mengembalikan informasi ujian yang sedang
-            dan akan dimulai.
+            dan akan dimulai. \\
+            \textbf{Input:} -\\
+            \textbf{Output:} objek dari entitas \texttt{Participant}
+
         \item \texttt{GET notification} \\
-            Bertanggung jawab untuk mengembalikan daftar notifikasi.
+            Bertanggung jawab untuk mengembalikan daftar notifikasi.\\
+            \textbf{Input:} -\\
+            \textbf{Output:} \textit{array} objek entitas \texttt{Notifikasi}
+
         \item \texttt{GET submission} \\
             Bertanggung jawab untuk mengembalikan status submisi pada slot
-            jawaban tertentu.
+            jawaban tertentu.\\
+            \textbf{Input:} -\\
+            \textbf{Output:} objek dari entitas \texttt{Submission}
+
         \item \texttt{POST submission} \\
             Bertanggung jawab untuk mengirimkan berkas jawaban (selanjutnya
-            disebut submisi) pada slot jawaban tertentu.
+            disebut submisi) pada slot jawaban tertentu.\\
+            \textbf{Input:} \begin{itemize}
+                \item \texttt{file}: \textit{multipart-form}, berkas ujian dalam
+                    bentuk blob.
+                \item \texttt{answer\_slot}: \textit{string|number}, id dari
+                    slot jawaban yang akan disubmisi.
+            \end{itemize}
+            \textbf{Output:} objek dari entitas \texttt{Submission}
     \end{itemize}
     
     % Bagian Admin
@@ -1383,23 +1430,35 @@
     \begin{itemize}
         \item \texttt{GET :entity} \\
             Bertanggung jawab untuk mengembalikan daftar entri dari
-            \texttt{:entity} yang disebutkan.
+            \texttt{:entity} yang disebutkan.\\
+            \textbf{Input:} -\\
+            \textbf{Output:} \textit{array} objek entitas \texttt{:entity}
             
         \item \texttt{POST :entity} \\
             Bertanggung jawab untuk membuat entri baru dari \texttt{:entity}
-            yang disebutkan.
+            yang disebutkan.\\
+            \textbf{Input:} objek (atau beberapa bagian} dari entitas
+                \texttt{:entity}.\\
+            \textbf{Output:} objek dari entitas \texttt{:entity}.
             
         \item \texttt{GET :entity/:id} \\
             Bertanggung jawab untuk mengembalikan info detil entri dari
-            \texttt{:entity} dengan id \texttt{:id}.
+            \texttt{:entity} dengan id \texttt{:id}.\\
+            \textbf{Input:} -\\
+            \textbf{Output:} objek dari entitas \texttt{:entity}
             
         \item \texttt{PUT :entity/:id} \\
             Bertanggung jawab untuk mengubah atau memperbarui entri dengan id
-            \texttt{:id} pada entitas \texttt{entity}.
+            \texttt{:id} pada entitas \texttt{entity}.\\
+            \textbf{Input:} objek atau beberapa bagian) dari entitas
+                \texttt{:entity}.\\
+            \textbf{Output:} objek dari entitas \texttt{:entity}
         
         \item \texttt{DELETE :entity/:id} \\
             Bertanggung jawab untuk menghapus entri \texttt{:id} pada
-            \texttt{entity}.
+            \texttt{entity}.\\
+            \textbf{Input:} -\\
+            \textbf{Output:} objek dari entitas \texttt{:entity}.
     \end{itemize}
     
     Selain dari pola tersebut, terdapat beberapa endpoint khusus untuk
@@ -1408,46 +1467,84 @@
     \begin{itemize}
         \item \texttt{DELETE exam/:id/start} \\
             Bertanggung jawab untuk melakukan reset timer ujian pada id
-            tertentu.
+            tertentu.\\
+            \textbf{Input:} -\\
+            \textbf{Output:} \textit{object} objek entitas \texttt{Exam}.
             
         \item \texttt{GET exam/:id/answers} \\
             Bertanggung jawab untuk melakukan pengumpulan jawaban dan
-            pengunduhan dalam bentuk zip.
+            pengunduhan dalam bentuk zip.\\
+            \textbf{Input:} -\\
+            \textbf{Output:} \textit{blob} berkas zip.
             
         \item \texttt{GET exam/:id/notifications} \\
             Bertanggung jawab untuk mengembalikan daftar notifikasi yang tertaut
-            pada peserta di ujian yang disebutkan.
+            pada peserta di ujian yang disebutkan.\\
+            \textbf{Input:} -\\
+            \textbf{Output:} \textit{array} objek entitas \texttt{Notification}.
             
         \item \texttt{GET exam/:id/participants} \\
             Bertanggung jawab untuk mengembalikan daftar peserta yang terdapat
-            pada ujian ini.
+            pada ujian ini.\\
+            \textbf{Input:} -\\
+            \textbf{Output:} \textit{array} objek entitas \texttt{Participant}.
             
         \item \texttt{GET exam/:id/script} \\
             Bertanggung jawab untuk membuat \textit{script} yang digunakan untuk
-            membuat lembar kerja peserta ujian.
+            membuat lembar kerja peserta ujian.\\
+            \textbf{Input:} -\\
+            \textbf{Output:} \textit{blob} berkas zip.
             
         \item \texttt{POST exam/:id/close} \\
             Bertanggung jawab untuk menghentikan timer ujian dan menutup lembar
-            jawab peserta secara manual.
+            jawab peserta secara manual.\\
+            \textbf{Input:} -\\
+            \textbf{Output:} \textit{object} objek entitas \texttt{Exam}.
             
         \item \texttt{POST exam/:id/move} \\
             Bertanggung jawab untuk memindahkan peserta ke tempat duduk lain dan
-            membuat \textit{script} untuk lembar kerja mahasiswa yang baru.
+            membuat \textit{script} untuk lembar kerja mahasiswa yang baru.\\
+            \textbf{Input:} \begin{itemize}
+                \item \texttt{lists[].participant}: \textit{string|id}, id dari peserta.
+                \item \texttt{lists[].to}: \textit{string|id}, id dari komputer target.
+            \end{itemize}
+            \textbf{Output:} \textit{blob} berkas zip.
             
         \item \texttt{POST exam/:id/populate} \\
             Bertanggung jawab untuk melakukan populasi tempat duduk yang sudah
-            dipilih dengan daftar peserta yang ada.
+            dipilih dengan daftar peserta yang ada.\\
+            \textbf{Input:} \begin{itemize}
+                \item \texttt{computers}: \textit{array} id dari entitas
+                    \texttt{Computer}.
+                \item \texttt{participants}: \textit{array} id dari entitas
+                    \texttt{Participant}.
+                \item \texttt{should\_cleanup}: \textit{boolean} Hapus daftar
+                    peserta yang sudah ada.
+            \end{itemize}
+            \textbf{Output:} objek dari entitas \texttt{Exam}.
             
         \item \texttt{POST exam/:id/start} \\
-            Bertanggung jawab untuk memulai timer pada ujian.
+            Bertanggung jawab untuk memulai timer pada ujian.\\
+            \textbf{Input:} -\\
+            \textbf{Output:} \textit{object} objek entitas \texttt{Exam}.
             
         \item \texttt{POST examreport/:id/forcesend} \\
             Bertanggung jawab untuk melakukan pengiriman laporan ujian secara
-            paksa ke email yang terdapat pada entri \texttt{:id}.
+            paksa ke email yang terdapat pada entri \texttt{:id}.\\
+            \textbf{Input:} -\\
+            \textbf{Output:} -
             
         \item \texttt{POST notification/mass\_gen} \\
             Bertanggung jawab untuk melakukan penyebaran notifikasi kata sandi
-            pada daftar yang diberikan pada ujian tertentu.
+            pada daftar yang diberikan pada ujian tertentu.\\
+            \textbf{Input:} \begin{itemize}
+                \item \texttt{lists[].participant}: \textit{string|id} id dari
+                    entitas \texttt{Participant}.
+                \item \texttt{lists[].username}: \textit{string} Nama pengguna layanan
+                \item \texttt{lists[].password}: \textit{string} Kata sandi layanan
+                \item \texttt{url}: \textit{string} Alamat layanan
+            \end{itemize}
+            \textbf{Output:} -
     \end{itemize}
     
     % Bagian Dosen
@@ -1459,11 +1556,22 @@
         \item \texttt{POST autonomus/examdownload} \\
             Endpoint ini bertanggung jawab untuk mengembalikan informasi tentang
             token yang terhubung dengan ujian tertentu, serta memberikan link
-            otorisasi pengunduhan berkas jawaban.
+            otorisasi pengunduhan berkas jawaban.\\
+            \textbf{Input:} \begin{itemize}
+                \item \texttt{token}: \textit{string}, token dari laporan ujian
+                    yang dikirimkan via email.
+            \end{itemize}
+            \textbf{Output:} \begin{itemize}
+                \item \texttt{exam}: \textit{object}, objek dari entitas \texttt{Exam}.
+                \item \texttt{downloadToken}: \textit{string}, tautan lengkap untuk
+                    mengunduh ujian.
+            \end{itemize}
             
         \item \texttt{GET autonomus/examdownload/download} \\
             Endpoint ini bertanggung jawab untuk menyediakan berkas jawaban
-            dalam bentuk zip.
+            dalam bentuk zip.\\
+            \textbf{Input:} -\\
+            \textbf{Output:} \textit{blob} berkas zip.
     \end{itemize}
     
     % diagram kelas
