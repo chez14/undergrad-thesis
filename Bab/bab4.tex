@@ -1645,13 +1645,15 @@
                     menerbitkan tautan untuk melakukan pengunduhan.\\
                     \textbf{Input:} Instansi kelas \texttt{Base} dari
                     framework.\\
-                    \textbf{Output:} -
+                    \textbf{Output:} - \\
+                    \textbf{URL:} \texttt{POST autonomus/examdownload}
                 
                 \item \texttt{get\_download(\$f3)} \\
                     Menyediakan layanan pengunduhan berkas berupa Zip.
                     \textbf{Input:} Instansi kelas \texttt{Base} dari
                     framework.\\
-                    \textbf{Output:} -
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{GET autonomus/examdownload/download}
             \end{itemize}
             
         \item \texttt{Exam\textbackslash Info} \\
@@ -1663,7 +1665,8 @@
                     Memberikan informasi tentang ujian yang sedang aktif.
                     \textbf{Input:} Instansi kelas \texttt{Base} dari
                     framework.\\
-                    \textbf{Output:} -
+                    \textbf{Output:} - \\
+                    \textbf{URL:} \texttt{GET exam/info}
             \end{itemize}
             
         \item \texttt{Exam\textbackslash Notification} \\
@@ -1673,7 +1676,8 @@
                 \item \texttt{get\_index(\$f3)} \\
                     Memberikan daftar entri notifikasi. \textbf{Input:} Instansi
                     kelas \texttt{Base} dari framework.\\
-                    \textbf{Output:} -
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{GET exam/notification}
             \end{itemize}
             
         \item \texttt{Exam\textbackslash Submission} \\
@@ -1684,13 +1688,15 @@
                     Memberikan informasi tentang submisi pada slot jawaban
                     tertentu. \textbf{Input:} Instansi kelas \texttt{Base} dari
                     framework.\\
-                    \textbf{Output:} -
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{GET exam/submission}
                     
                 \item \texttt{get\_index(\$f3)} \\
                     Menangani submisi yang dikirimkan peserta pada slot jawaban
                     tertentu. \textbf{Input:} Instansi kelas \texttt{Base} dari
                     framework.\\
-                    \textbf{Output:} -
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{POST exam/submission}
             \end{itemize}
             
         \item \texttt{System\textbackslash Auth} \\
@@ -1701,14 +1707,16 @@
                     Menangani permintaan untuk login dengan menggunakan IP.\\
                     \textbf{Input:} Instansi kelas \texttt{Base} dari
                     framework.\\
-                    \textbf{Output:} -
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{POST system/auth/iplogin}
                 
                 \item \texttt{post\_login(\$f3)}\\
                     Menangani permitnaan untuk login dengan mengguankan
                     kombinasi nama pengguna atau email, dan kata sandi.\\
                     \textbf{Input:} Instansi kelas \texttt{Base} dari
                     framework.\\
-                    \textbf{Output:} -
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{POST system/auth/login}
             \end{itemize}
 
         \item \texttt{System\textbackslash User} \\
@@ -1719,14 +1727,17 @@
                     Menangani permintaan informasi tentang user itu sendiri.\\
                     \textbf{Input:} Instansi kelas \texttt{Base} dari
                     framework.\\
-                    \textbf{Output:} -
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{GET system/user/me}
                 
                 \item \texttt{post\_me(\$f3)}\\
                     Menangani permintaan untuk mengubah informasi tentang user
                     itu sendiri .\\
                     \textbf{Input:} Instansi kelas \texttt{Base} dari
                     framework.\\
-                    \textbf{Output:} -
+                    \textbf{Output:} -\\
+                    \textbf{URL:} \texttt{POST system/user/me}
+                    
             \end{itemize}
     \end{itemize}
     
