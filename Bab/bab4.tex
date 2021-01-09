@@ -1996,12 +1996,12 @@
             \end{itemize}
     \end{itemize}
 
-\subsubsection{\textit{Namespace} \texttt{app/model}}
+\subsubsection{\textit{Namespace} \texttt{Model}}
     \begin{sidewaysfigure}
         \centering
         \includegraphics[width=0.8\paperheight]{Gambar/classmap-be/Classmap - app-model.pdf}
         \caption{Potongan diagram kelas untuk \textit{namespace}
-        \texttt{app/model}.}
+        \texttt{Model}.}
         \label{fig:classmap_app-model}
     \end{sidewaysfigure}
     \textit{Namespace} ini akan berisi kelas-kelas yang bertanggung jawab
@@ -2081,7 +2081,7 @@
                         pasangan \textit{hashmap key-value}.
             \end{itemize}
                 
-        \item \texttt{system/User} \\
+        \item \texttt{System\textbackslash User} \\
             Kelas ini merepresentasikan entitas User, bagian dari ORM,
             bertanggung jawab untuk menerbitkan token untuk otentikasi, juga
             mendeteksi pengguna yang terotentikasi berdasarkan informasi header.
@@ -2172,7 +2172,7 @@
 
             \end{itemize}
             
-        \item \texttt{Acl} \\
+        \item \texttt{System\textbackslash Acl} \\
             Kelas ini merepresentasikan entitas \textit{Access Control List}
             atau ACL. Kelas ini bagian dari ORM. Atribut yang terdapat pada
             kelas ini terdiri dari:
@@ -2224,7 +2224,7 @@
                     \textbf{Output:} \textit{array}.
             \end{itemize}
             
-        \item \texttt{AclItem} \\
+        \item \texttt{System\textbackslash AclItem} \\
             Kelas ini adalah kelas terkait ORM yang merepresentasikan entitas
             AclItem. Kelas ini memiliki daftar atribut:
             \begin{itemize}
@@ -2246,7 +2246,7 @@
                 diperbolehkan.
             \end{itemize}
             
-        \item \texttt{IPLogin} \\
+        \item \texttt{System\textbackslash IPLogin} \\
             Kelas ini adalah kelas terkait ORM yang merepresentasikan entitas
             IPlogin. Atribut yang terdapat pada kelas ini terdiri dari:
             \begin{itemize}
@@ -2287,10 +2287,10 @@
         \centering
         \includegraphics[width=0.8\paperheight]{Gambar/classmap-be/Classmap - app-model-ujian.pdf}
         \caption{Potongan diagram kelas untuk \textit{namespace}
-        \texttt{app/model/ujian}}
+        \texttt{Model/ujian}}
         \label{fig:classmap_app-model-ujian}
     \end{sidewaysfigure}
-    \textit{Namespace} \texttt{app/model/ujian} memiliki beberapa kelas ORM yang
+    \textit{Namespace} \texttt{Model\textbackslash Ujian} memiliki beberapa kelas ORM yang
     berhubungan langsung dengan ujian. Diagram kelas untuk \textit{namespace}
     tersebut dapat dilihat pada Gambar \ref{fig:classmap_app-model-ujian}.
     Kelas-kelas pada \textit{namespace} ini terdiri dari
@@ -2820,11 +2820,11 @@
             \end{itemize}
     \end{itemize}
 
-\subsubsection{\textit{Namespace} \texttt{app/helper}}
+\subsubsection{\textit{Namespace} \texttt{Helper}}
     \begin{figure}
         \centering
         \includegraphics[width=0.75\paperwidth]{Gambar/classmap-be/Classmap - app-helper.pdf}
-        \caption{Diagram kelas untuk \textit{namespace} \texttt{app/helper}}
+        \caption{Diagram kelas untuk \textit{namespace} \texttt{Helper}}
         \label{fig:classmap_app-helper}
     \end{figure}
     Kelas-kelas yang terdapat pada \textit{namespace} ini akan menampung
@@ -2916,7 +2916,7 @@
                     \textbf{Output:} -
             \end{itemize}
             
-        \item \texttt{Ruler/MustExists} Kelas peraturan untuk validasi tambahan.
+        \item \texttt{Ruler\textbackslash MustExists} Kelas peraturan untuk validasi tambahan.
             Memastikan apakah suatu entri terdapat pada sebuah tabel. Kelas ini
             memiliki atribut sebagai berikut:
             \begin{itemize}
@@ -2935,7 +2935,7 @@
                     tersebut.
             \end{itemize}
             
-        \item \texttt{Exceptions/MustExistsException} Eksepsi oleh aturan
+        \item \texttt{Exceptions\textbackslash MustExistsException} Eksepsi oleh aturan
             \textit{MustExists}.
             \begin{itemize}
                 \item \texttt{\$defaultTemplates}: Pesan kesalahan pada saat
@@ -2952,11 +2952,11 @@
             \end{itemize}
     \end{itemize}
 
-\subsubsection{\textit{Namespace} \texttt{app/output}}
+\subsubsection{\textit{Namespace} \texttt{Output}}
     \begin{figure}
         \centering
         \includegraphics{Gambar/classmap-be/Classmap - app-output.pdf}
-        \caption{Diagram kelas untuk \textit{namespace} \texttt{app/output}}
+        \caption{Diagram kelas untuk \textit{namespace} \texttt{Output}}
         \label{fig:classmap_app-output}
     \end{figure}
     \textit{Namespace} \texttt{output} menyimpan kelas yang membantu untuk
@@ -3019,20 +3019,20 @@
             \end{itemize}
     \end{itemize}
     
-\subsection{\textit{Namespace} \texttt{app/service}, \texttt{app/cronjob} dan
-\texttt{app/view}}
+\subsection{\textit{Namespace} \texttt{Service}, \texttt{Cronjob} dan
+\texttt{View}}
     \begin{figure}
         \centering
         \includegraphics[width=0.75\paperwidth]{Gambar/classmap-be/Classmap - app-service,cronjob,view.pdf}
-        \caption{Diagram kelas untuk \textit{namespace} \texttt{app/service},
-            \texttt{app/cronjob} dan \texttt{app/view}}
+        \caption{Diagram kelas untuk \textit{namespace} \texttt{Service},
+            \texttt{Cronjob} dan \texttt{View}}
         \label{fig:classmap_app-service,cronjob,view}
     \end{figure}
     Diagram kelas untuk beberapa \textit{Namespace} ini dapat dilihat pada
     Gambar \ref{fig:classmap_app-service,cronjob,view}. Kelas-kelas pada
     \textit{namespace} ini terdiri dari:
     \begin{itemize}
-        \item \texttt{service/BatGenerator} \\
+        \item \texttt{Service\textbackslash Batgenerator} \\
             Kelas ini bertanggung jawab untuk membuat \textit{script} bat untuk
             ujian dan migrasi. Atribut yang terdapat pada kelas ini:
             \begin{itemize}
@@ -3066,7 +3066,7 @@
                     \textbf{Output:} \textit{string} nama berkas sementara.
             \end{itemize}
         
-        \item \texttt{cronjob/AutoReport} \\
+        \item \texttt{Cronjob\textbackslash Autoreport} \\
             Kelas ini bertanggung jawab untuk melakukan tugas \textit{cron}
             untuk mengirimkan laporan. Fungsi yang terdapat pada kelas ini
             adalah:
@@ -3079,7 +3079,7 @@
                     \textbf{Output:} -
             \end{itemize}
             
-        \item \texttt{view/Api} \\
+        \item \texttt{View\textbackslash Api} \\
             Kelas ini didedikasikan untuk menyediakan API dengan format tertentu
             yang didukung oleh kelas yang terdapat pada namespace
             \texttt{Output}. Fungsi yang terdapat pada kelas ini adalah:
@@ -3105,7 +3105,7 @@
                     \textbf{Output:} \textit{string}.
             \end{itemize}
             
-        \item \texttt{view/Bat} \\
+        \item \texttt{View\textbackslash Bat} \\
             Melakukan pembuatan \textit{script} bat berdasarkan
             \textit{template} yang telah diberikan, dengan memanfaatkan
             \textit{templating engine} yang disediakan oleh \textit{framework}.
@@ -3119,7 +3119,7 @@
                     \textbf{Output:} \textit{string}.
             \end{itemize}
         
-        \item \texttt{view/ReactApp} \\
+        \item \texttt{View\textbackslash Reactapp} \\
             Bertanggung jawab untuk menyajikan aplikasi React untuk tampilan
             publik.
             \begin{itemize}
@@ -3129,186 +3129,7 @@
                     \textbf{Output:} -
             \end{itemize}
     \end{itemize}
-    
-\subsubsection{\textit{Namespace} \texttt{test/system-wide}}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.7\paperwidth]{Gambar/classmap-be/Classmap - test-systemwide.pdf}
-        \caption{Diagram kelas untuk \textit{namespace}
-        \texttt{test/system-wide}.}
-        \label{fig:classmap_test-systemwide}
-    \end{figure}
-    \textit{Namespace} ini berisi kelas-kelas yang digunakan untuk \textit{Unit
-    Testing}. Kelas ini tidak menjadi bagian langsung pada sistem karena kelas
-    ini hanya akan di eksekusi oleh CI/CD dengan bantuan PHP Unit. Diagram kelas
-    untuk \textit{namespace} ini dapat dilihat pada Gambar
-    \ref{fig:classmap_test-systemwide}.
-    
-    \begin{table}[]
-        \centering
-        \begin{tabular}{|l|l|l|l|}
-        \hline
-        \multirow{2}{*}{Kasus No.} & \multicolumn{2}{l|}{Keadaan Ujian pada
-                             Shift \#} & \multirow{2}{*}{Ekpektasi entri ujian
-                             yang didapatkan} \\ \cline{2-3} &
-                             \multicolumn{1}{c|}{1}  & \multicolumn{1}{c|}{2} &
-                             \\ \hline
-        0                    & Akan                    & Akan
-        & Shift 1                                                \\ \hline
-        1                    & Sedang                  & Akan
-        & Shift 1                                                \\ \hline
-        2                    & Selesai                 & Akan
-        & Shift 2                                                \\ \hline
-        3                    & Selesai                 & Sedang
-        & Shift 2                                                \\ \hline
-        4                    & Selesai                 & Selesai
-        & -                                                      \\ \hline
-        \end{tabular}
-        \caption{Tabel detil kasus untuk tes unit pengujian dengan
-        \textit{shift}. }
-        \label{tab:exam-shift-tc}
-    \end{table}
-    
-    Kelas yang terdapat pada sistem ini adalah
-    \begin{itemize}
-        \item \texttt{AuthenticationTest} \\
-            Kelas ini bertanggung jawab untuk melakukan test untuk otentikasi
-            dasar. Atribut pada kelas ini adalah
-            \begin{itemize}
-                \item \texttt{\$user}: \textit{User} yang akan digunakan selama
-                testing.
-            \end{itemize}
-            Fungsi yang terdapat pada kelas ini akan dianggap sebagai kasus
-            testing. Kasus tersebut terdiri dari
-            \begin{itemize}
-                \item \texttt{setUp()} \\
-                    Melakukan persiapan untuk pra-tes \\
-                    \textbf{Input:} -\\
-                    \textbf{Output:} -
-                
-                \item \texttt{tearDown()} \\
-                    Melakukan pembenahan untuk pasca-tes \\
-                    \textbf{Input:} - \\
-                    \textbf{Output:} -
-                
-                \item \texttt{testLoginShouldFailOnWrongPassword()} \\
-                    Memastikan bahwa proses login gagal pada saat kata sandi
-                    yang diberikan salah. \\
-                    \textbf{Input:} - \\
-                    \textbf{Output:} -
-                
-                \item \texttt{testLoginShouldFailOnWrongUsername()} \\
-                    Memastikan bahwa proses login gagal pada saat nama pengguna
-                    yang diberikan salah. \\
-                    \textbf{Input:} - \\
-                    \textbf{Output:} -
-                
-                \item \texttt{testLoginShouldBeOkOnCorrectCredential()} \\
-                    Memastikan bahwa proses login berhasil pada saat nama
-                    pengguna dan kata sandi yang diberikan benar dan cocok.\\
-                    \textbf{Input:} - \\
-                    \textbf{Output:} -
-            \end{itemize}
-            
-            \item \texttt{ExaminationTest} \\
-                Kasus tes untuk ujian. Atribut terdiri dari
-                \begin{itemize}
-                    \item \texttt{\$lecturePeriode}:  yang digunakan selama tes.
-                    \item \texttt{\$lecture}: Objek \texttt{Lecture} yang
-                    digunakan selama tes.
-                    \item \texttt{\$location}: Objek \texttt{Location} yang
-                    digunakan selama tes.
-                    \item \texttt{\$computer}: Objek \texttt{Computer} yang
-                    digunakan selama tes.
-                \end{itemize}
-                Fugsi terdiri dari
-                \begin{itemize}
-                    \item \texttt{setUp()} \\
-                        Melakukan persiapan untuk pra-tes \\
-                        \textbf{Input:} -\\
-                        \textbf{Output:} -
-                    
-                    \item \texttt{tearDown()} \\
-                        Melakukan pembenahan untuk pasca-tes \\
-                        \textbf{Input:} - \\
-                        \textbf{Output:} -
-                        
-                    \item \texttt{ActiveExamfunction()} \\
-                        Memastikan ujian yang sedang aktif dapat diterima. \\
-                        \textbf{Input:} - \\
-                        \textbf{Output:} -
-                        
-                    \item \texttt{UpcomingExamfunction()} \\
-                        Memastukan ujian yang akan aktif dapat diterima dengan
-                        konfigurasi khusus. \\
-                        \textbf{Input:} - \\
-                        \textbf{Output:} -
-                        
-                    \item \texttt{PostExamfunction()} \\
-                        Memastikan tidak ada ujian yang diterima jika ujian
-                        tersebut telah berakhir. \\
-                        \textbf{Input:} - \\
-                        \textbf{Output:} -
-                \end{itemize}
-                
-            \item \texttt{ExaminationWithShiftTest} \\
-                Kasus tes untuk ujian dengan shift. Atribut terdiri dari
-                \begin{itemize}
-                    \item \texttt{\$lecturePeriode}:  yang digunakan selama tes.
-                    \item \texttt{\$lecture}: Objek \texttt{Lecture} yang
-                    digunakan selama tes.
-                    \item \texttt{\$location}: Objek \texttt{Location} yang
-                    digunakan selama tes.
-                    \item \texttt{\$computer}: Objek \texttt{Computer} yang
-                    digunakan selama tes.
-                \end{itemize}
-                Fugsi terdiri dari
-                \begin{itemize}
-                    \item \texttt{setUpBeforeClass()} \\
-                        Melakukan persiapan untuk pra-tes \\
-                        \textbf{Input:} -\\
-                        \textbf{Output:} -
-                    
-                    \item \texttt{tearDownAfterClass()} \\
-                        Melakukan pembenahan untuk pasca-tes \\
-                        \textbf{Input:} -\\
-                        \textbf{Output:} -
-                    
-                    \item \texttt{generateBareExam(\$baseDate="-10 minute")} \\
-                        Membuat objek \texttt{Exam} dengan konfigurasi paling
-                        minimum. \\
-                        \textbf{Input:} waktu ujian direncanakan untuk mulai\\
-                        \textbf{Output:} -
-                    
-                    \item \texttt{cleanGeneratedExam(\$exam)} \\
-                        Hapus entri \texttt{Exam} tertentu beserta pesertanya.\\
-                        \textbf{Input:} \\
-                        \textbf{Output:} -
-                    
-                    \item \texttt{cleanAllExam()} \\
-                        Hapus seluruh entri \texttt{Exam} untuk tes beserta
-                        pesertanya\\
-                        \textbf{Input:} -\\
-                        \textbf{Output:} -
-                    
-                    \item \texttt{examProvider()} \\
-                        Membangkitkan kasus tes untuk pengujian ini. Detil kasus
-                        yang akan diuji dapat dilihat pada Tabel
-                        \ref{tab:exam-shift-tc}. Kasus akan dikembalikan dalam
-                        bentuk array.\footnote{Lihat
-                        https://phpunit.readthedocs.io/en/9.3/writing-tests-for-phpunit.html\#data-providers}\\
-                        \textbf{Input:} -\\
-                        \textbf{Output:} \textit{array}
-                        
-                    
-                    \item \texttt{SuperExamTestfunction(\$dataCallback)} \\
-                        Pengujian untuk melakukan pengecekan kecocokan keadaan
-                        dengan ekspektasi sesuai dengan Tabel
-                        \ref{tab:exam-shift-tc}.\\
-                        \textbf{Input:} data kasus dalam bentuk array.\\
-                        \textbf{Output:} -
-                \end{itemize}
-    \end{itemize}
+
 
 \section{Perancangan Sistem CI/CD dan Unit Testing}
     % melakukan build pada saat commit
