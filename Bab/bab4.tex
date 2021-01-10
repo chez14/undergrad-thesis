@@ -116,11 +116,11 @@
         \caption{Rancangan tampilan untuk pengumpulan jawaban dengan nama berkas yang tidak sesuai.}
         \label{fig:mockup_peserta_mismatch}
     \end{figure}
-    Rancangan antarmuka lainnya adalah tampilan pesan peringatan pengubahan nama berkas
-    untuk peserta pada saat peserta mengirimkan berkas dengan nama yang tidak sesuai.
-    Sistem akan mengkonfirmasi peserta untuk mengganti nama berkas sebelum menunggah
-    berkas ke peladen. Rancangan tersebut dapat dilihat pada Gambar 
-    \ref{fig:mockup_peserta_mismatch}.
+    Rancangan antarmuka lainnya adalah tampilan pesan peringatan pengubahan nama
+    berkas untuk peserta pada saat peserta mengirimkan berkas dengan nama yang
+    tidak sesuai. Sistem akan mengkonfirmasi peserta untuk mengganti nama berkas
+    sebelum menunggah berkas ke peladen. Rancangan tersebut dapat dilihat pada
+    Gambar \ref{fig:mockup_peserta_mismatch}.
     
 \subsection{Rancangan Antarmuka untuk Admin}
     
@@ -172,15 +172,16 @@
     \begin{itemize}
         \item Bagian yang ditunjukkan pada Poin 1 adalah daftar ujian yang sudah
             teregistrasi pada sistem. Daftar tersebut disajikan dalam bentuk
-            tabel yang kemudian dapat diklik untuk menuju halaman detil
-            ujian. Tabel akan menunjukan setidaknya informasi mata kuliah,
-            periode ujian, UTS atau UAS, \textit{shift}, serta tanggal dan jam
-            mulai serta berakhirnya ujian jika ujian sudah dimulai.
+            tabel yang kemudian dapat diklik untuk menuju halaman detil ujian.
+            Tabel akan menunjukan setidaknya informasi mata kuliah, periode
+            ujian, UTS atau UAS, \textit{shift}, serta tanggal dan jam mulai
+            serta berakhirnya ujian jika ujian sudah dimulai.
             
-            Selain itu setiap tabel akan memiliki tombol lihat dan tombol hapus. Tombol
-            hapus akan membuka modal konfirmasi hapus yang dapat dilihat pada gambar
-            \ref{fig:mockup_admin_exam_listing-delete}. Modal akan menampilkan informasi
-            singkat ujian yang akan dihapus untuk konfirmasi. 
+            Selain itu setiap tabel akan memiliki tombol lihat dan tombol hapus.
+            Tombol hapus akan membuka modal konfirmasi hapus yang dapat dilihat
+            pada gambar \ref{fig:mockup_admin_exam_listing-delete}. Modal akan
+            menampilkan informasi singkat ujian yang akan dihapus untuk
+            konfirmasi. 
         
         \item Bagian yang ditunjukkan pada Poin 2 adalah tombol aksi untuk
             membuat ujian yang baru.
@@ -208,7 +209,8 @@
             yang terdiri dari:
                 \begin{enumerate}
                     \item Pengisian detil ujian (\textit{Exam Details}).
-                    \item Pangalokasian tempat duduk ujian (\textit{Seat Plotting}).
+                    \item Pangalokasian tempat duduk ujian (\textit{Seat
+                    Plotting}).
                     \item Konfirmasi (\textit{Confirmation}).
                     \item Penyelesaian (\textit{Finish}).
                 \end{enumerate}
@@ -217,15 +219,16 @@
             
         \item Poin 2 menunjukkan bagian detil ujian seperti tipe ujian yang
             dapat diisi sebagai UTS atau pun UAS, mata kuliah dati ujian ini,
-            \textit{shift}, mulai pada tanggal jam berapa, hingga durasi waktu ujian.
-            Informasi yang ditampilkan pada bagian ini berhubungan langsung
-            dengan entitas \texttt{Exam}. Sesuai dengan jenis bidangnya, jika
-            sebuah bidang memiliki pilihan spesifik, maka bidang tersebut akan
-            diimplementasi dengan \textit{dropdown}. Sebagai contoh bidang tipe
-            ujian hanya akan memiliki pilihan UTS atau pun UAS, maka bidang
-            diimplementasi dengan \textit{dropdown} dengan nilai pilihan yang
-            sudah disebutkan. Untuk bidang tanggal dan jam, implementasi akan
-            dilakukan dengan bantuan dari \textit{date picker}.
+            \textit{shift}, mulai pada tanggal jam berapa, hingga durasi waktu
+            ujian. Informasi yang ditampilkan pada bagian ini berhubungan
+            langsung dengan entitas \texttt{Exam}. Sesuai dengan jenis
+            bidangnya, jika sebuah bidang memiliki pilihan spesifik, maka bidang
+            tersebut akan diimplementasi dengan \textit{dropdown}. Sebagai
+            contoh bidang tipe ujian hanya akan memiliki pilihan UTS atau pun
+            UAS, maka bidang diimplementasi dengan \textit{dropdown} dengan
+            nilai pilihan yang sudah disebutkan. Untuk bidang tanggal dan jam,
+            implementasi akan dilakukan dengan bantuan dari \textit{date
+            picker}.
             
         \item Poin 3 menunjukkan daftar peserta yang akan mengikuti ujian ini.
             Daftar peserta berisi daftar NPM yang mengikuti ujian, dipisah
@@ -331,8 +334,8 @@
     berwarna kuning akan dijelaskan sebagai berikut:
     \begin{itemize}
         \item Poin 1 adalah bagian informasi singkat tentang ujian. Informasi
-            akan berisi minimal kode mata kuliah, \textit{shift} (jika ada), dan nama
-            matakuliah.
+            akan berisi minimal kode mata kuliah, \textit{shift} (jika ada), dan
+            nama matakuliah.
             
         \item Poin 2 akan berisi status dari ujian tersebut, serta sisa waktu
             yang ada jika ujian tersebut sedang berjalan.
@@ -340,9 +343,11 @@
         \item Poin 3 adalah kotak alat untuk ujian ini. Kotak alat tersebut
             terdiri dari beberapa tombol yaitu
             \begin{itemize}
-                \item Tombol cetak daftar hadir, untuk pintu, maupun untuk absensi.
+                \item Tombol cetak daftar hadir, untuk pintu, maupun untuk
+                absensi.
                 \item Tombol layar proyektor.
-                \item Tombol unduh \textit{script} untuk membuat folder dan berkas ujian.
+                \item Tombol unduh \textit{script} untuk membuat folder dan
+                berkas ujian.
                 \item Tombol pemindahan peserta.
             \end{itemize}
             Kotak alat diimplementasikan untuk memenuhi kebutuhan yang muncul
@@ -363,15 +368,16 @@
                 \item Pada sebelah kanan tombol Zip, terdapat tombol tambah yang
                     akan membuka sebuah modal yang akan menanyakan format slot
                     jawaban yang ada. Modal tersebut dapat dilihat pada Gambar
-                    \ref{fig:mockup_admin_exam_det_answer_slot} Bagian A.
-                    Pada poin 1 dari Gambar \ref{fig:mockup_admin_exam_det_answer_slot},
-                    format yang diterima dapat berupa format \textit{xxyyy}
-                    seperti pada sistem sebelummnya.
+                    \ref{fig:mockup_admin_exam_det_answer_slot} Bagian A. Pada
+                    poin 1 dari Gambar
+                    \ref{fig:mockup_admin_exam_det_answer_slot}, format yang
+                    diterima dapat berupa format \textit{xxyyy} seperti pada
+                    sistem sebelummnya.
                     
                 \item Untuk setiap slot jawaban yang ada, akan terdapat tombol
                     ubah untuk mengubah lembar jawab, dan tombol hapus yang
                     dapat digunakan untuk menghapus entri tersebut. Tombol hapus
-                    tersebut akan membuka modal konfirmasi seperti pada Gambar 
+                    tersebut akan membuka modal konfirmasi seperti pada Gambar
                     \ref{fig:mockup_admin_exam_det_answer_slot}. Modal akan
                     menampilkan informasi slot ujian dan tombol aksi.
             \end{itemize}
@@ -405,11 +411,11 @@
                     
                 \item Untuk setiap entri pada bagian ini memiliki dua tombol
                     yang dapat digunakan untuk mengirimkan email, dan
-                    penghapusan entri. Tombol penghapusan entri akan menampilkan modal
-                    konfirmasi penghapusan, seperti yang dapat dilihat pada Gambar
-                    \ref{fig:mockup_admin_exam_det_autoreport}. Modal tersebut
-                    akan menampilkan informasi singkat tentang entri yang ada
-                    dan tombol aksi.
+                    penghapusan entri. Tombol penghapusan entri akan menampilkan
+                    modal konfirmasi penghapusan, seperti yang dapat dilihat
+                    pada Gambar \ref{fig:mockup_admin_exam_det_autoreport}.
+                    Modal tersebut akan menampilkan informasi singkat tentang
+                    entri yang ada dan tombol aksi.
            \end{itemize}
     \end{itemize}
     
@@ -474,10 +480,11 @@
         \caption{Rancangan antarmuka untuk modal konfirmasi penghapusan notifikasi.}
         \label{fig:mockup_admin_notif_delete}
     \end{figure}
-    Untuk menghapus notifikasi ujian, tim admin dapat menekan tombol yang nantinya
-    akan menampilkan modal untuk konfirmasi penghapusan. Rancangan tampilan modal
-    tersebut dapat diperhatikan pada Gambar \ref{fig:mockup_admin_notif_delete}.
-    Modal akan menampilkan informasi badan notifikasi dan tombol aksi.
+    Untuk menghapus notifikasi ujian, tim admin dapat menekan tombol yang
+    nantinya akan menampilkan modal untuk konfirmasi penghapusan. Rancangan
+    tampilan modal tersebut dapat diperhatikan pada Gambar
+    \ref{fig:mockup_admin_notif_delete}. Modal akan menampilkan informasi badan
+    notifikasi dan tombol aksi.
     
     
     % Absensi (pintu dan tanda tangan)
@@ -610,10 +617,9 @@
         \item Poin 1 mengandung informasi singkat tentang kode mata kuliah yang
         dipilih.
         
-        \item Poin 2 adalah bagian satu set timer beserta dengan 
-            kontrolnya. Selain itu
-            kontrol juga akan tersedia pada bagian bawah halaman untuk
-            mempermudah memulai timer pada perangkat bergerak.
+        \item Poin 2 adalah bagian satu set timer beserta dengan kontrolnya.
+            Selain itu kontrol juga akan tersedia pada bagian bawah halaman
+            untuk mempermudah memulai timer pada perangkat bergerak.
             
         \item Poin 3 adalah informasi detil ujian dalam bentuk tabel.
     \end{itemize}
@@ -1402,8 +1408,7 @@
             
         \item \texttt{GET user/me} \\
             Bertanggung jawab untuk memberikan informasi tentang user yang
-            terautentikasi.
-            \textbf{Input:} -\\
+            terautentikasi. \textbf{Input:} -\\
             \textbf{Output:}
             \begin{itemize}
                 \item \texttt{profile}: \textit{object}, objek dari entitas
@@ -1412,8 +1417,7 @@
             
         \item \texttt{POST user/me} \\
             Bertanggung jawab untuk memperbarui informasi tentang user yang
-            terautentikasi.
-            \textbf{Input:} Objek dari entitas \texttt{User}.\\
+            terautentikasi. \textbf{Input:} Objek dari entitas \texttt{User}.\\
             \textbf{Output:}
             \begin{itemize}
                 \item \texttt{profile}: \textit{object}, objek dari entitas
@@ -1548,8 +1552,10 @@
             Bertanggung jawab untuk memindahkan peserta ke tempat duduk lain dan
             membuat \textit{script} untuk lembar kerja mahasiswa yang baru.\\
             \textbf{Input:} \begin{itemize}
-                \item \texttt{lists[].participant}: \textit{string|id}, id dari peserta.
-                \item \texttt{lists[].to}: \textit{string|id}, id dari komputer target.
+                \item \texttt{lists[].participant}: \textit{string|id}, id dari
+                peserta.
+                \item \texttt{lists[].to}: \textit{string|id}, id dari komputer
+                target.
             \end{itemize}
             \textbf{Output:} \textit{blob} berkas zip.
             
@@ -1583,8 +1589,10 @@
             \textbf{Input:} \begin{itemize}
                 \item \texttt{lists[].participant}: \textit{string|id} id dari
                     entitas \texttt{Participant}.
-                \item \texttt{lists[].username}: \textit{string} Nama pengguna layanan
-                \item \texttt{lists[].password}: \textit{string} Kata sandi layanan
+                \item \texttt{lists[].username}: \textit{string} Nama pengguna
+                layanan
+                \item \texttt{lists[].password}: \textit{string} Kata sandi
+                layanan
                 \item \texttt{url}: \textit{string} Alamat layanan
             \end{itemize}
             \textbf{Output:} -
@@ -1605,9 +1613,10 @@
                     yang dikirimkan via email.
             \end{itemize}
             \textbf{Output:} \begin{itemize}
-                \item \texttt{exam}: \textit{object}, objek dari entitas \texttt{Exam}.
-                \item \texttt{downloadToken}: \textit{string}, tautan lengkap untuk
-                    mengunduh ujian.
+                \item \texttt{exam}: \textit{object}, objek dari entitas
+                \texttt{Exam}.
+                \item \texttt{downloadToken}: \textit{string}, tautan lengkap
+                    untuk mengunduh ujian.
             \end{itemize}
             
         \item \texttt{GET autonomus/examdownload/download} \\
@@ -1783,8 +1792,7 @@
                     Menangani \textit{event} sebelum \textit{framework}
                     melakukan pemanggilan fungsi utama. Melakukan parsing dan
                     pengecekan tertentu pada permintaan API.\\
-                    \textbf{Input:} Instansi kelas \texttt{Base} dari
-                    framework.
+                    \textbf{Input:} Instansi kelas \texttt{Base} dari framework.
             \end{itemize}
     
         \item \texttt{Autonomus\textbackslash ExamDownload} \\
@@ -2460,10 +2468,11 @@
         \texttt{Model/ujian}}
         \label{fig:classmap_app-model-ujian}
     \end{sidewaysfigure}
-    \textit{Namespace} \texttt{Model\textbackslash Ujian} memiliki beberapa kelas ORM yang
-    berhubungan langsung dengan ujian. Diagram kelas untuk \textit{namespace}
-    tersebut dapat dilihat pada Gambar \ref{fig:classmap_app-model-ujian}.
-    Kelas-kelas pada \textit{namespace} ini terdiri dari
+    \textit{Namespace} \texttt{Model\textbackslash Ujian} memiliki beberapa
+    kelas ORM yang berhubungan langsung dengan ujian. Diagram kelas untuk
+    \textit{namespace} tersebut dapat dilihat pada Gambar
+    \ref{fig:classmap_app-model-ujian}. Kelas-kelas pada \textit{namespace} ini
+    terdiri dari
     \begin{itemize}
         \item \texttt{Computer} \\
             Kelas ini adalah kelas terkait ORM yang merepresentasikan entitas
@@ -3086,9 +3095,9 @@
                     \textbf{Output:} -
             \end{itemize}
             
-        \item \texttt{Ruler\textbackslash MustExists} Kelas peraturan untuk validasi tambahan.
-            Memastikan apakah suatu entri terdapat pada sebuah tabel. Kelas ini
-            memiliki atribut sebagai berikut:
+        \item \texttt{Ruler\textbackslash MustExists} Kelas peraturan untuk
+            validasi tambahan. Memastikan apakah suatu entri terdapat pada
+            sebuah tabel. Kelas ini memiliki atribut sebagai berikut:
             \begin{itemize}
                 \item \texttt{\$modelName}: Nama model
                 \item \texttt{\$fieldName}: Nama kolom kunci primer dari model
@@ -3105,8 +3114,8 @@
                     tersebut.
             \end{itemize}
             
-        \item \texttt{Exceptions\textbackslash MustExistsException} Eksepsi oleh aturan
-            \textit{MustExists}.
+        \item \texttt{Exceptions\textbackslash MustExistsException} Eksepsi oleh
+            aturan \textit{MustExists}.
             \begin{itemize}
                 \item \texttt{\$defaultTemplates}: Pesan kesalahan pada saat
                 validasi gagal.
