@@ -119,7 +119,7 @@
     Rancangan antarmuka lainnya adalah tampilan pesan peringatan pengubahan nama
     berkas untuk peserta pada saat peserta mengirimkan berkas dengan nama yang
     tidak sesuai. Sistem akan mengkonfirmasi peserta untuk mengganti nama berkas
-    sebelum menunggah berkas ke peladen. Rancangan tersebut dapat dilihat pada
+    sebelum menunggah berkas ke server. Rancangan tersebut dapat dilihat pada
     Gambar \ref{fig:mockup_peserta_mismatch}.
     
 \subsection{Rancangan Antarmuka untuk Admin}
@@ -900,7 +900,7 @@
     
 \section{Perancangan Sistem Backend}
     Sesuai dengan perannya, sistem backend akan bertanggung jawab menangani
-    bagian-bagian yang hanya ditangani pada sisi peladen. Tanggung jawab
+    bagian-bagian yang hanya ditangani pada sisi server. Tanggung jawab
     tersebut mulai dari melakukan pengolahan data, pengelolaan basis data, serta
     menyediakan API yang digunakan oleh sistem frontend untuk berkomunikasi.
     
@@ -3314,7 +3314,7 @@
     % melakukan build pada saat commit
     Berdasarkan hasil analisis pada bab sebelumnya, penelitian membutuhkan
     sebuah sistem yang dapat melakukan \textit{build} secara otomatis sebelum
-    dapat di-\textit{deploy} ke peladen produksi. Sistem \textit{build} tersebut
+    dapat di-\textit{deploy} ke server produksi. Sistem \textit{build} tersebut
     akan direncanakan untuk diimplementasi pada sistem CI/CD yang terintegrasi
     dengan tempat penyimpanan repositori kode sumber. Kode sumber tersebut
     nantinya akan dilacak oleh sistem repositori sehingga pada saat kode
@@ -3330,7 +3330,7 @@
     \end{itemize}
     
     Hal tersebut dilakukan untuk memastikan hasil \textit{build} dapat
-    dikirimkan pada peladen untuk disediakan ke pengguna. Sistem
+    dikirimkan pada server untuk disediakan ke pengguna. Sistem
     \textit{deployment} yang digunakan diimplementasi dengan bantuan script yang
     dijalankan via SSH. \textit{Script} tersebut direncanakan akan melakukan
     pengunduhan perubahan kode, lalu melakukan penyegaran dependensi versi
