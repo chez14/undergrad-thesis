@@ -44,7 +44,6 @@
         diperjelas pada Gambar \ref{fig:flowchart-exam-preexam} dengan
         mendetilkan masing-masing peran yang terlibat.
         
-        
         Admin akan membuatkan slot ujian pada sistem Oxam, dan mengatur posisi
         tempat duduk sesuai dengan jumlah dan informasi ujian yang diberikan
         dari kepala lab. Sistem kemudian akan menghasilkan daftar tempat duduk
@@ -406,7 +405,8 @@
 
 \subsection{Tim Admin}
     \subsubsection{Menghapus Berkas yang
-    Gagal}\label{ref-prob-admin-berkas-gagal} Dari sisi Tim Admin, survei yang
+    Gagal}\label{ref-prob-admin-berkas-gagal} 
+    Dari sisi Tim Admin, survei yang
     dilakukan menghasilkan banyak keluhan dan masukan. Salah satunya, Tim Admin
     mempermasalahkan bahwa mereka tidak dapat menghapus berkas-berkas yang gagal
     di \textit{deploy}. Masalah tersebut biasanya muncul pada saat Tim Admin
@@ -456,19 +456,96 @@
     permasalahan yang dosen miliki pada \ref{ref-prob-dosen-daftar-hadir}.
 
     \subsubsection{Pengiriman Berkas Jawaban
-    Otomatis}\label{ref-prob-admin-pengiriman-berkas} Normalnya, setelah ujian
+    Otomatis}\label{ref-prob-admin-pengiriman-berkas} 
+    Normalnya, setelah ujian
     selesai maka Tim Admin akan mengunduh berkas jawaban tersebut untuk
     dikirimkan ke Dosen Koordinator. Tim Admin akan mengakses aplikasi Oxam,
     lalu mengunduh berkas jawaban ujian dan mengirimnya secara manual ke Dosen
     Koordinator mata kuliah tersebut. Masalah yang muncul adalah tidak setiap
     kali ujian Tim Admin ingat untuk mengirimkan berkas.
     
-    \subsubsection{NPM Jenis Baru}\label{ref-prob-admin-npm-baru} Peserta yang
+    \subsubsection{NPM Jenis Baru}\label{ref-prob-admin-npm-baru} 
+    Peserta yang
     menjalani ujian praktik pada lab komputasi adalah mahasiswa. Bergantinya
     sistem informasi akademik kampus berdampak pada pergantian format NPM yang
     dimiliki oleh mahasiswa. NPM pada mahasiswa memiliki format tertentu yang
-    dapat menginformasikan asal dari mahasiswa tersebut. Format yang dimiliki
-    oleh 
+    dapat menginformasikan asal dari mahasiswa tersebut.
+
+    \begin{table}[H]
+        \centering
+        \def\arraystretch{2}
+        \begin{tabular}{|c|c|}
+            \hline
+            \textbf{NPM Lama} & \textbf{NPM Baru} \\
+            \hline
+            201673\textbf{0011} & 6181601\textbf{011} \\
+            \hline
+            \multicolumn{2}{|c|}{\textbf{username}} \\
+            \hline
+            \multicolumn{2}{|c|}{i16\textbf{011}} \\
+            \hline
+        \end{tabular}
+        \caption{NPM lama, baru dan username yang mahasiswa gunakan untuk login.}
+        \label{tab:table-npm-detail}
+    \end{table}
+    
+    NPM lama memiliki empat komponen besar yang digunakan untuk mengidentifikasi
+    jenis mahasiswa (Tabel \ref{tab:table-npm}, kolom NPM Lama). 
+    \begin{itemize}
+        \item Empat karakter pertama pada NPM adalah informasi tahun mahasiswa
+        tersebut memulai kuliah. Pada contoh tampak angka 2016, yang berarti
+        mahasiswa tersebut memulai perkuliahannya pada tahun 2016 (angkatan 2016). 
+        
+        \item Dua karakter berikutnya menandakan jurusan (dan fakultas) mahasiswa
+        tersebut belajar. Pada contoh tampak angka 73 yang menandakan bahwa
+        mahasiswa tersebut belajar pada Fakultas Teknologi Informasi dan Sains (7),
+        dan berada pada jurusan Informatika (73). 
+        
+        \item Satu karakter berikutnya menandakan program yang diambil oleh
+        mahasiswa tersebut. Angka 0 menunjukkan bahwa mahasiswa tersebut mengikuti
+        program Sarjana, seperti pada tabel contoh. Angka 1 menandakan mahasiswa
+        tersebut mengambil program pascasarjana dan angka 2 menunjukkan program
+        doktoral. 
+        
+        \item Tiga angka berikutnya yang menjadi komponen terakhir dari NPM lama ini
+        adalah nomor urut mahasiswa tersebut. Dengan spesifikasi berikut,
+        berdasarkan tabel contoh, mahasiswa dengan NPM 2016730011 adalah mahasiswa
+        angkatan 2016, mengikuti program sarjana informatika pada Fakultas Teknologi
+        Informasi dan Sains dengan nomor urut 11.
+    \end{itemize}
+    
+    NPM baru ini dibuat pada tahun 2018, dan memiliki struktur yang jauh berbeda
+    dari NPM lama. Format NPM tersebut didefinisikan sebagai berikut:
+    
+    \begin{itemize}
+        \item Angka pertama menandakan program jenjang yang diambil oleh mahasiswa
+        tersebut. Angka 5 untuk diploma, 6 untuk sarjana, 8 pascasarjana dan 9 untuk
+        doktoral. 
+    
+        \item Dua digit angka berikutnya menunjukkan program studi yang diambil oleh
+        mahasiswa tersebut, pada contoh 18 berarti Informatika. 
+        
+        \item Dua digit berikutnya menunjukan angka tahun mulai perkuliahan
+        (angkatan) dalam format representasi tahun dengan dua digit. Pada contoh
+        tampak angka 16 yang berarti mahasiswa tersebut adalah angkatan 2016. 
+        
+        \item Dua digit berikutnya menginformasikan jenis mahasiswa. Pada contoh
+        tampak angka 01 yang menandakan bahwa mahasiswa tersebut berjenis reguler.
+        
+        \item Tiga digit terakhir menginformasikan nomor urut mahasiswa tersebut.
+    \end{itemize}
+    
+    Pada tabel \ref{tab:table-npm-detail} terdapat kolom username yang digunakan
+    untuk menstandarisasi NPM tersebut. Informasi username ini nantinya
+    dimanfaatkan untuk mengintegrasi berbagai macam sistem yang membutuhkan
+    informasi mahasiswa. Digit pertama pada username menginformasikan jurusan
+    mahasiswa tersebut. Huruf \texttt{i} menginformasikan mahasiswa tersebut
+    adalah mahasiswa jurusan Informatika, huruf \texttt{m} untuk matematika, dan
+    huruf \texttt{f} untuk fisika. Dua digit berikutnya menginformasikan tahun
+    angkatan mahasiswa tersebut dalam bentuk representasi tahun dalam dua digit.
+    Pada contoh tampak angka 16, yang menandakan bahwa username ini adalah milik
+    mahasiswa angkatam 2016. Tiga digit terakhir berikutnya menginformasikan
+    nomor urut mahasiswa tersebut.
     
     \subsubsection{Kode Matakuliah Baru}\label{ref-prob-admin-kode-mk-baru}
     Kurikulum yang saat ini ada memikili kode matakuliah yang baru. Masalah yang
