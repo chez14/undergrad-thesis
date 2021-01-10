@@ -52,13 +52,12 @@
     \end{figure}
     Rancangan berikutnya adalah tampilan antarmuka untuk memulai ujian, dapat
     dilihat pada \ref{fig:mockup_peserta_prestartstate}. Tampilan ini akan
-    ditampilkan pada saat ujian akan dimulai di ruangan. Tampilan ini rencananya
-    akan dibuat untuk menahan perserta untuk langsung mengakses lembar jawaban
-    ujian. Pada bagian ini terdapat beberapa informasi tentang peserta (poin 1),
-    fitur notifikasi untuk mengecek kredensial login lainnya (poin 2), dan
-    informasi lengkap ujian dalam bentuk tabel (poin 3). Selain itu terdapat
-    deskripsi kecil untuk membantu peserta mengerti konteks dari tampilan layar
-    ini. 
+    ditampilkan pada saat ujian akan dimulai di ruangan. Tampilan ini dibuat
+    untuk menahan perserta untuk langsung mengakses lembar jawaban ujian. Pada
+    bagian ini terdapat beberapa informasi tentang peserta (poin 1), fitur
+    notifikasi untuk mengecek kredensial login lainnya (poin 2), dan informasi
+    lengkap ujian dalam bentuk tabel (poin 3). Selain itu terdapat deskripsi
+    kecil untuk membantu peserta mengerti konteks dari tampilan layar ini. 
     
     % Screen ujian buka lembar jawab
     \begin{figure}
@@ -137,7 +136,7 @@
     tersebut dapat dilihat pada Gambar \ref{fig:mockup_admin_login}. Pada
     rancangan tampilan, terdapat beberapa bagian yang dapat pengguna isi untuk
     login. Bagian yang ditunjukan oleh poin 1 adalah bidang username dari admin.
-    Bidang ini direncanakan untuk dapat menerima namapengguna dan email. Lalu
+    Bidang ini rancang untuk dapat menerima namapengguna dan email. Lalu
     bagian berikutnya adalah bidang yang ditunjukkan oleh poin 2. Bidang
     tersebut adalah bidang kata sandi. Lalu pada bagian yang ditunjukan oleh
     poin 3 dan 4 adalah tombol aksi untuk melakukan login. Tombol yang
@@ -713,10 +712,10 @@
     % Jelasin kalo ini buat di proyektor
     Antarmuka untuk dosen pengawas akan bertanggung jawab untuk membuka dan
     menutup lembar jawab, serta menampilkan informasi ujian di proyektor tiap
-    ruangan. Tampilan ini mungkin akan berbeda-beda pada tiap ruangan,
-    tergantung dari ujian yang akan dilaksanakan pada ruangan tersebut. Karena
-    kendala teknis, rencananya alur untuk menuju tampilan layar akan melalui
-    otentikasi terlebih dahulu. 
+    ruangan. Tampilan yang ada akan memiliki daftar ujian yang berbeda tiap
+    ruangan, tergantung dari ujian yang diaktifkan pada ruangan tersebut.
+    Untuk dapat mengkases antarmuka ini, Dosen Pengawas diharuskan untuk
+    melakukan otentikasi terlebih dahulu.
     
 \subsubsection{Otentikasi}
     % Screen login by IP
@@ -732,12 +731,12 @@
     pengguna jenis ini dipertegas dengan penggunaan tombol IP Login yang
     ditunjukan pada poin 1 di Gambar \ref{fig:mockup_dosen_login}.
     
-    Tombol IP Login pada Gambar \ref{fig:mockup_dosen_login} direncanakan akan
-    langsung mengarahkan pengguna ke halaman peta ruangan ujian dan timer ujian
-    jika berhasil. IP dari komputer yang digunakan untuk mengakses halaman ini
-    harus diregistrasikan ke sistem untuk proses otentikasi dapat berhasil. Jika
-    otentikasi gagal, halaman ini harus menampilkan pesan kesalahan yang
-    mendeskripsikan bahwa IP komputer tidak teregistrasi.
+    Tombol IP Login pada Gambar \ref{fig:mockup_dosen_login} akan langsung
+    mengarahkan pengguna ke halaman peta ruangan ujian dan timer ujian. IP dari
+    komputer yang digunakan untuk mengakses halaman ini harus diregistrasikan ke
+    sistem untuk proses otentikasi dapat berhasil. Jika otentikasi gagal,
+    halaman ini harus menampilkan pesan kesalahan yang mendeskripsikan bahwa IP
+    komputer tidak teregistrasi.
     
     % Screen Seatmap
 \subsubsection{Peta Ruangan}
@@ -768,7 +767,7 @@
             ruangan yang ada dan poin 4 menunjukkan peta ruangan ujian. Peta ini
             dirancang untuk membantu peserta untuk mencari tempat duduk mereka.
             Sistem akan menampilkan tempat duduk tempat komputer yang terdaftar
-            pada sistem. Informasi tentang posisi komputer rencananya disimpan
+            pada sistem. Informasi tentang posisi komputer akan disimpan
             pada database.
     \end{itemize}
     % Screen Timer
@@ -818,14 +817,14 @@
             ini akan memiliki nilai dasar total durasi dari ujian. Timer akan
             mulai berjalan saat kontrol yang ditunjukan pada poin 6 mulai
             digunakkan. Pada saat timer mencapai nilai nol, maka tampilan
-            tersebut rencananya akan di tahan beberapa menit untuk memastikan
+            tersebut akan dipertahankan selama beberapa menit untuk memastikan
             dosen pengawas dapat menambahkan waktu lebih sebelum lembar jawab
             tidak dapat diubah kembali.
         
         % poin 6
         \item Poin 6 menunjukkan bagian kontrol dari timer ujian. Kontrol
-            rencananya terdiri dari tombol aksi mulai berhenti, dan setel ulang.
-            Tombol-tombol ini rencananya akan langusng melakukan panggilan API
+            akan terdiri dari tombol aksi mulai berhenti, dan setel ulang.
+            Tombol-tombol ini akan langusng melakukan panggilan API
             ke sistem back-end.
         
         % poin 7
@@ -863,9 +862,9 @@
     \end{figure}
     Email yang akan dikirimkan sebagai laporan akan dibuat dengan teknologi
     HTML, seperti pada umumnya. Email akan berisi sebuah tautan menuju halaman
-    untuk mengunduh berkas jawaban ujian. Email juga rencananya akan berisi
-    beberapa informasi krusial tentang masa hidup tautan tersebut sehingga
-    penerima laporan tidak merasa kebingungan jika tautan tidak dapat diakses.
+    untuk mengunduh berkas jawaban ujian. Email juga akan berisi beberapa
+    informasi krusial tentang masa hidup tautan tersebut sehingga penerima
+    laporan tidak merasa kebingungan jika tautan tidak dapat diakses.
     
     Rancangan untuk tampilan email dapat dilihat pada Gambar
     \ref{fig:mockup_addition_email}. Seperti yang ditunjukkan pada gambar, email
@@ -880,7 +879,7 @@
     Tautan yang dikirim lewat email akan mengarah pada halaman ini. Informasi
     singkat tentang ujian akan ditampilkan pada halaman ini sebelum akhirnya
     penerima laporan dapat melakukan pengunduhan hasil jawaban tersebut. Halaman
-    ini direncanakan untuk disediakan oleh sistem Oxam yang dapat diakses via
+    ini dirancang untuk disediakan oleh sistem Oxam yang dapat diakses via
     internet.
     
     \begin{figure}
@@ -1211,9 +1210,9 @@
 
 \subsubsection{ExamReport}
     Entitas \texttt{ExamReport} digunakan untuk membantu sistem menjadwalkan
-    pengiriman laporan ujian. Laporan ini nantinya direncanakan untuk dikirimkan
-    via email untuk mengatisipasi email diblokir oleh penyedia layanan email
-    karena kode Java dan berkas \texttt{.class}nya dianggap sebagai virus.
+    pengiriman laporan ujian. Laporan ini nantinya akan dikirimkan via email
+    untuk mengatisipasi email diblokir oleh penyedia layanan email karena kode
+    Java dan berkas \texttt{.class} dianggap sebagai virus.
     
     Seperti yang ditunjukkan pada diagram entitas pada gambar
     \ref{fig:erd_overview}, entitas \texttt{ExamReport} menyimpan beberapa kolom
@@ -1283,10 +1282,10 @@
 
     Entitas \texttt{Submission}, seperti yang dapat dilihat pada potongan
     diagram relasi entitas \ref{fig:erd_submission}, menampung informasi tentang
-    submisi yang dilakukan oleh peserta ujian. Submisi yang dikirimkan
-    direncanakan untuk disimpan dengan nama berkas yang acak. Nama berkas
-    tersebut kemudian disimpan pada database sebagai referensi untuk nantinya
-    pelaporan yang dibantu oleh entitas \texttt{ExamReport}.
+    submisi yang dilakukan oleh peserta ujian. Submisi yang dikirimkan akan
+    disimpan dengan nama berkas yang acak. Nama berkas tersebut kemudian
+    disimpan pada database sebagai referensi untuk nantinya pelaporan yang
+    dibantu oleh entitas \texttt{ExamReport}.
     
     Submisi yang dikirimkan oleh peserta akan dicek formatnya dengan bantuan
     dari entitas \texttt{AnswerSlot}. Jika nama berkas sudah sesuai dengan
@@ -1314,7 +1313,7 @@
     besar, sehingga penggunaan API dapat lebih optimal diaplikasikan dengan
     metode abstraksi API class pada sistem frontend.
     
-    Perancangan REST API dimulai dengan merencanakan metode otentikasi yang akan
+    Perancangan REST API dimulai dengan merancang metode otentikasi yang akan
     digunakan untuk setiap permintaan. Lalu pembahsan dilanjutkan dengan desain
     URL yang digunakan dan tujuannya.
     
@@ -1342,8 +1341,7 @@
     \textit{resources} yang backend sediakan. Seperti tombol unduh pada halaman
     laporan, atau melakukan CRUD pada entitas tertentu. Token yang digunakan
     pada sistem normalnya akan menggunakan JSON Web Token atau JWT, dengan
-    bantuan \textit{library} dari backend. Rencananya JWT ini akan menggunakan
-    algoritma kunci asimetrik, sebagai standar keamanan.
+    bantuan \textit{library} dari backend.
     
     % desail url berdasarkan rest API
 \subsubsection{Desain \textit{Endpoint}} REST API dibagi menjadi empat bagian
@@ -3317,9 +3315,9 @@
     dapat di-\textit{deploy} ke server produksi. Sistem \textit{build} tersebut
     akan direncanakan untuk diimplementasi pada sistem CI/CD yang terintegrasi
     dengan tempat penyimpanan repositori kode sumber. Kode sumber tersebut
-    nantinya akan dilacak oleh sistem repositori sehingga pada saat kode
-    mengalami perubahan, sistem CI/CD akan secara otomatis berjalan. Sistem ini
-    direncanakan untuk melakukan hal berikut secara sekuensial:
+    nantinya akan di\textit{track} oleh sistem repositori sehingga pada saat
+    kode mengalami perubahan, sistem CI/CD akan secara otomatis berjalan. Sistem
+    ini dirancang untuk melakukan hal berikut secara sekuensial:
     
     \begin{itemize}
         \item Melakukan penyegaran dependensi.
@@ -3332,7 +3330,7 @@
     Hal tersebut dilakukan untuk memastikan hasil \textit{build} dapat
     dikirimkan pada server untuk disediakan ke pengguna. Sistem
     \textit{deployment} yang digunakan diimplementasi dengan bantuan script yang
-    dijalankan via SSH. \textit{Script} tersebut direncanakan akan melakukan
+    dijalankan via SSH. \textit{Script} tersebut dirancang akan melakukan
     pengunduhan perubahan kode, lalu melakukan penyegaran dependensi versi
     server, dan mengabari kembali sistem CI/CD bahwa \textit{deployment} telah
     berhasil dilakukan.
