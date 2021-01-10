@@ -110,6 +110,18 @@
     yang sudah ada tidak berubah, dan memperkecil \textit{learning curve} untuk
     peserta membiasakan diri dengan aplikasi ini.
     
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/mockups/Mockup--Peserta - Mismatch Filename.pdf}
+        \caption{Rancangan tampilan untuk pengumpulan jawaban dengan nama berkas yang tidak sesuai.}
+        \label{fig:mockup_peserta_mismatch}
+    \end{figure}
+    Rancangan antarmuka lainnya adalah tampilan pesan peringatan pengubahan nama berkas
+    untuk peserta pada saat peserta mengirimkan berkas dengan nama yang tidak sesuai.
+    Sistem akan mengkonfirmasi peserta untuk mengganti nama berkas sebelum menunggah
+    berkas ke peladen. Rancangan tersebut dapat dilihat pada Gambar 
+    \ref{fig:mockup_peserta_mismatch}.
+    
 \subsection{Rancangan Antarmuka untuk Admin}
     
     % Screen admin login
@@ -146,6 +158,11 @@
         \includegraphics{Gambar/mockups/Mockup--Admin - Exam Listing.pdf}
         \caption{Rancangan antarmuka untuk daftar ujian pada halaman Admin Panel.}
         \label{fig:mockup_admin_exam_listing}
+    \end{figure}\begin{figure}
+        \centering
+        \includegraphics{Gambar/mockups/Mockup--Admin - Exam Delete.pdf}
+        \caption{Rancangan antarmuka untuk modal konfirmasi penghapusan ujian.}
+        \label{fig:mockup_admin_exam_listing-delete}
     \end{figure}
     Rancangan antarmuka untuk manajemen ujian dimulai dengan halaman daftar
     ujian, dapat dilihat pada Gambar \ref{fig:mockup_admin_exam_listing}. Pada
@@ -155,10 +172,15 @@
     \begin{itemize}
         \item Bagian yang ditunjukkan pada Poin 1 adalah daftar ujian yang sudah
             teregistrasi pada sistem. Daftar tersebut disajikan dalam bentuk
-            tabel (poin 1) yang kemudian dapat diklik untuk menuju halaman detil
+            tabel yang kemudian dapat diklik untuk menuju halaman detil
             ujian. Tabel akan menunjukan setidaknya informasi mata kuliah,
             periode ujian, UTS atau UAS, \textit{shift}, serta tanggal dan jam
             mulai serta berakhirnya ujian jika ujian sudah dimulai.
+            
+            Selain itu setiap tabel akan memiliki tombol lihat dan tombol hapus. Tombol
+            hapus akan membuka modal konfirmasi hapus yang dapat dilihat pada gambar
+            \ref{fig:mockup_admin_exam_listing-delete}. Modal akan menampilkan informasi
+            singkat ujian yang akan dihapus untuk konfirmasi. 
         
         \item Bagian yang ditunjukkan pada Poin 2 adalah tombol aksi untuk
             membuat ujian yang baru.
@@ -185,22 +207,22 @@
             mengisi formulir ini. Untuk saat ini terdapat empat langkah besar
             yang terdiri dari:
                 \begin{enumerate}
-                    \item Pengisian detil ujian (Exam Details).
-                    \item Pangalokasian tempat duduk ujian (Seat Plotting).
-                    \item Konfirmasi (Confirmation).
-                    \item Penyelesaian (Finish).
+                    \item Pengisian detil ujian (\textit{Exam Details}).
+                    \item Pangalokasian tempat duduk ujian (\textit{Seat Plotting}).
+                    \item Konfirmasi (\textit{Confirmation}).
+                    \item Penyelesaian (\textit{Finish}).
                 \end{enumerate}
-            Seperti yang telah dideskripsikan, halaman formulir ini berada pada
+            Seperti yang telah dijelaskan, halaman formulir ini berada pada
             tahap pengisian detil ujian.
             
         \item Poin 2 menunjukkan bagian detil ujian seperti tipe ujian yang
-            dapat diisi sebagai UTS ataupun UAS, mata kuliah dati ujian ini,
-            shift, mulai pada tanggaal jam berapa, hingga durasi waktu ujian.
-            Informasi yang ditampilkan pada bagian ini berhubungan langusng
+            dapat diisi sebagai UTS atau pun UAS, mata kuliah dati ujian ini,
+            \textit{shift}, mulai pada tanggal jam berapa, hingga durasi waktu ujian.
+            Informasi yang ditampilkan pada bagian ini berhubungan langsung
             dengan entitas \texttt{Exam}. Sesuai dengan jenis bidangnya, jika
             sebuah bidang memiliki pilihan spesifik, maka bidang tersebut akan
             diimplementasi dengan \textit{dropdown}. Sebagai contoh bidang tipe
-            ujian hanya akan memiliki pilihan UTS ataupun UAS, maka bidang
+            ujian hanya akan memiliki pilihan UTS atau pun UAS, maka bidang
             diimplementasi dengan \textit{dropdown} dengan nilai pilihan yang
             sudah disebutkan. Untuk bidang tanggal dan jam, implementasi akan
             dilakukan dengan bantuan dari \textit{date picker}.
@@ -211,7 +233,7 @@
             
         \item Poin 4 adalah sebuah tombol unggah yang akan diproses langsung
             pada browser untuk memasukkan daftar peserta. Tombol ini ditambahkan
-            dengan alasan kompabilitas UX dengan sistem yang lama.
+            dengan alasan kompatibilitas UX dengan sistem yang lama.
             
         \item Poin 5 adalah sebuah tombol aksi untuk menuju langkah berikutnya,
             pengalokasian tempat duduk ujian.
@@ -293,33 +315,34 @@
     
     \begin{figure}
         \centering
-        \includegraphics[width=0.75\paperwidth]{Gambar/mockups/Mockup--Admin - Tambah Autoreport.pdf}
-        \caption{Rancangan antarmuka untuk modal pelaporan otomatis baru.}
+        \includegraphics[width=0.7\paperwidth]{Gambar/mockups/Mockup--Admin - Tambah Autoreport.pdf}
+        \caption{Rancangan antarmuka untuk modal pelaporan otomatis. \\
+            (A) Buat baru. (B) Hapus.}
         \label{fig:mockup_admin_exam_det_autoreport}
     \end{figure}
     
     Halaman detil ujian akan memuat seluruh informasi ujian yang ditampung pada
     entitas \texttt{Exam} dan beberapa entitas lainnya yang terhubung dengan
     entitas ini. Rancangan tampilan detil ujian dapat dilihat pada gambar
-    \ref{fig:mockup_admin_exam_details}. Secara garis besar, tampilan memiki
+    \ref{fig:mockup_admin_exam_details}. Secara garis besar, tampilan memiliki
     beberapa bagian yang spesifik dengan perannya. Hal ini dibuat demikian untuk
     mempermudah tim admin memindai informasi pada saat membuka beberapa
-    \textit{tab} pada peramban. Bagian-bagian yang ditunjukan dengan poin
-    bewarna kuning akan dijelaskan sebagai berikut:
+    \textit{tab} pada peramban. Bagian-bagian yang ditunjukkan dengan poin
+    berwarna kuning akan dijelaskan sebagai berikut:
     \begin{itemize}
         \item Poin 1 adalah bagian informasi singkat tentang ujian. Informasi
-            akan berisi minimal kode mata kuliah, shift (jika ada), dan nama
+            akan berisi minimal kode mata kuliah, \textit{shift} (jika ada), dan nama
             matakuliah.
             
         \item Poin 2 akan berisi status dari ujian tersebut, serta sisa waktu
             yang ada jika ujian tersebut sedang berjalan.
             
         \item Poin 3 adalah kotak alat untuk ujian ini. Kotak alat tersebut
-        berisi:
+            terdiri dari beberapa tombol yaitu
             \begin{itemize}
-                \item Tombol print daftar hadir.
+                \item Tombol cetak daftar hadir, untuk pintu, maupun untuk absensi.
                 \item Tombol layar proyektor.
-                \item Tombol unduh script untuk membuat folder dan berkas ujian.
+                \item Tombol unduh \textit{script} untuk membuat folder dan berkas ujian.
                 \item Tombol pemindahan peserta.
             \end{itemize}
             Kotak alat diimplementasikan untuk memenuhi kebutuhan yang muncul
@@ -340,20 +363,23 @@
                 \item Pada sebelah kanan tombol Zip, terdapat tombol tambah yang
                     akan membuka sebuah modal yang akan menanyakan format slot
                     jawaban yang ada. Modal tersebut dapat dilihat pada Gambar
-                    \ref{fig:mockup_admin_exam_det_answer_slot}. Pada poin 1
-                    dari Gambar \ref{fig:mockup_admin_exam_det_answer_slot},
+                    \ref{fig:mockup_admin_exam_det_answer_slot} Bagian A.
+                    Pada poin 1 dari Gambar \ref{fig:mockup_admin_exam_det_answer_slot},
                     format yang diterima dapat berupa format \textit{xxyyy}
                     seperti pada sistem sebelummnya.
                     
                 \item Untuk setiap slot jawaban yang ada, akan terdapat tombol
                     ubah untuk mengubah lembar jawab, dan tombol hapus yang
-                    dapat digunakan untuk menghapus entri tersebut.
+                    dapat digunakan untuk menghapus entri tersebut. Tombol hapus
+                    tersebut akan membuka modal konfirmasi seperti pada Gambar 
+                    \ref{fig:mockup_admin_exam_det_answer_slot}. Modal akan
+                    menampilkan informasi slot ujian dan tombol aksi.
             \end{itemize}
             
-        \item Poin 6 menunjukan bagian fitur notifikasi yang akan ditampilkan
+        \item Poin 6 menunjukkan bagian fitur notifikasi yang akan ditampilkan
             pada peserta ujian. Pada tampilan ini, terdapat beberapa tombol yang
-            dapat digunakan untuk memanipulasi ujian tersebut. Tombol tombol
-            tersebut adalah
+            dapat digunakan untuk memanipulasi ujian tersebut. Tombol-tombol
+            tersebut terdiri dari
                 \begin{itemize}
                     \item Tombol Tambah untuk membuat notifikasi baru. Pada saat
                         diklik, sistem akan menampilkan sebuah modal yang
@@ -379,7 +405,11 @@
                     
                 \item Untuk setiap entri pada bagian ini memiliki dua tombol
                     yang dapat digunakan untuk mengirimkan email, dan
-                    penghapusan entri.
+                    penghapusan entri. Tombol penghapusan entri akan menampilkan modal
+                    konfirmasi penghapusan, seperti yang dapat dilihat pada Gambar
+                    \ref{fig:mockup_admin_exam_det_autoreport}. Modal tersebut
+                    akan menampilkan informasi singkat tentang entri yang ada
+                    dan tombol aksi.
            \end{itemize}
     \end{itemize}
     
@@ -436,6 +466,19 @@
         
         \item Poin 8 adalah isi dari notifikasi tersebut.
     \end{itemize}
+    
+    
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/mockups/Mockup--Admin - Notif Delete.pdf}
+        \caption{Rancangan antarmuka untuk modal konfirmasi penghapusan notifikasi.}
+        \label{fig:mockup_admin_notif_delete}
+    \end{figure}
+    Untuk menghapus notifikasi ujian, tim admin dapat menekan tombol yang nantinya
+    akan menampilkan modal untuk konfirmasi penghapusan. Rancangan tampilan modal
+    tersebut dapat diperhatikan pada Gambar \ref{fig:mockup_admin_notif_delete}.
+    Modal akan menampilkan informasi badan notifikasi dan tombol aksi.
+    
     
     % Absensi (pintu dan tanda tangan)
 \subsubsection{Detil Ujian: Daftar Hadir}
@@ -558,19 +601,19 @@
     digunakan oleh tim admin untuk memicu mulainya timer ujian. Pemicu tersebut
     akan terhubung langsung dengan sistem back-end dan membuka lembar jawab
     untuk peserta. Rancangan tampilan dapat dilihat pada Gambar
-    \ref{fig:mockup_admin_minipanel}. Secara garis besar, rangcangan tampilan
+    \ref{fig:mockup_admin_minipanel}. Secara garis besar, rancangan tampilan
     memiliki informasi singkat ujian pada atas halaman, satu set timer dengan
     kontrolnya, serta tabel detil ujian pada bagian bawah halaman.
     
-    Bagian-bagian yang ditunjukan oleh poin dideskripsikan sebagai berikut:
+    Bagian-bagian yang ditunjukkan oleh poin dideskripsikan sebagai berikut:
     \begin{itemize}
         \item Poin 1 mengandung informasi singkat tentang kode mata kuliah yang
         dipilih.
         
-        \item Poin 2 adalah bagian satu set timer dengan kontrolnya. Tombol
-            dibuat lebih besar agar lebih mudah untuk ditekan. Selain itu
+        \item Poin 2 adalah bagian satu set timer beserta dengan 
+            kontrolnya. Selain itu
             kontrol juga akan tersedia pada bagian bawah halaman untuk
-            mempermudah pemicu pada perangkat bergerak.
+            mempermudah memulai timer pada perangkat bergerak.
             
         \item Poin 3 adalah informasi detil ujian dalam bentuk tabel.
     \end{itemize}
