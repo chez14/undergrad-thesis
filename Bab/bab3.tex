@@ -492,7 +492,8 @@
     \textit{framework} agar sumber kode yang dibuat dapat dirawat oleh tim
     Admin.
     
-    Fitur-fitur yang akan di rekayasa ulang akan didetilkan pada tabel \ref{tab:table-daftar-fitur}.
+    Fitur-fitur yang akan di rekayasa ulang akan didetilkan pada tabel
+    \ref{tab:table-daftar-fitur}.
     
     \begin{table}[H]
         \centering
@@ -500,25 +501,33 @@
         \hline
         Nama Fitur & Referensi Masalah & Asal Fitur & Status\\
         \hline
-        Membuat, melihat, mengubah, menghapus ujian & - & Lama & Rekayasa Ulang \\
+        Membuat, melihat, mengubah, menghapus ujian & - & Lama & Rekayasa Ulang
+        \\
         \hline
-        Melihat, mencetak daftar peserta yang sudah diacak & - & Lama & Rekayasa Ulang \\
+        Melihat, mencetak daftar peserta yang sudah diacak & - & Lama & Rekayasa
+        Ulang \\
         \hline
         Mengunggah dan mengunduh jawaban & - & Lama & Rekayasa Ulang \\
         \hline
-        Timer (tidak terintegrasi)  & \ref{ref-prob-admin-timer-integrated} & Lama & Rekayasa Ulang \\
+        Timer (tidak terintegrasi)  & \ref{ref-prob-admin-timer-integrated} &
+        Lama & Rekayasa Ulang \\
         \hline
-        Notifikasi & \ref{ref-prob-dosen-password}, \ref{ref-prob-peserta-papan-tulis} & Baru & Diimplementasi \\
+        Notifikasi & \ref{ref-prob-dosen-password},
+        \ref{ref-prob-peserta-papan-tulis} & Baru & Diimplementasi \\
         \hline
-        Pemindahan tempat duduk peserta & \ref{ref-prob-peserta-kompu-hang}, \ref{ref-prob-admin-pindah} & Baru & Diimplementasi \\
+        Pemindahan tempat duduk peserta & \ref{ref-prob-peserta-kompu-hang},
+        \ref{ref-prob-admin-pindah} & Baru & Diimplementasi \\
         \hline
-        Pengiriman berkas otomatis & \ref{ref-prob-admin-pengiriman-berkas} & Baru & Diimplementasi \\
+        Pengiriman berkas otomatis & \ref{ref-prob-admin-pengiriman-berkas} &
+        Baru & Diimplementasi \\
         \hline
-        NPM \textit{Converter} & \ref{ref-prob-admin-npm-baru} & Baru & Diimplementasi \\
+        NPM \textit{Converter} & \ref{ref-prob-admin-npm-baru} & Baru &
+        Diimplementasi \\
         \hline
         Admin Panel & \~{} & Baru & Diimplementasi \\
         \hline
-        \textit{Bug fix} & \ref{ref-prob-dosen-bug-waktu}, \ref{ref-prob-admin-berkas-gagal}  & - & Diimplementasi \\
+        \textit{Bug fix} & \ref{ref-prob-dosen-bug-waktu},
+        \ref{ref-prob-admin-berkas-gagal}  & - & Diimplementasi \\
         \hline
         \end{tabular}
         \caption{Daftar fitur yang akan diimplementasi dan direkayasa ulang}
@@ -636,19 +645,20 @@ FatFree Framework atau F3 akan digunakan untuk penelitan ini.
 
 \subsection{CI/CD}
     Penggunaan \textit{library} React pada front-end membutuhkan tahap tambahan
-    untuk melakukan \textit{build} sebelum subsistem dapat dijalankan di peramban
-    pengguna. Adanya tahap tambahan ini membuat penelitian ini membutuhkan
-    sebuah sistem \textit{build} terpusat untuk mempermudah mengelola kode
-    sumber yang akan di-\textit{deploy} pada peladen produksi. Sistem build ini 
-    akan diimplementasi dengan menggunakan teknologi CI/CD yang 
+    untuk melakukan \textit{build} sebelum subsistem dapat dijalankan di
+    peramban pengguna. Adanya tahap tambahan ini membuat penelitian ini
+    membutuhkan sebuah sistem \textit{build} terpusat untuk mempermudah
+    mengelola kode sumber yang akan di-\textit{deploy} pada peladen produksi.
+    Sistem build ini akan diimplementasi dengan menggunakan teknologi CI/CD yang
     disediakan oleh penyedia penyimpanan kode sumber, GitLab.
     
-    Sistem CI/CD nantinya harus dapat berjalan hampir otomatis seluruhnya untuk menyederhanakan
-    alur pengembangan aplikasi. Sistem CI/CD ini diharapkan untuk mempermudah pekerjaan
-    pengembang untuk melakukan \textit{build} dengan standar produksi dengan
-    package dan modules untuk development tidak diikutkan pada hasil \textit{build}.
-    Harapan lainnya adalah dengan adanya CI/CD ini, pengembang dapat menambahkan
-    \textit{routine} apapun yang dibutuhkan dikemudian hari.
+    Sistem CI/CD nantinya harus dapat berjalan hampir otomatis seluruhnya untuk
+    menyederhanakan alur pengembangan aplikasi. Sistem CI/CD ini diharapkan
+    untuk mempermudah pekerjaan pengembang untuk melakukan \textit{build} dengan
+    standar produksi dengan package dan modules untuk development tidak
+    diikutkan pada hasil \textit{build}. Harapan lainnya adalah dengan adanya
+    CI/CD ini, pengembang dapat menambahkan \textit{routine} apapun yang
+    dibutuhkan dikemudian hari.
 
 \section{Analisis Pengguna}
 

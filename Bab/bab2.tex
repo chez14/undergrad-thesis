@@ -5,29 +5,29 @@
 \section{Back-end dan Front-end}
     Seperti pengembangan aplikasi pada \textit{platform} lainnya, terdapat
     banyak cara untuk mengaplikasikan solusi yang dirancang berdasarkan
-    kebutuhan dan batasan yang ada. Pada pengembanagan aplikasi web, karena 
-    aplikasi tidak hanya berjalan pada \textit{server} atau peladen saja, 
-    maka secara umum pengembang memecah sistem menjadi dua subsistem besar.
+    kebutuhan dan batasan yang ada. Pada pengembanagan aplikasi web, karena
+    aplikasi tidak hanya berjalan pada \textit{server} atau peladen saja, maka
+    secara umum pengembang memecah sistem menjadi dua subsistem besar.
     
-    Dua subsistem ini mengikuti pola pemrograman \textit{Server-client},
-    dengan aplikasi klien biasanya ditangani oleh \textit{browser} atau peramban. 
-    Namun dengan berkembangnya teknologi, sistem pada peramban juga mulai berevolusi.
-    Oleh karena itu sistem-sistem yang ada harus dirancang dengan baik
-    sesuai dengan disiplin sistemnya sendiri.
+    Dua subsistem ini mengikuti pola pemrograman \textit{Server-client}, dengan
+    aplikasi klien biasanya ditangani oleh \textit{browser} atau peramban. Namun
+    dengan berkembangnya teknologi, sistem pada peramban juga mulai berevolusi.
+    Oleh karena itu sistem-sistem yang ada harus dirancang dengan baik sesuai
+    dengan disiplin sistemnya sendiri.
     
-    Secara umum, front-end akan membantu sistem menampilkan data dengan baik 
-    dengan memanipulasi peramban pengguna. Sedangkan back-end akan membantu mengolah
-    data yang sistem front-end berikan.
+    Secara umum, front-end akan membantu sistem menampilkan data dengan baik
+    dengan memanipulasi peramban pengguna. Sedangkan back-end akan membantu
+    mengolah data yang sistem front-end berikan.
 
 \subsection{Back-end}
-    Back-end atau Backend adalah sebuah subsistem yang melayani program
-    namun tidak diakses secara langsung oleh penggunanya, melainkan dengan
-    melalui Front-end\cite{oxford:definition-backend}. Pada umumnya Back-end
-    memiliki tugas untuk menyimpan data, memproses data, dan memvalidasi
-    data.
+    Back-end atau Backend adalah sebuah subsistem yang melayani program namun
+    tidak diakses secara langsung oleh penggunanya, melainkan dengan melalui
+    Front-end\cite{oxford:definition-backend}. Pada umumnya Back-end memiliki
+    tugas untuk menyimpan data, memproses data, dan memvalidasi data.
     
-    Sesuai dengan namanya, sistem back-end hanya akan berjalan pada server dan sumber
-    kode yang terdapat pada sistem ini tidak akan ditampilkan pada pengguna.
+    Sesuai dengan namanya, sistem back-end hanya akan berjalan pada server dan
+    sumber kode yang terdapat pada sistem ini tidak akan ditampilkan pada
+    pengguna.
 
 \subsection{Front-end}
     \textit{Front-end} atau \textit{Frontend} adalah sebuah subsistem yang
@@ -35,12 +35,12 @@
     ini memiliki tugas untuk menyajikan data pada pengguna, serta melakukan
     pemanggilan perintah ke \textit{back-end}.
     
-    Sesuai dengan namanya, subsistem front-end akan berjalan pada sisi klien dari
-    sistem, oleh karena itu kode subsistem ini harus dapat ditransmisikan 
-    ke peramban pengguna agar sistem dapat berjalan sesuai ekspektasi. Karena kode
-    pada subsistem ini dapat dilihat oleh pengguna, maka sistem back-end penting untuk
-    melakukan sanitasi data untuk memastikan data yang diberikan tidak mengancam
-    kestabilan siklus hidup sistem keseluruhan.
+    Sesuai dengan namanya, subsistem front-end akan berjalan pada sisi klien
+    dari sistem, oleh karena itu kode subsistem ini harus dapat ditransmisikan
+    ke peramban pengguna agar sistem dapat berjalan sesuai ekspektasi. Karena
+    kode pada subsistem ini dapat dilihat oleh pengguna, maka sistem back-end
+    penting untuk melakukan sanitasi data untuk memastikan data yang diberikan
+    tidak mengancam kestabilan siklus hidup sistem keseluruhan.
 
 \section{Library dan Framework}
     \textit{Library} adalah kumpulan fungsi yang dikompilasi bersama dan
@@ -69,7 +69,7 @@
     \textit{package-package} dibuat terhubung sedemikian rupa sehingga
     \textit{framework} terbentuk dan dapat digunakan oleh para-pengembang.
     
-    Kode yang di-\textit{extend} dari \textit{framework} atau \textit{library} 
+    Kode yang di-\textit{extend} dari \textit{framework} atau \textit{library}
     memiliki sifat yang universal, dapat digunakan-ulang, yang menyediakan
     fungsionalitas-fungsionalitas kecil yang dapat digunakan untuk membuat
     \textit{platform} aplikasi yang lebih besar. Penggunaan-ulang ini membuat
@@ -84,13 +84,13 @@
     \textit{bug} yang lebih sedikit.
     
     \textit{Delivery} adalah penerbitan fitur/fungsi ke kode program di wilayah
-    peladen yang digunakan oleh pengguna asli (\textit{production server} / 
-    peladen produksi). Untuk mencapai \textit{delivery} yang cepat, 
-    pengembang aplikasi normalnya akan
-    menggunakan kode yang sudah terbukti di \textit{medan perang} sehingga pada 
-    saat tahap pengembangan para pengembang dapat lebih fokus untuk mengimplementasi
-    fitur program, dibandingkan dengan pengembang harus menyelesaikan
-    \textit{bug-bug} yang seharusnya tidak perlu ada.
+    peladen yang digunakan oleh pengguna asli (\textit{production server} /
+    peladen produksi). Untuk mencapai \textit{delivery} yang cepat, pengembang
+    aplikasi normalnya akan menggunakan kode yang sudah terbukti di
+    \textit{medan perang} sehingga pada saat tahap pengembangan para pengembang
+    dapat lebih fokus untuk mengimplementasi fitur program, dibandingkan dengan
+    pengembang harus menyelesaikan \textit{bug-bug} yang seharusnya tidak perlu
+    ada.
     
     \textit{Behaviour} adalah sifat yang fitur/fungsi miliki pada saat melakukan
     algoritma tertentu. Secara kontras, pengembang yang tidak menggunakan
@@ -109,22 +109,22 @@
     kesuksesan aplikasi.
 
 \subsection{Fat-free Framework}
-    Fat-free Framework\footnote{Lihat
-    https://github.com/bcosca/fatfree.} (translasi literal:
-    Framework bebas lemak) atau F3 adalah \textit{Framework} PHP yang
-    dikembangkan oleh \texttt{bcosca}. Kode dasar \textit{framework} ini
-    memiliki ukuran yang relatif kecil dan memiliki performa yang cukup baik
+    Fat-free Framework\footnote{Lihat https://github.com/bcosca/fatfree.}
+    (translasi literal: Framework bebas lemak) atau F3 adalah \textit{Framework}
+    PHP yang dikembangkan oleh \texttt{bcosca}. Kode dasar \textit{framework}
+    ini memiliki ukuran yang relatif kecil dan memiliki performa yang cukup baik
     berdasarkan \textit{benchmark} yang dilakukan oleh \texttt{kenjis} pada
     tahun 2017\cite{kenjis:framework-benchmark}. Dengan kecilnya kode dasar
     tersebut, maka F3 ini memungkinkan penggunanya untuk mengeksekusi aplikasi
     dengan lebih efisien dan lebih cepat.
     
-    F3 memiliki struktur \textit{framework} yang relatif fleksibel sehingga dapat
-    ubah-sesuaikan menurut kebutuhan pengembang dan bisnis. Salah satu masalah
-    yang biasanya terdapat pada \textit{framework} adalah bentuk kelas dan objek
-    yang kompleks. Namun F3 memiliki kelas yang relatif
+    F3 memiliki struktur \textit{framework} yang relatif fleksibel sehingga
+    dapat ubah-sesuaikan menurut kebutuhan pengembang dan bisnis. Salah satu
+    masalah yang biasanya terdapat pada \textit{framework} adalah bentuk kelas
+    dan objek yang kompleks. Namun F3 memiliki kelas yang relatif
     sederhana\cite{fatfree:docs-api}. Oleh karena itu waktu yang dibutuhkan
-    untuk mempelajari dokumentasi dari \textit{framework} ini relatif lebih cepat.
+    untuk mempelajari dokumentasi dari \textit{framework} ini relatif lebih
+    cepat.
     
     Composer\footnote{Lihat https://getcomposer.org/.} adalah salah satu
     peralatan untuk mengelola \textit{package} untuk aplikasi pada pemrograman
@@ -133,7 +133,8 @@
     proyek PHP. Composer ini nantinya akan secara otomatis me-\textit{resolve}
     \textit{package} yang akan diperlukan oleh sebuah proyek, mengunduh paket
     tersebut lalu melakukan generasi \textit{autoloader} untuk \textit{package}
-    tersebut agar dapat digunakan pada lingkungan pengembangan aplikasi tersebut.
+    tersebut agar dapat digunakan pada lingkungan pengembangan aplikasi
+    tersebut.
 
     % TODO: Struktur F3?
     \subsubsection{Memulai dengan FatFree}
@@ -226,9 +227,9 @@
     Konfigurasi \textit{routing} pada F3 dapat dilakukan dengan membuat berkas
     \texttt{ini} dengan format yang telah didokumentasikan pada web F3 itu
     sendiri. Sebagai contoh pada potongan kode listing \ref{lst:f3-start-04},
-    routing didefinisikan dengan format \textit{HTTP Method}, \textit{path}
-    URL, dan \textit{handler}nya. Berkas konfigurasi tersebut dapat
-    di\textit{load} dengan memanggil \texttt{\$f3->config('routing.ini');}.
+    routing didefinisikan dengan format \textit{HTTP Method}, \textit{path} URL,
+    dan \textit{handler}nya. Berkas konfigurasi tersebut dapat di\textit{load}
+    dengan memanggil \texttt{\$f3->config('routing.ini');}.
      
 \subsection{React.js}
     React.js\footnote{Lihat https://reactjs.org/} atau Reactjs adalah salah satu
@@ -244,10 +245,10 @@
     Typescript\cite{typescript:react-ts}.
         
     Kode pada Reactjs ini bersifat \textit{open-source} atau sumber-terbuka,
-    sehingga banyak kontributor yang ikut membantu pengembangan
-    \textit{library} ini. Dengan banyaknya kontribusi yang diberikan maka
-    hasil kode yang diberikan akan lebih cepat \textit{mature} dan memiliki
-    \textit{bug} yang lebih sedikit.
+    sehingga banyak kontributor yang ikut membantu pengembangan \textit{library}
+    ini. Dengan banyaknya kontribusi yang diberikan maka hasil kode yang
+    diberikan akan lebih cepat \textit{mature} dan memiliki \textit{bug} yang
+    lebih sedikit.
 
     % TODO: Jelasin cara kerja react secara singkat
     \textit{Virtual DOM} adalah salah satu konsep pemrograman yang simulasikan
@@ -278,8 +279,9 @@
     \end{lstlisting}
     
     Contoh potongan kode pada listing \ref{lst:jsx-0} menampilkan sebuah elemen
-    \textit{Heading 1} dengan kalimat \texttt{Hello, Shinji}. \textit{Element} tersebut
-    akan di\textit{render} pada elemen HTML dengan id elemen \texttt{root}.
+    \textit{Heading 1} dengan kalimat \texttt{Hello, Shinji}. \textit{Element}
+    tersebut akan di\textit{render} pada elemen HTML dengan id elemen
+    \texttt{root}.
     
     Penambahan atribut untuk memberikan konteks data lebih lanjut juga dapat
     dilakukan melalui JSX. Sebagai contoh, potongan kode pada listing
@@ -377,14 +379,13 @@
     
     
     % Konsep State pada react
-    \subsubsection{\textit{State} pada React}
-    Berdasarkan implementasinya, React tidak akan selalu melakukan pembaharuan
-    pada elemen HTML. Selain itu, perubahan variabel juga tidak akan
-    diperhatikan oleh React, oleh karena itu \textit{State} menjadi salah satu
-    cara untuk React mengetahui perubahan pada suatu variabel. Perubahan
-    \textit{state} pada React akan memanggil ulang fungsi \textit{render} pada
-    komponen, dan melakukan pembaharuan HTML pada saat perubahan dideteksi
-    dengan memanfaatkan \textit{Virtual DOM}.
+    \subsubsection{\textit{State} pada React} Berdasarkan implementasinya, React
+    tidak akan selalu melakukan pembaharuan pada elemen HTML. Selain itu,
+    perubahan variabel juga tidak akan diperhatikan oleh React, oleh karena itu
+    \textit{State} menjadi salah satu cara untuk React mengetahui perubahan pada
+    suatu variabel. Perubahan \textit{state} pada React akan memanggil ulang
+    fungsi \textit{render} pada komponen, dan melakukan pembaharuan HTML pada
+    saat perubahan dideteksi dengan memanfaatkan \textit{Virtual DOM}.
     
     \begin{lstlisting}[
         caption={Komponen dengan \textit{state}}, 
@@ -465,10 +466,10 @@
     JavaScript. Pada potongan kode listing \ref{lst:react-event-1}, terlihat
     implementasi penanganan \textit{event} dilakukan dengan memasukkan nama
     fungsi pada atribut \texttt{onclick}. Pada potongan kode listing
-    \ref{lst:react-event-2} terlihat hal yang mirip, dengan huruf \texttt{c} pada
-    penulisan \textit{event} \texttt{onClick} menjadi huruf kapital dan dibanding menggunakan
-    kutip dua, komponen React tersebut menggunakan kurung kurawal untuk memberikan
-    fungsi.
+    \ref{lst:react-event-2} terlihat hal yang mirip, dengan huruf \texttt{c}
+    pada penulisan \textit{event} \texttt{onClick} menjadi huruf kapital dan
+    dibanding menggunakan kutip dua, komponen React tersebut menggunakan kurung
+    kurawal untuk memberikan fungsi.
     
     Dengan implementasi seperti itu, secara tidak langsung tiap komponen dapat
     bertanggung jawab untuk dirinya sendiri. Maka dari itu komponen yang dibuat
@@ -637,7 +638,9 @@
         \begin{minipage}{\textwidth}
             \centering
             \includegraphics[width=0.7\paperwidth]{Gambar/gitlab-ci-job-view.png}
-            \caption{Eksekusi \textit{job} yang gagal pada GitLab CI/CD. Repositori dari Pho - FTIS OpenData App\footnote{Lihat https://gitlab.com/chez14/ftis-opendata-app}}
+            \caption{Eksekusi \textit{job} yang gagal pada GitLab CI/CD.
+            Repositori dari Pho - FTIS OpenData App\footnote{Lihat
+            https://gitlab.com/chez14/ftis-opendata-app}}
             \label{fig:gitlab-ci:jobrun}
         \end{minipage}
     \end{figure}
@@ -677,7 +680,8 @@
         \begin{minipage}{\textwidth}
             \centering
             \includegraphics[width=0.7\paperwidth]{Gambar/gitlab-ci-pipeline.png}
-            \caption{Contoh \textit{Pipeline} pada GitLab CI/CD. Repositori dari GitLab\footnote{Lihat https://gitlab.com/gitlab-org/gitlab}.}
+            \caption{Contoh \textit{Pipeline} pada GitLab CI/CD. Repositori dari
+            GitLab\footnote{Lihat https://gitlab.com/gitlab-org/gitlab}.}
             \label{fig:gitlab-ci:pipeline}
         \end{minipage}
     \end{figure}
@@ -708,7 +712,8 @@
     \begin{figure}[H]
         \centering
         \includegraphics{Gambar/illust-docker.pdf}
-        \caption{Ilustrasi perbandingan lapisan sistem pada Docker (kiri) dan \textit{Virtual Machine} (kanan)}
+        \caption{Ilustrasi perbandingan lapisan sistem pada Docker (kiri) dan
+        \textit{Virtual Machine} (kanan)}
         \label{fig:illust-docker}
     \end{figure}
     
