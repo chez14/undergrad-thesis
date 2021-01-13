@@ -1,0 +1,39 @@
+\chapter{Implementasi dan Pengujian}
+\label{chap:implementasi-pengujian}
+
+\section{Lingkungan Implementasi}
+Dengan bantuan Docker, lingkungan implementasi aplikasi dapat disederhanakan menjadi menentukan
+kebutuhan \textit{runtime} aplikasi. Detil lingkungan aplikasi tersebut dapat dilihat pada:
+\begin{itemize}
+    \item Docker (version)\\
+        Daftar \textit{image} yang digunakan untuk membangun \textit{container}:
+        \begin{itemize}
+            \item backend\\
+                \texttt{php:7.3.8-apache}\\
+                Berkas \texttt{Dockerfile} dapat dilihat pada lampiran %TODO: Lampiran
+            
+            \item database\\
+                \texttt{mysql:5.7}\\
+                Berkas \texttt{docker-compose.yml} dapat dilihat pada lampiran %TODO: Lampiran
+        \end{itemize}
+    \item Nodejs v12
+\end{itemize}
+
+\section{Implementasi Antarmuka}
+
+\section{Implementasi Kode}
+
+
+\section{Pengujian Experimental}
+Pengujian experimental dilakukan dengan mendemokan pada tim Admin secara langsung. Pada pengujian
+tersebut, Tim Admin akan membuat sebuah mata kuliah dan ujian, lalu mencoba fitur-fitur yang tersedia
+pada sistem Oxam yang baru. Keberhasilan tersebut dilakukan dengan memberikan kuisioner yang kemudian
+Tim Admin isi.
+
+% todo more bahas.
+
+\section{Pengujian Fungsional}
+Pengujian fungsional dilakukan dengan bantuan \textit{Unit Testing}. Tes tersebut akan dilakukan
+setiap kali kode diunggah ke repositori penyimpanan kode sumber dengan bantuan CI/CD. Tes tersebut
+terdiri dari beberapa skenario dan langkah yang menentukan sebuah fitur dapat berjalan seperti
+yang dikehendaki atau tidak. Tes-tes tersebut terdiri dari
