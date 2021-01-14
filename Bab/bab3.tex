@@ -817,11 +817,11 @@ FatFree Framework atau F3 akan digunakan untuk penelitan ini.
         Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
     \end{tabular}
 
-    \subsubsection{Memulai dan Menghentikan Timer Ujian (Admin)}
+    \subsubsection{Memulai Timer Ujian (Admin)}
     \begin{tabular}{ p{3cm} p{12cm} }
-        \textit{Use case} & Memulai dan Menghentikan Timer Ujian untuk Admin \\
+        \textit{Use case} & Memulai Timer Ujian untuk Admin \\
         Aktor & Admin \\
-        Tujuan & Memulai dan menghentikan timer ujian. \\
+        Tujuan & Memulai timer ujian. \\
         Kondisi Awal & Admin sudah login dan mengakses halaman detil ujian \\
         Langkah & \begin{tabular}{p{6cm} p{6cm}}
             \hline
@@ -831,10 +831,6 @@ FatFree Framework atau F3 akan digunakan untuk penelitan ini.
             & Menampilkan halaman untuk layar proyektor. \\
             Menekan tombol mulai. & \\
             & Memulai timer. \\
-            Menekan tombol stop. & \\
-            & Menghentikan timer. \\
-            Menekan tombol reset. & \\
-            & Mengatur ulang keadaan timer. \\
             
         \end{tabular} \\
         Kondisi Akhir & Timer dalam keadaan mulai dan admin sedang berada pada halaman proyektor. \\
@@ -1060,7 +1056,7 @@ FatFree Framework atau F3 akan digunakan untuk penelitan ini.
         Alternatif: Admin melakukan pembatalan.
     \end{tabular}
 
-    \subsubsection{Manipulasi Entitas}
+    \subsubsection{Manipulasi Entitas: Menambah Entri baru}
     % \begin{tabular}{ p{3cm} p{12cm} }
     %     \textit{Use case} & Menghapus Ujian\\
     %     Aktor & Admin \\
@@ -1189,6 +1185,110 @@ FatFree Framework atau F3 akan digunakan untuk penelitan ini.
         Kondisi Akhir & Berkas jawaban terunduh dan peserta sedang berada pada halaman informasi ujian. \\
         Alternatif: -
     \end{tabular}
+
+
+    \subsubsection{Memulai Timer Ujian (Dosen Pengawas)}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Memulai Timer Ujian untuk Dosen Pengawas \\
+        Aktor & Dosen Pengawas \\
+        Tujuan & Memulai timer ujian. \\
+        Kondisi Awal & Dosen pengawas sudah login dan sedang berada pada halaman layar proyektor \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tab timer. & \\
+            & Menampilkan halaman untuk timer. \\
+            Menekan tombol mulai. & \\
+            & Memulai timer. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Timer dalam keadaan mulai dan Dosen Pengawas sedang berada pada halaman proyektor. \\
+        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+    \end{tabular}
+
+    \subsubsection{Menghentikan Timer Ujian (Dosen Pengawas)}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Menghentikan Timer Ujian untuk Dosen Pengawas \\
+        Aktor & Dosen Pengawas \\
+        Tujuan & Menghentikan timer ujian. \\
+        Kondisi Awal & Dosen pengawas sudah login dan sedang berada pada halaman layar proyektor \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tab timer. & \\
+            & Menampilkan halaman untuk timer. \\
+            Menekan tombol stop. & \\
+            & Menghentikan timer. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Timer dalam keadaan terhenti dan Dosen Pengawas sedang berada pada halaman proyektor. \\
+        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+    \end{tabular}
+
+    \subsubsection{Menyetel Ulang Timer Ujian (Dosen Pengawas)}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Menyetel Ulang Timer Ujian untuk Dosen Pengawas \\
+        Aktor & Dosen Pengawas \\
+        Tujuan & Menyetel ulang timer ujian. \\
+        Kondisi Awal & Dosen pengawas sudah login dan sedang berada pada halaman layar proyektor \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tab timer. & \\
+            & Menampilkan halaman untuk timer. \\
+            Menekan tombol reset. & \\
+            & Mengatur ulang keadaan timer. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Timer dalam keadaan akan mulai dan Dosen Pengawas sedang berada pada halaman proyektor. \\
+        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+    \end{tabular}
+
+    \subsubsection{Menambah Waktu Ujian (\textit{Overtime})}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Menambahkan waktu ujian \\
+        Aktor & Dosen Pengawas \\
+        Tujuan & Menanbah waktu ujian. \\
+        Kondisi Awal & Dosen pengawas sudah login dan sedang berada pada halaman layar proyektor \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tab timer. & \\
+            & Menampilkan halaman untuk timer. \\
+            Menekan tombol tambah waktu. & \\
+            & Menampilkan formulir untuk menambahkan waktu. \\
+            Mengisi formulir tambahan waktu dalam satuan menit. & \\
+            & Menambahkan waktu timer. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Waktu untuk timer sudah ditambahkan dan Dosen Pengawas sedang berada pada halaman proyektor. \\
+        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+    \end{tabular}
+
+    \subsubsection{Mengunduh Jawaban (Dosen Koordinator)}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Mengunduh Jawaban \\
+        Aktor & Dosen Koordinator \\
+        Tujuan & Mengunduh berkas jawaban yang telah diunggah oleh peserta ujian. \\
+        Kondisi Awal & Dosen Koordinator sudah mendapatkan email ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tautan pada email. & \\
+            & Menampilkan halaman informasi ujian dan tombol unduh. \\
+            Menekan tombol unduh. & \\
+            & Sistem menyediakan berkas untuk diunduh. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Berkas terunduh, Dosen Koordinator masih pada halaman pengunduhan. \\
+        Alternatif: & Tautan sudah kadaluarsa
+    \end{tabular}
+
 
 \section{Analisis Statik}
 
