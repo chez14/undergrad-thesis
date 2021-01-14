@@ -1057,25 +1057,72 @@ FatFree Framework atau F3 akan digunakan untuk penelitan ini.
     \end{tabular}
 
     \subsubsection{Manipulasi Entitas: Menambah Entri baru}
-    % \begin{tabular}{ p{3cm} p{12cm} }
-    %     \textit{Use case} & Menghapus Ujian\\
-    %     Aktor & Admin \\
-    %     Tujuan & Menghapus ujian \\
-    %     Kondisi Awal & Admin sudah login dan mengakses halaman daftar ujian \\
-    %     Langkah & \begin{tabular}{p{6cm} p{6cm}}
-    %         \hline
-    %         Aksi Aktor & Respon Aplikasi \\
-    %         \hline
-    %         Menekan tombol hapus pada entri ujian yang ingin dihapus.& \\
-    %         & Menampilkan modal konfirmasi penghapusan \\
-    %         Melakukan konfirmasi.& \\
-    %         Menghapus ujian.& \\
-            
-    %     \end{tabular} \\
-    %     Kondisi Akhir & Ujian terhapus dan
-    %         admin sedang berada pada halaman detil ujian. \\
-    %     Alternatif: Admin melakukan pembatalan.
-    % \end{tabular}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Menambah Entri baru pada entitas tertentu\\
+        Aktor & Admin \\
+        Tujuan & Memanipulasi entitas dengan menambah entri baru \\
+        Kondisi Awal & Admin sudah login dan mengakses halaman daftar ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol entitas (Oxam Param atau Exam Param) pada menu.& \\
+            & Menampilkan daftar entri pada entitas tersebut \\
+            Menekan tombol tambah.& \\
+            & Menampilkan formulir yang berisi data yang dibutuhkan entitas tersebut. \\
+            Mengisi formulir.& \\
+            Menekan tombol simpan.& \\
+            & Sistem merekam permintaan tersebut dan membuat entri baru\\
+            & Sistem mengarahkan pada halaman pengubah entitas\\
+        \end{tabular} \\
+        Kondisi Akhir & Entri baru dibuat
+            admin sedang berada pada halaman pengubah entri. \\
+        Alternatif: Admin melakukan pembatalan.
+    \end{tabular}
+
+    \subsubsection{Manipulasi Entitas: Mengubah Entri baru}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Mengubah Entri baru pada entitas tertentu\\
+        Aktor & Admin \\
+        Tujuan & Memanipulasi entitas dengan mengubah entri baru \\
+        Kondisi Awal & Admin sudah login dan mengakses halaman daftar ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol entitas (Oxam Param atau Exam Param) pada menu.& \\
+            & Menampilkan daftar entri pada entitas tersebut \\
+            Menekan tombol \textit{edit} pada entri yang ingin diubah.& \\
+            & Menampilkan formulir kolom entri \\
+            Ubah data pada kolom tersebut & \\
+            & Sistem mengubah entri tersebut.\\
+        \end{tabular} \\
+        Kondisi Akhir & Detil entri diubah
+            admin sedang berada pada halaman pengubah entri. \\
+        Alternatif: Admin melakukan pembatalan.
+    \end{tabular}
+    
+    \subsubsection{Manipulasi Entitas: Menghapus Entri baru}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Menghapus Entri baru pada entitas tertentu\\
+        Aktor & Admin \\
+        Tujuan & Memanipulasi entitas dengan menghapus entri baru \\
+        Kondisi Awal & Admin sudah login dan mengakses halaman daftar ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol entitas (Oxam Param atau Exam Param) pada menu.& \\
+            & Menampilkan daftar entri pada entitas tersebut \\
+            Menekan tombol hapus pada entri yang ingin dihapus.& \\
+            & Menampilkan modal konfirmasi penghapusan. \\
+            Mengkonfirmasi dengan menekan tombol hapus.& \\
+            & Sistem menghapus entri tersebut dan mengarahkan pada daftar entri.\\
+        \end{tabular} \\
+        Kondisi Akhir & Entri terhapus
+            admin sedang berada pada halaman daftar entri. \\
+        Alternatif: Admin melakukan pembatalan.
+    \end{tabular}
 
     \subsubsection{Melihat Ujian akan Diadakan}
     \begin{tabular}{ p{3cm} p{12cm} }
