@@ -2,6 +2,7 @@
 \label{chap:analisis}
 
 \section{Analisis Sistem Masa Kini}
+    
     Analisis sistem yang digunakan pada saat ini di lab komputasi akan dimulai
     dengan menganalisis alur pelaksanaan ujian terlebih dahulu. Kemudian
     dilanjutkan dengan melakukan penyebaran kuisioner untuk mendapatkan
@@ -11,7 +12,7 @@
     Kedua sumber informasi tersebut kemudian akan dianalisis untuk membuat
     usulan fitur baru yang akan diimplementasi pada sistem yang baru.
 
-\subsection{Pelaksanaan Ujian}
+% \subsection{Pelaksanaan Ujian}
 
     \begin{figure}[H]
         \centering
@@ -20,15 +21,14 @@
         \label{fig:flowchart-exam-outline}
     \end{figure}
     
-    Analisis domain masalah dimulai dengan melakukan survei lapangan pada
-    pelaksanaan ujian. Pada pelaksanaan ujian, terdapat tiga tahap penting yang
+    Pada pelaksanaan ujian, terdapat tiga tahap penting yang
     akan dilalui oleh tiap peran. Pada Gambar \ref{fig:flowchart-exam-outline},
     proses ujian dimulai dengan tahap persiapan ujian. Kemudian pada tahap
     berikutnya terdapat pelaksanaan ujian bergantung pada ada atau tidaknya
     \textit{shift} pada ujian tersebut. Kemudian ditutup dengan pengiriman
     berkas ujian pada tahap pascaujian.
     
-    \subsubsection{Praujian}
+    \subsection{Praujian}
     
         \begin{sidewaysfigure}
             \centering
@@ -57,11 +57,11 @@
         berikut:
         \begin{itemize}
             \item Membuat folder lembar kerja untuk peserta pada masing-masing
-            komputer yang telah dimasukkan pada sistem.
+                komputer yang telah dimasukkan pada sistem.
             \item Mendistribusikan berkas soal ujian dan berkas bantuan pada
-            masing-masing komputer peserta.
+                masing-masing komputer peserta.
             \item Mengambil alih pemilik berkas pada folder lembar kerja peserta
-            pada masing-masing komputer.
+                pada masing-masing komputer.
         \end{itemize}
         
         Persiapan ujian lalu berlanjut pada eksekusi \textit{script} yang
@@ -76,7 +76,7 @@
         Daftar tempat duduk akan didistribusikan pada pintu lobi dan pintu ruang
         ujian sesaat sebelum ujian dimulai.
     
-    \subsubsection{Ujian}
+    \subsection{Ujian}
         \begin{sidewaysfigure}
             \centering
             \includegraphics[height=0.8\paperwidth]{Gambar/flowchart/exam-flow-ujian-no-shift.pdf}
@@ -99,8 +99,7 @@
         selama ujian akan melakukan \textit{check up} terakhir untuk memastikan
         bahwa distribusi soal tidak bermasalah. \textit{Check up} dilakukan
         dengan bantuan daftar check yang telah dibuat Kepala Lab (Lampiran
-        \ref{lamp:A}). Pemasangan
-        timer dilakukan pada tahap ini.
+        \ref{lamp:A}). Pemasangan timer dilakukan pada tahap ini.
         
         % Admin memasukan mahasiswa pada ruang ujian
         Setelah \textit{check up} selesai dan tidak terdapat masalah, admin akan
@@ -128,7 +127,7 @@
         aba-aba untuk peserta menghentikan pengerjaan ujian. Lalu dilanjutkan
         dengan memberikan aba-aba untuk mengeluarkan peserta dari ruangan.
     
-    \subsubsection{Ujian dengan shift}
+    \subsection{Ujian dengan shift}
         \begin{sidewaysfigure}
             \centering
             \includegraphics[height=0.8\paperwidth]{Gambar/flowchart/exam-flow-ujian-shift.pdf}
@@ -167,7 +166,7 @@
         baru dipersilahkan masuk ke dalam ruangan ujian. Kemudian ujian
         dilakukan sesuai dengan prosedur pelaksanaan ujian seperti biasa.
     
-    \subsubsection{Pascaujian}
+    \subsection{Pascaujian}
         % take own
         Alur ujian berikutnya yang dilalui adalah proses manajemen berkas
         jawaban ujian. Lembar kerja peserta pada komputer yang digunakan
@@ -179,9 +178,27 @@
         
         % kirim email
         Tim Admin yang bertugas kemudian mengirimkan berkas jawaban yang telah
-        diunggah kepada dosen koordinator. Berkas jawaban dikirim dengan format
-        \textit{archive} seperti zip atau rar.
-    
+        diunggah kepada dosen koordinator. Berkas jawaban tersebut pertama-tama
+        harus diunduh dari sistem Oxam yang ada secara manual. Kemudian, berkas
+        jawaban tersebut dikirim dengan format \textit{archive} seperti zip atau
+        rar.
+
+    \subsection{Aplikasi Manajemen Masa Kini}
+        Aplikasi yang digunakan untuk ujian masa kini memiliki beberapa fitur
+        yang mendukung sistem ujian masa kini. Berdasarkan survei lapangan yang
+        dilakukan, aplikasi tersebut memiliki fitur sebagai berikut:
+        
+        \begin{itemize}
+            \item Membuat ujian.
+            \item Membuat slot jawaban.
+            \item Membuat daftar hadir.
+            \item Membuat \textit{script}.
+            \item Mengunduh jawaban.
+            \item Mengunggah jawaban.
+        \end{itemize}
+
+
+
 \section{Kuisioner}
     % Jelasin metodologinya gimana
     Selain melihat langsung prosedur yang dilakukan pada pelaksanaan ujian,
