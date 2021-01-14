@@ -197,25 +197,30 @@
             \item Mengunggah jawaban.
         \end{itemize}
 
+        %% TODO: MORE?
 
-
-\section{Kuisioner}
-    % Jelasin metodologinya gimana
-    Selain melihat langsung prosedur yang dilakukan pada pelaksanaan ujian,
-    survei dengan menyebarkan kuisioner dilakukan. Kuisioner ditujukan untuk
-    mendapatkan informasi masalah yang tidak ditemukan secara langsung pada saat
-    ujian.
     
+\section{Analisis Kebutuhan}
+    % Berdasarkan survei dan kuisioner yang dilakukan akan dianalisis poin-poin
+    % masalah. Masalah-masalah tersebut akan dikelompokkan berdasarkan peran yang
+    % ikut terlibat pada sistem aplikasi ujian.
+
+    Analisis kebutuhan kemudian dilanjut dengan melakukan kuisioner untuk setiap
+    peran untuk mengetahui masalah yang terdapat pada tiap pihak. Kemudian dari
+    kuisioner tersebut, akan dilakukan analisis untuk mendapatkan poin-poin
+    masalah yang ada.
+
     Kuisioner dibuat secara virtual di Google Forms dan didistribusikan melalui
     sosial media. Kuisioner ini ditujukan pada dua subjek. Subjek pertama adalah
     dosen Koordinator jurusan Informatika yang pernah mengadakan ujian praktik
     di lab. Subjek berikutnya adalah peserta ujian dari jurusan Informatika yang
     pernah mengikuti ujian di lab. 
-    %Serta subjek terakhir adalah Tim Admin yang pernah bertugas untuk menjaga
-    %ujian praktik di lab komputasi.
     
-    \subsection{Subjek Dosen}
-    % Tanyanya apa aja
+\subsection{Dosen}
+    Untuk menganalisis kebutuhan untuk peran dosen, pertama-tama akan dilakukan
+    kuisioner terlebih dahulu. Kemudian kuisioner tersebut akan dianalaisis...
+
+    \subsubsection{Kuisioner}
     Pada subjek dosen, pertanyaan yang diajukan adalah sebagai berikut:
     \begin{itemize}
         \item Apakah Bapak/Ibu puas dengan aplikasi pengumpulan ujian? \\
@@ -251,21 +256,21 @@
             masalah yang blum diketahui selama pelaksanaan survei dari sudut
             padang dosen pengawas.
     \end{itemize}
-    
+
     \begin{figure}
         \centering
         \includegraphics[width=0.6\paperwidth]{Gambar/survey-dosen.pdf}
         \caption{Kuisioner Dosen.}
         \label{fig:kuisioner-dosen}
     \end{figure}
-    
+
     Pada kuisioner tersebut, terdapat tiga responden yang memberikan respon.
     Tabel grafik dapat dilihat pada gambar \ref{fig:kuisioner-dosen}.
     Berdasarkan respon-respon yang diberikan, dosen-dosen memiliki
     \textit{feedback} yang positif pada sistem ujian yang saat ini telah
     berjalan. Sehingga sistem ujian yang nantinya akan berjalan pada lab dibuat
     memiliki perubahan seminimal mungkin dari sudut padang dosen.
-    
+
     Pada pertanyaan terakhir, masalah yang dikeluhkan diantaranya:
     \begin{itemize}
         \item Komputer peserta ujian terkadang mengalami \textit{hang}.
@@ -282,8 +287,45 @@
         di-\textit{refresh}.
     \end{itemize}
 
+    Kemudian dari hasil kuisioner tersebut didapatkan beberapa masalah yang
+    \subsubsection{\textit{Bug} Waktu Telah
+        Habis}\label{ref-prob-dosen-bug-waktu} Laporan masalah pertama berasal
+        dari sisi Dosen yang mengawasi ujian di lab komputasi. Masalah yang
+        sering kali dikeluhkan adalah \textit{bug} waktu telah habis.
+        \textit{Bug} ini didapatkan pada saat peserta sudah membuka halaman
+        pengumpulan sudah cukup lama tanpa melakukan penyegaran-ulang
+        (\textit{refresh}) ataupun pengumpulan (\textit{submission}). Untuk
+        mengatasi masalah ini, biasanya Tim Admin akan meminta peserta ujian
+        untuk melakukan penyegaran-ulang beberapa kali hingga pesan kesalahan
+        tersebut hilang. Setelah diselidiki, bug tersebut disebabkan oleh
+        \textit{cache} yang memiliki umur yang pendek. Umur pendek ini
+        menyebabkan \textit{cache} kadaluarsa dan dianggap tidak \textit{valid}
+        oleh PHP, sehingga memancing aplikasi untuk memunculkan pesan kesalahan
+        tersebut, mencegagh peserta untuk mengumpulkan jawaban pada web.
     
-    \subsubsection{Subjek Peserta}
+    \subsubsection{Pembagian \textit{Password} yang Masih
+        Manual}\label{ref-prob-dosen-password} Masalah berikutnya yang Dosen
+        berikan pada kuisioner adalah pembagian \textit{password} yang masih
+        manual. Pengujian dengan aplikasi khusus adalah salah satu hal yang
+        sering dilakukan di Lab Komputasi. Program tersebut biasanya menggunakan
+        otentikasi khusus yang tidak dapat diintegrasikan dengan aplikasi Oxam
+        utama untuk mencegah kecurangan. Hal ini saat ini diatasi dengan
+        membagikan kertas pada tiap meja, atau membagikannya lewat berkas teks
+        pada folder ujian. Sistem ini dilakukan dengan cara melakukan penciptaan
+        kata sandi acak yang nantinya dimasukkan pada \textit{script} tertentu.
+        Selanjutnya Tim Admin akan melakukan pembuatan akun tersebut dengan
+        bantuan \textit{script} tersebut, lalu kredensial tersebut nantinya akan
+        diolah untuk nantinya dicetak atau pun dipecah menjadi beberapa berkas
+        teks sebelum nantinya diedarkan.
+
+    \subsubsection{Daftar Hadir yang Membingungkan
+        Pengawas}\label{ref-prob-dosen-daftar-hadir} Berikutnya, daftar hadir
+        yang membingungkan pengawas. Pada hal ini, pengawas kebingungan karena
+        kesalahan Tim Admin melakukan pendaftaran peserta. Masalah ini nantinya
+        akan didalami pada saat pembahasan survei dari Tim Admin.
+
+\subsection{Peserta}
+    \subsubsection{Kuisioner}
     Formulir kuisioner yang dibagikan untuk peserta ujian memiliki pertanyaan
     sebagai berikut:
     \begin{itemize}
@@ -325,7 +367,7 @@
         \caption{Respon kuisioner untuk masalah yang telah diketahui pada saat survei.}
         \label{fig:kuisioner-student-1}
     \end{figure}
-    
+
     Pada pertanyaan kedua, peserta ujian mengeluhkan beberapa masalah seperti:
     \begin{itemize}
         \item Kadang-kadang sesuatu yang ditulis di papan tulis tidak terlihat
@@ -344,62 +386,19 @@
     Dari respon-respon tersebut, tidak semua dapat diselesaikan dengan
     mengimplementasikan solusi pada sistem, sehingga masalah-masalah tersebut
     masuk pada batasan masalah.
-    
+
     Selain itu, secara keseluruhan (lihat Gambar \ref{fig:kuisioner-student-2}),
     peserta ujian memberikan respon yang positif terhadap sistem yang saat ini
     berjalan pada lab. Sehingga pada sisi peserta, perubahan sistem akan dibuat
     seminimal mungkin.
-    
+
     \begin{figure}
         \centering
         \includegraphics[width=0.7\paperwidth]{Gambar/survey-student-2.pdf}
         \caption{Pendapat peserta ujian pada sistem ujian yang berjalan saat ini.}
         \label{fig:kuisioner-student-2}
     \end{figure}
-    
-\section{Analisis Kebutuhan}
-    Berdasarkan survei dan kuisioner yang dilakukan akan dianalisis poin-poin
-    masalah. Masalah-masalah tersebut akan dikelompokkan berdasarkan peran yang
-    ikut terlibat pada sistem aplikasi ujian.
-    
-\subsection{Dosen}
-    \subsubsection{\textit{Bug} Waktu Telah
-        Habis}\label{ref-prob-dosen-bug-waktu} Laporan masalah pertama berasal
-        dari sisi Dosen yang mengawasi ujian di lab komputasi. Masalah yang
-        sering kali dikeluhkan adalah \textit{bug} waktu telah habis.
-        \textit{Bug} ini didapatkan pada saat peserta sudah membuka halaman
-        pengumpulan sudah cukup lama tanpa melakukan penyegaran-ulang
-        (\textit{refresh}) ataupun pengumpulan (\textit{submission}). Untuk
-        mengatasi masalah ini, biasanya Tim Admin akan meminta peserta ujian
-        untuk melakukan penyegaran-ulang beberapa kali hingga pesan kesalahan
-        tersebut hilang. Setelah diselidiki, bug tersebut disebabkan oleh
-        \textit{cache} yang memiliki umur yang pendek. Umur pendek ini
-        menyebabkan \textit{cache} kadaluarsa dan dianggap tidak \textit{valid}
-        oleh PHP, sehingga memancing aplikasi untuk memunculkan pesan kesalahan
-        tersebut, mencegagh peserta untuk mengumpulkan jawaban pada web.
-    
-    \subsubsection{Pembagian \textit{Password} yang Masih
-        Manual}\label{ref-prob-dosen-password} Masalah berikutnya yang Dosen
-        berikan pada kuisioner adalah pembagian \textit{password} yang masih
-        manual. Pengujian dengan aplikasi khusus adalah salah satu hal yang
-        sering dilakukan di Lab Komputasi. Program tersebut biasanya menggunakan
-        otentikasi khusus yang tidak dapat diintegrasikan dengan aplikasi Oxam
-        utama untuk mencegah kecurangan. Hal ini saat ini diatasi dengan
-        membagikan kertas pada tiap meja, atau membagikannya lewat berkas teks
-        pada folder ujian. Sistem ini dilakukan dengan cara melakukan penciptaan
-        kata sandi acak yang nantinya dimasukkan pada \textit{script} tertentu.
-        Selanjutnya Tim Admin akan melakukan pembuatan akun tersebut dengan
-        bantuan \textit{script} tersebut, lalu kredensial tersebut nantinya akan
-        diolah untuk nantinya dicetak atau pun dipecah menjadi beberapa berkas
-        teks sebelum nantinya diedarkan.
 
-    \subsubsection{Daftar Hadir yang Membingungkan
-        Pengawas}\label{ref-prob-dosen-daftar-hadir} Berikutnya, daftar hadir
-        yang membingungkan pengawas. Pada hal ini, pengawas kebingungan karena
-        kesalahan Tim Admin melakukan pendaftaran peserta. Masalah ini nantinya
-        akan didalami pada saat pembahasan survei dari Tim Admin.
-
-\subsection{Peserta}
     \subsubsection{Komputer Hang}\label{ref-prob-peserta-kompu-hang} Kuisioner
     kemudian dilakukan juga untuk peserta ujian yang pernah mengikuti ujian di
     lab komputasi. Dari sisi peserta, Masalah yang muncul pada saat ujian adalah
@@ -578,7 +577,7 @@
     menunjukan waktu sudah habis, peserta masih dapat mengumpulkan berkas ujian.
     
     
-\section{Analisis Fitur Aplikasi}
+\subsection{Analisis Fitur Aplikasi}
     Berdasarkan survei yang dilakukan dan kuisioner yang disebar, didapatkan
     beberapa masalah yang menandakan bahwa aplikasi pendukung ujian di lab
     komputasi belum efektif membantu pelaksanaan ujian. Masalah-masalah tersebut
