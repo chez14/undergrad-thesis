@@ -11,15 +11,15 @@ yang bertanggung jawab untuk mempersiapkan ruangan dan sistem adalah
 \textit{System Administrator} atau Admin. Peserta akan diberi soal ujian melalui
 sistem yang berjalan di lab sesuai prosedur dan aturan yang berlaku.
 
-Ujian pada Lab Komputasi dilakukan dengan bantuan perangkat lunak. Perangkat
-lunak tersebut membantu mengatur berbagai kebutuhan seperti pengumpulan jawaban,
-pengacakan daftar peserta, serta pengarsipan berkas jawaban. Perangkat lunak
-yang saat ini digunakan bernama Oxam (Gambar \ref{fig:ss-Oxam}). Oxam bekerja
-dengan meminta parameter berupa kode matakuliah, tipe ujian, jurusan, jam mulai
-ujian, daftar peserta, \textit{slot} tempat duduk yang dapat digunakan, dan
-daftar nama berkas yang akan dikumpulkan. Perangkat lunak Oxam akan secara
-otomatis membuatkan daftar tempat duduk peserta yang sudah teracak, dan
-membuatkan \textit{script} untuk menyalin berkas ujian ke komputer peserta.
+Ujian pada Lab Komputasi dilakukan dengan bantuan aplikasi. Aplikasi tersebut
+membantu mengatur berbagai kebutuhan seperti pengumpulan jawaban, pengacakan
+daftar peserta, serta pengarsipan berkas jawaban. Aplikasi yang saat ini
+digunakan bernama Oxam (Gambar \ref{fig:ss-Oxam}). Oxam bekerja dengan meminta
+parameter berupa kode matakuliah, tipe ujian, jurusan, jam mulai ujian, daftar
+peserta, \textit{slot} tempat duduk yang dapat digunakan, dan daftar nama berkas
+yang akan dikumpulkan. Aplikasi Oxam akan secara otomatis membuatkan daftar
+tempat duduk peserta yang sudah teracak, dan membuatkan \textit{script} untuk
+menyalin berkas ujian ke komputer peserta.
 
 \begin{figure}
     \centering
@@ -62,7 +62,7 @@ memetakan NPM baru ke username yang biasanya digunakan oleh sistem yang sudah
 ada di lab komputasi saat ini.
 
 Selain itu runtutan kegiatan yang dilakukan pada saat fase persiapan ujian pada
-Lab Komputasi dengan perangkat lunak ini terlalu banyak. Berdasarkan pengalaman,
+Lab Komputasi dengan aplikasi ini terlalu banyak. Berdasarkan pengalaman,
 hal ini menimbulkan beberapa \textit{human error} sebagai berikut:
     \begin{itemize}
         \item Berkas daftar duduk peserta yang tertimpa oleh sesi ujian
@@ -119,18 +119,18 @@ mempermudah penyerang sistem untuk mengubah berkas jawaban tersebut.
     \label{fig:ss-folder-jawaban}
 \end{figure}
 
-Pada penelitian ini, akan dibangun ulang perangkat lunak baru untuk
-menyelesaikan masalah-masalah yang muncul pada perangkat lunak lama dengan
+Pada penelitian ini, akan dibangun ulang aplikasi baru untuk
+menyelesaikan masalah-masalah yang muncul pada aplikasi lama dengan
 menggunakan \textit{framework Fat-free} dan \textit{React}.
 
 \section{Rumusan Masalah}
 \label{sec:rumusan}
 Pada skripsi ini, aplikasi akan membantu memecahkan masalah:
 \begin{itemize}
-    \item Apa saja kebutuhan perangkat lunak untuk ujian untuk sistem manajemen
+    \item Apa saja kebutuhan aplikasi untuk ujian untuk sistem manajemen
     ujian di lab komputasi?
     
-    \item Bagaimana implementasi pemenuhan kebutuhan perangkat lunak sistem
+    \item Bagaimana implementasi pemenuhan kebutuhan aplikasi sistem
     manajemen ujian di lab komputasi?
 \end{itemize}
 
@@ -139,7 +139,7 @@ Pada skripsi ini, aplikasi akan membantu memecahkan masalah:
 Tujuan dari skripsi ini adalah sebagai berikut:
 \begin{itemize}
     \item Melakukan survei dan analisis untuk mendapatkan daftar kebutuhan
-        perangkat lunak ujian untuk sistem informasi manajemen ujian di lab
+        aplikasi ujian untuk sistem informasi manajemen ujian di lab
         komputasi.
 
     \item Pemenuhan kebutuhan diimplementasi dengan membuat ulang perangkat
@@ -152,7 +152,7 @@ Tujuan dari skripsi ini adalah sebagai berikut:
 \label{sec:batasan}
 Batasan masalah pada penelitian ini adalah sebagai berikut:
 \begin{enumerate}
-    \item Perangkat lunak pendukung ujian akan berjalan pada server berbasis Linux,
+    \item Aplikasi pendukung ujian akan berjalan pada server berbasis Linux,
         sehingga dibutuhkannya bantuan untuk mengeksekusi \textit{script batch}
         pada sistem operasi Windows.
         
@@ -167,8 +167,8 @@ Metodologi yang dilakukan pada penelitian ini adalah sebagai berikut:
             \textit{libary} React.js.
         \item Melakukan survei sistem dan menyebar kuisioner mengenai sistem ujian 
             yang berjalan pada lab.
-		\item Melakukan perancangan ERD basis data perangkat lunak Oxam.
-		\item Melakukan perancangan tampilan antarmuka perangkat lunak Oxam.
+		\item Melakukan perancangan ERD basis data aplikasi Oxam.
+		\item Melakukan perancangan tampilan antarmuka aplikasi Oxam.
 		\item Mengimplementasi modul/entitas berikut:
 		    \begin{itemize}
 		        \item Mata Kuliah
@@ -185,7 +185,7 @@ Metodologi yang dilakukan pada penelitian ini adalah sebagai berikut:
 		    \end{itemize}
 		\item Implementasi Admin Panel untuk Admin.
 	    \item Melakukan \textit{deployment} dan pengujian pada fungsionalitas
-	        perangkat lunak.
+	        aplikasi.
 	    \item Implementasi pengiriman berkas jawaban ujian secara otomatis ke
 	        dosen bersangkutan.
         \item Menarik kesimpulan dan saran berdasarkan proses penelitian dan
@@ -204,7 +204,7 @@ berikut:
         rumusan masalah, tujuan, batasan masalah, metodologi serta sistematika pembahasan penelitian ini.
     
     \item Bab 2 Landasan Teori \\
-        Bab ini berisi Pedoman Pelaksanaan Ujian dan teori dari Perangkat Lunak
+        Bab ini berisi Pedoman Pelaksanaan Ujian dan teori dari Aplikasi
         Berbasis Web, \textit{Framework} dan
         \textit{Library}, REST API, CI/CD dan Docker.
         
@@ -218,8 +218,8 @@ berikut:
         sebelumnya.
     
     \item Bab 5 Implementasi dan Pengujian \\
-        Berisi pembahasan implementasi perangkat lunak yang dirancang dan
-        pengujian perangkat lunak tersebut.
+        Berisi pembahasan implementasi aplikasi yang dirancang dan
+        pengujian aplikasi tersebut.
         
     \item Bab 6 Kesimpulan dan Saran \\
         Berisi kesimpulan dan saran dari penelitian ini.
