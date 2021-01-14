@@ -713,13 +713,11 @@ FatFree Framework atau F3 akan digunakan untuk penelitan ini.
     dibutuhkan dikemudian hari.
 
 \section{Analisis Pengguna}
-
-\subsection{Diagram Kasus Penggunaan}
 \begin{figure}
     \centering
     \includegraphics[width=0.75\paperwidth]{Gambar/UseCase - RevB.pdf}
     \caption{Diagram \textit{Use Case} untuk aplikasi Oxam yang baru.}
-    \label{fig:my_label}
+    \label{fig:diagram_usecase}
 \end{figure}
 
 % TODO: Penjelasan singkat kalo ini bakal dijelasin di tabel
@@ -729,6 +727,464 @@ FatFree Framework atau F3 akan digunakan untuk penelitan ini.
 
 \subsection{Skenario Penggunaan}
 % TODO Tabel
+    \subsubsection{Login untuk Admin}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Login \\
+        Aktor & Admin \\
+        Tujuan & Mendapatkan akses ke halaman Admin. \\
+        Kondisi Awal & Admin mengakses halaman admin \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Memasukan kredensial pada formulir login. & \\
+            Menekan tombol Login & \\
+            & Sistem menampilkan halaman admin. \\
+        \end{tabular} \\
+        Kondisi Akhir & Admin berhasil masuk ke halaman Admin. \\
+        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+    \end{tabular}
+
+    \subsubsection{Login untuk Dosen Pengawas}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Login dengan IPLogin \\
+        Aktor & Dosen Pengawas \\
+        Tujuan & Mendapatkan akses ke halaman proyektor. \\
+        Kondisi Awal & Pengawas mengakses halaman proyektor \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol login dengan IPLogin & \\
+            & Sistem menampilkan halaman proyektor. \\
+        \end{tabular} \\
+        Kondisi Akhir & Dosen Pengawas berhasil masuk ke halaman proyektor. \\
+        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+    \end{tabular}
+
+    \subsubsection{Buat Ujian Baru}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Membuat ujian baru \\
+        Aktor & Admin \\
+        Tujuan & Membuat ujian. \\
+        Kondisi Awal & Admin sudah login dan mengakses halaman daftar ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol buat ujian baru. & \\
+            & Sistem menampilkan formulir detil ujian. \\
+            Mengisi formulir detil ujian. & \\
+            Menekan tombol \textit{seat plotting}. & \\
+            & Sistem menampilkan peta tempat duduk untuk \textit{plotting}. \\
+            Memilih tempat duduk yang akan digunakan untuk ujian. & \\
+            Menekan tombol lanjut. & \\
+            & Sistem menampilkan halaman konfirmasi. \\
+            Menekan tombol buat ujian. & \\
+            & Sistem membuat ujian. \\
+            & Sistem menampilkan halaman selesai dan tombol lihat ujian. \\
+            Menekan tombol lihat ujian. & \\
+            & Sistem menampilkan halaman detil ujian. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Ujian terbuat dan admin sedang berada pada halaman detil ujian. \\
+        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+    \end{tabular}
+
+    \subsubsection{Mencetak Daftar Hadir}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Mencetak Daftar Hadir \\
+        Aktor & Admin \\
+        Tujuan & Mencetak daftar hadir untuk ditempelkan di pintu dan absensi peserta. \\
+        Kondisi Awal & Admin sudah login dan mengakses halaman detil ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol daftar hadir untuk pintu. & \\
+            & Sistem menampilkan daftar hadir untuk pintu. \\
+            Menekan tombol cetak pada peramban. & \\
+            Menekan tombol kembali. & \\
+            & Menampilkan halaman detil ujian. \\
+            Menekan tombol daftar hadir untuk absensi peserta. & \\
+            & Menampilkan daftar hadir untuk absensi. \\
+            Menekan tombol cetak pada peramban. & \\
+            Menekan tombol kembali. & \\
+            & Menampilkan halaman detil ujian. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Daftar hadir tercetak dan admin sedang berada pada halaman detil ujian. \\
+        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+    \end{tabular}
+
+    \subsubsection{Memulai dan Menghentikan Timer Ujian (Admin)}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Memulai dan Menghentikan Timer Ujian untuk Admin \\
+        Aktor & Admin \\
+        Tujuan & Memulai dan menghentikan timer ujian. \\
+        Kondisi Awal & Admin sudah login dan mengakses halaman detil ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol layar proyektor. & \\
+            & Menampilkan halaman untuk layar proyektor. \\
+            Menekan tombol mulai. & \\
+            & Memulai timer. \\
+            Menekan tombol stop. & \\
+            & Menghentikan timer. \\
+            Menekan tombol reset. & \\
+            & Mengatur ulang keadaan timer. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Timer dalam keadaan mulai dan admin sedang berada pada halaman proyektor. \\
+        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+    \end{tabular}
+    \subsubsection{Menghentikan Timer Ujian (Admin)}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Menghentikan Timer Ujian untuk Admin \\
+        Aktor & Admin \\
+        Tujuan & Menghentikan timer ujian. \\
+        Kondisi Awal & Admin sudah login dan mengakses halaman detil ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol layar proyektor. & \\
+            & Menampilkan halaman untuk layar proyektor. \\
+            Menekan tombol stop. & \\
+            & Menghentikan timer. \\
+            Menekan tombol reset. & \\
+            & Mengatur ulang keadaan timer. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Timer dalam keadaan terhenti dan admin sedang berada pada halaman proyektor. \\
+        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+    \end{tabular}
+
+    \subsubsection{Menyetel Ulang Timer Ujian (Admin)}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Menyetel Ulang Timer Ujian untuk Admin \\
+        Aktor & Admin \\
+        Tujuan & Menyetel ulang timer ujian. \\
+        Kondisi Awal & Admin sudah login dan mengakses halaman detil ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol layar proyektor. & \\
+            & Menampilkan halaman untuk layar proyektor. \\
+            Menekan tombol reset. & \\
+            & Mengatur ulang keadaan timer. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Timer dalam keadaan akan mulai dan admin sedang berada pada halaman proyektor. \\
+        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+    \end{tabular}
+
+    \subsubsection{Mengunduh \textit{Script}}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Mengunduh \textit{Script}. \\
+        Aktor & Admin \\
+        Tujuan & Mengunduh \textit{Script}. \\
+        Kondisi Awal & Admin sudah login dan mengakses halaman detil ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol unduh \textit{script}. & \\
+            & Menyediakan berkas \textit{script} yang baru saja dibuat dengan
+            data terbaru. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & \textit{Script} terunduh dan admin sedang berada pada halaman proyektor. \\
+        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+    \end{tabular}
+
+    \subsubsection{Memindahkan Peserta}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Memindahkan peserta. \\
+        Aktor & Admin \\
+        Tujuan & Memindahkan peserta ke tempat baru. \\
+        Kondisi Awal & Admin sudah login dan mengakses halaman detil ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tambah pindah peserta. & \\
+            & menampilkan daftar kosong peserta yang akan dipindah. \\
+            Menekan tombol tambah peserta. & \\
+            & menampilkan daftar peserta pada ujian yang sedang dipilih. \\
+            Memilih peserta. & \\
+            & menampilkan peta tempat duduk. \\
+            Memilih tempat duduk baru. & \\
+            & Menambah peserta pada daftar tersebut. \\
+            Memilih peserta dan tempat duduk baru lainnya (jika ada). & \\
+            & Menambah peserta pada daftar tersebut. (jika ada)\\
+            Menekan tombol pindah. & \\
+            & Memindahkan peserta tersebut lalu membuatkan \textit{script} baru
+            untuk migrasi. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & \textit{Script} terunduh, peserta sudah dimigrasi dan
+        admin sedang berada pada halaman detil ujian. \\
+        Alternatif: & Admin melakukan pembatalan.
+
+    \subsubsection{Menambahkan Slot Jawaban}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Menambahkan slot jawaban untuk peserta. \\
+        Aktor & Admin \\
+        Tujuan & Menambahkan slot jawaban untuk peserta \\
+        Kondisi Awal & Admin sudah login dan mengakses halaman detil ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol tambah pada bagian slot jawaban. & \\
+            & Menampilkan formulir slot jawaban. \\
+            Mengisi formulir tersebut. & \\
+            Menekan tombol tambah. & \\
+            & Menutup formulir dan menambahkan slot jawaban. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Slot jawaban tertambah dan
+        admin sedang berada pada halaman detil ujian. \\
+        Alternatif: & Admin melakukan pembatalan.
+    \end{tabular}
+
+    \subsubsection{Menambahkan Notifikasi Kata Sandi}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Menambahkan notifikasi kata sandi untuk peserta \\
+        Aktor & Admin \\
+        Tujuan & Mendistribusikan kredensial untuk peserta. \\
+        Kondisi Awal & Admin sudah login dan mengakses halaman detil ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol tambah pada Notifikasi. & \\
+            & Menanyakan jenis notifikasi. \\
+            Memilih jenis \textit{Password} atau kata sandi. & \\
+            & Menampilkan formulir notifikasi. \\
+            Mengisi formulir tersebut. & \\
+            Menekan tombol tambah. & \\
+            & Menutup formulir dan menyebar notifikasi. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Notifikasi tertambah dan
+        admin sedang berada pada halaman detil ujian. \\
+        Alternatif: & Admin melakukan pembatalan.
+    \end{tabular}
+
+    \subsubsection{Menambahkan Notifikasi Lainnya}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Menambahkan notifikasi generik untuk peserta \\
+        Aktor & Admin \\
+        Tujuan & Mendistribusikan informasi untuk peserta. \\
+        Kondisi Awal & Admin sudah login dan mengakses halaman detil ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol tambah pada Notifikasi. & \\
+            & Menanyakan jenis notifikasi. \\
+            Memilih jenis lainnya. & \\
+            & Menampilkan formulir notifikasi. \\
+            Mengisi formulir tersebut. & \\
+            Menekan tombol tambah. & \\
+            & Menutup formulir dan menyebar notifikasi. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Notifikasi tertambah dan
+            admin sedang berada pada halaman detil ujian. \\
+        Alternatif: & Admin melakukan pembatalan.
+    \end{tabular}
+
+    \subsubsection{Mengirimkan Laporan Jawaban}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Mengirimkan laporan ujian\\
+        Aktor & Admin \\
+        Tujuan & Mengirikan jawaban peserta ujian pada dosen. \\
+        Kondisi Awal & Admin sudah login dan mengakses halaman detil ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol tambah pada bagian \textit{Autoreport} & \\
+            & Menanyakan tujuan email \\
+            Mengisi tujuan email & \\
+            & Merekan permintaan \\
+            & Menutup formulir \\
+            & Pada saat ujian selesai, sistem mengirimkan email untuk dosen
+            dapat mengakses link pengunduhan. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Jawaban dijadwalkan untuk dikirim dan
+            admin sedang berada pada halaman detil ujian. \\
+        Alternatif: & Admin melakukan pengiriman paksa.\\
+             & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol kirim pada salah satu entri di bagian \textit{Autoreport} & \\
+            & Mengirim link pengunduhan pada email yang dituju \\
+        Alternatif: & Admin melakukan pengunduhan jawaban saja.\\
+             & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol unduh pada bagian slot jawaban & \\
+            & Menyediakan berkas jawaban ujian pada admin \\
+    \end{tabular}
+
+    \subsubsection{Penghapusan Ujian}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Menghapus Ujian\\
+        Aktor & Admin \\
+        Tujuan & Menghapus ujian \\
+        Kondisi Awal & Admin sudah login dan mengakses halaman daftar ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol hapus pada entri ujian yang ingin dihapus.& \\
+            & Menampilkan modal konfirmasi penghapusan \\
+            Melakukan konfirmasi.& \\
+            Menghapus ujian.& \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Ujian terhapus dan
+            admin sedang berada pada halaman detil ujian. \\
+        Alternatif: Admin melakukan pembatalan.
+    \end{tabular}
+
+    \subsubsection{Manipulasi entitas}
+    % \begin{tabular}{ p{3cm} p{12cm} }
+    %     \textit{Use case} & Menghapus Ujian\\
+    %     Aktor & Admin \\
+    %     Tujuan & Menghapus ujian \\
+    %     Kondisi Awal & Admin sudah login dan mengakses halaman daftar ujian \\
+    %     Langkah & \begin{tabular}{p{6cm} p{6cm}}
+    %         \hline
+    %         Aksi Aktor & Respon Aplikasi \\
+    %         \hline
+    %         Menekan tombol hapus pada entri ujian yang ingin dihapus.& \\
+    %         & Menampilkan modal konfirmasi penghapusan \\
+    %         Melakukan konfirmasi.& \\
+    %         Menghapus ujian.& \\
+            
+    %     \end{tabular} \\
+    %     Kondisi Akhir & Ujian terhapus dan
+    %         admin sedang berada pada halaman detil ujian. \\
+    %     Alternatif: Admin melakukan pembatalan.
+    % \end{tabular}
+
+    \subsubsection{Melihat Ujian akan diadakan}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Melihat informasi ujian\\
+        Aktor & Peserta \\
+        Tujuan & Melihat informasi ujian \\
+        Kondisi Awal & - \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Mengakses aplikasi ujian pada komputer peserta & \\
+            & Menampilkan halaman informasi ujian yang akan aktif \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Peserta sedang berada pada halaman informasi ujian. \\
+        Alternatif: Peserta tidak berada pada komputer yang tepat.
+
+    \subsubsection{Melihat notifikasi}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Melihat informasi notifikasi\\
+        Aktor & Peserta \\
+        Tujuan & Melihat informasi notifikasi \\
+        Kondisi Awal & Peserta sedang mengakses aplikasi ujian \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Mengakses menu notifikasi & \\
+            & Menampilkan daftar notifikasi yang aktif.\\
+            Memilih salah satu notifikasi & \\
+            & Menampilkan notifikasi.\\
+            Menekan tombol silang. & \\
+            & Menutup notifikasi.\\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Peserta sudah melihat notifikasi, dan peserta sedang berada pada halaman informasi ujian. \\
+        Alternatif: -
+    \end{tabular}
+
+    \subsubsection{Mengunggah Berkas Jawaban}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Mengunggah berkas jawaban\\
+        Aktor & Peserta \\
+        Tujuan & Menunggah berkas jawaban\\
+        Kondisi Awal & Peserta sedang mengakses aplikasi ujian, timer sedang berjalan\\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol unggah pada salah satu slot jawaban yang tersedia.& \\
+            & Menampilkan \textit{file picker} untuk memilih berkas.\\
+            Memilih berkas & \\
+            & Mengunggah berkas.\\
+            & Menyimpan berkas yang diunggah. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Berkas jawaban terunggah dan peserta sedang berada pada halaman informasi ujian. \\
+        Alternatif: Peserta mengunggah berkas jawaban yang namanya tidak sesuai
+        & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Memilih berkas yang salah& \\
+            & Mengkonfirmasi apakah nama berkas ingin diganti otomatis.\\
+            Melakukan konfirmasi. & \\
+            & Mengunggah berkas.\\
+            & Menyimpan berkas yang diunggah. \\
+    \end{tabular}
+
+
+    \subsubsection{Mengunduh Berkas Jawaban}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Mengunduh berkas jawaban\\
+        Aktor & Peserta \\
+        Tujuan & Mengunduh berkas jawaban \\
+        Kondisi Awal & Peserta sedang mengakses aplikasi ujian, timer sedang berjalan \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol unduh pada slot jawaban yang sudah terisi & \\
+            & Sistem menyediakan berkas tersebut untuk pengunduhan. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Berkas jawaban terunduh dan peserta sedang berada pada halaman informasi ujian. \\
+        Alternatif: -
+    \end{tabular}
+
+
+    \subsubsection{Mengunduh Berkas Jawaban}
+    \begin{tabular}{ p{3cm} p{12cm} }
+        \textit{Use case} & Mengunduh berkas jawaban\\
+        Aktor & Peserta \\
+        Tujuan & Melihat informasi notifikasi \\
+        Kondisi Awal & Peserta sedang mengakses aplikasi ujian, timer sedang berjalan \\
+        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+            \hline
+            Aksi Aktor & Respon Aplikasi \\
+            \hline
+            Menekan tombol unduh pada slot jawaban yang sudah terisi & \\
+            & Sistem menyediakan berkas tersebut untuk pengunduhan. \\
+            
+        \end{tabular} \\
+        Kondisi Akhir & Berkas jawaban terunduh dan peserta sedang berada pada halaman informasi ujian. \\
+        Alternatif: -
+    \end{tabular}
 
 \section{Analisis Statik}
 
