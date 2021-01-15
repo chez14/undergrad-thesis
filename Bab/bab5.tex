@@ -686,7 +686,37 @@
         \label{fig:kuisioner_demo}
     \end{figure}
     
-    Hasil kuisioner tersebut dianalisis untuk menilai tingkat kepuasan dalam menggunakan aplikasi.
+    Hasil kuisioner tersebut dianalisis untuk menilai tingkat kepuasan dalam menggunakan aplikasi. Berdasarkan
+    kuisioner yang telah dilakukan, didapatkan rata-rata nilai kepuasan terhadap sistem yang baru dengan
+    rincian yang dapat dilihat pada tabel \ref{tab:survey-avg}.
+    \begin{table}[]
+        \centering
+        \begin{tabularx}{\textwidth}{|X|X|}
+            \hline
+             Parameter & Rata-rata Nilai kepuasan (skala 1 hingga 5)  \\
+            \hline
+             Pengelolaan data untuk ujian (Nomor 1) &  3.56 \\
+            \hline
+             Pengiriman berkas jawaban ujian (Nomor 2) &  3.78\\
+            \hline
+             Pembuatan ujian (Nomor 3) &  3.8 \\
+            \hline
+             Pengunggahan data untuk ujian (Nomor 4) &  3.67 \\
+            \hline
+             Pendistribusian informasi layanan dan notifikasi peserta (Nomor 5) &  3.78 \\
+            \hline
+             Penggunaan Admin Panel (Nomor 6) &  3.78 \\
+            \hline
+             Migrasi peserta (Nomor 7) &  3.78 \\
+            \hline
+             Kestabilan aplikasi (Nomor 8) &  2.1 \\
+            \hline
+             \textbf{Kepuasan secara keseluruhan} (Nomor 9) &  \textbf{3.2} \\
+            \hline
+        \end{tabularx}
+        \caption{Rata-rata nilai kepuasan berdasarkan kuisioner yang telah dilakukan.}
+        \label{tab:survey-avg}
+    \end{table}
 
 \section{Pengujian Fungsional}
 Pengujian fungsional dilakukan dengan bantuan \textit{Unit Testing}. Tes tersebut akan dilakukan
@@ -748,7 +778,7 @@ atau tidak. Tes-tes tersebut terdiri dari
     \item Ujian dengan \textit{shift}\\
         Memastikan fungsi yang bertugas untuk memetakan ujian dengan \textit{shift} dapat berjalan sesuai ekspektasi.\\
         
-        \begin{longtable}{0.9\textwidth}{|X|X|X|X|X|}
+        \begin{tabularx}{0.9\textwidth}{|X|X|X|X|X|}
             \hline
             \textit{Test Step} & \textit{Preconditions} & Ekspektasi Hasil & Hasil Didapatkan & Status  \\
             \hline
@@ -790,7 +820,12 @@ atau tidak. Tes-tes tersebut terdiri dari
             \hline
             Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} tidak aktif. &
             \textit{Shift} 1 selesai dan \textit{shift} 2 aktif & Ujian \textit{shift} 2 didapatkan. & Ujian \textit{shift} 2 didapatkan. & Lolos \\
-            
+            \hline
+        \end{tabularx}\\
+        \begin{tabularx}{0.9\textwidth}{|X|X|X|X|X|}
+            \hline
+            \textit{Test Step} & \textit{Preconditions} & Ekspektasi Hasil & Hasil Didapatkan & Status  \\
+            \hline
             %% CASE 5
             \multicolumn{5}{|p{0.8\textwidth}|}{\textbf{Ujian pada \textit{shift} 1 dan 2 selesai.}}\\
             \hline
@@ -798,9 +833,9 @@ atau tidak. Tes-tes tersebut terdiri dari
             \textit{Shift} 1 selesai dan \textit{shift} 2 selesai & Tidak ada ujian yang didapatkan. & Tidak ada ujian yang didapatkan. & Lolos \\
             \hline
             Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} tidak aktif. &
-            \textit{Shift} 1 selesai dan \textit{shift} 2 selesai Tidak ada ujian yang didapatkan. & Tidak ada ujian yang didapatkan. & Lolos \\
+            \textit{Shift} 1 selesai dan \textit{shift} 2 selesai & Tidak ada ujian yang didapatkan. & Tidak ada ujian yang didapatkan. & Lolos \\
             \hline
-        \end{longtable}
+        \end{tabularx}
         
 \end{enumerate}
 

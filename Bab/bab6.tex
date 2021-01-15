@@ -1,0 +1,44 @@
+\chapter{Kesimpulan dan Saran}
+\label{chap:kesimpulan-saran}
+
+\section{Kesimpulan}
+    Aplikasi pendukung ujian yang ada saat ini perlu dibuat ulang karena  beberapa masalah yang muncul, seperti
+    dukungan untuk penanganan perpindahan tempat duduk peserta, penyebaran kredensial layanan, masalah waktu ujian
+    yang tidak singkron, hingga terdapat NPM jenis yang baru. Aplikasi pendukung baru telah berhasil dibangun
+    ulang untuk mengatasi hal-hal masalah tersebut.
+    
+    Aplikasi pendukung diimplementasi dengan teknologi aplikasi berbasis web yang dibantu dengan teknik REST API
+    yang dapat dimanfaatkan untuk komunikasi antara sistem frontend dengan backend. Sistem frontend diimplementasi
+    dengan bantuan \textit{library} Reactjs, dengan penggayaan yang dibantu dengan \texttt{bootstrap}. Sistem
+    backend dibantu dengan \textit{framework} FatFree Framework dan \textit{library} pendukungnya. Sistem
+    kemudian diimplementasikan diatas sistem Docker yang berjalan pada server lab. Selain itu, pada lingkungan
+    pengembangan, terdapat sistem CI/CD yang berjalan diatas Gitlab CI yang digunakan untuk melakukan
+    \textit{build} utnuk sistem frontend dan \textit{unit testing} pada sistem backend.
+    
+    Pengujian yang dilakukan pada aplikasi membuktikan  bahwa aplikasi dapat memenuhi kebutuhan baru yang muncul
+    dari sistem yang saat ini berjalan. Hal ini didukung dengan kuisioner yang dilakukan pada Tim Administator
+    yang berpengalaman dengan sistem yang saat ini berjalan, dengan hasil yang cukup memuaskan, 3.22 poin dari 4.
+    
+\section{Saran}
+    Dibantu dengan kuisioner yang telah dilakukan pada saat pengujian, saran untuk penelitian selanjutnya adalah
+    sebagai berikut:
+    \begin{enumerate}
+        \item Aplikasi dapat mendukung pengujian daring.
+        \item Perbaikan terhadap beberapa tampilan antarmuka. \\
+            Perbaikan tersebut dapat meliputi penggantian satuan untuk halaman konfirmasi pembuatan ujian dari jam
+            ke menit, teks informasi dan perintah, serta ubah pemilihan peserta pada notifikasi menjadi tombol khusus.
+            Selain itu mengganti beberapa judul bagian menjadi lebih jelas, seperti judul untuk \textit{editor}
+            entri pada pengelola entitas.
+        \item Sehabis waktu ujian habis, peserta seharusnya diberikan tampilan waktu ujian telah habis.
+        \item Fitur notifikasi dibuat terintegrasi dengan peramban sehingga notifikasi muncul pada 
+            sistem operasi juga.
+        \item Fitur pengiriman email notifikasi seharusnya memunculkan informasi kapan email akan
+            dikirim dan status pengirimannya.
+        \item Memberikan informasi sisa notifikasi pengerjaan di taskbar Windows.
+        \item Pada fitur perpindahan perserta, tombol pengunduhannya dibuat dapat diunduh ulang pada
+            saat modal tertutup.
+        \item Fitur perpindahan dan \textit{plotting} tempat duduk seharusnya menampilkan komputer
+            yang sedang digunakan atau sedang ada masalah.
+        \item Eksekusi \textit{script} yang otomatis, tidak perlu diunduh terlebih dahulu.
+        \item Sistem memberikan peringatan jika terdapat peserta yang duduk bersebelahan.
+    \end{enumerate}
