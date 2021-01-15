@@ -602,25 +602,206 @@
         \item Poin 1: Informasi mata kuliah yang diuji.
         \item Poin 2: Tautan untuk melakukan pengunduhan.
         \item Poin 3: Informasi tanggal kadaluarsa tautan tersebut.
-        \item Poin 4: Informas idetil ujian.
+        \item Poin 4: Informasi detil ujian.
         \item Poin 5: Tombol pengunduhan jawaban.
     \end{itemize}
 
-    \subsection{Bentuk Struktur Direktori Penyimpanan Ujian}
-    
-
 % bentuk foldernya
+    \subsection{Bentuk Struktur Direktori Penyimpanan Ujian}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/Screenshot 2021-01-16 014010.png}
+        \caption{Tampilan daftar direktori pada sistem backend aplikasi Oxam.}
+        \label{fig:dirlisting}
+    \end{figure}
+    Implementasi untuk pengamanan berkas ujian dilakukan dengan mengacak nama \textit{folder}
+    dari tempat penyimpanan ujian. Pada Gambar \ref{fig:dirlisting}, berkas jawaban ujian disimpan pada
+    \textit{folder} \texttt{uploads/secured-assets} dengan nama folder yang diacak.
+
 
 \section{Pengujian Experimental}
-Pengujian experimental dilakukan dengan mendemokan pada tim Admin secara langsung. Pada pengujian
-tersebut, Tim Admin akan membuat sebuah mata kuliah dan ujian, lalu mencoba fitur-fitur yang tersedia
-pada sistem Oxam yang baru. Keberhasilan tersebut dilakukan dengan memberikan kuisioner yang kemudian
-Tim Admin isi.
+    Pengujian experimental dilakukan dengan mendemokan aplikasi pada tim Admin secara langsung. Pada pengujian
+    tersebut, Tim Admin akan membuat sebuah mata kuliah dan ujian, lalu mencoba fitur-fitur yang tersedia
+    pada sistem Oxam yang baru. Keberhasilan tersebut dilakukan dengan memberikan kuisioner yang kemudian
+    Tim Admin isi.
+    
+    Kuisioner yang akan diberikan pada Tim admin terdiri dari pertanyaan-pertanyaan berikut:
+    \begin{enumerate}
+        \item Membuat dan mengelola data untuk ujian (mata kuliah, memasukkan peserta, dst) menjadi lebih mudah. \\
+            Pertanyaan dibuat dalam bentuk skala 1-4, dengan 1 sangat tidak setuju dan 5 sangat setuju.
+            Pertanyaan ditujukan untuk mengethaui apakah pengaturkan dan pengelolaan data untuk ujian dapat
+            diatur dengan mudah.
 
-% todo more bahas.
+        \item Mengambil dan mengirimkan jawaban menjadi lebih mudah. \\
+            Pertanyaan dibuat dalam bentuk skala 1-4, dengan 1 sangat tidak setuju dan 5 sangat setuju.
+            Pertanyaan ditujukan untuk mengetahui proses pengambilan dan pengiriman jawaban menjadi lebih
+            baik.
+        
+        \item Membuat ujian menjadi lebih mudah. \\
+            Pertanyaan dibuat dalam bentuk skala 1-4, dengan 1 sangat tidak setuju dan 5 sangat setuju.
+            Pertanyaan ditujukan untuk mengetahui apakah pembuatan ujian menjadi lebih baik.
+        
+        \item Upload Jawaban untuk peserta lebih mudah. \\
+            Pertanyaan dibuat dalam bentuk skala 1-4, dengan 1 sangat tidak setuju dan 5 sangat setuju.
+            Pertanyaan ditujukan untuk mengetahui apakah formulir pengunggahan jawaban untuk peserta
+            menjadi lebih baik.
+            
+        \item Informasi (\textit{password} dan ralat soal) untuk peserta menjadi lebih mudah. \\
+            Pertanyaan dibuat dalam bentuk skala 1-4, dengan 1 sangat tidak setuju dan 5 sangat setuju.
+            Pertanyaan ditujukan untuk mengetahui pengalaman penyebaran kredensial untuk layanan tertentu
+            untuk peserta dan informasi lainnya menjadi lebih mudah atau tidak.
+            
+        \item Mengakses Admin panel lebih mudah. \\
+            Pertanyaan dibuat dalam bentuk skala 1-4, dengan 1 sangat tidak setuju dan 5 sangat setuju.
+            Pertanyaan ditujukan untuk mengetahui apakah penggunaan admin panel menjadi lebih mudah.
+        
+        \item Memindahkan peserta ke komputer lain menjadi lebih mudah. \\
+            Pertanyaan dibuat dalam bentuk skala 1-4, dengan 1 sangat tidak setuju dan 5 sangat setuju.
+            Pertanyaan ditujukan untuk mengetahui apakah aplikasi Oxam yang baru dapat memindahkan
+            peserta ke komputer lain dengan lebih mudah.
+        
+        
+        \item Aplikasi lebih \textit{buggy}. \\
+            Pertanyaan dibuat dalam bentuk skala 1-4, dengan 1 sangat tidak setuju dan 5 sangat setuju.
+            Pertanyaan ditujukan untuk mengetahui apakah aplikasi memiliki masalah \textit{bug}.
+        
+        
+        \item Bagaimana pengalaman secara keseluruhan Anda dengan Oxam yang baru? \\
+            Pertanyaan dibuat dalam bentuk skala 1-4, dengan 1 sangat tidak baik dan 5 sangat baik.
+            Pertanyaan ditujukan untuk mengetahui kepuasan terhadap sistem Oxam yang baru.
+        
+        
+        \item Apakah Anda memiliki kritik dan saran lainnya? Apa yang dapat aplikasi ini perbaiki di kemudian hari? \\
+            Pertanyaan dibuat dalam bentuk paragraf panjang. Pertanyaan ini bertujuan untuk mengetahui
+            kekurangan dan saran yagn dapat sistem ini perbaiki pada iterasi berikutnya.
+    \end{enumerate}
+    
+    Kuisioner tersebut lalu diberikan pada Tim Admin yang pernah menggunakan sistem Oxam yang lama yang kemudian
+    dibandinkan dengan pengalaman mereka dalam menggunakan sistem Oxam yang lama. Kuisioner tersebut mendapatkan
+    sembilan respon dan didapatkan data yang dapat dilihat pada Gambar \ref{fig:kuisioner_demo}.
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\paperwidth]{Gambar/Hasil Kuisioner.pdf}
+        \caption{Hasil kuisioner pasca demo pada pertanyaan berbentuk skala.}
+        \label{fig:kuisioner_demo}
+    \end{figure}
+    
+    Hasil kuisioner tersebut dianalisis untuk menilai tingkat kepuasan dalam menggunakan aplikasi.
 
 \section{Pengujian Fungsional}
 Pengujian fungsional dilakukan dengan bantuan \textit{Unit Testing}. Tes tersebut akan dilakukan
 setiap kali kode diunggah ke repositori penyimpanan kode sumber dengan bantuan CI/CD. Tes tersebut
-terdiri dari beberapa skenario dan langkah yang menentukan sebuah fitur dapat berjalan seperti
-yang dikehendaki atau tidak. Tes-tes tersebut terdiri dari
+terdiri dari beberapa skenario dan langkah yang menentukan sebuah fitur dapat berjalan sesuai ekspektasi
+atau tidak. Tes-tes tersebut terdiri dari
+\begin{enumerate}
+    \item Otentikasi\\
+        Memastikan fitur kelas utama otentikasi dapat berjalan dengan semestinya.\\
+        \begin{tabularx}{0.9\textwidth}{|X|X|X|X|X|}
+            \hline
+            \textit{Test Step} & \textit{Preconditions} & Ekspektasi Hasil & Hasil Didapatkan & Status  \\
+            \hline
+            Login dengan kata sandi yang salah harus ditolak. & Username benar dan kata sandi salah. & Mengeluarkan Eksepsi & Eksepsi didapatkan & Lolos \\
+            \hline
+            Login dengan username yang salah harus ditolak. & Username salah dan kata sandi benar. & Mengeluarkan Eksepsi & Eksepsi didapatkan & Lolos \\
+            \hline
+            Login dengan kredensial yang benar harus diterima. & Username dan kata sandi benar & Kelas mengembalikan nilai \texttt{true} & Kelas mengembalikan nilai \texttt{true} & Lolos \\
+            \hline
+        \end{tabularx}
+        
+    \item Ujian tanpa \textit{shift}\\
+        Memastikan fungsi yang bertugas untuk memetakan ujian dasar dapat berjalan sesuai ekspektasi.\\
+         \begin{tabularx}{0.9\textwidth}{|X|X|X|X|X|}
+            \hline
+            \textit{Test Step} & \textit{Preconditions} & Ekspektasi Hasil & Hasil Didapatkan & Status  \\
+            \hline
+            
+            \multicolumn{5}{|l|}{\textbf{Ujian yang aktif hanya akan muncul pada saat \textit{flag} \texttt{upcoming} dimatikan.}}\\
+            \hline
+            Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} aktif. &
+            Ujian sedang aktif. & Tidak mengeluarkan ujian apapun & Ujian tidak didapatkan & Lolos \\
+            \hline
+            Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} tidak aktif. &
+            Ujian sedang aktif. & Mengeluarkan sebuah ujian yang baru saja dibuat & 
+            Ujian didapatkan, ujian tersebut sesuai dengan ujian yang dibuat diawal. & Lolos \\
+            \hline
+            
+            \multicolumn{5}{|l|}{\textbf{Ujian yang akan aktif hanya akan didapatkan dengan \textit{flag} \texttt{upcoming} aktif. }}\\
+            \hline
+            Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} aktif. &
+            Ujian sedang aktif. & Mengeluarkan sebuah ujian yang baru saja dibuat & 
+            Ujian didapatkan, ujian tersebut sesuai dengan ujian yang dibuat diawal. & Lolos \\
+            \hline
+            Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} tidak aktif. &
+            Ujian sedang aktif. & Tidak mengeluarkan ujian apapun & Ujian tidak didapatkan & Lolos \\
+            \hline
+            
+             \multicolumn{5}{|l|}{\textbf{Ujian yang telah selesai tidak akan muncul dimanapun.}}\\
+            \hline
+            Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} aktif. &
+            Ujian sedang aktif. & Tidak mengeluarkan ujian apapun & Ujian tidak didapatkan & Lolos \\
+            \hline
+            Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} tidak aktif. &
+            Ujian sedang aktif. & Tidak mengeluarkan ujian apapun & Ujian tidak didapatkan & Lolos \\
+            \hline
+        \end{tabularx}
+        
+    \item Ujian dengan \textit{shift}\\
+        Memastikan fungsi yang bertugas untuk memetakan ujian dengan \textit{shift} dapat berjalan sesuai ekspektasi.\\
+        
+        \begin{longtable}{0.9\textwidth}{|X|X|X|X|X|}
+            \hline
+            \textit{Test Step} & \textit{Preconditions} & Ekspektasi Hasil & Hasil Didapatkan & Status  \\
+            \hline
+            %% CASE 1
+            \multicolumn{5}{|p{0.8\textwidth}|}{\textbf{Kedua \textit{shift} akan aktif.}}\\
+            \hline
+            Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} aktif. &
+            \textit{Shift} 1 dan 2 akan aktif & Ujian \textit{shift} 1 didapatkan. & Ujian \textit{shift} 1 didapatkan. & Lolos \\
+            \hline
+            Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} tidak aktif. &
+            \textit{Shift} 1 dan 2 akan aktif & Tidak ada ujian yang didapatkan. & Tidak ada ujian yang didapatkan. & Lolos \\
+            \hline
+            
+            %% CASE 2
+            \multicolumn{5}{|p{0.8\textwidth}|}{\textbf{Ujian pada \textit{shift} 1 aktif dan \textit{shift} 2 akan aktif.}}\\
+            \hline
+            Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} aktif. &
+            \textit{Shift} 1 aktif dan \textit{shift} 2 akan aktif & Ujian \textit{shift} 2 didapatkan. & Ujian \textit{shift} 2 didapatkan. & Lolos \\
+            \hline
+            Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} tidak aktif. &
+            \textit{Shift} 1 aktif dan \textit{shift} 2 akan aktif & Ujian \textit{shift} 1 didapatkan. & Ujian \textit{shift} 1 didapatkan. & Lolos \\
+            \hline
+            
+            %% CASE 3
+            \multicolumn{5}{|p{0.8\textwidth}|}{\textbf{Ujian pada \textit{shift} 1 selesai dan \textit{shift} 2 akan dimulai.}}\\
+            \hline
+            Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} aktif. &
+            \textit{Shift} 1 selesai dan \textit{shift} 2 akan aktif & Ujian \textit{shift} 2 didapatkan. & Ujian \textit{shift} 2 didapatkan. & Lolos \\
+            \hline
+            Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} tidak aktif. &
+            \textit{Shift} 1 selesai dan \textit{shift} 2 akan aktif & Tidak ada ujian yang didapatkan. & Tidak ada ujian yang didapatkan. & Lolos \\
+            \hline
+            
+            %% CASE 4
+            \multicolumn{5}{|p{0.8\textwidth}|}{\textbf{Ujian pada \textit{shift} 1 selesai dan \textit{shift} 2 sedang aktif.}}\\
+            \hline
+            Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} aktif. &
+            \textit{Shift} 1 selesai dan \textit{shift} 2 aktif & Tidak ada ujian yang didapatkan. & Tidak ada ujian yang didapatkan. & Lolos \\
+            \hline
+            Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} tidak aktif. &
+            \textit{Shift} 1 selesai dan \textit{shift} 2 aktif & Ujian \textit{shift} 2 didapatkan. & Ujian \textit{shift} 2 didapatkan. & Lolos \\
+            
+            %% CASE 5
+            \multicolumn{5}{|p{0.8\textwidth}|}{\textbf{Ujian pada \textit{shift} 1 dan 2 selesai.}}\\
+            \hline
+            Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} aktif. &
+            \textit{Shift} 1 selesai dan \textit{shift} 2 selesai & Tidak ada ujian yang didapatkan. & Tidak ada ujian yang didapatkan. & Lolos \\
+            \hline
+            Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} tidak aktif. &
+            \textit{Shift} 1 selesai dan \textit{shift} 2 selesai Tidak ada ujian yang didapatkan. & Tidak ada ujian yang didapatkan. & Lolos \\
+            \hline
+        \end{longtable}
+        
+\end{enumerate}
+
+
