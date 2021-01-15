@@ -4,27 +4,189 @@
 \section{Implementasi}
 
 \subsection{Lingkungan Implementasi Perangkat Keras}
+    Aplikasi pendukung sistem ujian Oxam akan dijalankan dengan menggunakan \textit{server} milik lab. 
+    Spesifikasi perangkat keras yang digunakan adalah sebagai berikut:
+    \begin{itemize}
+        \item \textit{Processor}:\\ Intel\textsuperscript{\textregistered} Xeon\textsuperscript{\textregistered} CPU E5-2603 v4 @ 1.70GHz
+        
+        \item \textit{RAM}:\\ 1$\times$8GB DDR4 @ 2400MHz 
+        
+        \item \textit{Storage}:\\ 2$\times$HPE 1TB 6G SATA 
+            7.2K rpm LFF (3.5in) MB001000GWFGF Hard Drive
+    \end{itemize}
+    
+    \subsection{Lingkungan Implementasi Perangkat Lunak}
+    Aplikasi pendukung sistem ujian Oxam akan diimplementasi dengan spesifikasi berikut:
+    \begin{itemize}
+    % Perangkat lunak kudu Runtime Environment:
+    %  - Docker (php...)
+        \item \textit{Runtime Environment}:
+            Docker versi 19.03.8, \textit{build} \texttt{afacb8b7f0}, dengan konfigurasi kontainer:
+            \begin{itemize}
+                \item backend\\
+                    \texttt{php:7.3.8-apache}\\
+                    Berkas \texttt{Dockerfile} dapat dilihat pada lampiran %TODO: Lampiran
+            \end{itemize}
+        \item Bahasa Pemrograman: PHP v7.3, JavaScript (Babel Preset React).
+        \item Basis data: MySQL versi 5.7
+        \item CI/CD: GitLab CI
+        \item \textit{Library} lain yang digunakan:
+            \begin{itemize}
+                \item Backend: \texttt{chez14/f3-ilgar} \\
+                    \textit{Library} ini digunakan untuk membuat database dengan merepresentasikan setiap update
+                    menjadi sebuah paket migrasi. Pada aplikasi ini, \texttt{chez14/f3-ilgar} digunakan untuk
+                    membantu mengelola basis data.
+                \item Backend: \texttt{lcobucci/jwt} \\
+                    \textit{Library} ini bertugas untuk membuat token dalam bentuk JWT, melakukan validasi, dan
+                    menekstrak data dari token tersebut. \texttt{lcobucci/jwt} digunakan pada saat otentikasi
+                    untuk API.
+                \item Backend: \texttt{psx/openssl} \\
+                    \texttt{psx/openssl} adalah \textit{library} yang membungkus fungsi OpenSSL yang tersedia
+                    pada PHP. \textit{Library} ini akan membuat kode menjadi lebih bersih karena \textit{overhead}
+                    harus ditulis pada saat menginisialisasi OpenSSL menjadi otomatis pada saat kelas dari 
+                    \textit{library} ini diinstansiasi.
+                    \textit{Library} ini bertugas untuk membantu \textit{library} \texttt{lcobucci/jwt} menghasilkan kunci
+                    asimetrik dengan algoritma RSA atau ECDSA. 
+                \item Backend: \texttt{respect/validation} \\
+                    \textit{Library} ini bertugas untuk melakukan validasi yang cukup kompleks. \textit{Library}
+                    ini dapat diturunkan menjadi fungsi validasi yang lain. Pada Aplikasi ini, \textit{library} ini
+                    digunakan untuk membantu validasi data yang diberikan dari klien lewat subsistem
+                    Frontend.
+                \item Backend: \texttt{adldap2/adldap2} \\
+                    \textit{Library} \texttt{adldap2/adldap2} adalah \textit{wrapper} dari fungsi LDAP yang PHP sediakan.
+                    \textit{Libray} ini nantinya akan bertugas membantu Backend melakukan \textit{query} 
+                    pada LDAP milik Lab Komputasi untuk \textit{resolve} \textit{username} login peserta
+                    menjadi nama lengkap.
+                \item Backend: \texttt{xfra35/f3-cron} \\
+                    \textit{Library} ini bertugas untuk melakukan penjadwalan \textit{cron} yang terdapat
+                    pada sistem. Sistem operasi cukup melakukan pemanggilan pada \textit{endpoint} yang disediakan
+                    oleh \textit{library} ini, lalu \textit{library} ini akan menjadwalkan cronjob yang ada.
+                    Pada aplikasi ini, \textit{library} ini digunakan untuk mengatur \textit{cronjob} pengiriman
+                    laporan berkas jawaban ke dosen koordinator.
+                \item Backend: \texttt{phpmailer/phpmailer} \\
+                    \texttt{phpmailer/phpmailer} bertugas untuk membantu pengiriman email melalui protokol SMTP.
+                    Pada aplikasi Oxam, \texttt{phpmailer/phpmailer} bertugas untuk membantu mengirimkan email
+                    laporan berkas jawaban ke dosen koordinator.
+                \item Backend: \texttt{monolog/monolog} \\
+                    \textit{Library} ini bertugas untuk membuat kelas yang digunakan untuk mencatat log yang
+                    terjadi pada sistem. Pada aplikasi ini, \texttt{monolog/monolog} digunakan untuk membuat log
+                    tentang ujian, seperti peserta mengunggah jawaban, dan seterusnya.
+                \item Frontend: \texttt{@fortawesome/*} \\
+                    \textit{Library} ini berisi ikon-ikon yang digunakan untuk merepresentasikan fungsi
+                    tombol dalam bentuk gambar. Pada aplikasi ini, \texttt{@fortawesome/*} digunakan pada
+                    banyak halaman untuk mempermudah pendesainan bebrapa tombol menjadi lebih ringkas.
+                \item Frontend: \texttt{axios} \\
+                    \textit{Library} ini digunakan untuk melakukan permintaan \textit{ajax} dengan penanganan 
+                    \textit{event} berbentuk \textit{Promise}. Pada aplikasi ini, \texttt{axios} digunakan untuk
+                    melakukan komunikasi antara subsistem Frontend dan Backend. \textit{Library} ini kemudian
+                    diturunkan dengan menambahkan beberapa \textit{event} khusus seperti menambahkan
+                    token otentikasi pada saat sistem frontend mendeteksi token pada \textit{cookie}
+                    peramban pengguna.
+                \item Frontend: \texttt{bootstrap} \\
+                    \textit{Library} ini digunakan untuk membuat tampilan web menjadi lebih seragam, lebih
+                    mudah diprediksi, dan konsisten antar perangkat. Pada aplikasi ini, \texttt{bootstrap}
+                    digunakan pada seluruh halaman aplikasi untuk membuat \textit{look-and-feel} yang seragam,
+                    responsif, dan rapi.
+                \item Frontend: \texttt{date-fns} \\
+                    \textit{Library} ini bertugas untuk melakukan manipulasi tanggal, \textit{parsing} dan 
+                    \textit{formatting}. Pada aplikasi ini, \texttt{date-fns} digunakan untuk \textit{parsing}
+                    tanggal.
+                \item Frontend: \texttt{js-file-download} \\
+                    \texttt{js-file-download} berfungsi untuk memicu \textit{file picker} untuk menyimpan berkas.\\
+                    \texttt{js-file-download} akan menerima sebuah \textit{blob} binary dari berkas, lalu meminta
+                    peramban untuk menampilkan pemilih berkas. Pada aplikasi ini, \texttt{js-file-download}
+                    digunakan untuk membantu peserta, dosen koordinator, dan admin mengunduh berkas jawaban,
+                    dan \textit{script}.
+                \item Frontend: \texttt{mobx} \\
+                    \textit{Library} ini adalah manajemen \textit{state} yang digunakan untuk berbagai \textit{state}
+                    antar komponen pada satu aplikasi. Aplikasi Oxam menggunakan \texttt{mobx} untuk menyimpan 
+                    \textit{state} entitas yang akan digunakan antar halaman.
+                \item Frontend: \texttt{mobx-react} \\
+                    \textit{Library} \texttt{mobx-react} adalah \textit{binding} yang mengkoordinasi komponen
+                    antar React dengan \textit{state management} \texttt{mobx}. Aplikasi Oxam menggunakan 
+                    \textit{library} ini untuk membantu mengkoordinasikan komponen-komponen yang bergantung
+                    pada \textit{state} yang disimpan oleh \texttt{mobx}.
+                \item Frontend: \texttt{moment} \\
+                    \textit{Library} ini digunakan untuk memanipulasi tanggal dan melakukan \textit{formatting}.
+                    Aplikasi ini menggunakan \textit{library} ini karena \textit{library} \textit{react-timekeeper}
+                    membutuhkan \texttt{moment}.
+                \item Frontend: \texttt{opensans-npm-webfont} \\
+                    \textit{Package} ini menyimpan berkas font yang digunakan pada web. Font OpenSans ini
+                    digunakan pada aplikasi untuk memperjelas bentuk tulisan yang akan ditampilkan dilayar peserta
+                    dan proyektor. OpenSans memiliki beberapa jenis ketebalan yang cocok digunakan pada konteks
+                    tertentu.
+                \item Frontend: \texttt{prop-types} \\
+                    \texttt{prop-types} adalah \textit{library} yang digunakan oleh React untuk mevalidasi data 
+                    properti yang diberikan oleh \textit{parent} komponen. Aplikasi ini menggunakan \textit{library}
+                    \texttt{prop-types} untuk membuat beberapa komponen yang akan digunakan ulang pada beberapa
+                    halaman.
+                \item Frontend: \texttt{query-string} \\
+                    \texttt{query-string} digunakan untuk \textit{parsing} bagian \textit{search} pada url dari
+                    peramban. \textit{Library} ini akan memecah \textit{string} tersebut lalu mengubahnya menjadi
+                    kelas yang dapat digunakan oleh pengembang. Aplikiasi ini menggunakan \textit{library} ini untuk
+                    melakukan pengecekan \textit{return-path} pada beberapa halaman, terutama halaman \textit{editor}
+                    entitas.
+                \item Frontend: \texttt{react-countdown} \\
+                    \texttt{react-countdown} digunakan untuk menampilan jam berbentuk \textit{countdown}. 
+                    Aplikasi Oxam menggunakan \textit{libary} ini untuk menampilkan waktu yang tersisa
+                    untuk ujian.
+                \item Frontend: \texttt{react-dates} \\
+                    \textit{Library} ini menyediakan komponen formuilir berbentuk pemilih tanggal dalam 
+                    format kalender. Aplikasi Oxam menggunakan \textit{library} ini untuk membuat formulir
+                    pemilih tanggal pada bidang bertipe tanggal.
+                \item Frontend: \texttt{react-dropzone} \\
+                    \texttt{react-dropzone} menyediakan \textit{binding} yang dapat digunakan untuk menangani
+                    \textit{drag-drop} berkas pada suatu elemen HTML. Pada aplikasi ini, \textit{library}
+                    \texttt{react-dropzone} digunakan untuk menangani \textit{event} peserta mengunggah berkas
+                    dengan melakukan \textit{drag-drop} pada slot jawaban.
+                \item Frontend: \texttt{react-if} \\
+                    \texttt{react-if} menyediakan komponen percabangan, \textit{If-else}. Penggunaan komponen
+                    tersebut akan meningkatkan kejelasan kode karena bentuk percabangan yang diberikan menjadi
+                    lebih jelas. Aplikasi ini menggunakan \texttt{react-if} pada berbagai halaman untuk mengubah
+                    beberapa komponen pada kasus tertentu.
+                \item Frontend: \texttt{react-router-dom} \\
+                    \textit{Library} ini digunakan untuk memetakan url tertentu pada frontend ke komponen tertentu.
+                    Aplikasi menggunakan \textit{library} ini untuk memetakan alamat untuk login, lembar jawab ujian,
+                    halaman admin dan dosen, serta sebagainya ke komponennya masing-masing.
+                \item Frontend: \texttt{react-stepper-horizontal} \\
+                    \textit{Library} ini adalah komponen UI yang digunakan untuk memvisualisasikan
+                    jumlah langkah yang ada. Aplikasi menggunakan komponen ini untuk menampilkan jumlah 
+                    langkah yang ada untuk membuat suatu ujian.
+                \item Frontend: \texttt{react-timekeeper} \\
+                    \textit{Libray} ini digunakan untuk menampilkan pemilih jam. Komponen UI ini akan menampilkan
+                    jam dan pengguna dapat memilih angka yang terdapat pada tampilan tersebut untuk kemudian
+                    dapat digunakan sebagai \textit{nput} jam. Aplikasi ini menggunakan \texttt{react-timekeeper}
+                    untuk membantu mengisi bidang formulir tertentu.
+                \item Frontend: \texttt{reactstrap} \\
+                    \texttt{reactstrap} adalah \textit{binding} javascript untuk \texttt{bootstrap}. \textit{Library}
+                    ini akan menggantikan javascript bawaan dari \texttt{bootstrap} yang menggunalan jQuery, menjadi
+                    sepenuhnya menggunakan \textit{library} dari React. Aplikasi ini menggunakan \textit{library}
+                    ini untuk menhidupkan fungsionalitas beberapa komponen UI yang disediakan oleh \texttt{bootstrap}.
+                \item Frontend: \texttt{sass} \\
+                    \textit{Library} \texttt{sass} digunakan untuk melakukan \textit{build} pada kode SASS menjadi CSS.
+                    Aplikasi ini menggunakan \texttt{sass} untuk memperkecil hasil CSS yang dibuat, serta membuat
+                    beberapa penggayaan khusus untuk komponen tertentu.
+                \item Frontend: \texttt{suneditor-react} \\
+                    \textit{Library} ini menyediakan \textit{binding} untuk React terhadap \textit{library}
+                    \texttt{suneditor}. \texttt{suneditor} adalah WYSIWYG (\textit{What you see is what you get})
+                    HTML Editor. Aplikasi ini menggunakan library ini untuk membuat badan notifikasi yang nantinya
+                    akan disebar untuk setiap peserta.
+            \end{itemize}
+    \end{itemize}
 
-\subsection{Lingkungan Implementasi Perangkat Lunak}
-Dengan bantuan Docker, lingkungan implementasi aplikasi dapat disederhanakan menjadi menentukan
-kebutuhan \textit{runtime} aplikasi. Detil lingkungan aplikasi tersebut dapat dilihat pada:
-\begin{itemize}
-    \item Docker (version)\\
-        Daftar \textit{image} yang digunakan untuk membangun \textit{container}:
-        \begin{itemize}
-            \item backend\\
-                \texttt{php:7.3.8-apache}\\
-                Berkas \texttt{Dockerfile} dapat dilihat pada lampiran %TODO: Lampiran
-            
-            \item database\\
-                \texttt{mysql:5.7}\\
-                Berkas \texttt{docker-compose.yml} dapat dilihat pada lampiran %TODO: Lampiran
-        \end{itemize}
-    \item Nodejs v12
-\end{itemize}
 
 \section{Hasil Implementasi}
+    Pada bagian ini hasil implementasi sistem akan dijelaskan dengan bantuan tampilan antarmuka yang telah
+    diimplentasi dalam React.
+    
+    \subsection{Halaman untuk Peserta}
+        Halaman untuk peserta akan 
+    \subsection{Halaman untuk Tim Admin}
+    \subsection{Halaman untuk Dosen Pengawas / Layar Proyektor}
+    \subsection{Halaman untuk Dosen Koordinator}
+% antarmuka, satu satu
 
+% bentuk foldernya
 
 \section{Pengujian Experimental}
 Pengujian experimental dilakukan dengan mendemokan pada tim Admin secara langsung. Pada pengujian
