@@ -180,11 +180,423 @@
     diimplentasi dalam React.
     
     \subsection{Halaman untuk Peserta}
-        Halaman untuk peserta akan 
+        Tangkapan layar untuk halaman peserta dapat dilihat pada Gambar \ref{fig:screenshot-peserta-blankstate},
+        \ref{fig:screenshot-peserta-standby}, \ref{fig:screenshot-peserta-open}, peringatan kesalahan
+        nama berkas pada Gambar \ref{fig:screenshot-peserta-wrong-filename}, serta fitur notifikasi pada Gambar
+        \ref{fig:screenshot-peserta-notification}.
+        
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/peserta/exam-empty.png}
+            \caption{Tangkapan layar dari halaman ujian, dengan ujian yang tidak aktif.}
+            \label{fig:screenshot-peserta-blankstate}
+        \end{figure}
+        
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/peserta/exam-standby.png}
+            \caption{Tangkapan layar dari halaman ujian, dengan ujian yang akan aktif.}
+            \label{fig:screenshot-peserta-standby}
+        \end{figure}
+        
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/peserta/exam-open.png}
+            \caption{Tangkapan layar dari halaman ujian, dengan ujian yang sedang aktif.}
+            \label{fig:screenshot-peserta-open}
+        \end{figure}
+        
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/peserta/exam-wrong-filename.png}
+            \caption{Tangkapan layar dari halaman ujian untuk peringatan nama berkas yang tidak sesuai.}
+            \label{fig:screenshot-peserta-wrong-filename}
+        \end{figure}
+        
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/peserta/exam-notif.png}
+            \caption{Tangkapan layar dari halaman ujian, bagian notifikasi.}
+            \label{fig:screenshot-peserta-notification}
+        \end{figure}
+        
+        Pada tangkapan layar halaman ujian yang tidak aktif (Gambar \ref{fig:screenshot-peserta-blankstate}), 
+        peserta akan diberikan sebuah pesan
+        yang memberitahukan bahwa tidak ada ujian yang aktif pada komputer tersebut. Selain itu, terdapat
+        sebuah pesan status penting yang menandakan versi Oxam yang sedang aktif, dan jam terakhir
+        \textit{build} pada subsistem frontend dibuat.
+        
+        Tangkapan layar halaman ujian yang akan aktif pada Gambar \ref{fig:screenshot-peserta-standby} menampilkan
+        informasi penting tentang ujian yang akan aktif. Pada gambar tersebut, terdapat beberapa bagian yang ditunjuk
+        oleh poin. Poin-poin tersebut terdiri dari
+        \begin{itemize}
+            \item Poin 1 menunjukkan informasi username peserta ujian.
+            \item Poin 2 menunjukkan menu notifikasi.
+            \item Poin 3 menunjukkan informasi ujian yang akan diadakan.
+        \end{itemize}
+        
+        Tangakapan layar halaman ujian berikutnya adalah pada saat ujian sedang berjalan, dan lembar jawaban
+        sedang dibuka. Tangkapan layar tersebut dapat dilihat pada Gambar \ref{fig:screenshot-peserta-open}.
+        Bagian pada tangkapan layar tersebut terdiri dari:
+        \begin{itemize}
+            \item Poin 1 berisi informasi singkat tentang ujian yang aktif.
+            \item Poin 2 adalah menu notifikasi dan informasi username peserta.
+            \item Poin 3 menunjukkan waktu dan lokasi tempat duduk peserta.
+            \item Poin 4 menunjukkan slot jawaban, tempat untuk mengunggah dan mengunduh berkas jawaban ujian
+                yang ada pada ujian ini.
+        \end{itemize}
+        
+        Jika peserta mengunggah berkas jawaban dengan nama berkas yang salah, peserta akan diberikan pesan peringatan untuk
+        mengkonfirmasi perubahan nama berkas secara otomatis oleh sistem, tampilan tersebut dapat dilihat pada
+        Gambar \ref{fig:screenshot-peserta-wrong-filename}.
+        
+        Tangkapan berikutnya adalah bagian bagian notifikasi. Tampilan tersebut dapat dilihat pada Gambar
+        \ref{fig:screenshot-peserta-notification}. Bagian-bagian yang terdapat pada tangkapan layar tersebut
+        terdiri dari:
+        \begin{itemize}
+            \item Poin 1 menunjukkan menu notifikasi yang tersedia.
+            \item Poin 2 menunjukkan notifikasi yang sedang dibuka.
+        \end{itemize}
+        
     \subsection{Halaman untuk Tim Admin}
+    Halaman untuk Tim Admin memiliki beberapa bagian besar yang akan dipisah berdasarkan fungsi utamanya.
+    Kelompok pertama yang akan dibahas adalah bagian otentikasi. Kemudian pembahasan akan maju ke bagian
+    ujian, lalu yang terakhir editor entitas.
+    
+    \subsubsection{Halaman Otentikasi}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/login.png}
+        \caption{Tangkapan layar halaman otentikasi}
+        \label{fig:screenshot-admin-authentication}
+    \end{figure}
+    Implementasi halaman otentikasi dapat dilihat pada Gambar \ref{fig:screenshot-admin-authentication}. Pada
+    gambar tersebut terdapat bagian-bagian yang terdiri dari
+    \begin{itemize}
+        \item Poin 1 bidang username.
+        \item Poin 2 bidang kata sandi.
+        \item Poin 3 tombol untuk login dengan IPLogin.
+        \item Poin 4 tombol untuk login dengan kredensial biasa.
+    \end{itemize}
+    
+    \subsubsection{Halaman untuk Ujian}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/ujian-list.png}
+        \caption{Tangkapan layar daftar ujian untuk admin.}
+        \label{fig:screenshot-admin-exam-list}
+    \end{figure}
+    Tangkapan layar untuk ujian pertama adalah halaman daftar ujian, dapat dilihat pada gambar
+    \ref{fig:screenshot-admin-exam-list}. Bagian yang ditujukkan pada gambar tersebut teridiri dari
+    \begin{itemize}
+        \item Poin 1 menunjukkan informasi ujian pada entri, tombol untuk melihat ujian tersebut, serta
+            tombol untuk menghapus ujian tersebut.
+        \item Poin 2 menunjukkan tombol pembuatan ujian baru.
+    \end{itemize}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/ujian-delete.png}
+        \caption{Tangkapan layar konfirmasi penghapusan ujian.}
+        \label{fig:screenshot-admin-exam-delete}
+    \end{figure}
+    Tampilan konfirmasi penghapusan ujian dapat dilihat pada Gambar \ref{fig:screenshot-admin-exam-delete}.
+    Tampilan tersebut terdiri dari informasi singkat tentang ujian dan tombol konfirmasi penghapusan
+    dan pembatalan.
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/ujian-make-1.png}
+        \caption{Tangkapan layar untuk membuat ujian, langkah pertama.}
+        \label{fig:screenshot-admin-exam-make-1}
+    \end{figure}\begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/ujian-make-2.png}
+        \caption{Tangkapan layar untuk membuat ujian, langkah kedua.}
+        \label{fig:screenshot-admin-exam-make-2}
+    \end{figure}\begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/ujian-make-3.png}
+        \caption{Tangkapan layar untuk membuat ujian, langkah ketiga.}
+        \label{fig:screenshot-admin-exam-make-3}
+    \end{figure}\begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/ujian-make-4.png}
+        \caption{Tangkapan layar untuk membuat ujian, langkah keempat.}
+        \label{fig:screenshot-admin-exam-make-4}
+    \end{figure}
+    Tampilan berikutnya adalah tampilan untuk membuat ujian baru, tampilan tersebut dapat dilihat
+    pada Gambar \ref{fig:screenshot-admin-exam-make-1}, \ref{fig:screenshot-admin-exam-make-2},
+    \ref{fig:screenshot-admin-exam-make-3}, dan \ref{fig:screenshot-admin-exam-make-4}. Bagian
+    yang ditunjukkan pada Gambar \ref{fig:screenshot-admin-exam-make-1} terdiri dari
+    \begin{itemize}
+        \item Poin 1 berisi informasi langkah yang saat ini sedang aktif.
+        \item Poin 2 adalah formulir detil ujian.
+        \item Poin 3 adalah daftar peserta, yang juga dapat diunggah dengan menggunakan file pada;
+        \item Poin 4 menunjukkan bidang pengunggahan berkas daftar peserta.
+    \end{itemize}
+    Tangkapan layar langkah kedua pada Gambar \ref{fig:screenshot-admin-exam-make-2} terdiri dari
+    \begin{itemize}
+        \item Poin 1 berisi daftar peta tempat duduk peserta pada setiap ruangan.
+    \end{itemize}
+    Sedangkan pada langkah ketiga yang dapat dilihat pada Gambar \ref{fig:screenshot-admin-exam-make-3},
+    terdiri dari
+    \begin{itemize}
+        \item Poin 1 berisi informasi singkat tentang ujian yang akan dibuat.
+        \item Poin 2 tombol konfirmasi pembuatan ujian.
+    \end{itemize}
+    Lalu, pada langkah terakhir yang dapat dilihat pada Gambar \ref{fig:screenshot-admin-exam-make-4},
+    tangkapan layar hanya akan menunjukkan konfirmasi ujian telah berhasil dibuat dan pengguna
+    diberikan sebuah tombol navigasi untuk melihat ujian.
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/ujian-detail.png}
+        \caption{Tangkapan layar untuk detil ujian}
+        \label{fig:screenshot-admin-exam-detail}
+    \end{figure}
+    Halaman detil ujian akan memiliki beberapa tombol peralatan yang dapat dilihat pada Gambar
+    \ref{fig:screenshot-admin-exam-detail}. Poin yang terlihat pada gambar tersebut terdiri dari
+    \begin{itemize}
+        \item Poin 1 menunjukkan informasi singkat tentang ujian.
+        \item Poin 2 status singkat tentang ujian, sedang dimulai dan waktu yang tersisa.
+        \item Poin 3 menunjukkan tombol-tombol peralatan yang dapat digunakan oleh Tim Admin, yang
+            teridiri dari
+            \begin{itemize}
+                \item Daftar Hadir untuk tanda tangan.
+                \item Daftar Hadir untuk ditempelkan pada pintu.
+                \item Layar Proyektor.
+                \item Unduh \textit{script}.
+                \item Pindah Peserta.
+            \end{itemize}
+        \item Poin 4 informasi singkat ujian dengan tombol pengubahnya.
+        \item Poin 5 menunjukkan fitur slot jawaban.
+        \item Poin 6 menunjukkan fitur notifikasi
+        \item Poin 7 menunjukkan fitur pelaporan otomatis.
+    \end{itemize}
+    
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/absen-pintu.png}
+        \caption{Tangkapan layar absensi untuk ditempel pada pintu.}
+        \label{fig:screenshot-admin-absen-pintu}
+    \end{figure}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/absen-ttd.png}
+        \caption{Tangkapan layar absensi untuk tanda tangan peserta.}
+        \label{fig:screenshot-admin-absen-ttd}
+    \end{figure}
+    Tampilan absensi untuk peserta dapat dilihat pada Gambar \ref{fig:screenshot-admin-absen-pintu} dan
+    \ref{fig:screenshot-admin-absen-ttd}. Pada tangkapan layar untuk absensi yang ditempel ke pintu,
+    dapat dilihat pada Gambar \ref{fig:screenshot-admin-absen-pintu}, terdiri dari
+    \begin{itemize}
+        \item Poin 1: Informasi singkat tentang ujian.
+        \item Poin 2: Daftar peserta dengan baris yang dibuat terarsir. 
+        \item Poin 3: Daftar peserta untuk ruangan lain.
+    \end{itemize}
+    Sedangkan pada absen untuk tanda tangan yang dapat dilihat pada Gambar \ref{fig:screenshot-admin-absen-ttd},
+    terdiri dari
+    \begin{itemize}
+        \item Poin 1: Informasi singkat tentang ujian.
+        \item Poin 2: Daftar peserta dengan baris yang dibuat terbingkai dan diurutkan berdasarkan nomor komputer. 
+        \item Poin 3: Daftar peserta untuk ruangan lain.
+    \end{itemize}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.3\paperwidth]{Gambar/implemented-interface/admin/ujian-minipanel.png}
+        \caption{Tangkapan layar panel perangkat bergerak.}
+        \label{fig:screenshot-admin-exam-minipanel}
+    \end{figure}
+    Tampilan berikutnya adalah tampilan panel admin mini, dapat dilihat pada Gambar
+    \ref{fig:screenshot-admin-exam-minipanel}. Tampilan tersebut memiliki poin yang menunjukkan
+    \begin{itemize}
+        \item Poin 1: Informasi singkat tentang ujian.
+        \item Poin 2: Timer ujian
+        \item Poin 3: Tombol kontrol timer ujian
+    \end{itemize}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/migrator-home.png}
+        \caption{Tangkapan layar untuk pemindah peserta.}
+        \label{fig:screenshot-admin-migrator-home}
+    \end{figure}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/migrator-picker-peserta.png}
+        \caption{Tangkapan layar untuk pemindah peserta, langkah memilih peserta.}
+        \label{fig:screenshot-admin-migrator-picker-peserta}
+    \end{figure}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/migrator-picker-komputer.png}
+        \caption{Tangkapan layar untuk pemindah peserta, langkah memilih komputer.}
+        \label{fig:screenshot-admin-picker-komputer}
+    \end{figure}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/migrator-download.png}
+        \caption{Tangkapan layar untuk pemindah peserta, langkah mengunduh \textit{script}.}
+        \label{fig:screenshot-admin-picker-download}
+    \end{figure}
+    Fitur untuk memindahkan tempat duduk peserta dapat dilihat pada gambar \ref{fig:screenshot-admin-migrator-home},
+    \ref{fig:screenshot-admin-migrator-picker-peserta}, \ref{fig:screenshot-admin-picker-komputer}, dan 
+    \ref{fig:screenshot-admin-picker-download}.
+    Pada gambar-gambar tersebut terdapat poin-poin yang menunjukkan beberapa bagian tertentu pada tangkapan layar tersebut.
+    Poin-poin tersebut terdiri dari
+    \begin{itemize}
+        \item Poin 1: Tombol tambah untuk mencari peserta yang akan dipindahkan.
+        \item Poin 2: Daftar peserta yang akan dipindahkan, dan lokasi baru yang akan peserta dapatkan.
+        \item Poin 3: Tombol aksi untuk melakukan pemindahan dan buat sript, serta tombol batal.
+        \item Poin 4: Berisi bidang pencarian peserta cepat.
+        \item Poin 5: Daftar peserta yang ada pada ujian ini.
+        \item Poin 6: NPM peserta yang akan dipindah.
+        \item Poin 7: Peta tempat duduk ruangan untuk memilih komputer baru.
+        \item Poin 8: Pengunduhan \textit{script}.
+    \end{itemize}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/timer-admin.png}
+        \caption{Tangkapan layar untuk layar proyektor Admin.}
+        \label{fig:screenshot-admin-exam-projector}
+    \end{figure}
+    Tampilan layar proyektor untuk peran admin dapat dilihat pada Gambar \ref{fig:screenshot-admin-exam-projector}.
+    Pada bagian tersebut terlihat beberapa poin yang terdiri dari
+    \begin{itemize}
+        \item Poin 1: Informasi singkat ujian dan total durasi.
+        \item Poin 2: Timer sisa waktu ujian.
+        \item Poin 3: Tombol kontrol timer.
+    \end{itemize}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/ujian-slot-tambah.png}
+        \caption{Tangkapan layar untuk slot jawaban. \\ (A) untuk menambahkan slot jawaban, (B) untuk menghapus slot jawaban.}
+        \label{fig:screenshot-admin-slot-jawab}
+    \end{figure}
+    Tangkapan layar berikutnya adalah fitur untuk slot jawaban. Pada Gambar \ref{fig:screenshot-admin-slot-jawab}
+    bagian A, modal akan menanyakan format jawaban yang ingin ditambahkan dan tombol aksinya. Sedangkan bagian
+    B menunjukkan modal konfirmasi penghapusan slot jawaban tersebut serta tombol aksinya.
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/ujian-notifikasi.png}
+        \caption{Tangkapan layar untuk fitur notifikasi. \\ (A) modal pemilihan jenis. (B) modal notifikasi kata sandi. (C) modal untuk notifikasi lainnya.}
+        \label{fig:screenshot-admin-notif}
+    \end{figure}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/ujian-notifikasi-delete.png}
+        \caption{Tangkapan layar untuk konfirmasi penghapusan notifikasi.}
+        \label{fig:screenshot-admin-notif-delete}
+    \end{figure}
+    Hasil implementasi untuk fitur notifikasi dapat dilihat pada Gambar \ref{fig:screenshot-admin-notif} dan
+    \ref{fig:screenshot-admin-notif-delete}. Tangkapan layar dengan bagian A, B dan C pada Gambar 
+    \ref{fig:screenshot-admin-notif} memiliki poin-poin yang terdiri dari
+    \begin{itemize}
+        \item Poin 1: Tombol jenis notifikasi kata sandi.
+        \item Poin 2: Tombol jenis notifikasi lainnya.
+        \item Poin 3: Bidang nama layanan untuk kredensial yang akan dibagikan.
+        \item Poin 4: Bidang daftar kredensial tersebut.
+        \item Poin 5: Pratinjau dari daftar kredensial yang akan dibagian.
+        \item Poin 6: Bidang judul notifikasi jenis lainnya.
+        \item Poin 7: Daftar penerima notifikasi.
+        \item Poin 8: Badan notifikasi untuk jenis lainnya.
+    \end{itemize}
+    Sedangkan pada Gambar \ref{fig:screenshot-admin-notif-delete}, modal konfirmasi penghapusan akan menampilkan
+    informasi badan notifikasi dan tombol aksi penghapusan atau pembatalan.
+    
+    \subsubsection{Pengelolaan Entitas}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/entity-lister.png}
+        \caption{Tangkapan layar untuk daftar entri pada entitas.}
+        \label{fig:screenshot-admin-entity-list}
+    \end{figure}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/entity-editor.png}
+        \caption{Tangkapan layar untuk \textit{editor} entri}
+        \label{fig:screenshot-admin-entity-edit}
+    \end{figure}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/implemented-interface/admin/entity-delete.png}
+        \caption{Tangkapan layar untuk konfirmasi penghapusan entri.}
+        \label{fig:screenshot-admin-entity-delete}
+    \end{figure}
+    Hasil implementasi untuk fitur pengelolaan entitas dapat dilihat pada Gambar \ref{fig:screenshot-admin-entity-list},
+    \ref{fig:screenshot-admin-entity-edit}, dan \ref{fig:screenshot-admin-entity-delete}.
+    Pada gambar-gambar tersebut terdapat beberapa poin yang terdiri dari
+    \begin{itemize}
+        \item Poin 1: Tombol membuat entri baru
+        \item Poin 2: Daftar entri yang terdapat pada entitas ini, dengan tombol ubah dan hapus.
+        \item Poin 3: Informasi ID entri yang akan diubah.
+        \item Poin 4: Formulir data yang terdapat pada entri.
+        \item Poin 5: Tombol aksi simpan dan hapus.
+        \item Poin 6: Tabel data yang terdapat pada entri.
+        \item Poin 7: Tombol aksi untuk menghapus dan batalkan penghapusan.
+    \end{itemize}
+    
+    
     \subsection{Halaman untuk Dosen Pengawas / Layar Proyektor}
-    \subsection{Halaman untuk Dosen Koordinator}
-% antarmuka, satu satu
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/implemented-interface/pengawas/seatmap.png}
+        \caption{Tangkapan layar untuk tampilan }
+        \label{fig:screenshot-pengawas-seatmap}
+    \end{figure}
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/implemented-interface/pengawas/timer.png}
+        \caption{Tangkapan layar untuk tampilan }
+        \label{fig:screenshot-pengawas-timer}
+    \end{figure}
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/implemented-interface/pengawas/overtime.png}
+        \caption{Tangkapan layar untuk tampilan }
+        \label{fig:screenshot-pengawas-overtime}
+    \end{figure}
+    Fitur yang digunakan untuk dosen pengawas dapat dilihat hasil implementasinya pada
+    Gambar \ref{fig:screenshot-pengawas-seatmap}, \ref{fig:screenshot-pengawas-timer}, dan
+    \ref{fig:screenshot-pengawas-overtime}. Gambar tersebut terdiri dari poin-poin sebagai berikut
+    \begin{itemize}
+        \item Poin 1: Tombol navigasi untuk peta tempat duduk.
+        \item Poin 2: Tombol navigasi untuk timer ujian.
+        \item Poin 3: Informasi singkat ujian.
+        \item Poin 4: Informasi durasi ujian.
+        \item Poin 5: Nama mata kuliah ujian
+        \item Poin 6: Tombol kontrol timer.
+        \item Poin 7: Tombol penambahan waktu lebih untuk ujian.
+        \item Poin 8: Nama ruangan yang terbuhung dengan komputer ini.
+        \item Poin 9: Denah tempat duduk ruangan.
+        \item Poin 10: Informasi ujian singkat untuk konfirmasi.
+        \item Poin 11: Bidang banyak menit yang diberikan.
+        \item Poin 12: Tombol aksi tambah dan pembatalan.
+    \end{itemize}
+    
+    
+    
+    \subsection{Halaman Tambahan untuk Dosen Koordinator}
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/implemented-interface/extra/extractor-email.png}
+        \caption{Tangkapan layar untuk tampilan }
+        \label{fig:screenshot-extra-}
+    \end{figure}
+    \begin{figure}
+        \centering
+        \includegraphics{Gambar/implemented-interface/extra/extractor-email.png}
+        \caption{Tangkapan layar untuk tampilan }
+        \label{fig:screenshot-extra-}
+    \end{figure}
+
+    \subsection{Bentuk Struktur Direktori Penyimpanan Ujian}
 
 % bentuk foldernya
 
