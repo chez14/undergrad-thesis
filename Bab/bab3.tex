@@ -713,17 +713,71 @@ FatFree Framework atau F3 akan digunakan untuk penelitan ini.
     dibutuhkan dikemudian hari.
 
 \section{Analisis Pengguna}
-\begin{figure}
+\begin{figure}[thb]
     \centering
-    \includegraphics[width=0.75\paperwidth]{Gambar/UseCase - RevB.pdf}
+    \includegraphics[width=0.6\paperwidth]{Gambar/UseCase - RevB.pdf}
     \caption{Diagram \textit{Use Case} untuk aplikasi Oxam yang baru.}
     \label{fig:diagram_usecase}
 \end{figure}
 
-Pengguna aplikasi sistem Oxam yang ada saat ini terdapat empat pihak utama.
+Pengguna aplikasi sistem Oxam yang ada saat ini terdapat tiga pihak utama.
 Pihak pertama adalah Tim Admin yang bertugas untuk menyiapkan ruangan
-untuk ujian. Pihak kedua
+untuk ujian. Pihak kedua adalah peserta. Peserta adalah subjek yang akan
+menggunakan ruangan ujian. Pihak ketiga adalah dosen. Dosen terdiri dari
+dua tugas, dosen pengawas, dan dosen koordinator. Dosen pengawas akan melakukan
+pengawasan terhadap pelaksanaan ujian, sedangkan dosen koordinator adalah
+dosen yang akan memberikan ujian, dan mengkoodinasikan dosen pengawas.
 
+Diagram \textit{use case} dari aplikasi ini dapat dilihat pada Gambar 
+\ref{fig:diagram_usecase}. Pada diagram terdapat empat kasus penggunaan berdasarkan
+perannya. Untuk peran dosen, peran dibagi menjadi dua berdasarkan tugasnya. 
+Informasi lengkap tentang penggunaan tiap peran dapat dilihat pada Tabel \ref{tab:usecase_desc}.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabularx}{\textwidth}{|p{1.2cm}|p{2cm}|X|}
+         \hline
+         Nomor & Peran & Deskripsi  \\
+         \hline
+         P1 & Peserta & Peserta dapat mengunduh berkas jawaban yang telah mereka unggah. \\
+         \hline
+         P2 & Peserta & Peserta dapat mengunggah berkas jawaban pada slot jawaban yang tersedia. \\
+         \hline
+         P3 & Peserta & Peserta dapat membaca notifikasi yang diberikan oleh sistem. \\
+         \hline
+         P4 & Peserta & Peserta dapat melihat informasi ujian. \\
+         \hline
+         A1 & Admin & Tim Admin akan dapat mengunduh seluruh jawaban yang telah peserta unggah. \\
+         \hline
+         A2 & Admin & Tim Admin dapat mengirimkan jawaban yang telah peserta unggah, secara manual ataupun terjadwal. \\
+         \hline
+         A3 & Admin & Tim Admin dapat membuat, menghapus, mengubah notifikasi pada ujian tertentu. \\
+         \hline
+         A4 & Admin & Tim Admin dapat membuat, menghapus, mengubah ujian. \\
+         \hline
+         A5 & Admin & Tim Admin dapat mencetak daftar tempat duduk peserta ujian. \\
+         \hline
+         A6 & Admin & Tim Admin dapat memindahkan posisi peserta. \\
+         \hline
+         A7 & Admin & Tim Admin dapat mengunduh \textit{script} yang diperlukan. \\
+         \hline
+         A8 & Admin & Tim Admin dapat membuat, menghapus dan mengubah data entri entitas yang tersedia pada sistem. \\
+         \hline
+         A9 & Admin & Tim Admin dapat menghentikan, memulai, dan menyetel ulang timer ujian. \\
+         \hline
+         Z & Admin dan Dosen Pengawas & Tim Admin dan Dosen pengawas dapat membuka menutup tempat pengumpulan ujian dengan
+         memulai atau menutup timer ujian. \\
+         \hline
+         D1 & Dosen Pengawas & Dosen pengawas dapat melihat informasi ujian. \\
+         \hline
+         D2 & Dosen Pengawas & Dosen dapat menghentikan, memulai, dan menyetel ulang timer ujian. \\
+         \hline
+         K1 & Dosen Koordinator & Dosen koordinator dapat mengunduh berkas jawaban peserta. \\
+         \hline
+    \end{tabularx}
+    \caption{Tabel deskripsi lengkap \textit{use case} untuk setiap peran.}
+    \label{tab:usecase_desc}
+\end{table}
 %% TODO: FIX EXPLANATION
 Pengguna sistem ini nantinya akan terdiri dari empat pihak. Pihak pertama, Pihak
 Administrator. Administrator adalah salah satu pengguna yang memiliki hak akses
