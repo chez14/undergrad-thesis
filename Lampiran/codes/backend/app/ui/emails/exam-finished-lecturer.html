@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Finished</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Yth. Bapak/Ibu dosen,</p>
+    <p>
+        Berkas ujian yang telah di laksanakan di laboratorium untuk mata kuliah
+        <b>{{@email.exam->lecture->lecture_code}} - {{@email.exam->lecture->name}}</b> sudah tersedia untuk diunduh.
+        <br />
+        Karena alasan keamanan, berkas hanya dapat diunduh via link yang dikirimkan pada email ini. Mohon segera di
+        akses sebelum tautan kadaluarsa.
+    </p>
+    <p>
+        <a href="{{@email.link}}">{{@email.link}}</a>
+        <br />
+        <small>
+            Tidak dapat diklik? Salin-tempel link tersebut pada peramban.
+        </small>
+    </p>
+    <p>
+        Link tersebut akan aktif hingga <b>{{strftime("%c", strtotime(@email.examreport->valid_until))}}</b>.
+        Untuk informasi lebih lanjut, anda dapat menghubungi Tim Administrator.
+        <br />
+        Terima kasih.
+    </p>
+    <p>
+        Salam,<br />
+        Sistem Oxam
+    </p>
+    <hr />
+    <p>
+        <small>
+            Email ini dikirimkan secara otomatis oleh sistem <a href="https://gitlab.com/ftis-admin/oxam">Oxam</a>.
+            Tautan tertera pada email bersifat sensitif dan harus diperlakukan seperti kata sandi.
+        </small>
+    </p>
+</body>
+
+</html>

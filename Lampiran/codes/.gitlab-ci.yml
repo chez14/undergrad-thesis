@@ -1,0 +1,180 @@
+stages:
+  - test
+  - prebuild
+  - build
+  - deploy
+
+.exceptions: &dont_run_things_in_this_job
+  except:
+    - "build/stagging"
+    - "build/production"
+
+# variable buat service
+variables:
+  MYSQL_ROOT_PASSWORD: root
+  MYSQL_USER: homestead
+  MYSQL_PASSWORD: secret
+  MYSQL_DATABASE: homestead
+  DB_HOST: mysql
+
+# test buat frontend
+test:frontend:
+  stage: test
+  image: node:12.18
+  before_script:
+    - cd frontend
+    - yarn install
+  script:
+    - CI=true yarn run test
+    - CI=true REACT_APP_BUILD_COMMIT=$CI_COMMIT_SHORT_SHA REACT_APP_BUILD_DATE=$(date +"%F %T") yarn run build
+  <<: *dont_run_things_in_this_job
+
+# ==============================================================================
+# build frontend, buat testing doang
+# build:frontend:
+#   stage: prebuild
+#   image: node:12.18
+#   before_script:
+#     - cd frontend
+#     - yarn install
+#   script:
+#     - CI=true yarn run build
+#     - mv ./build/* ../backend/public_html/
+#   artifacts:
+#     paths:
+#       - frontend/build/*
+#   <<: *dont_run_things_in_this_job
+#   cache:
+#     key: yarn-test-cache
+#     paths:
+#       - frontend/node_modules/
+
+.backend_test_template: &backend_tester
+  stage: test
+  services:
+    - mysql:5.7
+  before_script:
+    - cd backend
+    - composer install --prefer-dist --no-ansi --no-interaction --no-progress
+  script:
+    - composer run-script pretest
+    - composer run-script test
+  <<: *dont_run_things_in_this_job
+
+# test buat support php7.3
+test:backend:php7.3:
+  image: edbizarro/gitlab-ci-pipeline-php:7.3-alpine
+  <<: *backend_tester
+  <<: *dont_run_things_in_this_job
+  cache:
+    key: php7-test-cache
+    paths:
+      - backend/vendor/
+
+# ==============================================================================
+# test integrasi doang
+# finalisasi:
+#   stage: integration-test
+#   dependencies:
+#     - build:frontend
+#     - test:backend:php7.1
+
+.deployable: &deployable
+  stage: build
+  image: node:12.18
+  dependencies: []
+  before_script:
+    - apt-get update -y
+    - "which ssh-agent || ( apt-get install openssh-client -y )"
+    - "which sshpass || ( apt-get install sshpass -y )"
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$GIT_SSH_PRIV_KEY")
+    - mkdir -p ~/.ssh
+    - cat ./.gitlab/known-hosts >> ~/.ssh/known_hosts
+    - git config --global user.email "repurika@bot.christianto.net"
+    - git config --global user.name "Replica レプリカ"
+    - git remote set-url origin "git@gitlab.com:${CI_PROJECT_PATH}.git"
+    - "which gpg || ( apt-get install gnupg2 -y )"
+    - echo "${GIT_PGP_PRIV_KEY}" | gpg --no-tty --batch --import
+    - git config user.signingkey 221D5347423ABB8694FEF18CB728857822EEB347
+  script:
+    - (git checkout $DEPLOY_TO_BRANCH && git pull) || git checkout -b $DEPLOY_TO_BRANCH
+    - git merge origin/master -X theirs
+    - rm -rfv ./backend/public_html
+    - mkdir ./backend/public_html
+    - git checkout -q backend/public_html/index.php
+    - git checkout -q backend/public_html/.htaccess
+    - cd frontend
+    - npm install -g json
+    - json -I -f package.json -e "this.homepage=\"${DEPLOY_HOMEPAGE}\""
+    - yarn install
+    - CI=true REACT_APP_BUILD_COMMIT=$CI_COMMIT_SHORT_SHA REACT_APP_BUILD_DATE=$(date +"%F %T") yarn run build
+    - mv build/* ../backend/public_html/
+    - git add --all
+    - (git commit -a -S -m "CI/CD build for ${CI_COMMIT_SHA}") || echo "Nothing's need to be commited."
+    - git push --force -u origin $DEPLOY_TO_BRANCH
+  only:
+    - master
+  cache:
+    key: production-cache
+    paths:
+      - frontend/node_modules
+
+# ==============================================================================
+# deploy ke development server
+stagging:build:
+  <<: *deployable
+  variables:
+    DEPLOY_HOMEPAGE: "https://bleeding-edge.oxam.ftis"
+    DEPLOY_TO_BRANCH: "build/stagging"
+  environment:
+    name: "Leo - Stagging"
+    url: "https://bleeding-edge.oxam.ftis/"
+    
+
+stagging:deploy:
+  image: alpine:3.11
+  stage: deploy
+  dependencies:
+    - stagging:build
+  script:
+    - "which ssh-agent || ( apk update && apk add openssh-client )"
+    - mkdir -p ~/.ssh
+    - cat ./.gitlab/known-hosts >> ~/.ssh/known_hosts
+    - eval $(ssh-agent -s)
+    - cat $SSH_DEPLOY_KEY | tr -d '\r' | ssh-add -
+    - ssh $SSH_HOST "cd ${DEPLOY_STAGGING} && git pull && sh ./.gitlab/post-pull.sh"
+  only:
+    - master
+  environment:
+    name: "Leo - Stagging"
+    url: "https://bleeding-edge.oxam.ftis/"
+# ==============================================================================
+# deploy ke production server
+production:build:
+  <<: *deployable
+  variables:
+    DEPLOY_HOMEPAGE: "https://oxam.ftis"
+    DEPLOY_TO_BRANCH: "build/production"
+  environment:
+    name: "Leo - Production"
+    url: "https://oxam.ftis/"
+
+production:deploy:
+  image: alpine:3.11
+  stage: deploy
+  dependencies:
+    - production:build
+  script:
+    - "which ssh-agent || ( apk update && apk add openssh-client )"
+    - mkdir -p ~/.ssh
+    - cat ./.gitlab/known-hosts >> ~/.ssh/known_hosts
+    - eval $(ssh-agent -s)
+    - cat $SSH_DEPLOY_KEY | tr -d '\r' | ssh-add -
+    - ssh $SSH_HOST "cd ${DEPLOY_PRODUCTION} && git pull && sh ./.gitlab/post-pull.sh"
+  only:
+    - master
+  when: manual
+  environment:
+    name: "Leo - Production"
+    url: "https://oxam.ftis/"
