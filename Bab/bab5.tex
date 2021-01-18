@@ -454,7 +454,7 @@
 
 % bentuk foldernya
     \subsection{Bentuk Struktur Direktori Penyimpanan Ujian}
-    \begin{figure}[hb]
+    \begin{figure}[htb]
         \centering
         \includegraphics[width=0.6\paperwidth]{Gambar/Screenshot 2021-01-16 014010.png}
         \caption{Tampilan daftar direktori pada sistem backend aplikasi Oxam.}
@@ -542,24 +542,26 @@ atau tidak. Tes-tes tersebut terdiri dari
 \begin{enumerate}
     \item Otentikasi\\
         Memastikan fitur kelas utama otentikasi dapat berjalan dengan semestinya.\\
-        \begin{tabularx}{0.9\textwidth}{|X|X|X|X|X|}
+        \begin{longtable}{|p{0.24\textwidth}|p{0.15\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|p{0.07\textwidth}|}
             \hline
             \textit{Test Step} & \textit{Preconditions} & Ekspektasi Hasil & Hasil Didapatkan & Status  \\
             \hline
+            \endhead
             Login dengan kata sandi yang salah harus ditolak. & Username benar dan kata sandi salah. & Mengeluarkan Eksepsi & Eksepsi didapatkan & Lolos \\
             \hline
             Login dengan username yang salah harus ditolak. & Username salah dan kata sandi benar. & Mengeluarkan Eksepsi & Eksepsi didapatkan & Lolos \\
             \hline
             Login dengan kredensial yang benar harus diterima. & Username dan kata sandi benar & Kelas mengembalikan nilai \texttt{true} & Kelas mengembalikan nilai \texttt{true} & Lolos \\
             \hline
-        \end{tabularx}
+        \end{longtable}
         
     \item Ujian tanpa \textit{shift}\\
         Memastikan fungsi yang bertugas untuk memetakan ujian dasar dapat berjalan sesuai ekspektasi.\\
-         \begin{tabularx}{0.9\textwidth}{|X|X|X|X|X|}
+         \begin{longtable}{|p{0.24\textwidth}|p{0.15\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|p{0.07\textwidth}|}
             \hline
             \textit{Test Step} & \textit{Preconditions} & Ekspektasi Hasil & Hasil Didapatkan & Status  \\
             \hline
+            \endhead
             
             \multicolumn{5}{|l|}{\textbf{Ujian yang aktif hanya akan muncul pada saat \textit{flag} \texttt{upcoming} dimatikan.}}\\
             \hline
@@ -589,15 +591,16 @@ atau tidak. Tes-tes tersebut terdiri dari
             Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} tidak aktif. &
             Ujian sedang aktif. & Tidak mengeluarkan ujian apapun & Ujian tidak didapatkan & Lolos \\
             \hline
-        \end{tabularx}
-        
+        \end{longtable}
     \item Ujian dengan \textit{shift}\\
         Memastikan fungsi yang bertugas untuk memetakan ujian dengan \textit{shift} dapat berjalan sesuai ekspektasi.\\
         
-        \begin{tabularx}{0.9\textwidth}{|X|X|X|X|X|}
+        \begin{longtable}{|p{0.24\textwidth}|p{0.15\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|p{0.07\textwidth}|}
             \hline
             \textit{Test Step} & \textit{Preconditions} & Ekspektasi Hasil & Hasil Didapatkan & Status  \\
             \hline
+            \endhead
+            
             %% CASE 1
             \multicolumn{5}{|p{0.8\textwidth}|}{\textbf{Kedua \textit{shift} akan aktif.}}\\
             \hline
@@ -637,9 +640,6 @@ atau tidak. Tes-tes tersebut terdiri dari
             Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} tidak aktif. &
             \textit{Shift} 1 selesai dan \textit{shift} 2 aktif & Ujian \textit{shift} 2 didapatkan. & Ujian \textit{shift} 2 didapatkan. & Lolos \\
             \hline
-        \end{tabularx}\\
-        \begin{tabularx}{0.9\textwidth}{|X|X|X|X|X|}
-            \hline
             \textit{Test Step} & \textit{Preconditions} & Ekspektasi Hasil & Hasil Didapatkan & Status  \\
             \hline
             %% CASE 5
@@ -651,7 +651,7 @@ atau tidak. Tes-tes tersebut terdiri dari
             Melakukan pemanggilan model dengan \textit{query} \textit{flag} \texttt{upcoming} tidak aktif. &
             \textit{Shift} 1 selesai dan \textit{shift} 2 selesai & Tidak ada ujian yang didapatkan. & Tidak ada ujian yang didapatkan. & Lolos \\
             \hline
-        \end{tabularx}
+        \end{longtable}
         
 \end{enumerate}
 
@@ -660,7 +660,7 @@ atau tidak. Tes-tes tersebut terdiri dari
     Berdasarkan
     kuisioner yang telah dilakukan, didapatkan rata-rata nilai kepuasan terhadap sistem yang baru dengan
     rincian yang dapat dilihat pada tabel \ref{tab:survey-avg}.
-    \begin{table}[hb]
+    \begin{table}[tb]
         \centering
         \begin{tabularx}{\textwidth}{|X|X|}
             \hline
