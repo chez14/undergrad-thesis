@@ -2,19 +2,6 @@
 \label{chap:implementasi-pengujian}
 
 \section{Implementasi}
-
-\subsection{Lingkungan Implementasi Perangkat Keras}
-    Aplikasi pendukung sistem ujian Oxam akan dijalankan dengan menggunakan \textit{server} milik lab. 
-    Spesifikasi perangkat keras yang digunakan adalah sebagai berikut:
-    \begin{itemize}
-        \item \textit{Processor}:\\ Intel\textsuperscript{\textregistered} Xeon\textsuperscript{\textregistered} CPU E5-2603 v4 @ 1.70GHz
-        
-        \item \textit{RAM}:\\ 1$\times$8GB DDR4 @ 2400MHz 
-        
-        \item \textit{Storage}:\\ 2$\times$HPE 1TB 6G SATA 
-            7.2K rpm LFF (3.5in) MB001000GWFGF Hard Drive
-    \end{itemize}
-    
     \subsection{Lingkungan Implementasi Perangkat Lunak}
     Aplikasi pendukung sistem ujian Oxam akan diimplementasi dengan spesifikasi berikut:
     \begin{itemize}
@@ -175,9 +162,9 @@
     \end{itemize}
 
 
-\section{Hasil Implementasi}
+\subsection{Hasil Implementasi}
     Pada bagian ini hasil implementasi sistem akan dijelaskan dengan bantuan tampilan antarmuka yang telah
-    diimplentasi dalam React.
+    diimplentasi dalam Reactjs.
     
     \subsection{Halaman untuk Peserta}
         Tangkapan layar untuk halaman peserta dapat dilihat pada Gambar \ref{fig:screenshot-peserta-blankstate},
@@ -227,36 +214,15 @@
         \textit{build} pada subsistem frontend dibuat.
         
         Tangkapan layar halaman ujian yang akan aktif pada Gambar \ref{fig:screenshot-peserta-standby} menampilkan
-        informasi penting tentang ujian yang akan aktif. Pada gambar tersebut, terdapat beberapa bagian yang ditunjuk
-        oleh poin. Poin-poin tersebut terdiri dari
-        \begin{itemize}
-            \item Poin 1 menunjukkan informasi username peserta ujian.
-            \item Poin 2 menunjukkan menu notifikasi.
-            \item Poin 3 menunjukkan informasi ujian yang akan diadakan.
-        \end{itemize}
-        
-        Tangakapan layar halaman ujian berikutnya adalah pada saat ujian sedang berjalan, dan lembar jawaban
+        informasi penting tentang ujian yang akan aktif. Tangakapan layar halaman ujian berikutnya adalah pada saat ujian sedang berjalan, dan lembar jawaban
         sedang dibuka. Tangkapan layar tersebut dapat dilihat pada Gambar \ref{fig:screenshot-peserta-open}.
-        Bagian pada tangkapan layar tersebut terdiri dari:
-        \begin{itemize}
-            \item Poin 1 berisi informasi singkat tentang ujian yang aktif.
-            \item Poin 2 adalah menu notifikasi dan informasi username peserta.
-            \item Poin 3 menunjukkan waktu dan lokasi tempat duduk peserta.
-            \item Poin 4 menunjukkan slot jawaban, tempat untuk mengunggah dan mengunduh berkas jawaban ujian
-                yang ada pada ujian ini.
-        \end{itemize}
         
         Jika peserta mengunggah berkas jawaban dengan nama berkas yang salah, peserta akan diberikan pesan peringatan untuk
         mengkonfirmasi perubahan nama berkas secara otomatis oleh sistem, tampilan tersebut dapat dilihat pada
         Gambar \ref{fig:screenshot-peserta-wrong-filename}.
         
         Tangkapan berikutnya adalah bagian bagian notifikasi. Tampilan tersebut dapat dilihat pada Gambar
-        \ref{fig:screenshot-peserta-notification}. Bagian-bagian yang terdapat pada tangkapan layar tersebut
-        terdiri dari:
-        \begin{itemize}
-            \item Poin 1 menunjukkan menu notifikasi yang tersedia.
-            \item Poin 2 menunjukkan notifikasi yang sedang dibuka.
-        \end{itemize}
+        \ref{fig:screenshot-peserta-notification}.
         
     \subsection{Halaman untuk Tim Admin}
     Halaman untuk Tim Admin memiliki beberapa bagian besar yang akan dipisah berdasarkan fungsi utamanya.
@@ -270,14 +236,7 @@
         \caption{Tangkapan layar halaman otentikasi}
         \label{fig:screenshot-admin-authentication}
     \end{figure}
-    Implementasi halaman otentikasi dapat dilihat pada Gambar \ref{fig:screenshot-admin-authentication}. Pada
-    gambar tersebut terdapat bagian-bagian yang terdiri dari
-    \begin{itemize}
-        \item Poin 1 bidang username.
-        \item Poin 2 bidang kata sandi.
-        \item Poin 3 tombol untuk login dengan IPLogin.
-        \item Poin 4 tombol untuk login dengan kredensial biasa.
-    \end{itemize}
+    Implementasi halaman otentikasi dapat dilihat pada Gambar \ref{fig:screenshot-admin-authentication}.
     
     \subsubsection{Halaman untuk Ujian}
     \begin{figure}
@@ -287,12 +246,7 @@
         \label{fig:screenshot-admin-exam-list}
     \end{figure}
     Tangkapan layar untuk ujian pertama adalah halaman daftar ujian, dapat dilihat pada gambar
-    \ref{fig:screenshot-admin-exam-list}. Bagian yang ditujukkan pada gambar tersebut teridiri dari
-    \begin{itemize}
-        \item Poin 1 menunjukkan informasi ujian pada entri, tombol untuk melihat ujian tersebut, serta
-            tombol untuk menghapus ujian tersebut.
-        \item Poin 2 menunjukkan tombol pembuatan ujian baru.
-    \end{itemize}
+    \ref{fig:screenshot-admin-exam-list}.
     
     \begin{figure}
         \centering
@@ -326,28 +280,11 @@
         \label{fig:screenshot-admin-exam-make-4}
     \end{figure}
     Tampilan berikutnya adalah tampilan untuk membuat ujian baru, tampilan tersebut dapat dilihat
-    pada Gambar \ref{fig:screenshot-admin-exam-make-1}, \ref{fig:screenshot-admin-exam-make-2},
-    \ref{fig:screenshot-admin-exam-make-3}, dan \ref{fig:screenshot-admin-exam-make-4}. Bagian
-    yang ditunjukkan pada Gambar \ref{fig:screenshot-admin-exam-make-1} terdiri dari
-    \begin{itemize}
-        \item Poin 1 berisi informasi langkah yang saat ini sedang aktif.
-        \item Poin 2 adalah formulir detil ujian.
-        \item Poin 3 adalah daftar peserta, yang juga dapat diunggah dengan menggunakan file pada;
-        \item Poin 4 menunjukkan bidang pengunggahan berkas daftar peserta.
-    \end{itemize}
-    Tangkapan layar langkah kedua pada Gambar \ref{fig:screenshot-admin-exam-make-2} terdiri dari
-    \begin{itemize}
-        \item Poin 1 berisi daftar peta tempat duduk peserta pada setiap ruangan.
-    \end{itemize}
-    Sedangkan pada langkah ketiga yang dapat dilihat pada Gambar \ref{fig:screenshot-admin-exam-make-3},
-    terdiri dari
-    \begin{itemize}
-        \item Poin 1 berisi informasi singkat tentang ujian yang akan dibuat.
-        \item Poin 2 tombol konfirmasi pembuatan ujian.
-    \end{itemize}
-    Lalu, pada langkah terakhir yang dapat dilihat pada Gambar \ref{fig:screenshot-admin-exam-make-4},
-    tangkapan layar hanya akan menunjukkan konfirmasi ujian telah berhasil dibuat dan pengguna
-    diberikan sebuah tombol navigasi untuk melihat ujian.
+    pada Gambar \ref{fig:screenshot-admin-exam-make-1}, langkah kedua pada Gambar \ref{fig:screenshot-admin-exam-make-2},
+    ketiga pada Gambar \ref{fig:screenshot-admin-exam-make-3}, dan langkah terakhir pada Gambar
+    \ref{fig:screenshot-admin-exam-make-4}.
+    Pada langkah terakhir, tangkapan layar hanya akan menunjukkan konfirmasi ujian telah berhasil dibuat 
+    dan pengguna diberikan sebuah tombol navigasi untuk melihat ujian.
     
     \begin{figure}
         \centering
@@ -356,24 +293,7 @@
         \label{fig:screenshot-admin-exam-detail}
     \end{figure}
     Halaman detil ujian akan memiliki beberapa tombol peralatan yang dapat dilihat pada Gambar
-    \ref{fig:screenshot-admin-exam-detail}. Poin yang terlihat pada gambar tersebut terdiri dari
-    \begin{itemize}
-        \item Poin 1 menunjukkan informasi singkat tentang ujian.
-        \item Poin 2 status singkat tentang ujian, sedang dimulai dan waktu yang tersisa.
-        \item Poin 3 menunjukkan tombol-tombol peralatan yang dapat digunakan oleh Tim Admin, yang
-            teridiri dari
-            \begin{itemize}
-                \item Daftar Hadir untuk tanda tangan.
-                \item Daftar Hadir untuk ditempelkan pada pintu.
-                \item Layar Proyektor.
-                \item Unduh \textit{script}.
-                \item Pindah Peserta.
-            \end{itemize}
-        \item Poin 4 informasi singkat ujian dengan tombol pengubahnya.
-        \item Poin 5 menunjukkan fitur slot jawaban.
-        \item Poin 6 menunjukkan fitur notifikasi
-        \item Poin 7 menunjukkan fitur pelaporan otomatis.
-    \end{itemize}
+    \ref{fig:screenshot-admin-exam-detail}.
     
     
     \begin{figure}
@@ -389,20 +309,10 @@
         \label{fig:screenshot-admin-absen-ttd}
     \end{figure}
     Tampilan absensi untuk peserta dapat dilihat pada Gambar \ref{fig:screenshot-admin-absen-pintu} dan
-    \ref{fig:screenshot-admin-absen-ttd}. Pada tangkapan layar untuk absensi yang ditempel ke pintu,
-    dapat dilihat pada Gambar \ref{fig:screenshot-admin-absen-pintu}, terdiri dari
-    \begin{itemize}
-        \item Poin 1: Informasi singkat tentang ujian.
-        \item Poin 2: Daftar peserta dengan baris yang dibuat terarsir. 
-        \item Poin 3: Daftar peserta untuk ruangan lain.
-    \end{itemize}
-    Sedangkan pada absen untuk tanda tangan yang dapat dilihat pada Gambar \ref{fig:screenshot-admin-absen-ttd},
-    terdiri dari
-    \begin{itemize}
-        \item Poin 1: Informasi singkat tentang ujian.
-        \item Poin 2: Daftar peserta dengan baris yang dibuat terbingkai dan diurutkan berdasarkan nomor komputer. 
-        \item Poin 3: Daftar peserta untuk ruangan lain.
-    \end{itemize}
+    \ref{fig:screenshot-admin-absen-ttd}. Tangkapan layar untuk absensi yang ditempel ke pintu
+    dapat dilihat pada Gambar \ref{fig:screenshot-admin-absen-pintu}.
+    Sedangkan absen untuk tanda tangan peserta ujian dapat dilihat pada Gambar 
+    \ref{fig:screenshot-admin-absen-ttd}.
     
     \begin{figure}
         \centering
@@ -411,12 +321,7 @@
         \label{fig:screenshot-admin-exam-minipanel}
     \end{figure}
     Tampilan berikutnya adalah tampilan panel admin mini, dapat dilihat pada Gambar
-    \ref{fig:screenshot-admin-exam-minipanel}. Tampilan tersebut memiliki poin yang menunjukkan
-    \begin{itemize}
-        \item Poin 1: Informasi singkat tentang ujian.
-        \item Poin 2: Timer ujian
-        \item Poin 3: Tombol kontrol timer ujian
-    \end{itemize}
+    \ref{fig:screenshot-admin-exam-minipanel}.
     
     \begin{figure}
         \centering
@@ -445,18 +350,6 @@
     Fitur untuk memindahkan tempat duduk peserta dapat dilihat pada gambar \ref{fig:screenshot-admin-migrator-home},
     \ref{fig:screenshot-admin-migrator-picker-peserta}, \ref{fig:screenshot-admin-picker-komputer}, dan 
     \ref{fig:screenshot-admin-picker-download}.
-    Pada gambar-gambar tersebut terdapat poin-poin yang menunjukkan beberapa bagian tertentu pada tangkapan layar tersebut.
-    Poin-poin tersebut terdiri dari
-    \begin{itemize}
-        \item Poin 1: Tombol tambah untuk mencari peserta yang akan dipindahkan.
-        \item Poin 2: Daftar peserta yang akan dipindahkan, dan lokasi baru yang akan peserta dapatkan.
-        \item Poin 3: Tombol aksi untuk melakukan pemindahan dan buat sript, serta tombol batal.
-        \item Poin 4: Berisi bidang pencarian peserta cepat.
-        \item Poin 5: Daftar peserta yang ada pada ujian ini.
-        \item Poin 6: NPM peserta yang akan dipindah.
-        \item Poin 7: Peta tempat duduk ruangan untuk memilih komputer baru.
-        \item Poin 8: Pengunduhan \textit{script}.
-    \end{itemize}
     
     \begin{figure}
         \centering
@@ -465,12 +358,6 @@
         \label{fig:screenshot-admin-exam-projector}
     \end{figure}
     Tampilan layar proyektor untuk peran admin dapat dilihat pada Gambar \ref{fig:screenshot-admin-exam-projector}.
-    Pada bagian tersebut terlihat beberapa poin yang terdiri dari
-    \begin{itemize}
-        \item Poin 1: Informasi singkat ujian dan total durasi.
-        \item Poin 2: Timer sisa waktu ujian.
-        \item Poin 3: Tombol kontrol timer.
-    \end{itemize}
     
     \begin{figure}
         \centering
@@ -478,7 +365,7 @@
         \caption{Tangkapan layar untuk slot jawaban. \\ (A) untuk menambahkan slot jawaban, (B) untuk menghapus slot jawaban.}
         \label{fig:screenshot-admin-slot-jawab}
     \end{figure}
-    Tangkapan layar berikutnya adalah fitur untuk slot jawaban. Pada Gambar \ref{fig:screenshot-admin-slot-jawab}
+    Kemudian, tangkapan layar berikutnya adalah fitur untuk slot jawaban. Pada Gambar \ref{fig:screenshot-admin-slot-jawab}
     bagian A, modal akan menanyakan format jawaban yang ingin ditambahkan dan tombol aksinya. Sedangkan bagian
     B menunjukkan modal konfirmasi penghapusan slot jawaban tersebut serta tombol aksinya.
     
@@ -495,18 +382,7 @@
         \label{fig:screenshot-admin-notif-delete}
     \end{figure}
     Hasil implementasi untuk fitur notifikasi dapat dilihat pada Gambar \ref{fig:screenshot-admin-notif} dan
-    \ref{fig:screenshot-admin-notif-delete}. Tangkapan layar dengan bagian A, B dan C pada Gambar 
-    \ref{fig:screenshot-admin-notif} memiliki poin-poin yang terdiri dari
-    \begin{itemize}
-        \item Poin 1: Tombol jenis notifikasi kata sandi.
-        \item Poin 2: Tombol jenis notifikasi lainnya.
-        \item Poin 3: Bidang nama layanan untuk kredensial yang akan dibagikan.
-        \item Poin 4: Bidang daftar kredensial tersebut.
-        \item Poin 5: Pratinjau dari daftar kredensial yang akan dibagian.
-        \item Poin 6: Bidang judul notifikasi jenis lainnya.
-        \item Poin 7: Daftar penerima notifikasi.
-        \item Poin 8: Badan notifikasi untuk jenis lainnya.
-    \end{itemize}
+    \ref{fig:screenshot-admin-notif-delete}.
     Sedangkan pada Gambar \ref{fig:screenshot-admin-notif-delete}, modal konfirmasi penghapusan akan menampilkan
     informasi badan notifikasi dan tombol aksi penghapusan atau pembatalan.
     
@@ -531,16 +407,6 @@
     \end{figure}
     Hasil implementasi untuk fitur pengelolaan entitas dapat dilihat pada Gambar \ref{fig:screenshot-admin-entity-list},
     \ref{fig:screenshot-admin-entity-edit}, dan \ref{fig:screenshot-admin-entity-delete}.
-    Pada gambar-gambar tersebut terdapat beberapa poin yang terdiri dari
-    \begin{itemize}
-        \item Poin 1: Tombol membuat entri baru
-        \item Poin 2: Daftar entri yang terdapat pada entitas ini, dengan tombol ubah dan hapus.
-        \item Poin 3: Informasi ID entri yang akan diubah.
-        \item Poin 4: Formulir data yang terdapat pada entri.
-        \item Poin 5: Tombol aksi simpan dan hapus.
-        \item Poin 6: Tabel data yang terdapat pada entri.
-        \item Poin 7: Tombol aksi untuk menghapus dan batalkan penghapusan.
-    \end{itemize}
     
     
     \subsection{Halaman untuk Dosen Pengawas / Layar Proyektor}
@@ -564,21 +430,9 @@
     \end{figure}
     Fitur yang digunakan untuk dosen pengawas dapat dilihat hasil implementasinya pada
     Gambar \ref{fig:screenshot-pengawas-seatmap}, \ref{fig:screenshot-pengawas-timer}, dan
-    \ref{fig:screenshot-pengawas-overtime}. Gambar tersebut terdiri dari poin-poin sebagai berikut
-    \begin{itemize}
-        \item Poin 1: Tombol navigasi untuk peta tempat duduk.
-        \item Poin 2: Tombol navigasi untuk timer ujian.
-        \item Poin 3: Informasi singkat ujian.
-        \item Poin 4: Informasi durasi ujian.
-        \item Poin 5: Nama mata kuliah ujian
-        \item Poin 6: Tombol kontrol timer.
-        \item Poin 7: Tombol penambahan waktu lebih untuk ujian.
-        \item Poin 8: Nama ruangan yang terbuhung dengan komputer ini.
-        \item Poin 9: Denah tempat duduk ruangan.
-        \item Poin 10: Informasi ujian singkat untuk konfirmasi.
-        \item Poin 11: Bidang banyak menit yang diberikan.
-        \item Poin 12: Tombol aksi tambah dan pembatalan.
-    \end{itemize}
+    \ref{fig:screenshot-pengawas-overtime}. Gambar \ref{fig:screenshot-pengawas-seatmap} menunjukkan denah
+    tempat duduk, dengan tampilan tab timer pada Gambar \ref{fig:screenshot-pengawas-timer}. Fitur penambahan
+    waktu ujian dapat dilihat pada \ref{fig:screenshot-pengawas-overtime}.
     
     
     \subsection{Halaman Tambahan untuk Dosen Koordinator}
@@ -595,15 +449,8 @@
         \label{fig:screenshot-extra-page}
     \end{figure}
     Fitur yang diimplementasi lainnya adalah fitur untuk dosen koordinator mengunduh jawaban peserta ujian.
-    Tampilan tersebut dapat dilihat pada Gambar \ref{fig:screenshot-extra-email} dan 
-    \ref{fig:screenshot-extra-page}. Pada gambar terdapat poin-poin yang terdiri dari
-    \begin{itemize}
-        \item Poin 1: Informasi mata kuliah yang diuji.
-        \item Poin 2: Tautan untuk melakukan pengunduhan.
-        \item Poin 3: Informasi tanggal kadaluarsa tautan tersebut.
-        \item Poin 4: Informasi detil ujian.
-        \item Poin 5: Tombol pengunduhan jawaban.
-    \end{itemize}
+    Tampilan email dapat dilihat pada Gambar \ref{fig:screenshot-extra-email} dan 
+    halaman pengunduhnya pada Gambar \ref{fig:screenshot-extra-page}.
 
 % bentuk foldernya
     \subsection{Bentuk Struktur Direktori Penyimpanan Ujian}
@@ -685,37 +532,7 @@
         \label{fig:kuisioner_demo}
     \end{figure}
     
-    Hasil kuisioner tersebut dianalisis untuk menilai tingkat kepuasan dalam menggunakan aplikasi. Berdasarkan
-    kuisioner yang telah dilakukan, didapatkan rata-rata nilai kepuasan terhadap sistem yang baru dengan
-    rincian yang dapat dilihat pada tabel \ref{tab:survey-avg}.
-    \begin{table}[]
-        \centering
-        \begin{tabularx}{\textwidth}{|X|X|}
-            \hline
-             Parameter & Rata-rata Nilai kepuasan (skala 1 hingga 5)  \\
-            \hline
-             Pengelolaan data untuk ujian (Nomor 1) &  3.56 \\
-            \hline
-             Pengiriman berkas jawaban ujian (Nomor 2) &  3.78\\
-            \hline
-             Pembuatan ujian (Nomor 3) &  3.8 \\
-            \hline
-             Pengunggahan data untuk ujian (Nomor 4) &  3.67 \\
-            \hline
-             Pendistribusian informasi layanan dan notifikasi peserta (Nomor 5) &  3.78 \\
-            \hline
-             Penggunaan Admin Panel (Nomor 6) &  3.78 \\
-            \hline
-             Migrasi peserta (Nomor 7) &  3.78 \\
-            \hline
-             Kestabilan aplikasi (Nomor 8) &  2.1 \\
-            \hline
-             \textbf{Kepuasan secara keseluruhan} (Nomor 9) &  \textbf{3.2} \\
-            \hline
-        \end{tabularx}
-        \caption{Rata-rata nilai kepuasan berdasarkan kuisioner yang telah dilakukan.}
-        \label{tab:survey-avg}
-    \end{table}
+    Hasil kuisioner tersebut dianalisis untuk menilai tingkat kepuasan dalam menggunakan aplikasi.
 
 \section{Pengujian Fungsional}
 Pengujian fungsional dilakukan dengan bantuan \textit{Unit Testing}. Tes tersebut akan dilakukan
@@ -839,3 +656,44 @@ atau tidak. Tes-tes tersebut terdiri dari
 \end{enumerate}
 
 
+\subsection{Analisis Hasil Pengujian}
+    Berdasarkan
+    kuisioner yang telah dilakukan, didapatkan rata-rata nilai kepuasan terhadap sistem yang baru dengan
+    rincian yang dapat dilihat pada tabel \ref{tab:survey-avg}.
+    \begin{table}[hb]
+        \centering
+        \begin{tabularx}{\textwidth}{|X|X|}
+            \hline
+             Parameter & Rata-rata Nilai kepuasan (skala 1 hingga 5)  \\
+            \hline
+             Pengelolaan data untuk ujian (Nomor 1) &  3.56 \\
+            \hline
+             Pengiriman berkas jawaban ujian (Nomor 2) &  3.78\\
+            \hline
+             Pembuatan ujian (Nomor 3) &  3.8 \\
+            \hline
+             Pengunggahan data untuk ujian (Nomor 4) &  3.67 \\
+            \hline
+             Pendistribusian informasi layanan dan notifikasi peserta (Nomor 5) &  3.78 \\
+            \hline
+             Penggunaan Admin Panel (Nomor 6) &  3.78 \\
+            \hline
+             Migrasi peserta (Nomor 7) &  3.78 \\
+            \hline
+             Kestabilan aplikasi (Nomor 8) &  2.11 \\
+            \hline
+             \textbf{Kepuasan secara keseluruhan} (Nomor 9) &  \textbf{3.22} \\
+            \hline
+        \end{tabularx}
+        \caption{Rata-rata nilai kepuasan berdasarkan kuisioner yang telah dilakukan.}
+        \label{tab:survey-avg}
+    \end{table}
+    
+    Dengan hasil umpan balik yang diberikan, aplikasi Oxam yang baru dinilai dapat meningkatkan
+    pengalaman memanajemen ujian di lab komputasi dengan nilai keseluruhan 3.22 poin dari 4. Stabilitas
+    aplikasi memiliki nilai kepuasan terendah pada 2.11 poin dari 4 dan pengalaman
+    dalam pembuatan ujian menjadi pengalaman terbaik pada aplikasi ini dengan nilai 3.8 poin dari 4.
+    
+    Dilanjutkan dengan pengujian fungsional yang telah dilakukan, hasil dari unit testing menunjukkan
+    bahwa fungsi sistem dapat berjalan dengan baik. \textit{Query} yang digunakan untuk menentukan
+    ujian yang aktif dan tidak, dapat berjalan sesuai ekspektasi.
