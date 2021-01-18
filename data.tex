@@ -79,9 +79,9 @@
 % Mode default adalah 'template' yang menghasilkan isian berwarna merah, 
 % aktifkan salah satu mode di bawah ini :
 %=============================================================================
-\mode{bimbingan} 		% untuk keperluan bimbingan
+%\mode{bimbingan} 		% untuk keperluan bimbingan
 %\mode{sidang} 			% untuk sidang 1
-%\mode{sidangakhir} 	% untuk sidang 2 / sidang pada Skripsi 2(IF)
+\mode{sidangakhir} 	% untuk sidang 2 / sidang pada Skripsi 2(IF)
 %\mode{final} 			% untuk mencetak buku skripsi 
 %=============================================================================
 
@@ -202,7 +202,7 @@
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda
 %=============================================================================
 \namanpm{Gunawan Christianto}{2016730011}
-\tanggal{<<tanggal>>}{<<bulan>>}{<<tahun>>}         %isi bulan dengan angka
+\tanggal{<<tanggal>>}{<<bulan>>}{2021}         %isi bulan dengan angka
 \pembimbing{\RCP}{<<pembimbing pendamping/2>>}    
 \penguji{<<penguji 1>>}{<<penguji 2>>} 
 %=============================================================================
@@ -220,8 +220,8 @@
 % - gunakan \texorpdfstring{\\}{} untuk pindah ke baris baru
 % - judul TIDAK ditulis dengan menggunakan huruf besar seluruhnya !!
 %=============================================================================
-\judulINA{Aplikasi Manajemen Ujian di Lab Komputasi}
-\judulENG{Examination Management Application in Computational Lab}
+\judulINA{Pengembangan Aplikasi Manajemen Ujian di Lab Komputasi}
+\judulENG{Management Application Development for Examination in Computational Lab}
 %_____________________________________________________________________________
 %=============================================================================
 % 								BAGIAN X
@@ -233,8 +233,48 @@
 % - hilangkan tanda << & >>, dan isi sesuai dengan data anda
 % - langsung mulai setelah '{' awal, jangan mulai menulis di baris bawahnya
 %=============================================================================
-\abstrakINA{<<Tuliskan abstrak anda di sini, dalam bahasa Indonesia>>}
-\abstrakENG{<<Tuliskan abstrak anda di sini, dalam bahasa Inggris>>} 
+\abstrakINA{Ujian menjadi salah satu syarat yang mutlak untuk memenuhi komponen penilaian
+    suatu mata kuliah. Ujian pada Lab Komputasi dilakukan dengan bantuan aplikasi Oxam. Aplikasi tersebut
+    akan bertugas untuk melakukan pembuatan slot ujian, halaman pengunggahan jawaban, pengacakkan daftar
+    tempat duduk, dan \textit{script} untuk distribusi soal. Namun fitur yang terbatas membuat Oxam menjadi
+    tidak efektif lagi untuk memanajemen kebutuhan ujian komputasi lab.
+    
+    Masalah yang terdapat pada aplikasi Oxam yang saat ini ada diantaranya dukungan terhadap
+    nomor pokok mahasiswa (NPM) dan kode mata kuliah yang baru tidak ada. Pemindahan
+    peserta yang masih harus dilakukan secara manual, beberapa \textit{bug} yang
+    sering muncul pada halaman pengumpulan jawaban peserta.
+    
+    Pada penelitian ini, sebuah perangkat lunak yang mampu
+    menyelesaikan masalah-masalah tersebut dibangun ulang. Penelitian akan melakukan survei untuk
+    mengetahui masalah-masalah yang terjadi pada setiap pengguna. Kemudian analisis
+    fitur dilakukan dari hasil survei tersebut. Implementasi dilakukan dalam
+    \textit{Framework} FatFree Framework dan \textit{library} Reactjs.
+    
+    Hasil dari pengujian yang dilakukan menyimpulkan bahwa aplikasi Oxam yang dibangun dapat
+    menyelesaikan masalah-masalah tersebut dengan baik. Hasil pengujian fungsional juga 
+    memperlihatkan bahwa logika dan \textit{query} yang diimplementasi dapat berjalan
+    sesuai dengan ekspektasi.
+}
+
+\abstrakENG{Examination is one of the absolute requirements to fulfill the assessment components of a course. 
+    Examination on computational lab are held with the help of the Oxam App. The application will be
+    responsible of making exam slots, serving answer submission page, scrambling seat lists, and generating scripts 
+    for problem distribution. However, the limited features make Oxam no longer effective in managing the 
+    needs of examination on computational lab.
+    
+    Issues with the current Oxam App consisted of the lack of support for the new student ID (NPM) and new course 
+    codes, the manual relocation of participant, and several bugs that often appear on the 
+    answer submission page.
+    
+    In this research, a software that are capable of solving the problems is rebuilt. 
+    A survey will be conducted to find out any issues that occurs for each user.
+    Then a feature analysis is concluded based on survey results. 
+    Solution is implemented in the FatFree Framework Framework 
+    and the Reactjs library.
+    
+    Results from the performed tests concludes that the rebuilt Oxam are capable to solve those issues well.
+    Functional test also performed to ensure that the logic and query is within expectancy.
+} 
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -246,8 +286,8 @@
 % - kunciENG: keywords in english
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda.
 %=============================================================================
-\kunciINA{<<Tuliskan di sini kata-kata kunci yang anda gunakan, dalam bahasa Indonesia>>}
-\kunciENG{<<Tuliskan di sini kata-kata kunci yang anda gunakan, dalam bahasa Inggris>>}
+\kunciINA{Ujian, Lab Komputasi, Oxam, Reactjs, FatFree Framework, REST API}
+\kunciENG{Examination, Computational Lab, Reactjs, FatFree Framework, REST API}
 %=============================================================================
 
 %_____________________________________________________________________________
