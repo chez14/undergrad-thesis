@@ -4,27 +4,37 @@
    
 \section{Latar Belakang}
 \label{sec:label}
-Ujian menjadi salah satu syarat yang mutlak untuk memenuhi komponen penilaian
-suatu mata kuliah. Salah satu bentuk ujian tersebut dilakukan secara praktik.
-Ujian praktik ini dilaksanakan pada lab komputasi dengan bantuan aplikasi. Pihak
-yang bertanggung jawab untuk mempersiapkan ruangan dan sistem adalah
-\textit{System Administrator} atau Admin. Peserta akan diberi soal ujian melalui
-sistem yang berjalan di lab sesuai prosedur dan aturan yang berlaku.
+Ujian praktik menjadi salah satu syarat untuk memenuhi komponen penilaian
+suatu mata kuliah.
+Salah satu ujian praktik pada Program Studi Teknik Informatika 
+dilaksanakan pada lab komputasi dengan bantuan aplikasi Oxam.
+Tim Admin Lab Komputer akan bertugas untuk membantu
+pelaksanaan ujian dengan mempersiapkan sistem dan ruangan yang akan digunakan
+untuk melaksanakan ujian. Tim Admin yang bertugas akan ditentukan oleh Kepala Lab pada 
+saat jadwal ujian telah terbit. Tim Admin yang bertugas kemudian akan diberikan informasi soal ujian
+dan berkas-berkas bantuannya untuk melakukan pengaturan sistem dan konfigurasi tempat duduk dan ruangan.
+Peserta ujian akan diberi soal ujian melalui aplikasi
+Oxam yang berjalan di lab sesuai prosedur dan aturan yang berlaku.
 
-Ujian pada Lab Komputasi dilakukan dengan bantuan aplikasi. Aplikasi tersebut
+Aplikasi Oxam yang berjalan pada lab saat ini bertugas untuk
 membantu mengatur berbagai kebutuhan seperti pengumpulan jawaban, pengacakan
 daftar peserta, serta pengarsipan berkas jawaban. Aplikasi yang saat ini
-digunakan bernama Oxam (Gambar \ref{fig:ss-Oxam}). Oxam bekerja dengan meminta
-parameter berupa kode matakuliah, tipe ujian, jurusan, jam mulai ujian, daftar
+digunakan adalah Oxam versi ke-4 (Gambar \ref{fig:ss-Oxam}). Oxam v4 bekerja dengan meminta
+data-data ujian berupa kode matakuliah, tipe ujian, jurusan, jam mulai ujian, daftar
 peserta, \textit{slot} tempat duduk yang dapat digunakan, dan daftar nama berkas
-yang akan dikumpulkan. Aplikasi Oxam akan secara otomatis membuatkan daftar
-tempat duduk peserta yang sudah teracak, dan membuatkan \textit{script} untuk
-menyalin berkas ujian ke komputer peserta.
+yang akan dikumpulkan. Aplikasi Oxam v4 akan secara otomatis membuatkan daftar
+tempat duduk peserta dan membuatkan \textit{script} untuk
+menyalin berkas ujian ke komputer peserta. Tempat duduk peserta akan diacak dengan
+alasan keamanan agar kemungkinan peserta untuk melakukan kerja sama antar peserta lain
+menjadi lebih kecil. \textit{Script} yang digunakan untuk menyalin berkas peserta akan
+dijalankan pada \textit{server} dengan sistem operasi Windows Server karena komputer peserta
+menggunakan sistem operasi Windows. Oxam v4 yang saat ini digunakan berjalan diatas server
+berbasis Linux, karena Oxam v4 dibangun pada pemrograman berbasis web.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\paperwidth]{Gambar/ss-oxam.png}
-    \caption{Tampilan cuplikan layar dari Oxam, aplikasi manajemen ujian di Lab Komputasi.}
+    \caption{Tampilan cuplikan layar dari Oxam, aplikasi manajemen ujian di Lab Komputer.}
     \label{fig:ss-Oxam}
 \end{figure}
 
@@ -33,10 +43,9 @@ insiden-insiden khusus. Salah satu masalah yang sering dihadapi adalah
 pemindahan posisi peserta ke meja lain saat masalah terjadi. Admin harus
 mengubah secara manual entri pada basis data yang bersangkutan, lalu memindahkan
 berkas ujian tersebut secara manual ke posisi yang baru. Selain itu dengan
-berubahnya NPM (Nomor Pokok Mahasiswa) untuk angkatan 2018 dan selanjutnya
-membuat sistem Oxam yang lama tidak dapat digunakan tanpa harus mengubah NPM
-tersebut ke bentuk yang lama. Perubahan tersebut dapat dilihat pada Tabel
-\ref{tab:table-npm}. 
+perubahan NPM (Nomor Pokok Mahasiswa) untuk angkatan 2018 dan selanjutnya
+membuat sistem Oxam v4 tidak dapat digunakan tanpa harus mengubah NPM
+tersebut ke bentuk yang lama. Perubahan tersebut dapat dilihat pada Tabel~\ref{tab:table-npm}. 
 
 \begin{table}[H]
     \centering
@@ -95,7 +104,7 @@ hal ini menimbulkan beberapa \textit{human error} sebagai berikut:
 
 Masalah berikutnya muncul pada saat proses ujian tersebut berjalan. Pertama,
 terdapat \textit{bug} waktu ujian telah habis, pada kenyataannya waktu ujian
-belum habis. Kedua, \textit{timer} yang digunakan untuk menunjukan sisa waktu
+belum habis. Kedua, \textit{timer} yang digunakan untuk menunjukkan sisa waktu
 ujian tidak tersingkronisasi dengan Oxam. Sehingga pada saat timer berbunyi,
 tempat pengumpulan tidak langsung tertutup. Ketiga, entri ujian yang sudah
 dihapus masih muncul pada tempat pengumpulan. Hal ini biasanya diatasi oleh tim
@@ -108,9 +117,10 @@ seharusnya dikirimkan sesegera mungkin saat ujian sudah selesai. Hal ini
 dimaksudkan agar jawaban tidak diubah di kemudian hari tanpa izin.
 
 Selain masalah-masalah pada tiap fase tersebut, masalah lain ada pada sistem itu
-sendiri. Oxam menyimpan berkas tanpa mengacak lokasi atau nama berkas jawaban
-tersebut, diperlihatkan pada Gambar \ref{fig:ss-folder-jawaban}. Hal ini dapat
-mempermudah penyerang sistem untuk mengubah berkas jawaban tersebut.
+sendiri. Oxam menyimpan berkas tanpa mengacak lokasi atau nama berkas jawaban,
+diperlihatkan pada Gambar \ref{fig:ss-folder-jawaban}. Hal ini dapat
+mempermudah penyerang sistem untuk mengubah berkas jawaban tertentu tanpa
+harus bersusah payah.
 
 \begin{figure}[ht]
     \centering
@@ -127,24 +137,19 @@ menggunakan \textit{framework Fat-free} dan \textit{React}.
 \label{sec:rumusan}
 Pada skripsi ini, aplikasi akan membantu memecahkan masalah:
 \begin{itemize}
-    \item Apa saja kebutuhan aplikasi untuk ujian untuk sistem manajemen
-    ujian di lab komputasi?
+    \item Apa saja fitur yang dibutuhkan untuk aplikasi Oxam v5 di lab komputer?
     
-    \item Bagaimana implementasi pemenuhan kebutuhan aplikasi sistem
-    manajemen ujian di lab komputasi?
+    \item Bagaimana mengimplementasikan fitur-fitur untuk aplikasi Oxam v5 di lab komputer?
 \end{itemize}
 
 \section{Tujuan}
 \label{sec:tujuan}
 Tujuan dari skripsi ini adalah sebagai berikut:
 \begin{itemize}
-    \item Melakukan survei dan analisis untuk mendapatkan daftar kebutuhan
-        aplikasi ujian untuk aplikasi pendukung manajemen ujian di lab
-        komputasi.
+    \item Mencari tahu fitur-fitur yang dibutuhkan untuk aplikasi Oxam v5 beserta dengan kebutuhannya.
 
-    \item Pemenuhan kebutuhan diimplementasi dengan membuat ulang perangkat
-        lunak dengan menggunakan \textit{framework}, dengan harapan dapat terus
-        dipelihara oleh tim admin di kemudian hari.
+    \item Melakukan implementasi fitur-fitur yang dibutuhkan dengan bantuan \textit{Framework} dan 
+        \textit{Library}.
 
 \end{itemize}
 
@@ -152,11 +157,10 @@ Tujuan dari skripsi ini adalah sebagai berikut:
 \label{sec:batasan}
 Batasan masalah pada penelitian ini adalah sebagai berikut:
 \begin{enumerate}
-    \item Aplikasi pendukung ujian akan berjalan pada server berbasis Linux,
-        sehingga dibutuhkannya bantuan untuk mengeksekusi \textit{script batch}
-        pada sistem operasi Windows.
-        
-    \item \textit{Script} yang dihasilkan hanya mendukung untuk sistem operasi Windows.
+    \item Implementasi kebutuhan aplikasi Oxam v5 diimplementasi pada server Linux.
+    
+    \item \textit{Script} yang dihasilkan oleh Oxam v5 harus 
+        dapat berjalan pada server dengan sistem operasi Windows Server.
 \end{enumerate}
 
 \section{Metodologi}
@@ -165,31 +169,14 @@ Metodologi yang dilakukan pada penelitian ini adalah sebagai berikut:
     \begin{enumerate}
         \item Studi literatur bahasa dan \textit{framework} Fat-free dan
             \textit{libary} React.js.
-        \item Melakukan survei sistem dan menyebar kuisioner mengenai sistem ujian 
-            yang berjalan pada lab.
-		\item Melakukan perancangan ERD basis data aplikasi Oxam.
-		\item Melakukan perancangan tampilan antarmuka aplikasi Oxam.
-		\item Mengimplementasi modul/entitas berikut:
-		    \begin{itemize}
-		        \item Mata Kuliah
-		        \item Peserta Ujian
-		        \item Ujian (Sesi Ujian)
-		        \item Print Daftar Peserta
-		        \item Pengumuman untuk Peserta
-		    \end{itemize}
-	     \item Implementasi Tampilan untuk Peserta dengan detil:
-		    \begin{itemize}
-		        \item Tempat Pengumpulan
-		        \item \textit{Sumary} Ujian
-		        \item Bagian informasi/notifikasi
-		    \end{itemize}
-		\item Implementasi Admin Panel untuk Admin.
+        \item Melakukan analisis dengan survei dan menyebar kuisioner untuk menentukan fitur yang diperlukan oleh
+            Oxam v5.
+		\item Melakukan implementasi fitur-fitur yang dibutuhkan oleh Oxam v5.
 	    \item Melakukan \textit{deployment} dan pengujian pada fungsionalitas
 	        aplikasi.
-	    \item Implementasi pengiriman berkas jawaban ujian secara otomatis ke
-	        dosen bersangkutan.
         \item Menarik kesimpulan dan saran berdasarkan proses penelitian dan
             pengujian.
+        \item Membuat dokumen laporan skripsi berdasarkan penelitian yang telah dilakukan.
     \end{enumerate}
 
 \section{Sistematika Pembahasan}
@@ -200,7 +187,7 @@ berikut:
 
 \begin{itemize}
     \item Bab 1 Pendahuluan \\
-        Berisi latar belakang dibuatnya penelitian aplikasi manajemen ujian di lab komputasi, 
+        Berisi latar belakang dibuatnya penelitian aplikasi manajemen ujian di lab komputer, 
         rumusan masalah, tujuan, batasan masalah, metodologi serta sistematika pembahasan penelitian ini.
     
     \item Bab 2 Landasan Teori \\
@@ -208,29 +195,28 @@ berikut:
         teori dari Aplikasi Berbasis Web, \textit{Framework} dan
         \textit{Library}, REST API, CI/CD serta Docker yang akan menjadi
         landasaan untuk membantu analisis penelitian aplikasi manajemen ujian di
-        lab komputasi.
+        lab komputer.
         
     \item Bab 3 Analisis \\
-        Berisi pembahasan analisa sistem ujian masa kini pada lab komputasi,
+        Berisi pembahasan analisa aplikasi Oxam v4 pada lab komputer,
         pelaksanaan ujian, analisa kebutuhan dan fitur aplikasi Oxam berdasarkan
         kuisioner, pemilihan \textit{framework} dan \textit{library}, serta
-        Analisis pengguna.
-        % TODO scenario
+        Analisis pengguna, serta skenarionya.
         
     \item Bab 4 Perancangan \\
-        Pada bab ini akan dijabarkan tentang perancangan aplikasi yang akan
-        diimplementasi untuk membantu memanajemen ujian di lab komputasi.
+        Pada bab ini akan dijabarkan tentang perancangan aplikasi Oxam v5 yang akan
+        diimplementasi untuk membantu memanajemen ujian di lab komputer.
         Perancangan tersebut akan terdiri dari perancangan tampilan antar muka
         untuk peserta, admin, layar proyektor dan lembar jawab. Lalu perancangan
         dilakukan juga untuk basis data, API, juga sistem CI/CD.
     
     \item Bab 5 Implementasi dan Pengujian \\
-        Berisi pembahasan implementasi aplikasi yang telah dirancang dan
+        Berisi pembahasan implementasi aplikasi Oxam v5 yang telah dirancang dan
         pengujian aplikasi tersebut. Pengujian akan terdiri dari pengujian
         eksperimental dan fungsional.
         
     \item Bab 6 Kesimpulan dan Saran \\
-        Berisi kesimpulan dan saran dari penelitian aplikasi manajemen ujian di
-        lab komputasi berdasarkan perancangan, implementasi dan pengujian yang
+        Berisi kesimpulan dan saran dari penelitian aplikasi Oxam v5 di
+        lab komputer berdasarkan perancangan, implementasi dan pengujian yang
         telah dilakukan.
 \end{itemize}
