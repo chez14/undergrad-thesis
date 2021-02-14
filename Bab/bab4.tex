@@ -16,7 +16,7 @@
     Gambar~\ref{fig:screenflow-overview}.
     
     Pembahasan akan dimulai dengan rancangan antarmuka untuk Perserta, lalu
-    perancangan antarmuka untuk Admin, Dosen Pengawas, dan kemudian rancangan
+    perancangan antarmuka untuk admin, Dosen pengawas, dan kemudian rancangan
     antarmuka tambahan.
 
 \subsection{Rancangan Antarmuka untuk Peserta}
@@ -708,13 +708,13 @@
     entri. Namun jika modal muncul pada halaman entri, admin tidak akan
     diarahkan kemanapun.
     
-\subsection{Rancangan Antarmuka untuk Dosen Pengawas}
+\subsection{Rancangan Antarmuka untuk Dosen pengawas}
     % Jelasin kalo ini buat di proyektor
     Antarmuka untuk dosen pengawas akan bertanggung jawab untuk membuka dan
     menutup lembar jawab, serta menampilkan informasi ujian di proyektor tiap
     ruangan. Tampilan yang ada akan memiliki daftar ujian yang berbeda tiap
     ruangan, tergantung dari ujian yang diaktifkan pada ruangan tersebut.
-    Untuk dapat mengkases antarmuka ini, Dosen Pengawas diharuskan untuk
+    Untuk dapat mengkases antarmuka ini, Dosen pengawas diharuskan untuk
     melakukan otentikasi terlebih dahulu.
     
 \subsubsection{Otentikasi}
@@ -1262,7 +1262,7 @@
     Untuk membuka lembar jawaban, kolom \texttt{time\_opened} dan
     \texttt{time\_ended} harus diisi dengan informasi tanggal kapan lembar
     jawaban telah dibuka. Pada keadaan bawaan, normalnya kolom-kolom tersebut
-    seharusnya memiliki nilai \texttt{NULL}. Pada saat Dosen Pengawas melakukan
+    seharusnya memiliki nilai \texttt{NULL}. Pada saat Dosen pengawas melakukan
     aksi membuka jawaban, maka kedua kolom tersebut harus diisi sesuai dengan
     durasi yang diberikan pada kolom \texttt{time\_duration}. Pengisian kolom
     \texttt{time\_opened} dam \texttt{time\_ended} diharapkan dapat mengurangi
