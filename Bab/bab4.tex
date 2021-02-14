@@ -2,7 +2,7 @@
 \label{chap:perancangan}
 
 \section{Rancangan Antarmuka}
-    \begin{sidewaysfigure}
+    \begin{sidewaysfigure}[hbp]
         \centering
         \includegraphics[height=0.7\paperwidth]{Gambar/Screenflow - Plumber.pdf}
         \caption{Diagram alur antarmuka secara keseluruhan.}
@@ -13,7 +13,7 @@
     Desain \textit{mockup} dibagi menjadi tiga bagian besar berdasarkan peranan
     penggunanya. Setiap pengguna akan memiliki antarmukanya tersendiri. Secara
     garis besar, diagram alur antarmuka untuk aplikasi ini dapat dilihat pada
-    Gambar \ref{fig:screenflow-overview}.
+    Gambar~\ref{fig:screenflow-overview}.
     
     Pembahasan akan dimulai dengan rancangan antarmuka untuk Perserta, lalu
     perancangan antarmuka untuk Admin, Dosen Pengawas, dan kemudian rancangan
@@ -29,7 +29,7 @@
     pengumuman lainnya.
     
      % Screen ujian kosong
-    \begin{figure}[H]
+    \begin{figure}[ht]
         \centering
         \includegraphics[width=0.7\paperwidth]{Gambar/mockups/Mockup--Peserta - Blankstate.pdf}
         \caption{Rancangan antarmuka untuk peserta, saat ujian sedang tidak berjalan.}
@@ -44,7 +44,7 @@
      peserta mengambil tempat duduk yang salah.
 
     % Screen ujian AKAN mulai
-    \begin{figure}[H]
+    \begin{figure}
         \centering
         \includegraphics[width=0.7\paperwidth]{Gambar/mockups/Mockup--Peserta - Prestartstate.pdf}
         \caption{Rancangan antarmuka untuk peserta, saat ujian akan berjalan.}
@@ -944,12 +944,12 @@
     Otentikasi ini penting untuk mengkhususkan peran dari setiap pengguna.
 
 \subsubsection{ACL dan ACLItem}
-    \begin{figure}[H]
+    \begin{figure}[ht]
         \centering
+        \includegraphics[width=0.75\paperwidth]{Gambar/erd-details/ERD--New - ACL & ACLItem.pdf}
         \caption{Potongan diagram entitas untuk \texttt{ACL} dan
         \texttt{ACLItem}.}
         \label{fig:erd_acl-aclitem}
-        \includegraphics[width=0.75\paperwidth]{Gambar/erd-details/ERD--New - ACL & ACLItem.pdf}
     \end{figure}
     
     Entitas \texttt{ACL} dan \texttt{ACLItem} adalah entitas yang menampung
