@@ -792,26 +792,34 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
 \subsection{Skenario Penggunaan}
 % TODO Tabel
     \subsubsection{Login untuk Admin}
-    \begin{tabular}{ p{3cm} p{12cm} }
+    \begin{longtable}{ | p{3cm} | p{12cm} | }
+        \hline
         \textit{Use case} & Login \\
+        \hline
         Aktor & Admin \\
+        \hline
         Tujuan & Mendapatkan akses ke halaman Admin. \\
+        \hline
         Kondisi Awal & Admin mengakses halaman admin \\
-        Langkah & \begin{tabular}{p{6cm} p{6cm}}
+        \hline
+        Langkah & \begin{longtable}{p{6cm} p{6cm}}
             \hline
             Aksi Aktor & Respon Aplikasi \\
             \hline
             Memasukan kredensial pada formulir login. & \\
             Menekan tombol Login & \\
             & Sistem menampilkan halaman admin. \\
-        \end{tabular} \\
+        \end{longtable} \\
+        \hline
         Kondisi Akhir & Admin berhasil masuk ke halaman Admin. \\
-        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
-    \end{tabular}
+        \hline
+        Alternatif: & Perangkat lunak menampilkan pesan kesalahan. \\
+        \hline
+    \end{longtable}
 
     \subsubsection{Login untuk Dosen Pengawas}
     \begin{tabular}{ p{3cm} p{12cm} }
-        \textit{Use case} & Login dengan IPLogin \\
+        \textit{Use case} & Login untuk Komputer Dosen pada ruangan. \\
         Aktor & Dosen Pengawas \\
         Tujuan & Mendapatkan akses ke halaman proyektor. \\
         Kondisi Awal & Pengawas mengakses halaman proyektor \\
