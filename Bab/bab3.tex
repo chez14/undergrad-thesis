@@ -1,9 +1,9 @@
 \chapter{Analisis}
 \label{chap:analisis}
 
-\section{Analisis Sistem Masa Kini}
+\section{Analisis Sistem yang Berjalan Pada Lab Komputer}
     
-    Analisis sistem yang digunakan pada saat ini di lab komputasi akan dimulai
+    Analisis sistem yang digunakan pada saat ini di Lab Komputer akan dimulai
     dengan menganalisis alur pelaksanaan ujian terlebih dahulu. Kemudian
     dilanjutkan dengan melakukan penyebaran kuisioner untuk mendapatkan
     informasi lebih lanjut tentang masalah yang tidak teridentifikasi pada saat
@@ -44,14 +44,17 @@
         diperjelas pada Gambar \ref{fig:flowchart-exam-preexam} dengan
         mendetilkan masing-masing peran yang terlibat.
         
-        Admin akan membuatkan slot ujian pada sistem Oxam, dan mengatur posisi
+        Persiapan praujian pada lab komputer dimulai dari kepala lab yang memberikan
+        informasi ujian pada tim admin.
+        Admin kemudian membuatkan slot ujian pada sistem Oxam, dan mengatur posisi
         tempat duduk sesuai dengan jumlah dan informasi ujian yang diberikan
         dari kepala lab. Sistem kemudian akan menghasilkan daftar tempat duduk
         yang telah diacak oleh sistem. Admin kemudian mencetak daftar tempat
         duduk tersebut untuk nantinya didistribusikan sesuai ruangannya. Dosen
         koordinator yang bertugas untuk membuat soal ujian akan memberikan
-        berkas tersebut ke kepala lab. Berkas tersebut kemudian didistribusikan
-        pada Admin yang bertugas untuk menjaga ujian.
+        berkas tersebut ke tim admin via kepala lab untuk mencegah kemugnkinan terjadinya
+        kebocoran soal dari tim admin yang bertugas ke peserta ujian tanpa ijin. Berkas
+        tersebut kemudian didistribusikan pada tim admin yang bertugas untuk menjaga ujian.
         
         Sistem juga menghasilkan beberapa \textit{script} dengan fungsi sebagai
         berikut:
@@ -61,20 +64,25 @@
             \item Mendistribusikan berkas soal ujian dan berkas bantuan pada
                 masing-masing komputer peserta.
             \item Mengambil alih pemilik berkas pada folder lembar kerja peserta
-                pada masing-masing komputer.
+                pada masing-masing komputer ke User Administrator.
         \end{itemize}
         
         Persiapan ujian lalu berlanjut pada eksekusi \textit{script} yang
         diberikan oleh aplikasi Oxam. Admin yang bertugas kemudian memasukan
-        berkas-berkas ujian pada lokasi khusus di server \textit{deployment}.
+        berkas-berkas ujian pada lokasi khusus di server yang digunakan
+        untuk mendistribusikan soal, pada Lab Komputer server tersebut adalah Windows Server.
         Kemudian script pembuatan folder dan distribusi berkas dieksekusi.
         \textit{Script} yang dieksekusi akan menghasilkan log yang
         menginformasikan keberhasilan pendistribusian berkas tersebut. Admin
         yang bertugas akan memperhatikan log tersebut dan melakukan hal-hal yang
-        perlu dilakukan jika terdapat masalah pada log tersebut.
+        perlu dilakukan jika terdapat masalah pada log tersebut, seperti gagal penyalinan
+        berkas pada komputer peserta.
         
         Daftar tempat duduk akan didistribusikan pada pintu lobi dan pintu ruang
-        ujian sesaat sebelum ujian dimulai.
+        ujian sesaat sebelum ujian dimulai. Daftar tempat duduk tersebut kemudian dipindah
+        ke papan yang berada pada lobi Lab Komputer.
+        Daftar absensi kemudian dicetak, disimpan pada map
+        dan kemudian diberikan ke dosen koordinator atau pengawas.
     
     \subsection{Ujian}
         \begin{sidewaysfigure}
@@ -91,14 +99,14 @@
         diminta hadir 30 menit sebelumnya akan diarahkan untuk masuk dan
         menunggu pada lobi lab. Admin yang bertugas akan memastikan setiap
         peserta yang akan memasuki ruangan ujian telah membawa kartu mahasiswa.
-        Dosen ditugaskan untuk menjaga akan melakukan persiapan ujian seperti
+        Dosen yang ditugaskan untuk menjaga akan melakukan persiapan ujian seperti
         membagikan kertas buram dan sterilisasi ruangan.
         
         % Admin melakukan checkup sekali lagi 
         Sementara itu, Admin beserta dengan dosen yang bertugas untuk menjaga
         selama ujian akan melakukan \textit{check up} terakhir untuk memastikan
         bahwa distribusi soal tidak bermasalah. \textit{Check up} dilakukan
-        dengan bantuan daftar check yang telah dibuat Kepala Lab (Lampiran
+        dengan bantuan daftar \textit{check} yang telah dibuat Kepala Lab (Lampiran
         \ref{lamp:A}). Pemasangan timer dilakukan pada tahap ini.
         
         % Admin memasukan mahasiswa pada ruang ujian
@@ -136,14 +144,14 @@
         \end{sidewaysfigure}
         % Admin memastikan pintu lobby terkunci, sekat menuju ruangan tertutup
         Ujian dengan shift memiliki sedikit perbedaan dalam pelaksanaan ujian.
-        Dapat dilihat pada diagram \ref{fig:flowchart-exam-exam-with-shift},
+        Dapat dilihat pada Diagram \ref{fig:flowchart-exam-exam-with-shift},
         pebedaan pelaksanaan ini terdapat pada proses memasukan dan mengeluarkan
         peserta antar shift). Pelaksanaan ujian dengan shift ini akan
         mengutamakan isolasi peserta dari peserta yang sudah mengerjakan soal
         ujian. Isolasi tersebut berguna untuk mencegah kecurangan dengan
         membagikan jawaban atau informasi tentang soal pada peserta yang akan
         ujian. Isolasi tersebut dimulai sesaat sebelum waktu ujian pada peserta
-        shift sebelumnya telah habis. Admin akan datang pada ruangan untuk
+        shift sebelumnya telah habis. Admin akan datang ke ruangan untuk
         menahan peserta yang sedang ujian untuk tidak keluar terlebih dahulu.
         Admin lainnya akan memasukan peserta baru ke dalam lobi yang terisolasi.
         Sekat yang memisahkan ruangan lobi dan peserta akan dipasang kembali,
@@ -165,6 +173,13 @@
         peserta shift baru. Sekat kemudian dibuka dan peserta ujian pada shift
         baru dipersilahkan masuk ke dalam ruangan ujian. Kemudian ujian
         dilakukan sesuai dengan prosedur pelaksanaan ujian seperti biasa.
+        
+        Salah satu catatan penting yang harus admin pastikan sebelum peserta
+        ujian dari shift berikutnya masuk adalah memastikan slot tempat pengumpulan
+        jawaban telah ditutup dan lembar kerja peserta dari shift sebelumnya sudah diubah
+        kepemilikannya (\textit{takeown)}). Hal ini menjadi salah satu masalah yang krusial
+        karena peserta pada \textit{shift} baru dapat melihat dan mengunduh jawaban dari tempat
+        pengumpulan untuk shift sebelumnya jika tempat pengumpulan jawaban tidak ditutup secara sempurna.
     
     \subsection{Pascaujian}
         % take own
@@ -183,22 +198,20 @@
         jawaban tersebut dikirim dengan format \textit{archive} seperti zip atau
         rar.
 
-    \subsection{Aplikasi Manajemen Masa Kini}
-        Aplikasi yang digunakan untuk ujian masa kini memiliki beberapa fitur
-        yang mendukung sistem ujian masa kini. Berdasarkan survei lapangan yang
+    \subsection{Aplikasi Oxam v4}
+        Aplikasi yang berjalan pada Lab Komputer saat ini adalah Oxam versi 4.
+        Oxam v4 memiliki beberapa fitur
+        yang mendukung sistem ujian masa kini. Berdasarkan analisis yang
         dilakukan, aplikasi tersebut memiliki fitur sebagai berikut:
         
         \begin{itemize}
-            \item Membuat ujian.
+            \item Membuat slot ujian.
             \item Membuat slot jawaban.
-            \item Membuat daftar hadir.
+            \item Membuat daftar hadir peserta.
             \item Membuat \textit{script}.
             \item Mengunduh jawaban.
             \item Mengunggah jawaban.
         \end{itemize}
-
-        %% TODO: MORE?
-
     
 \section{Analisis Kebutuhan}
     % Berdasarkan survei dan kuisioner yang dilakukan akan dianalisis poin-poin
@@ -212,7 +225,7 @@
 
     Kuisioner dibuat secara virtual di Google Forms dan didistribusikan melalui
     sosial media. Kuisioner ini ditujukan pada dua subjek. Subjek pertama adalah
-    dosen Koordinator jurusan Informatika yang pernah mengadakan ujian praktik
+    dosen koordinator jurusan Informatika yang pernah mengadakan ujian praktik
     di lab. Subjek berikutnya adalah peserta ujian dari jurusan Informatika yang
     pernah mengikuti ujian di lab. 
     
@@ -243,7 +256,8 @@
         password}, dsb)? \\
             Jawaban diberikan dalam bentuk skala 1 (tidak puas) hingga 5 (sangat
             puas). Pertanyaan ini bertujuan untuk mengetahui apakah alur
-            pemberian informasi kredensial sudah nyaman atau belum.
+            pemberian informasi kredensial layanan tambahan yang akan digunakan
+            sudah nyaman atau belum.
             
         \item Apakah Bapak/Ibu puas dengan keseluruhan pengalaman berujian di
         lab? \\
@@ -266,7 +280,7 @@
     \end{figure}
 
     Pada kuisioner tersebut, terdapat tiga responden yang memberikan respon.
-    Tabel grafik dapat dilihat pada gambar \ref{fig:kuisioner-dosen}.
+    Tabel grafik dapat dilihat pada Gambar \ref{fig:kuisioner-dosen}.
     Berdasarkan respon-respon yang diberikan, dosen-dosen memiliki
     \textit{feedback} yang positif pada sistem ujian yang saat ini telah
     berjalan. Sehingga sistem ujian yang nantinya akan berjalan pada lab dibuat
@@ -276,45 +290,45 @@
     \begin{itemize}
         \item Komputer peserta ujian terkadang mengalami \textit{hang}.
         
-        \item Hanya ada satu admin yang datang tepat waktu
-        
         \item Pertukaran shift kadang membingungkan pengawas, karena pernah
         suatu kali, daftar hadir belum diperbarui
         
-        \item Pemberian password kadang masih manual melalui kertas.
+        \item Pemberian \textit{password} kadang masih manual melalui kertas.
         
         \item Kebingungan karena terkadang mahasiswa tidak bisa \textit{submit}
-        karena dikatakan "waktu telah habis", tetapi bisa lagi jika
+        karena dikatakan ``waktu telah habis'', tetapi bisa lagi jika
         di-\textit{refresh}.
     \end{itemize}
 
-    Kemudian dari hasil kuisioner tersebut didapatkan beberapa masalah yang
+    Kemudian dari hasil kuisioner tersebut didapatkan beberapa inti masalah yang akan
+    dianalisis solusinya dalam bentuk fitur-fitur.
+    
     \subsubsection{\textit{Bug} Waktu Telah
         Habis}\label{ref-prob-dosen-bug-waktu} Laporan masalah pertama berasal
-        dari sisi Dosen yang mengawasi ujian di lab komputasi. Masalah yang
+        dari sisi Dosen yang mengawasi ujian di Lab Komputer. Masalah yang
         sering kali dikeluhkan adalah \textit{bug} waktu telah habis.
         \textit{Bug} ini didapatkan pada saat peserta sudah membuka halaman
         pengumpulan sudah cukup lama tanpa melakukan penyegaran-ulang
         (\textit{refresh}) ataupun pengumpulan (\textit{submission}). Untuk
-        mengatasi masalah ini, biasanya Tim Admin akan meminta peserta ujian
+        mengatasi masalah ini, biasanya tim admin akan meminta peserta ujian
         untuk melakukan penyegaran-ulang beberapa kali hingga pesan kesalahan
         tersebut hilang. Setelah diselidiki, bug tersebut disebabkan oleh
         \textit{cache} yang memiliki umur yang pendek. Umur pendek ini
         menyebabkan \textit{cache} kadaluarsa dan dianggap tidak \textit{valid}
         oleh PHP, sehingga memancing aplikasi untuk memunculkan pesan kesalahan
-        tersebut, mencegagh peserta untuk mengumpulkan jawaban pada web.
+        tersebut, mencegah peserta untuk mengumpulkan jawaban pada web.
     
     \subsubsection{Pembagian \textit{Password} yang Masih
         Manual}\label{ref-prob-dosen-password} Masalah berikutnya yang Dosen
         berikan pada kuisioner adalah pembagian \textit{password} yang masih
         manual. Pengujian dengan aplikasi khusus adalah salah satu hal yang
-        sering dilakukan di Lab Komputasi. Program tersebut biasanya menggunakan
+        sering dilakukan di Lab Komputer. Program tersebut biasanya menggunakan
         otentikasi khusus yang tidak dapat diintegrasikan dengan aplikasi Oxam
         utama untuk mencegah kecurangan. Hal ini saat ini diatasi dengan
         membagikan kertas pada tiap meja, atau membagikannya lewat berkas teks
         pada folder ujian. Sistem ini dilakukan dengan cara melakukan penciptaan
         kata sandi acak yang nantinya dimasukkan pada \textit{script} tertentu.
-        Selanjutnya Tim Admin akan melakukan pembuatan akun tersebut dengan
+        Selanjutnya tim admin akan melakukan pembuatan akun tersebut dengan
         bantuan \textit{script} tersebut, lalu kredensial tersebut nantinya akan
         diolah untuk nantinya dicetak atau pun dipecah menjadi beberapa berkas
         teks sebelum nantinya diedarkan.
@@ -322,8 +336,8 @@
     \subsubsection{Daftar Hadir yang Membingungkan
         Pengawas}\label{ref-prob-dosen-daftar-hadir} Berikutnya, daftar hadir
         yang membingungkan pengawas. Pada hal ini, pengawas kebingungan karena
-        kesalahan Tim Admin melakukan pendaftaran peserta. Masalah ini nantinya
-        akan didalami pada saat pembahasan survei dari Tim Admin.
+        kesalahan tim admin melakukan pendaftaran peserta. Masalah ini nantinya
+        akan didalami pada saat pembahasan survei dari tim admin.
 
 \subsection{Peserta}
     \subsubsection{Kuisioner}
@@ -335,7 +349,7 @@
             yang sering dialami oleh peserta ujian. Bentuk jawaban adalah daftar
             kotak yang dapat diceklis.
             \begin{itemize}
-                \item "Waktu ujian telah habis"
+                \item ``Waktu ujian telah habis''
                 \item Waktu ujian tidak terlihat dengan baik/jelas
                 \item Daftar tempat duduk yang membingungkan
                 \item \textit{Credential}\footnote{informasi \textit{login}}
@@ -346,10 +360,10 @@
         \item Selain dari masalah tersebut, apakah anda memiliki masalah
         lainnya?\\
             Pertanyaan ini ditujukan untuk mengetahui masalah yang tidak
-            diketahui oleh Tim Admin atau tidak terlihat secara langsung pada
+            diketahui oleh tim admin atau tidak terlihat secara langsung pada
             saat survei lapangan. Bentuk jawaban adalah kotak teks panjang.
             
-        \item Bagaimana pendapat anda tentang ujian di Lab Komputasi?\\
+        \item Bagaimana pendapat anda tentang ujian di Lab Komputer?\\
             Pertanyaan ini ditujukan untuk mengetahui pendapat peserta ujian
             tentang pengalaman ujian di lab. Jawaban berupa skala satu hingga
             lima, dengan satu paling buruk, dan lima paling baik.
@@ -360,7 +374,7 @@
     responden yang terdiri dari beberapa angkatan. Berdasarkan respon yang
     diberikan oleh peserta untuk pertanyaan pertama, secara mayoritas masalah
     yang dialami adalah daftar tempat duduk yang membingungkan, diikuti dengan
-    masalah \textit{bug} waktu ujian telah habis (Gambar
+    masalah \textit{bug} waktu ujian telah habis, lihat Gambar
     \ref{fig:kuisioner-student-1}).
     \begin{figure}
         \centering
@@ -402,7 +416,7 @@
 
     \subsubsection{Komputer Hang}\label{ref-prob-peserta-kompu-hang} Kuisioner
     kemudian dilakukan juga untuk peserta ujian yang pernah mengikuti ujian di
-    lab komputasi. Dari sisi peserta, Masalah yang muncul pada saat ujian adalah
+    Lab Komputer. Dari sisi peserta, Masalah yang muncul pada saat ujian adalah
     komputer yang \textit{hang}. Masalah ini muncul secara acak pada saat ujian
     berlangsung. Peserta biasanya akan diminta untuk direlokasi untuk
     mendapatkan komputer yang tidak bermasalah. Peserta akan diberikan waktu
@@ -419,23 +433,23 @@
     timbul adalah peserta yang mendapatkan tempat yang terjauh dari papan tulis
     mengaku kesulitan dalam melihat informasi tersebut. Hal ini dinilai tidak
     adil untuk peserta yang duduk dekat dengan papan tulis, sehingga
-    dibutuhkannya fitur untuk memberi tahu informasi ini.
+    dibutuhkannya fitur untuk memberi tahu informasi~ini.
 
 \subsection{Tim Admin}
     \subsubsection{Menghapus Berkas yang
     Gagal}\label{ref-prob-admin-berkas-gagal} 
-    Dari sisi Tim Admin, survei yang
-    dilakukan menghasilkan banyak keluhan dan masukan. Salah satunya, Tim Admin
+    Dari sisi tim admin, wawancara yang
+    dilakukan menghasilkan banyak keluhan dan masukan. Salah satunya, tim admin
     mempermasalahkan bahwa mereka tidak dapat menghapus berkas-berkas yang gagal
-    di \textit{deploy}. Masalah tersebut biasanya muncul pada saat Tim Admin
+    di \textit{deploy}. Masalah tersebut biasanya muncul pada saat tim admin
     melakukan kesalahan memasukan data pada saat pembuatan ujian pada aplikasi
-    Oxam. Tim Admin yang tidak mengetahui kesalahan tersebut dapat saja
+    Oxam. Tim admin yang tidak mengetahui kesalahan tersebut dapat saja
     melakukan \textit{deployment} terlebih dahulu sebelum akhirnya menyadari
     bahwa ia telah melakukan kesalahan. Masalah yang dikeluhkan berakar dari
-    fodler yang tidak digunakan tersebut membingungkan bagi peserta dan
+    folder yang tidak digunakan tersebut membingungkan bagi peserta dan
     berpotensi menjadi celah keamanan untuk mencontek.
 
-    Selain folder, Tim Administrator juga harus menghapus daftar yang ada pada
+    Selain folder, tim administrator juga harus menghapus daftar yang ada pada
     database. Setelah diselidiki, masalah timbul dari \textit{record} yang
     ditandai sebagai di hapus dengan mengisi kolom \texttt{isDeleted} menjadi
     \texttt{1}, namun tidak membuat sistem pengumpulan berubah. Masalah yang
@@ -445,12 +459,12 @@
     \subsubsection{Pindah Tempat Duduk Peserta}\label{ref-prob-admin-pindah}
     Selain itu, beberapa masalah lainnya adalah pindah tempat duduk peserta.
     Bersinggungan dengan masalah yang dimiliki peserta tentang komputer yang
-    \textit{hang} pada \ref{ref-prob-peserta-kompu-hang}, Tim Administator
+    \textit{hang} pada \ref{ref-prob-peserta-kompu-hang}, tim administator
     memiliki kesulitan untuk melakukan pemindahan komputer karena Aplikasi yang
     saat ini ada memiliki masalah tentang mengubah posisi tempat duduk. Masalah
-    yang muncul adalah dibutuhkannya orang untuk melakukan:
+    yang muncul adalah dibutuhkannya admin untuk melakukan secara manual tugas berikut:
     \begin{itemize}
-        \item Pemindahan peserta
+        \item Pemindahan peserta ke tempat duduk yang baru
         \item Pemindahan berkas ujian peserta
         \item Pemindahan \textit{record} pada database Oxam
     \end{itemize}
@@ -462,15 +476,15 @@
     \subsubsection{Pengiriman Berkas Jawaban
     Otomatis}\label{ref-prob-admin-pengiriman-berkas} 
     Normalnya, setelah ujian
-    selesai maka Tim Admin akan mengunduh berkas jawaban tersebut untuk
-    dikirimkan ke Dosen Koordinator. Tim Admin akan mengakses aplikasi Oxam,
+    selesai maka tim admin akan mengunduh berkas jawaban tersebut untuk
+    dikirimkan ke dosen koordinator. Tim admin akan mengakses aplikasi Oxam,
     lalu mengunduh berkas jawaban ujian dan mengirimnya secara manual ke Dosen
     Koordinator mata kuliah tersebut. Masalah yang muncul adalah tidak setiap
-    kali ujian Tim Admin ingat untuk mengirimkan berkas.
+    kali ujian tim admin ingat untuk mengirimkan berkas.
     
     \subsubsection{NPM Jenis Baru}\label{ref-prob-admin-npm-baru} 
     Peserta yang
-    menjalani ujian praktik pada lab komputasi adalah mahasiswa. Bergantinya
+    menjalani ujian praktik pada Lab Komputer adalah mahasiswa. Bergantinya
     sistem informasi akademik kampus berdampak pada pergantian format NPM yang
     dimiliki oleh mahasiswa. NPM pada mahasiswa memiliki format tertentu yang
     dapat menginformasikan asal dari mahasiswa tersebut.
@@ -503,12 +517,12 @@
         \item Dua karakter berikutnya menandakan jurusan (dan fakultas) mahasiswa
         tersebut belajar. Pada contoh tampak angka 73 yang menandakan bahwa
         mahasiswa tersebut belajar pada Fakultas Teknologi Informasi dan Sains (7),
-        dan berada pada jurusan Informatika (73). 
+        dan berada pada jurusan Informatika (3). 
         
         \item Satu karakter berikutnya menandakan program yang diambil oleh
         mahasiswa tersebut. Angka 0 menunjukkan bahwa mahasiswa tersebut mengikuti
         program Sarjana, seperti pada tabel contoh. Angka 1 menandakan mahasiswa
-        tersebut mengambil program pascasarjana dan angka 2 menunjukkan program
+        tersebut mengambil Program Pascasarjana dan angka 2 menunjukkan program
         doktoral. 
         
         \item Tiga angka berikutnya yang menjadi komponen terakhir dari NPM lama ini
@@ -558,7 +572,7 @@
     
     \subsubsection{Timer yang tidak
     terintegrasi}\label{ref-prob-admin-timer-integrated} Pada saat pelaksanaan
-    ujian, Tim Admin menggunakan timer yang disediakan oleh sistem operasi
+    ujian, tim admin menggunakan timer yang disediakan oleh sistem operasi
     Windows. Masalah yang timbul adalah buka dan tutupnya tempat pengumpulan
     ujian tidak berjalan bersamaan dengan timer. Sebagai contoh, pada saat timer
     menunjukan waktu sudah habis, peserta masih dapat mengumpulkan berkas ujian.
@@ -573,34 +587,34 @@
     \textit{framework} agar sumber kode yang dibuat dapat dirawat oleh tim
     Admin.
     
-    \subsection{Timer Tidak Terintegrasi}
+    \subsubsection{Timer Tidak Terintegrasi}
         Sesuai dengan kebutuhan yang dijelaskan pada
         \ref{ref-prob-admin-timer-integrated}, timer akan diimplementasi secara
         terintegrasi. Timer nantinya akan menutup tempat jawaban pada saat waktu
         telah habis. Timer harus dapat mengatur buka tutupnya tempat pengumpulan
         jawaban peserta.
     
-    \subsection{Notifikasi}
+    \subsubsection{Notifikasi}
         Fitur pertama yang ingin ditambahkan adalah sistem notifikasi. Fitur ini
         nantinya akan menyelesaikan masalah pada keluhan kata sandi yang
         disebarkan manual (\ref{ref-prob-dosen-password}), dan informasi yang
         dituliskan di papantulis tidak terlihat
         (\ref{ref-prob-peserta-papan-tulis}). Dosen pengawas nantinya dapat
-        membuat buah notifikasi baru untuk peserta dan peserta dapat langsung
+        membuat sebuah notifikasi baru untuk peserta dan peserta dapat langsung
         melihat notifikasi tersebut pada tempat pengumpulan.
 
-    \subsection{Pemindahan Tempat Duduk Peserta}
+    \subsubsection{Pemindahan Tempat Duduk Peserta}
         Fitur kedua yang ingin ditambahkan adalah fitur pemindahan tempat duduk
         peserta. Fitur ini nantinya akan
         menyelesaikan masalah peserta yang mengalami \textit{hang} pada saat
-        ujian berlangsung (\ref{ref-prob-peserta-kompu-hang}) dan Tim Admin yang
+        ujian berlangsung (\ref{ref-prob-peserta-kompu-hang}) dan tim admin yang
         ingin memindahkan tempat duduk peserta(\ref{ref-prob-admin-pindah}). Fitur ini nantinya hanya
-        akan dapat digunakan oleh Tim Admin. Dosen pengawas diharapkan untuk
-        mengkontak Tim Admin untuk melakukan perpindahan untuk memastikan
+        akan dapat digunakan oleh tim admin. Dosen pengawas diharapkan untuk
+        mengkontak tim admin untuk melakukan perpindahan untuk memastikan
         komputer yang baru akan memiliki kemungkinan bermasalah yang lebih
         kecil.
 
-    \subsection{Pengiriman berkas otomatis}
+    \subsubsection{Pengiriman berkas otomatis}
         Fitur lainnya adalah perngiriman berkas otomatis. Fitur ini untuk
         menyelesaikan masalah pada pengiriman berkas jawaban ujian oleh Tim
         Admin (\ref{ref-prob-admin-pengiriman-berkas}). Pada dasarnya fitur ini
@@ -608,18 +622,18 @@
         yang nantinya mengecek apakah terdapat berkas ujian yang dapat di kirim.
         Pengiriman dapat berlangsung secara otomatis lewat email.
 
-    \subsection{NPM \textit{Converter}} NPM \textit{Converter} nantinya akan
+    \subsubsection{NPM \textit{Converter}} NPM \textit{Converter} nantinya akan
         mengabstraksi seluruh NPM yang saat ini aktif di sistem UNPAR. Abstraksi
         tersebut nantinya diharapkan dapat menstandarisasi dua format yang saat
         ini berjalan.
         
-    \subsection{Admin Panel}
+    \subsubsection{Admin Panel}
         Admin panel ditambahkan dengan tujuan agar dapat memanajemen seluruh
         entitas database pendukung ujian. Sebagai contoh, penambahan atau
         penghapusan mata kuliah. Saat ini, pada sistem yang aktif tidak terdapat
         tempat untuk menambahkan atau menghapus mata kuliah.
     
-    \subsection{Bug \textit{fix}} Implementasi sisanya, terdapat beberapa
+    \subsubsection{Bug \textit{fix}} Implementasi sisanya, terdapat beberapa
         masukan yang dapat dilakukan, yaitu untuk menyelesaikan masalah tentang
         \textit{bug} waktu ujian telah habis (\ref{ref-prob-dosen-bug-waktu})
         dapat diimplementasi dengan melakukan authentikasi berdasarkan IP yang
@@ -630,25 +644,25 @@
         IP tersebut dengan yang ada di database melakukan apapun.
 
 \section{Analisis Pemilihan Framework dan Library}
-%- Pake framework biar daapt di extend oleh penerus
-Penggunaan \textit{framework} diharapkan dapat membuat aplikasi dikembangkan
-lebih lanjut oleh penerus Tim Admin berikutnya. Sifat \textit{framework} yang
-dapat digunakan-ulang dan modular membuat \textit{framework} memiliki pola yang
-dapat dipelajari dengan cepat. Memungkinkan Tim Admin untuk dapat menambahkan
-fitur baru dengan lebih cepat. 
-
-Berdasarkan survei yang dilakukan oleh StackOverflow pada tahun
-2018\footnote{StackOverflow. (2018) Developer Survey Results 2018.
-https://insights.stackoverflow.com/survey/2018. 10 September 2019.} dan
-2019\footnote{StackOverflow. (2019) Developer Survey Results 2019.
-https://insights.stackoverflow.com/survey/2019. 28 April 2020.}, PHP adalah salah satu bahasa yang
-mayoritas digunakan oleh pengembang aplikasi web. Dengan banyaknya pengguna
-bahasa tersebut, maka komunitas, \textit{library} dan firum akan lebih besar.
-Pilihan tersebut dinilai lebih menguntungkan karena pengembang hanya perlu
-mempelajari cara menggunakan \textit{library} tersebut tanpa harus
-mengimplementasi algoritmanya dari dasar. Dengan begitu banyaknya pilihan yang
-ada, developer yang ingin menambahkan fitur tersebut dapat lebih berfokus untuk
-mengimplementasi fitur tersebut.
+    %- Pake framework biar daapt di extend oleh penerus
+    Penggunaan \textit{framework} diharapkan dapat membuat aplikasi dikembangkan
+    lebih lanjut oleh penerus tim admin berikutnya. Sifat \textit{framework} yang
+    dapat digunakan-ulang dan modular membuat \textit{framework} memiliki pola yang
+    dapat dipelajari dengan cepat. Memungkinkan tim admin untuk dapat menambahkan
+    fitur baru dengan lebih cepat. 
+    
+    Berdasarkan survei yang dilakukan oleh StackOverflow pada tahun
+    2018\footnote{StackOverflow. (2018) Developer Survey Results 2018.
+    https://insights.stackoverflow.com/survey/2018. 10 September 2019.} dan
+    2019\footnote{StackOverflow. (2019) Developer Survey Results 2019.
+    https://insights.stackoverflow.com/survey/2019. 28 April 2020.}, PHP adalah salah satu bahasa yang
+    mayoritas digunakan oleh pengembang aplikasi web. Dengan banyaknya pengguna
+    bahasa tersebut, maka komunitas, \textit{library} dan firum akan lebih besar.
+    Pilihan tersebut dinilai lebih menguntungkan karena pengembang hanya perlu
+    mempelajari cara menggunakan \textit{library} tersebut tanpa harus
+    mengimplementasi algoritmanya dari dasar. Dengan begitu banyaknya pilihan yang
+    ada, developer yang ingin menambahkan fitur tersebut dapat lebih berfokus untuk
+    mengimplementasi fitur tersebut.
 
 \subsection{FatFree Framework}
 
@@ -712,7 +726,7 @@ FatFree Framework atau F3 akan digunakan untuk penelitan ini.
 \end{figure}
 
 Pengguna aplikasi sistem Oxam yang ada saat ini terdapat tiga pihak utama.
-Pihak pertama adalah Tim Admin yang bertugas untuk menyiapkan ruangan
+Pihak pertama adalah tim admin yang bertugas untuk menyiapkan ruangan
 untuk ujian. Pihak kedua adalah peserta. Peserta adalah subjek yang akan
 menggunakan ruangan ujian. Pihak ketiga adalah dosen. Dosen terdiri dari
 dua tugas, dosen pengawas, dan dosen koordinator. Dosen pengawas akan melakukan
@@ -740,32 +754,32 @@ Informasi lengkap tentang penggunaan tiap peran dapat dilihat pada Tabel \ref{ta
          \hline
          P4 & Peserta & Peserta dapat melihat informasi ujian. \\
          \hline
-         A1 & Admin & Tim Admin akan dapat mengunduh seluruh jawaban yang telah peserta unggah. \\
+         A1 & Admin & Tim admin akan dapat mengunduh seluruh jawaban yang telah peserta unggah. \\
          \hline
-         A2 & Admin & Tim Admin dapat mengirimkan jawaban yang telah peserta unggah, secara manual ataupun terjadwal. \\
+         A2 & Admin & Tim admin dapat mengirimkan jawaban yang telah peserta unggah, secara manual ataupun terjadwal. \\
          \hline
-         A3 & Admin & Tim Admin dapat membuat, menghapus, mengubah notifikasi pada ujian tertentu. \\
+         A3 & Admin & Tim admin dapat membuat, menghapus, mengubah notifikasi pada ujian tertentu. \\
          \hline
-         A4 & Admin & Tim Admin dapat membuat, menghapus, mengubah ujian. \\
+         A4 & Admin & Tim admin dapat membuat, menghapus, mengubah ujian. \\
          \hline
-         A5 & Admin & Tim Admin dapat mencetak daftar tempat duduk peserta ujian. \\
+         A5 & Admin & Tim admin dapat mencetak daftar tempat duduk peserta ujian. \\
          \hline
-         A6 & Admin & Tim Admin dapat memindahkan posisi peserta. \\
+         A6 & Admin & Tim admin dapat memindahkan posisi peserta. \\
          \hline
-         A7 & Admin & Tim Admin dapat mengunduh \textit{script} yang diperlukan. \\
+         A7 & Admin & Tim admin dapat mengunduh \textit{script} yang diperlukan. \\
          \hline
-         A8 & Admin & Tim Admin dapat membuat, menghapus dan mengubah data entri entitas yang tersedia pada sistem. \\
+         A8 & Admin & Tim admin dapat membuat, menghapus dan mengubah data entri entitas yang tersedia pada sistem. \\
          \hline
-         A9 & Admin & Tim Admin dapat menghentikan, memulai, dan menyetel ulang timer ujian. \\
+         A9 & Admin & Tim admin dapat menghentikan, memulai, dan mengatur ulang timer ujian. \\
          \hline
-         Z & Admin dan Dosen Pengawas & Tim Admin dan Dosen pengawas dapat membuka menutup tempat pengumpulan ujian dengan
+         Z & Admin dan Dosen Pengawas & Tim admin dan Dosen pengawas dapat membuka menutup tempat pengumpulan ujian dengan
          memulai atau menutup timer ujian. \\
          \hline
          D1 & Dosen Pengawas & Dosen pengawas dapat melihat informasi ujian. \\
          \hline
-         D2 & Dosen Pengawas & Dosen dapat menghentikan, memulai, dan menyetel ulang timer ujian. \\
+         D2 & Dosen Pengawas & Dosen dapat menghentikan, memulai, dan mengatur ulang timer ujian. \\
          \hline
-         K1 & Dosen Koordinator & Dosen koordinator dapat mengunduh berkas jawaban peserta. \\
+         K1 & Dosen koordinator & Dosen koordinator dapat mengunduh berkas jawaban peserta. \\
          \hline
     \end{tabularx}
 \end{table}
@@ -816,7 +830,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & Admin berhasil masuk ke halaman Admin. \\
         \hline
-        Alternatif: & Perangkat lunak menampilkan pesan kesalahan. \\
+        Alternatif & Perangkat lunak menampilkan pesan kesalahan. \\
         \hline
     \end{longtable}
 
@@ -843,7 +857,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & Dosen Pengawas berhasil masuk ke halaman proyektor. \\
         \hline
-        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+        Alternatif & Perangkat lunak menampilkan pesan kesalahan. \\
         \hline
     \end{longtable}
 
@@ -892,7 +906,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & Ujian terbuat dan admin sedang berada pada halaman detil ujian. \\
         \hline
-        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+        Alternatif & Perangkat lunak menampilkan pesan kesalahan. \\
         \hline
     \end{longtable}
     
@@ -935,7 +949,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & Daftar hadir tercetak dan admin sedang berada pada halaman detil ujian. \\
         \hline
-        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+        Alternatif & Perangkat lunak menampilkan pesan kesalahan. \\
         \hline
     \end{longtable}
 
@@ -966,7 +980,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & Timer dalam keadaan mulai dan admin sedang berada pada halaman proyektor. \\
         \hline
-        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+        Alternatif & Perangkat lunak menampilkan pesan kesalahan. \\
         \hline
     \end{longtable}
     
@@ -1001,18 +1015,18 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & Timer dalam keadaan terhenti dan admin sedang berada pada halaman proyektor. \\
         \hline
-        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+        Alternatif & Perangkat lunak menampilkan pesan kesalahan. \\
         \hline
     \end{longtable}
 
-    \subsubsection{Menyetel Ulang Timer Ujian (Admin)}
+    \subsubsection{Mengatur Ulang Timer Ujian (Admin)}
     \begin{longtable}{ | p{0.2\textwidth} | p{0.8\textwidth} | }
         \hline
-        \textit{Use case} & Menyetel Ulang Timer Ujian untuk Admin \\
+        \textit{Use case} & Mengatur Ulang Timer Ujian untuk Admin \\
         \hline
         Aktor & Admin \\
         \hline
-        Tujuan & Menyetel ulang timer ujian. \\
+        Tujuan & Mengatur ulang timer ujian. \\
         \hline
         Kondisi Awal & Admin sudah login dan mengakses halaman detil ujian \\
         \hline
@@ -1032,7 +1046,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & Timer dalam keadaan akan mulai dan admin sedang berada pada halaman proyektor. \\
         \hline
-        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+        Alternatif & Perangkat lunak menampilkan pesan kesalahan.\\
         \hline
     \end{longtable}
 
@@ -1060,7 +1074,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & \textit{Script} terunduh dan admin sedang berada pada halaman proyektor. \\
         \hline
-        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+        Alternatif & Perangkat lunak menampilkan pesan kesalahan. \\
         \hline
     \end{longtable}
 
@@ -1109,7 +1123,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         Kondisi Akhir & \textit{Script} terunduh, peserta sudah dimigrasi dan
         admin sedang berada pada halaman detil ujian. \\
         \hline
-        Alternatif: & Admin melakukan pembatalan.
+        Alternatif & Admin melakukan pembatalan. \\
         \hline
     \end{longtable}
     
@@ -1143,7 +1157,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         Kondisi Akhir & Slot jawaban tertambah dan
         admin sedang berada pada halaman detil ujian. \\
         \hline
-        Alternatif: & Admin melakukan pembatalan.
+        Alternatif & Admin melakukan pembatalan. \\
         \hline
     \end{longtable}
 
@@ -1181,7 +1195,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         Kondisi Akhir & Notifikasi tertambah dan
         admin sedang berada pada halaman detil ujian. \\
         \hline
-        Alternatif: & Admin melakukan pembatalan.
+        Alternatif & Admin melakukan pembatalan. \\
         \hline
     \end{longtable}
 
@@ -1219,7 +1233,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         Kondisi Akhir & Notifikasi tertambah dan
         admin sedang berada pada halaman detil ujian. \\
         \hline
-        Alternatif: & Admin melakukan pembatalan.
+        Alternatif & Admin melakukan pembatalan. \\
         \hline
     \end{longtable}
 
@@ -1256,7 +1270,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         Kondisi Akhir & Jawaban dijadwalkan untuk dikirim dan
         admin sedang berada pada halaman detil ujian. \\
         \hline
-        Alternatif: & Admin melakukan pengiriman paksa.\\
+        Alternatif & Admin melakukan pengiriman paksa.\\
         \hline
         & \begin{tabular}{ p{6cm} | p{6cm} }
             \hline
@@ -1268,7 +1282,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
             \hline
         \end{tabular}\\
         \hline
-        Alternatif: & Admin melakukan pengunduhan jawaban saja.\\
+        Alternatif & Admin melakukan pengunduhan jawaban saja.\\
              & \begin{tabular}{ p{6cm} | p{6cm} }
             \hline
             Aksi Aktor & Respon Aplikasi \\
@@ -1307,9 +1321,9 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \end{tabular} \\
         \hline
         Kondisi Akhir & Ujian terhapus dan
-        admin sedang berada pada halaman detil ujian. \\
+            admin sedang berada pada halaman detil ujian. \\
         \hline
-        Alternatif: Admin melakukan pembatalan.
+        Alternatif & Admin melakukan pembatalan. \\
         \hline
     \end{longtable}
 
@@ -1349,7 +1363,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         Kondisi Akhir & Entri baru dibuat
         admin sedang berada pada halaman pengubah entri. \\
         \hline
-        Alternatif: Admin melakukan pembatalan.
+        Alternatif & Admin melakukan pembatalan. \\
         \hline
     \end{longtable}
 
@@ -1385,7 +1399,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         Kondisi Akhir & Detil entri diubah
         admin sedang berada pada halaman pengubah entri. \\
         \hline
-        Alternatif: Admin melakukan pembatalan.
+        Alternatif & Admin melakukan pembatalan. \\
         \hline
     \end{longtable}
     
@@ -1421,7 +1435,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         Kondisi Akhir & Entri terhapus
         admin sedang berada pada halaman daftar entri. \\
         \hline
-        Alternatif: Admin melakukan pembatalan.
+        Alternatif & Admin melakukan pembatalan. \\
         \hline
     \end{longtable}
 
@@ -1448,7 +1462,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & Peserta sedang berada pada halaman informasi ujian. \\
         \hline
-        Alternatif: Peserta tidak berada pada komputer yang tepat.
+        Alternatif & Peserta tidak berada pada komputer yang tepat. \\
         \hline
     \end{longtable}
     
@@ -1483,7 +1497,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & Peserta sudah melihat notifikasi, dan peserta sedang berada pada halaman informasi ujian. \\
         \hline
-        Alternatif: -
+        Alternatif & - \\
         \hline
     \end{longtable}
 
@@ -1516,8 +1530,8 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & Berkas jawaban terunggah dan peserta sedang berada pada halaman informasi ujian. \\
         \hline
-        Alternatif: Peserta mengunggah berkas jawaban yang namanya tidak sesuai
-        & \begin{tabular}{ p{6cm} | p{6cm} }
+        Alternatif & Peserta mengunggah berkas jawaban yang namanya tidak sesuai.
+        \begin{tabular}{ p{6cm} | p{6cm} }
             \hline
             Aksi Aktor & Respon Aplikasi \\
             \hline
@@ -1531,7 +1545,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
             \hline
             & Menyimpan berkas yang diunggah. \\
             \hline
-        \end{tabular}
+        \end{tabular} \\
         \hline
     \end{longtable}
 
@@ -1559,7 +1573,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & Berkas jawaban terunduh dan peserta sedang berada pada halaman informasi ujian. \\
         \hline
-        Alternatif: -
+        Alternatif & - \\
         \hline
     \end{longtable}
 
@@ -1587,7 +1601,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & Berkas jawaban terunduh dan peserta sedang berada pada halaman informasi ujian. \\
         \hline
-        Alternatif: -
+        Alternatif & - \\
         \hline
     \end{longtable}
 
@@ -1619,7 +1633,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & Timer dalam keadaan mulai dan Dosen Pengawas sedang berada pada halaman proyektor. \\
         \hline
-        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+        Alternatif & Perangkat lunak menampilkan pesan kesalahan. \\
         \hline
     \end{longtable}
 
@@ -1650,7 +1664,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & Timer dalam keadaan terhenti dan Dosen Pengawas sedang berada pada halaman proyektor. \\
         \hline
-        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+        Alternatif & Perangkat lunak menampilkan pesan kesalahan. \\
         \hline
     \end{longtable}
 
@@ -1681,7 +1695,7 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & Timer dalam keadaan akan mulai dan Dosen Pengawas sedang berada pada halaman proyektor. \\
         \hline
-        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+        Alternatif & Perangkat lunak menampilkan pesan kesalahan. \\
         \hline
     \end{longtable}
 
@@ -1716,20 +1730,20 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
         \hline
         Kondisi Akhir & Waktu untuk timer sudah ditambahkan dan Dosen Pengawas sedang berada pada halaman proyektor. \\
         \hline
-        Alternatif: & Perangkat lunak menampilkan pesan kesalahan.
+        Alternatif & Perangkat lunak menampilkan pesan kesalahan. \\
         \hline
     \end{longtable}
 
-    \subsubsection{Mengunduh Jawaban (Dosen Koordinator)}
+    \subsubsection{Mengunduh Jawaban (dosen koordinator)}
     \begin{longtable}{ | p{0.2\textwidth} | p{0.8\textwidth} | }
         \hline
         \textit{Use case} & Mengunduh Jawaban \\
         \hline
-        Aktor & Dosen Koordinator \\
+        Aktor & Dosen koordinator \\
         \hline
         Tujuan & Mengunduh berkas jawaban yang telah diunggah oleh peserta ujian. \\
         \hline
-        Kondisi Awal & Dosen Koordinator sudah mendapatkan email ujian \\
+        Kondisi Awal & Dosen koordinator sudah mendapatkan email ujian \\
         \hline
         Langkah & \begin{tabular}{ p{6cm} | p{6cm} }
             \hline
@@ -1745,9 +1759,9 @@ disingkronisasi dengan waktu yang terdapat pada server dan layar proyektor.
             \hline
         \end{tabular} \\
         \hline
-        Kondisi Akhir & Berkas terunduh, Dosen Koordinator masih pada halaman pengunduhan. \\
+        Kondisi Akhir & Berkas terunduh, Dosen koordinator masih pada halaman pengunduhan. \\
         \hline
-        Alternatif: & Tautan sudah kadaluarsa
+        Alternatif & Tautan sudah kadaluarsa \\
         \hline
     \end{longtable}
 
