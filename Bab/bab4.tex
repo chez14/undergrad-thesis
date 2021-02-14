@@ -946,10 +946,10 @@
 \subsubsection{ACL dan ACLItem}
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.75\paperwidth]{Gambar/erd-details/ERD--New - ACL & ACLItem.pdf}
         \caption{Potongan diagram entitas untuk \texttt{ACL} dan
         \texttt{ACLItem}.}
         \label{fig:erd_acl-aclitem}
+        \includegraphics[width=0.75\paperwidth]{Gambar/erd-details/ERD--New - ACL & ACLItem.pdf}
     \end{figure}
     
     Entitas \texttt{ACL} dan \texttt{ACLItem} adalah entitas yang menampung
@@ -961,6 +961,9 @@
     
     \begin{table}[H]
         \centering
+        \caption{Tabel representasi nilai biner pada kolom \texttt{permission}
+        di entitas \texttt{ACLItem}.}
+        \label{tab:aclitem_level}
         \begin{tabular}{|l|l|l|}
         \hline
         Label & Deskripsi & Nilai Biner \\ \hline
@@ -969,9 +972,6 @@
         U     & Perbarui  & \texttt{0b0100}        \\ \hline
         D     & Hapus     & \texttt{0b1000}        \\ \hline
         \end{tabular}
-        \caption{Tabel representasi nilai biner pada kolom \texttt{permission}
-        di entitas \texttt{ACLItem}.}
-        \label{tab:aclitem_level}
     \end{table}
         
     
@@ -1144,6 +1144,9 @@
     
     \begin{table}[]
         \centering
+        \caption{Definisi tipe semester dengan nilainya untuk kolom
+            \texttt{period\_code} pada entitas \texttt{LecturePeriod}.}
+        \label{tab:lecture-periode}
         \begin{tabular}{|l|l|}
         \hline
         Nilai & Tipe Semester \\ \hline
@@ -1151,9 +1154,6 @@
         2     & Genap         \\ \hline
         3     & Pendek        \\ \hline
         \end{tabular}
-        \caption{Definisi tipe semester dengan nilainya untuk kolom
-            \texttt{period\_code} pada entitas \texttt{LecturePeriod}.}
-        \label{tab:lecture-periode}
     \end{table}
     
     Kode tersebut terdiri dari lima digit angka yang terdiri dari tahun ajar dan
