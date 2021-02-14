@@ -8,12 +8,12 @@
     Pelaksanaan Ujian di Labkomp. Bandung.}. Standar prosedur ini dibuat oleh Kepala Lab
     yang kemudian diikuti oleh beberapa pihak. Pembahasan pedoman pelaksanaan
     ujian ini akan dimulai dengan membahas pedoman untuk peserta ujian,
-    Pengawas, Admin Lab, dan dosen koordinator.
+    dosen pengawas dan koordinator, serta admin lab.
     
 \subsection{Pedoman Pelaksanaan Ujian untuk Peserta Ujian}
     Pedoman pelaksanaan ujian untuk peserta dimulai beberapa hari sebelum ujian
     dimulai. Peserta diharuskan memperhatikan pengumuman dan jadwal
-    \textit{shift} yand diterbitkan oleh Kepala Lab Komputasi (KLK). Peserta
+    \textit{shift} yang diterbitkan oleh Kepala Lab Komputasi (KLK). Peserta
     diharuskan untuk segera melaporkan jika jadwal yang diterbitkan memiliki
     masalah dengan jadwal ujian yang dimiliki oleh peserta, paling lambat satu
     hari sebelum masa ujian dimulai. Jika peserta gagal melaporkan masalah yang
@@ -185,7 +185,6 @@
     https://www.lexico.com/en/definition/back\_end. 19 November 2019.}. Pada umumnya Back-end
     memiliki
     tugas untuk menyimpan data, memproses data, dan memvalidasi data.
-    
     Sesuai dengan namanya, sistem back-end hanya akan berjalan pada server dan
     sumber kode yang terdapat pada sistem ini tidak akan ditampilkan pada
     pengguna.
@@ -194,17 +193,18 @@
     \textit{Front-end} adalah sebuah subsistem yang melayani pengguna secara
     langsung\footnote{Oxford Dictionary. (2019) Definition of Front end.
     https://www.lexico.com/en/definition/front\_end. 19 November
-    2019.}.Front-end ini memiliki tugas untuk menyajikan data pada pengguna,
-    serta melakukan pemanggilan perintah ke \textit{back-end}.
-    
+    2019.}. Front-end ini memiliki tugas untuk menyajikan data pada pengguna,
+    serta melakukan pemanggilan perintah ke back-end.
     Sesuai dengan namanya, subsistem front-end akan berjalan pada sisi klien
     dari sistem, oleh karena itu kode subsistem ini harus dapat ditransmisikan
     ke peramban pengguna agar sistem dapat berjalan sesuai ekspektasi. Karena
     kode pada subsistem ini dapat dilihat oleh pengguna, maka sistem back-end
     penting untuk melakukan sanitasi data untuk memastikan data yang diberikan
-    tidak mengancam kestabilan siklus hidup sistem keseluruhan.
+    tidak mengancam kestabilan siklus hidup sistem keseluruhan. Sanitasi data
+    adalah salah satu proses untuk menyaring data dengan filter tertentu agar
+    data yang akan digunakan oleh sistem berada aturan yang dibutuhkan sistem.
 
-\section{\textit{Library} dan \textit{Framework}}
+\section{\textit{Software Library} dan \textit{Framework}}
     \textit{Library} adalah kumpulan fungsi yang dikompilasi bersama dan
     biasanya dibagikan untuk aplikasi gunakan dengan cara pemanggilan tertentu.
     \textit{Library} biasanya digunakan oleh pengembang atau \emph{developer}
@@ -386,7 +386,10 @@
     berbasis komponen, dan ``Pelajari sekali, tulis di manapun'' atau yang disebut
     juga \textit{Learn Once, Write Anywhere}, (LOWA)\footnote{Reactjs Team.
     (2019) React - A JavaScript library for building user interfaces.
-    https://reactjs.org. 19 November 2019 }. Reactjs ini digunakan oleh banyak
+    https://reactjs.org. 19 November 2019 }. 
+    Reactjs memiliki paradigma pemrograman dengan bahasa yang deklaratif, yang berati implementasi
+    logika dapat implemetnasi langsung tanpa harus mendefinisikan alurnya secara eksplisit.
+    Reactjs ini digunakan oleh banyak
     pengembang aplikasi web karena keunggulannya, terutama dengan alasan LOWA.
     Pengembang dapat menggunakan React, bahkan pada bahasa berbasis Js apapun.
     Normalnya pengembang menggunakan ES6, atau Ecmascript 6 untuk
@@ -866,6 +869,22 @@
     CI/CD yang lebih kompleks dan bertahap. \textit{Pipeline} yang sudah dibuat
     akan ditampilkan pada dasbor secara diagram (Gambar
     \ref{fig:gitlab-ci:pipeline}\footnote{Lihat https://gitlab.com/gitlab-org/gitlab}).
+    
+    Seperti yang dapat dilihat pada Gambar
+    \ref{fig:gitlab-ci:pipeline},
+    diagram \textit{Pipeline} ditunjukkan pada bagian yang berbentuk pil dengan indikator ceklis
+    berwarna hijau yang menandakan bahwa proses \textit{job} pada \textit{stage} tersebut berhasil.
+    \textit{Stage} ditunjukkan dengan teks tebal pada diagram. Normalnya setiap \textit{stage} dapat
+    didefiniskan urutannya secara eksplisit pada berkas \texttt{.gitlab-ci.yml}, namun pada diagram
+    setiap \textit{stage} yang akan dijalankan secara berurutan akan diletakkan dari kiri ke kanan.
+    Sebagai contoh, \textit{pipeline} akan berjalan dimulai dari \textit{stage} \texttt{Sync}, lalu 
+    \texttt{Prepare}, \texttt{Build-images} dan seterusnya.
+    
+    Setiap \textit{job} yang berjalan pada setiap stage dapat diatur \textit{dependency}nya. 
+    \textit{Dependency} ini ditunjukkan dengan garus berwarna abu-abu pada diagram. Setiap \textit{job}
+    hanya dapat bergantung pada \textit{job} dari \textit{stage} sebelumnya. Sehingga koordinator
+    GitLab CI/CD dapat melakukan optimisasi penjadwalan pemrosesan \textit{job} bergantung dari
+    informasi \textit{dependency}nya.
 
 \section{Docker}
     \textit{Containerization} adalah salah satu bentuk abstraksi pada level
