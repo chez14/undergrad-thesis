@@ -816,13 +816,11 @@
     mendeteksi berkas tersebut dan melakukan eksekusi.
     
     \begin{figure}
-        \begin{minipage}{\textwidth}
-            \centering
-            \includegraphics[width=0.7\paperwidth]{Gambar/gitlab-ci-job-view.png}
-            \caption{Eksekusi \textit{job} yang gagal pada GitLab CI/CD.
-            Repositori dari Pho - FTIS OpenData App\footnote{Lihat https://gitlab.com/chez14/ftis-opendata-app}}
-            \label{fig:gitlab-ci:jobrun}
-        \end{minipage}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/gitlab-ci-job-view.png}
+        \caption{Eksekusi \textit{job} yang gagal pada GitLab CI/CD.
+        Repositori dari Pho - FTIS OpenData App}
+        \label{fig:gitlab-ci:jobrun}
     \end{figure}
     
     
@@ -851,25 +849,23 @@
     ditambahkan pada sebuah \textit{pipeline} pada dasbor CI/CD pada GitLab.
     Lingkungan pada \texttt{before\_script} akan digunakan pada \textit{job} ini
     untuk melakukan eksekusi pada \textit{script} yang diberikan. Seperti pada
-    contoh Gambar \ref{fig:gitlab-ci:jobrun}. Jika perintah tersebut gagal
+    contoh Gambar \ref{fig:gitlab-ci:jobrun}\footnote{Lihat https://gitlab.com/chez14/ftis-opendata-app}. Jika perintah tersebut gagal
     dieksekusi, maka \textit{job} pada tahap berikutnya tidak akan dieksekusi,
     dan pemilik kode akan diberitahu bahwa kompilasi gagal.
     
     
     \begin{figure}
-        \begin{minipage}{\textwidth}
-            \centering
-            \includegraphics[width=0.7\paperwidth]{Gambar/gitlab-ci-pipeline.png}
-            \caption{Contoh \textit{Pipeline} pada GitLab CI/CD. Repositori dari
-            GitLab.\footnote{Lihat https://gitlab.com/gitlab-org/gitlab}}
-            \label{fig:gitlab-ci:pipeline}
-        \end{minipage}
+        \centering
+        \includegraphics[width=0.7\paperwidth]{Gambar/gitlab-ci-pipeline.png}
+        \caption{Contoh \textit{Pipeline} pada GitLab CI/CD. Repositori dari
+        GitLab.}
+        \label{fig:gitlab-ci:pipeline}
     \end{figure}
     
     Dengan melakukan konfigurasi tertentu, pemilik proyek dapat membuat rencana
     CI/CD yang lebih kompleks dan bertahap. \textit{Pipeline} yang sudah dibuat
     akan ditampilkan pada dasbor secara diagram (Gambar
-    \ref{fig:gitlab-ci:pipeline}).
+    \ref{fig:gitlab-ci:pipeline}\footnote{Lihat https://gitlab.com/gitlab-org/gitlab}).
 
 \section{Docker}
     \textit{Containerization} adalah salah satu bentuk abstraksi pada level
