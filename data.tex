@@ -48,7 +48,12 @@
 \usepackage{todo}
 \usepackage{verbatim} 		%multiline comment
 \usepackage{pgfplots}
-\usepackage{enumitem}
+\usepackage{listing-syntax-highlighter}
+\usepackage{rotating}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{pdfpages}
+\usepackage{tabularx}
 %\overfullrule=3mm % memperlihatkan overfull 
 %=============================================================================
 
@@ -134,7 +139,7 @@
 \gambar{yes}
 %\gambar{no}
 %\tabel{yes}
-\tabel{no} 
+\tabel{yes}
 %\kode{yes}
 \kode{no} 
 %\notasi{yes}
@@ -202,10 +207,10 @@
 % !!Lihat singkatan pembimbing dan penguji anda di file dosen.tex!!
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda
 %=============================================================================
-\namanpm{<<Nama Lengkap>>}{<<10 digit NPM UNPAR>>}
-\tanggal{<<tanggal>>}{<<bulan>>}{<<tahun>>}         %isi bulan dengan angka
-\pembimbing{<<pembimbing utama/1>>}{<<pembimbing pendamping/2>>}    
-\penguji{<<penguji 1>>}{<<penguji 2>>} 
+\namanpm{Gunawan Christianto}{2016730011}
+\tanggal{2}{2}{2021}         %isi bulan dengan angka
+\pembimbing{\RCP}{}    
+\penguji{\CHW}{\LNV} 
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -221,8 +226,10 @@
 % - gunakan \texorpdfstring{\\}{} untuk pindah ke baris baru
 % - judul TIDAK ditulis dengan menggunakan huruf besar seluruhnya !!
 %=============================================================================
-\judulINA{<<Judul Bahasa Indonesia>>}
-\judulENG{<<Judul Bahasa Inggris>>}
+\judulINA{Aplikasi Manajemen Ujian Berbasis Komputer \\
+(Studi Kasus: Laboratorium Komputasi FTIS UNPAR)}
+\judulENG{Management Application for Computer Based Examination \\
+(Case Study: Laboratorium Komputasi FTIS UNPAR)}
 %_____________________________________________________________________________
 %=============================================================================
 % 								BAGIAN X
@@ -234,8 +241,50 @@
 % - hilangkan tanda << & >>, dan isi sesuai dengan data anda
 % - langsung mulai setelah '{' awal, jangan mulai menulis di baris bawahnya
 %=============================================================================
-\abstrakINA{<<Tuliskan abstrak anda di sini, dalam bahasa Indonesia>>}
-\abstrakENG{<<Tuliskan abstrak anda di sini, dalam bahasa Inggris>>} 
+\abstrakINA{ Ujian praktik adalah salah satu syarat penting untuk memenuhi komponen penilaian
+    suatu mata kuliah. Ujian praktik pada Lab Komputer FTIS UNPAR dilakukan dengan bantuan
+    aplikasi Oxam. Oxam yang berjalan pada saat penelitian ini dilakukan berada pada versi 4.
+    Aplikasi tersebut akan bertanggung jawab untuk membantu membuat slot pengumpulan jawaban,
+    daftar hadir peserta, \textit{script} distribusi soal dan lainnya. Aplikasi tersebut berjalan
+    pada \textit{server} Lab Komputer fakultas yang berbasis Linux.
+    
+    Namun fitur yang terbatas membuat Oxam v4 menjadi tidak efisien lagi untuk menyelesaikan
+    masalah-masalah baru yang muncul. Beberapa masalah tersebut seperti berkas tempat pengumpulan
+    jawaban yang tidak aman karena tidak diacak; juga adanya perubahan format NPM untuk mahasiswa
+    baru yang mengakibatkan tim admin haus mengkonversi format NPM baru tersebut ke bentuk yang lama
+    agar sistem dapat bekerja. Masalah-masalah ini kemudian ditambah lagi dengan masalah lain yang
+    ditemukan pada saat survei lapangan dilakukan.
+    
+    Pada penelitian ini, sebuah perangkat lunak yang mampu menyelesaikan masalah-masalah tersebut 
+    dibangun ulang. Oxam versi ke-5 akan memiliki fitur-fitur seperti tempat penyimpanan jawaban
+    yang teracak namanya, dan konversi NPM otomatis pada saat pembuatan slot ujian, serta sistem
+    notifikasi yang digunakan untuk menyebarkan kredensial untuk layanan ujian tambahan.
+    
+    Hasil dari pengujian yang dilakukan menyimpulkan bahwa aplikasi Oxam yang dibangun dapat
+    menyelesaikan masalah-masalah tersebut dengan baik. Hasil pengujian fungsional juga 
+    memperlihatkan bahwa logika dan \textit{query} yang diimplementasi dapat berjalan
+    sesuai dengan ekspektasi.
+}
+
+\abstrakENG{Practical examination is one of the essential requirement of assesment component of a course.
+    Practical examination on Computer Lab of FTIS UNPAR is supported by Oxam App. On the time of this research,
+    Oxam is on it's 4th version. Oxam are responsible for creating a submission slot, participant list,
+    distribution \textit{script}, and etc. The App runs on Linux-based server, located on the Faculty's Computer
+    lab.
+    
+    Since Oxam v4 has limited functionality, the new arised issue cannot be resolved efficienly. Some
+    of the issues are the answer that are upload was not stored securely in a randomized folder name; Then,
+    the newly formatten NPM makes admin team to manually convert them to the old format before entering
+    it to the system. These issues then grows up even more when survey is conducted.
+    
+    In this research, a software that are capable of solving the problems is rebuilt. 
+    The fifth version of Oxam will have key features such as randomized folder name for submitted answer,
+    auto-detect and convert the new and old format of NPM, and notification feature to send out
+    the credentials required to use the additional service for examination.
+    
+    Results from the performed tests concludes that the rebuilt Oxam are capable to solve those issues well.
+    Functional test also performed to ensure that the logic and query is within expectancy.
+} 
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -247,8 +296,8 @@
 % - kunciENG: keywords in english
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda.
 %=============================================================================
-\kunciINA{<<Tuliskan di sini kata-kata kunci yang anda gunakan, dalam bahasa Indonesia>>}
-\kunciENG{<<Tuliskan di sini kata-kata kunci yang anda gunakan, dalam bahasa Inggris>>}
+\kunciINA{Ujian, Lab Komputer, Oxam, Reactjs, FatFree Framework, REST API}
+\kunciENG{Examination, Computer Lab, Reactjs, FatFree Framework, REST API}
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -258,7 +307,7 @@
 % Persembahan : kepada siapa anda mempersembahkan skripsi ini ...
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda.
 %=============================================================================
-\untuk{<<kepada siapa anda mempersembahkan skripsi ini\ldots?>>}
+\untuk{Dipersembahkan untuk Tim Admin FTIS, keluarga, dan diri sendiri.}
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -269,7 +318,34 @@
 % kasih kepada yang telah membantu anda bla bla bla ....  
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda.
 %=============================================================================
-\prakata{<<Tuliskan kata pengantar dari anda di sini \ldots>>} 
+\prakata{Puji syukur penulis panjatkan kepada Tuhan Yang Maha Esa, karena dengan rahmat dan karunia-Nya, 
+    penulis dapat menyelesaikan penyusunan skripsi berjudul ``Aplikasi Manajemen Ujian Berbasis Komputer 
+    (Studi Kasus: Laboratorium Komputasi FTIS UNPAR)''. 
+    Skripsi ini dibuat dan diajukan untuk memenuhi salah satu syarat untuk memperoleh gelar Sarjana pada Program Studi
+    Teknik Informatika, Universitas Katolik Parahyangan dan memperbaiki sistem Oxam yang lama untuk kegiatan berujian
+    yang lebih baik.
+    Selama penulisan skripsi ini, penulis menyadari bahwa skripsi ini tidak dapat diselesaikan tanpa 
+    bantuan dan dukungan berbagai pihak. Sehingga penulis mengucapkan rasa terima kasih kepada:
+    \begin{enumerate}
+        \item Bapak Raymond Chandra Putra, M.T. sebagai dosen pembimbing, Kepala Lab yang selalu memberikan
+            motivasi dan dukungan untuk menyelesaikan penelitian ini.
+        \item Bapak Chandra Wijaya, M.T. dan Bapak Lionov, M.Sc. selaku dosen penguji yang telah menyidang, 
+            memberikan kritik dan saran yang membangun untuk skripsi ini.
+        \item Tim Admin (Cahyadi, Kikil, Febrian, Ferdian, Mike, Saul, Kevin, Sam, Eca, dan Kalas) dan Kevin R
+            yang selalu mendukung dalam
+            berbagai keadaan, serta selalu memotivasi pada berbagai tahap pada penelitian ini.
+        \item Tim DNA dan teman-teman dari Tim Maintenance yang selalu mendukung progress penelitian ini.
+        \item Staff Tata Usaha, terutama Ko Rikie yang selalu menunjang kebutuhan penelitian ini.
+        \item Ko Kris, Samuel Lusandi dan Cristopher yang senang sekali mengingatkan untuk menyelesaikan penelitian,
+            teman ngobrol yang baik, dan sering menghibur pada saat penulis merasa \textit{stuck}.
+        \item Teman-teman seperjuangan, Dipo, Naofal, dan Bobby yang tanpa lelah memberikan dukungan emosional.
+    \end{enumerate}
+    \par Penulis menyadari bahwa penelitian yang telah dilakukan masih memiliki berbagai kekurangan. 
+    Sehingga penulis memohon maaf jika terdapat kekurangan. 
+    Penulis juga mengharapkan kritik dan saran yang membangun untuk terus menyempurnakan penelitian dan 
+    aplikasi yang telah dibangun. Semoga penelitian yang dilakukan dapat membantu meningkatkan pengalaman
+    berujian di Lab Komputer dengan lebih baik.
+} 
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -296,7 +372,7 @@
 %\ttd{materai}
 %\ttd{kosong}
 %=============================================================================
-\ttd{gambar}
+\ttd{digital}
 
 %_____________________________________________________________________________
 %=============================================================================
@@ -313,7 +389,7 @@
 %=============================================================================
 %\ttddosen{yes}
 %=============================================================================
-\ttddosen{no}
+\ttddosen{yes}
 
 %_____________________________________________________________________________
 %=============================================================================
