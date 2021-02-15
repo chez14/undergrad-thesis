@@ -464,8 +464,11 @@
     dari tempat penyimpanan ujian. Pada Gambar \ref{fig:dirlisting}, berkas jawaban ujian disimpan pada
     \textit{folder} \texttt{uploads/secured-assets} dengan nama folder yang diacak.
 
-
-\section{Pengujian Experimental}
+\section{Pengujian}
+    Perangkat lunak yang telah dibangun kemudian diuji dengan pengujian eksperimental dan pengujian fungsional.
+    Hasil pengujian tersebut akan dianalisis untuk mendapatkan kesimpulan pada bab berikutnya.
+    
+\subsection{Pengujian Eksperimental}
     Pengujian experimental dilakukan dengan mendemokan aplikasi pada tim Admin secara langsung. Pada pengujian
     tersebut, tim admin akan membuat sebuah mata kuliah dan ujian, lalu mencoba fitur-fitur yang tersedia
     pada sistem Oxam yang baru. Keberhasilan tersebut dilakukan dengan memberikan kuisioner yang kemudian
@@ -523,7 +526,7 @@
     \end{enumerate}
     
     Kuisioner tersebut lalu diberikan pada tim admin yang pernah menggunakan sistem Oxam yang lama yang kemudian
-    dibandinkan dengan pengalaman mereka dalam menggunakan sistem Oxam yang lama. Kuisioner tersebut mendapatkan
+    dibandingkan dengan pengalaman mereka dalam menggunakan sistem Oxam yang lama. Kuisioner tersebut mendapatkan
     sembilan respon dan didapatkan data yang dapat dilihat pada Gambar \ref{fig:kuisioner_demo}.
     \begin{figure}
         \centering
@@ -532,31 +535,15 @@
         \label{fig:kuisioner_demo}
     \end{figure}
     
-    Pada pertanyaan terakhir, saran yang diberikan oleh tim admin melalui survei tersebut adalah
-    \begin{itemize}
-        \item Aplikasi dapat mendukung pengujian daring.
-        \item Perbaikan terhadap beberapa tampilan antarmuka. \\
-            Perbaikan tersebut dapat meliputi penggantian satuan untuk halaman konfirmasi pembuatan ujian dari jam
-            ke menit, teks informasi dan perintah, serta ubah pemilihan peserta pada notifikasi menjadi tombol khusus.
-            Selain itu mengganti beberapa judul bagian menjadi lebih jelas, seperti judul untuk \textit{editor}
-            entri pada pengelola entitas.
-        \item Sehabis waktu ujian habis, peserta seharusnya diberikan tampilan waktu ujian telah habis.
-        \item Fitur notifikasi dibuat terintegrasi dengan peramban sehingga notifikasi muncul pada 
-            sistem operasi juga.
-        \item Fitur pengiriman email notifikasi seharusnya memunculkan informasi kapan email akan
-            dikirim dan status pengirimannya.
-        \item Memberikan informasi sisa notifikasi pengerjaan di taskbar Windows.
-        \item Pada fitur perpindahan peserta, tombol pengunduhannya dibuat dapat diunduh ulang pada
-            saat modal tertutup.
-        \item Fitur perpindahan dan \textit{plotting} tempat duduk seharusnya menampilkan komputer
-            yang sedang digunakan atau sedang ada masalah.
-        \item Eksekusi \textit{script} yang otomatis, tidak perlu diunduh terlebih dahulu.
-        \item Sistem memberikan peringatan jika terdapat peserta yang duduk bersebelahan.
-    \end{itemize}
+    Grafik menunjukkan tabulasi suara untuk setiap pertanyaan yang diajukan, disajikan dalam bentuk seri.
+    Secara mayoritas, setiap pertanyaan yang diajukan responden memberikan respon setuju. Pada pertanyaan
+    nomor delapan, ``Aplikasi lebih \textit{buggy}.'' respon yang diberikan mayoritas berada pada 
+    Tidak Setuju. Hal ini menandakan bahwa aplikasi cukup stabil, namun dengan adanya beberapa responen 
+    yang memilih jawaban ``Setuju'', artinya aplikasi dapat ditingkatkan kembali stabilitasnya.
     
     Hasil kuisioner tersebut dianalisis untuk menilai tingkat kepuasan dalam menggunakan aplikasi.
 
-\section{Pengujian Fungsional}
+\subsection{Pengujian Fungsional}
 Pengujian fungsional dilakukan dengan bantuan \textit{Unit Testing}. Tes tersebut akan dilakukan
 setiap kali kode diunggah ke repositori penyimpanan kode sumber dengan bantuan CI/CD. Tes tersebut
 terdiri dari beberapa skenario dan langkah yang menentukan sebuah fitur dapat berjalan sesuai ekspektasi
@@ -681,7 +668,7 @@ atau tidak. Tes-tes tersebut terdiri dari
 \subsection{Analisis Hasil Pengujian}
     Berdasarkan
     kuisioner yang telah dilakukan, didapatkan rata-rata nilai kepuasan terhadap sistem yang baru dengan
-    rincian yang dapat dilihat pada tabel \ref{tab:survey-avg}.
+    rincian yang dapat dilihat pada Tabel \ref{tab:survey-avg}.
     \begin{table}[h]
         \centering
         \caption{Rata-rata nilai kepuasan berdasarkan kuisioner yang telah dilakukan.}
@@ -710,6 +697,28 @@ atau tidak. Tes-tes tersebut terdiri dari
             \hline
         \end{tabularx}
     \end{table}
+    
+    Selain itu, pada pertanyaan terakhir, saran yang diberikan oleh tim admin melalui survei tersebut adalah
+    \begin{itemize}
+        \item Aplikasi dapat mendukung pengujian daring.
+        \item Perbaikan terhadap beberapa tampilan antarmuka. \\
+            Perbaikan tersebut dapat meliputi penggantian satuan untuk halaman konfirmasi pembuatan ujian dari jam
+            ke menit, teks informasi dan perintah, serta ubah pemilihan peserta pada notifikasi menjadi tombol khusus.
+            Selain itu mengganti beberapa judul bagian menjadi lebih jelas, seperti judul untuk \textit{editor}
+            entri pada pengelola entitas.
+        \item Sehabis waktu ujian habis, peserta seharusnya diberikan tampilan waktu ujian telah habis.
+        \item Fitur notifikasi dibuat terintegrasi dengan peramban sehingga notifikasi muncul pada 
+            sistem operasi juga.
+        \item Fitur pengiriman email notifikasi seharusnya memunculkan informasi kapan email akan
+            dikirim dan status pengirimannya.
+        \item Memberikan informasi sisa notifikasi pengerjaan di taskbar Windows.
+        \item Pada fitur perpindahan peserta, tombol pengunduhannya dibuat dapat diunduh ulang pada
+            saat modal tertutup.
+        \item Fitur perpindahan dan \textit{plotting} tempat duduk seharusnya menampilkan komputer
+            yang sedang digunakan atau sedang ada masalah.
+        \item Eksekusi \textit{script} yang otomatis, tidak perlu diunduh terlebih dahulu.
+        \item Sistem memberikan peringatan jika terdapat peserta yang duduk bersebelahan.
+    \end{itemize}
     
     Dengan hasil umpan balik yang diberikan, aplikasi Oxam yang baru dinilai dapat meningkatkan
     pengalaman memanajemen ujian di Lab Komputer dengan nilai keseluruhan 3.22 poin dari 4. Stabilitas
